@@ -46,6 +46,21 @@ return [
             'provider' => 'users',
             'hash' => false,
         ],
+
+        'lecturer' => [
+            'driver' => 'session',
+            'provider' => 'lecturers'
+        ],
+
+        'student' => [
+            'driver' => 'session',
+            'provider' => 'students'
+        ],
+
+        'partner' => [
+            'driver' => 'session',
+            'provider' => 'partners'
+        ],
     ],
 
     /*
@@ -69,6 +84,21 @@ return [
         'users' => [
             'driver' => 'eloquent',
             'model' => App\Models\User::class,
+        ],
+
+        'lecturers' => [
+            'driver' => 'eloquent',
+            'model' => App\Models\Dosen::class
+        ],
+
+        'students' => [
+            'driver' => 'eloquent',
+            'model' => App\Models\Mahasiswa::class
+        ],
+
+        'partners' => [
+            'driver' => 'eloquent',
+            'model' => App\Models\Mitra::class
         ],
 
         // 'users' => [
@@ -95,6 +125,24 @@ return [
     'passwords' => [
         'users' => [
             'provider' => 'users',
+            'table' => 'password_resets',
+            'expire' => 60,
+            'throttle' => 60,
+        ],
+        'lecturers' => [
+            'provider' => 'lecturers',
+            'table' => 'password_resets',
+            'expire' => 60,
+            'throttle' => 60,
+        ],
+        'students' => [
+            'provider' => 'students',
+            'table' => 'password_resets',
+            'expire' => 60,
+            'throttle' => 60,
+        ],
+        'partners' => [
+            'provider' => 'partners',
             'table' => 'password_resets',
             'expire' => 60,
             'throttle' => 60,

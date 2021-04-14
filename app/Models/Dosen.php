@@ -3,7 +3,6 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Database\Eloquent\Model;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 
@@ -13,8 +12,9 @@ class Dosen extends Authenticatable
 
     public $incrementing = false;
 
-    protected $table = 'dosen';
-    protected $primaryKey = 'uuid';
+    public $guarded      = ['uuid'];
+    protected $table        = 'dosen';
+    protected $primaryKey   = 'uuid';
 
     protected $fillable = [
         'uuid', 'nip_dosen', 'nama_dosen', 'email', 'password', 'prodi_uuid', 'jurusan_uuid'
@@ -28,5 +28,10 @@ class Dosen extends Authenticatable
         'created_at' => 'datetime',
         'updated_at' => 'datetime',
     ];
+
+    public function getAuthPassword()
+    {
+        return $this->password;
+    }
 
 }

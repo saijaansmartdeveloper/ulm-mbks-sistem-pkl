@@ -12,6 +12,28 @@ class Mitra extends Authenticatable
 {
     use HasFactory, Notifiable;
 
-    protected $table = 'mitra';
+    public $incrementing = false;
+
+    public $guarded         = ['uuid'];
+    protected $table        = 'mitra';
+    protected $primaryKey   = 'uuid';
+
+    protected $fillable = [
+        'uuid', 'nama_mitra', 'divisi_mitra', 'alamat_mitra', 'penanggung_jawab_mitra', 'pamong_mitra', 'email', 'username', 'password', 'phone'
+    ];
+
+    protected $hidden = [
+        'password'
+    ];
+
+    protected $casts = [
+        'created_at' => 'datetime',
+        'updated_at' => 'datetime',
+    ];
+
+    public function getAuthPassword()
+    {
+        return $this->password;
+    }
 
 }
