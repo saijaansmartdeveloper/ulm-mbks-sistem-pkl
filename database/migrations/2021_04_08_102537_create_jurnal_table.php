@@ -26,7 +26,7 @@ class CreateJurnalTable extends Migration
             $table->foreignUuid('magang_uuid')->nullable();
             $table->timestamps();
 
-            $table->foreign('magang_uuid')->references('uuid')->on('magang')->cascadeOnUpdate()->nullOnDelete();
+            // $table->foreign('magang_uuid')->references('uuid')->on('magang')->cascadeOnUpdate()->nullOnDelete();
         });
     }
 
