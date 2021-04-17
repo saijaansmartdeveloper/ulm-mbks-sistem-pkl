@@ -3,11 +3,17 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class LecturerController extends Controller
 {
+    public function __construct()
+    {
+//        $this->middleware
+    }
+
     public function index()
     {
-        return "hello";
+        return dd(Auth::user());
     }
 }

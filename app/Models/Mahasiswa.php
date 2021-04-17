@@ -5,15 +5,17 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Spatie\Permission\Traits\HasPermissions;
+use Spatie\Permission\Traits\HasRoles;
 
 
 class Mahasiswa extends Authenticatable
 {
-    use HasFactory, Notifiable;
+    use HasFactory, Notifiable, HasRoles;
 
     public $incrementing = false;
 
-    public $guarded         = ['uuid'];
+    protected $guarded      = 'student';
     protected $table        = 'mahasiswa';
     protected $primaryKey   = 'uuid';
 

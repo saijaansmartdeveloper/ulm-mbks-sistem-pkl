@@ -5,14 +5,16 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Spatie\Permission\Traits\HasPermissions;
+use Spatie\Permission\Traits\HasRoles;
 
 class Dosen extends Authenticatable
 {
-    use HasFactory, Notifiable;
+    use HasFactory, Notifiable, HasRoles;
 
     public $incrementing = false;
-
-    public $guarded      = ['uuid'];
+    protected $guard        = 'lecturer';
+    protected $guarded      = ['uuid'];
     protected $table        = 'dosen';
     protected $primaryKey   = 'uuid';
 
@@ -28,6 +30,16 @@ class Dosen extends Authenticatable
         'created_at' => 'datetime',
         'updated_at' => 'datetime',
     ];
+
+    public function getAuthIdentifierName()
+    {
+        return $this->getKeyName();
+    }
+
+    public function getAuthIdentifier()
+    {
+        return $this->getKey();
+    }
 
     public function getAuthPassword()
     {

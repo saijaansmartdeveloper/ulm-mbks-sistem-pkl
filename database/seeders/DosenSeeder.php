@@ -14,6 +14,8 @@ class DosenSeeder extends Seeder
      */
     public function run()
     {
-        Dosen::factory()->count(50)->create();
+        Dosen::factory()->count(50)->create()->each(function ($user) {
+            $user->assignRole('lecturer');
+        });;
     }
 }

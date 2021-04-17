@@ -4,11 +4,11 @@ use App\Http\Controllers\Auth\AnotherUser\LoginController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
-Route::group(['prefix' => 'user', 'as' => 'user.'], function () {
-    Route::get('login/{string?}', [LoginController::class, 'showLoginForm'])
-        ->name('fom_login');
+Route::group(['as' => 'user.'], function () {
+    Route::get('login', [LoginController::class, 'showLoginForm'])
+        ->name('form_login');
 
-    Route::post('login', [LoginController::class, 'login'])
+    Route::post('login', [LoginController::class, 'authenticate'])
         ->name('login');
 });
 
