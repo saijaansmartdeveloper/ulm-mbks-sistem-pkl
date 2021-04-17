@@ -5,7 +5,6 @@
         <div class="card-body">
             @include('validation')
             {{ Form::model($admin_prodi, ['url' => 'admin_prodi/' . $admin_prodi->uuid, 'method' => 'put']) }}
-            @csrf
             <div class="form-group row">
                 <label class="col-md-2 col-form-label text-md-right">Nama Pengguna</label>
                 <div class="col-md-5">

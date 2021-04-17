@@ -5,7 +5,6 @@
         <div class="card-body">
             @include('validation')
             {{ Form::open(['url' => route('jurusan.store')]) }}
-            @csrf
             <div class="form-group row">
                 <label class="col-md-2 col-form-label text-md-right">Kode Jurusan</label>
                 <div class="col-md-5">

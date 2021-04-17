@@ -24,7 +24,7 @@
         <div class="container">
             <div class="header-data">
                 <div class="logo">
-                    <a href="{{ '/dashboard' }}" title=""><img src="{{ asset('public_assets/images/logo.png') }}" alt=""></a>
+                    <a href="{{ route('home') }}" title=""><img src="{{ asset('public_assets/images/logo.png') }}" alt=""></a>
                 </div><!--logo end-->
                 <nav>
                     {{--                        <ul>--}}
@@ -76,23 +76,6 @@
             </div><!--header-data end-->
         </div>
     </header>
-
-    @isset($cover)
-        <section class="cover-sec">
-            {{ $cover }}
-        </section>
-        <style>
-            .user-pro-img {
-                float: left;
-                width: 100%;
-                text-align: center;
-                margin-bottom: 28px;
-                margin-top: -95px;
-                position: relative;
-            }
-        </style>
-    @endif
-
     <main>
         <div class="main-section">
             {{ $slot }}

@@ -4,7 +4,6 @@
     <div class="card py-4">
         <div class="card-body">
             {{ Form::open(['url' => '/supervisor']) }}
-            @csrf
             <div class="form-group row">
                 <label class="col-md-2 col-form-label text-md-right">Nama Pengguna</label>
                 <div class="col-md-5">
