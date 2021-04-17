@@ -16,10 +16,10 @@ class UsersSeeder extends Seeder
     public function run()
     {
         $super_admin = User::create([
-            'uuid' => Uuid::uuid4()->getHex(),
+            'uuid'          => Uuid::uuid4()->getHex(),
             'nama_pengguna' => 'super_admin',
-            'email' => 'super_admin@admin.com',
-            'password' => bcrypt('superadmin123'),
+            'email'         => 'superadmin@admin.com',
+            'password'      => bcrypt('secret'),
             'role_pengguna' => 'super_admin'
         ]);
 

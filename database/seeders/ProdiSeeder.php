@@ -13,9 +13,6 @@ class ProdiSeeder extends Seeder
      */
     public function run()
     {
-        Role::create([
-            'name'        => 'super_admin',
-            'guard_name'  => 'web'
-        ]);
+
     }
 }

@@ -38,7 +38,6 @@ class CreatePermissionTables extends Migration
 
             $table->unique(['name', 'guard_name']);
             $table->primary('id');
-
         });
 
         Schema::create($tableNames['model_has_permissions'], function (Blueprint $table) use ($tableNames, $columnNames) {
@@ -75,14 +74,14 @@ class CreatePermissionTables extends Migration
 
         Schema::create($tableNames['role_has_permissions'], function (Blueprint $table) use ($tableNames) {
             $table->uuid('permission_id');
-            $table->uuid('role_id');
+            $table->uuid('role_id')->nullable();
 
-            $table->foreignUuid('permission_id')
+            $table->foreign('permission_id')
                 ->references('id')
                 ->on($tableNames['permissions'])
                 ->onDelete('cascade');
 
-            $table->foreignUuid('role_id')
+            $table->foreign('role_id')
                 ->references('id')
                 ->on($tableNames['roles'])
                 ->onDelete('cascade');

@@ -24,7 +24,7 @@ class DosenFactory extends Factory
     public function definition()
     {
         return [
-            'uuid'          => Uuid::uuid4(),
+            'uuid'          => Uuid::uuid4()->toString(),
             'nip_dosen'     => '0',
             'nama_dosen'    => $this->faker->name,
             'email'         => $this->faker->email,
