@@ -38,7 +38,8 @@ class AdminProdiController extends Controller
      */
     public function index()
     {
-        return view('admin_prodi.index');
+        $data['title'] = 'Master Data Prodi';
+        return view('admin_prodi.index', $data);
     }
 
     /**
@@ -48,6 +49,7 @@ class AdminProdiController extends Controller
      */
     public function create()
     {
+        $data['title']      = 'Master Data Admin Prodi';
         $data['jurusan']    = Jurusan::pluck('nama_jurusan', 'uuid');
         $data['prodi']      = Prodi::pluck('nama_prodi', 'uuid');
 
@@ -105,6 +107,7 @@ class AdminProdiController extends Controller
      */
     public function edit($id)
     {
+        $data['title']          = 'Master Data Admin Prodi';
         $data['admin_prodi']    = User::where('uuid', $id)->first();
         $data['jurusan']        = Jurusan::pluck('nama_jurusan', 'uuid');
         $data['prodi']          = Prodi::pluck('nama_prodi', 'uuid');

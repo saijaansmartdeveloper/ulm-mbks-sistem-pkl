@@ -30,7 +30,8 @@ class SupervisorController extends Controller
      */
     public function index()
     {
-        return view('supervisor.index');
+        $data['title'] = 'Supervisor';
+        return view('supervisor.index', $data);
     }
 
     /**
@@ -40,7 +41,8 @@ class SupervisorController extends Controller
      */
     public function create()
     {
-        return view('supervisor.create');
+        $data['title'] = 'Tambah Supervisor';
+        return view('supervisor.create', $data);
     }
 
     /**

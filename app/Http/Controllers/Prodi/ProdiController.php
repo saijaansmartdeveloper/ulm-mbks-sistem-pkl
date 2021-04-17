@@ -37,7 +37,8 @@ class ProdiController extends Controller
      */
     public function index()
     {
-        return view('prodi.index');
+        $data['title'] = 'Master Data Prodi';
+        return view('prodi.index', $data);
     }
 
     /**
@@ -47,6 +48,7 @@ class ProdiController extends Controller
      */
     public function create()
     {
+        $data['title'] = 'Tambah Data Prodi';
         $data['jurusan'] = Jurusan::pluck('nama_jurusan', 'uuid');
         return view('prodi.create', $data);
     }
@@ -98,6 +100,7 @@ class ProdiController extends Controller
      */
     public function edit($id)
     {
+        $data['title'] = 'Ubah Data Prodi';
         $data['prodi'] = Prodi::findOrFail($id);
         $data['jurusan'] = Jurusan::pluck('nama_jurusan', 'uuid');
         return view('prodi.edit', $data);

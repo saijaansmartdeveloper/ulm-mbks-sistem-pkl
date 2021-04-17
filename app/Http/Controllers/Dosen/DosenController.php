@@ -35,7 +35,8 @@ class DosenController extends Controller
      */
     public function index()
     {
-        return view('dosen.index');
+        $data['title'] = 'Master Data Dosen';
+        return view('dosen.index', $data);
     }
 
     /**
@@ -45,7 +46,8 @@ class DosenController extends Controller
      */
     public function create()
     {
-        return view('dosen.create');
+        $data['title'] = 'Tambah Data Dosen';
+        return view('dosen.create', $data);
     }
 
     /**
@@ -78,7 +80,7 @@ class DosenController extends Controller
         $dosen->prodi_uuid      = Auth::User()->prodi_uuid;
         $dosen->save();
 
-        return redirect('/dosen')->with('success', 'Data Berhasil Dibuat'); 
+        return redirect('/dosen')->with('success', 'Data Berhasil Dibuat');
     }
 
     /**
@@ -100,9 +102,10 @@ class DosenController extends Controller
      */
     public function edit($id)
     {
+        $data['title'] = 'Ubah Data Dosen';
         $data['dosen'] = Dosen::findOrFail($id);
 
-        return view('dosen.edit',$data);
+        return view('dosen.edit', $data);
     }
 
     /**
@@ -133,8 +136,7 @@ class DosenController extends Controller
         $dosen->prodi_uuid      = Auth::User()->prodi_uuid;
         $dosen->save();
 
-        return redirect('/dosen')->with('update', 'Data Berhasil Diubah'); 
-    
+        return redirect('/dosen')->with('update', 'Data Berhasil Diubah');
     }
 
     /**
@@ -148,7 +150,6 @@ class DosenController extends Controller
         $dosen = Dosen::findOrFail($id);
         $dosen->delete();
 
-        return redirect('/dosen')->with('delete', 'Data Berhasil Dihapus'); 
-
+        return redirect('/dosen')->with('delete', 'Data Berhasil Dihapus');
     }
 }
