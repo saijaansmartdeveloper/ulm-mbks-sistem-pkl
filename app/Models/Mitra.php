@@ -37,5 +37,4 @@ class Mitra extends Authenticatable
     {
         return $this->password;
     }
-
 }

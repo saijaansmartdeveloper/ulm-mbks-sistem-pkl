@@ -45,5 +45,4 @@ class Dosen extends Authenticatable
     {
         return $this->password;
     }
-
 }

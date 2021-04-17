@@ -36,4 +36,5 @@ class Mahasiswa extends Authenticatable
     {
         return $this->password;
     }
+
 }

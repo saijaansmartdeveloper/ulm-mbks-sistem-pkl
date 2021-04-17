@@ -25,6 +25,7 @@ class CreateUsersTable extends Migration
             $table->foreignUuid('prodi_uuid')->nullable();
             $table->foreignUuid('jurusan_uuid')->nullable();
             $table->timestamps();
+
         });
     }
 
