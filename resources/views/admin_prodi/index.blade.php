@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.admin')
 
 @section('content')
     <div class="container">
@@ -9,7 +9,7 @@
 
                     <div class="card-body">
 
-                        <a href="/admin_prodi/create" class="btn btn-primary">Tambah Data</a>
+                        <a href="{{ route('admin_prodi.create') }}" class="btn btn-primary">Tambah Data</a>
                         <hr>
                         @include('alert')
                         <table class="table table-bordered" id="table-admin-prodi">
@@ -19,7 +19,7 @@
                                     <th>Email</th>
                                     <th>Jurusan</th>
                                     <th>Prodi</th>
-                                    <th class='text-center' width="80">Action</th>
+                                    <th class='text-center' width="100">Action</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -31,13 +31,18 @@
         </div>
     </div>
 @endsection
-@push('js')
+@section('js')
+    <link href="https://cdn.datatables.net/1.10.21/css/jquery.dataTables.min.css" rel="stylesheet">
+    <link href="https://cdn.datatables.net/1.10.21/css/dataTables.bootstrap4.min.css" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.0/jquery.validate.js"></script>
+    <script src="https://cdn.datatables.net/1.10.21/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/1.10.21/js/dataTables.bootstrap4.min.js"></script>
     <script>
         $(function() {
             $('#table-admin-prodi').DataTable({
                 processing: true,
                 serverSide: true,
-                ajax: "/admin_prodi/list",
+                ajax: "{{ route('admin_prodi.list') }}",
                 columns: [{
                         data: 'nama_pengguna',
                         name: 'nama_pengguna'
@@ -66,4 +71,4 @@
         });
 
     </script>
-@endpush
+@endsection

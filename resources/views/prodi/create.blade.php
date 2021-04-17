@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.admin')
 
 @section('content')
     <div class="container">
@@ -9,7 +9,7 @@
 
                     <div class="card-body">
                         @include('validation')
-                        {{ Form::open(['url' => 'prodi']) }}
+                        {{ Form::open(['url' => route('prodi.store')]) }}
                         @csrf
                         <div class="form-group row">
                             <label class="col-md-2 col-form-label text-md-right">Kode Prodi</label>
@@ -24,7 +24,7 @@
                             <div class="col-md-6 offset-md-2">
                                 {{ Form::submit('Simpan', ['class' => 'btn btn-primary']) }}
                                 </form>
-                                <a href="/prodi" class="btn btn-danger">Kembali</a>
+                                <a href="{{ route('prodi.index') }}" class="btn btn-danger">Kembali</a>
                             </div>
                         </div>
                     </div>

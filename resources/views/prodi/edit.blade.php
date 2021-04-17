@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.admin')
 
 @section('content')
     <div class="container">
@@ -24,7 +24,7 @@
                             <div class="col-md-6 offset-md-2">
                                 {{ Form::submit('Simpan', ['class' => 'btn btn-primary']) }}
                                 </form>
-                                <a href="/jurusan" class="btn btn-danger">Kembali</a>
+                                <a href="{{ route('prodi.index') }}" class="btn btn-danger">Kembali</a>
                             </div>
                         </div>
                     </div>
