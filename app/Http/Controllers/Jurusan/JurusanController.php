@@ -34,7 +34,8 @@ class JurusanController extends Controller
      */
     public function index()
     {
-        return view('jurusan.index');
+        $data['title'] = 'Maste Data Jurusan';
+        return view('jurusan.index', $data);
     }
 
     /**
@@ -44,7 +45,8 @@ class JurusanController extends Controller
      */
     public function create()
     {
-        return view('jurusan.create');
+        $data['title'] = 'Tambah Data Jurusan';
+        return view('jurusan.create', $data);
     }
 
     /**
@@ -92,6 +94,7 @@ class JurusanController extends Controller
      */
     public function edit($id)
     {
+        $data['title'] = 'Ubah Data Jurusan';
         $data['jurusan'] = Jurusan::findOrFail($id);
         return view('jurusan.edit', $data);
     }

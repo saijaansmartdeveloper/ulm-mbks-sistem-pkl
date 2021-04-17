@@ -1,30 +1,21 @@
 @extends('layouts.admin')
-
+@section('content-header', $title ?? '')
 @section('content')
-    <div class="container">
-        <div class="row justify-content-center">
-            <div class="col-md-12">
-                <div class="card">
-                    <div class="card-header">Supervisor</div>
-
-                    <div class="card-body">
-
-                        <a href="{{ route('supervisor.create') }}" class="btn btn-primary">Tambah Data</a>
-                        <hr>
-                        <table class="table table-bordered" id="table_supervisor">
-                            <thead>
-                                <tr>
-                                    <th>Nama Pengguna</th>
-                                    <th>Email</th>
-                                    <th class='text-center' width="80">Action</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-            </div>
+    <div class="card py-4">
+        <div class="card-body">
+            <a href="{{ route('supervisor.create') }}" class="btn btn-primary">Tambah Data</a>
+            <hr>
+            <table class="table table-bordered" id="table_supervisor">
+                <thead>
+                    <tr>
+                        <th>Nama Pengguna</th>
+                        <th>Email</th>
+                        <th class='text-center' width="80">Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                </tbody>
+            </table>
         </div>
     </div>
 @endsection
