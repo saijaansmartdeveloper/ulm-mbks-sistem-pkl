@@ -24,10 +24,11 @@ class LoginController extends Controller
     public function authenticate(Request $request)
     {
         $credentials = $request->only('email', 'password');
+        $guard       = $request->type;
 
-        if (Auth::guard('lecturer')->attempt($credentials, false)) {
+        if (Auth::guard($guard)->attempt($credentials, false)) {
             $request->session()->regenerate();
-            return redirect()->intended('public/dosen/dashboard');
+            return redirect()->intended('public/' . $guard . '/dashboard');
         }
 
         return back()->withErrors([
