@@ -3,7 +3,7 @@
 @section('content')
     <div class="card py-4">
         <div class="card-body">
-            @include('validation')
+            @include('alert')
             {{ Form::model($jenis_kegiatan, ['url' => 'jenis_kegiatan/' . $jenis_kegiatan->uuid, 'method' => 'put']) }}
 
             <div class="form-group row">
