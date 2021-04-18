@@ -10,6 +10,7 @@
                 Dashboard
             </a>
             <div class="sb-sidenav-menu-heading">Master Data</div>
+
             @if (Auth::User()->hasRole('super_admin'))
                 <a class="nav-link collapsed" href="{{ route('supervisor.index') }} ">
                     <div class="sb-nav-link-icon"><i class="fas fa-users fa-fw"></i></div>
@@ -88,6 +89,10 @@
                 <div class="sb-nav-link-icon"><i class="fas fa-table"></i></div>
                 Tables
             </a> --}}
+
+            @auth($guard == 'lecturer' ? 'lecturer' : 'web')
+                @include('layouts.components.menu.lecturer')
+            @endauth
         </div>
     </div>
     <div class="sb-sidenav-footer">

@@ -150,11 +150,7 @@
                                     </div>
 
                                     <div class="form-label-group">
-                                        <select name="type" id="type" class="form-control">
-                                            <option value="lecturer">Dosen</option>
-                                            <option value="student">Mahasiswa</option>
-                                            <option value="partner">Mitra</option>
-                                        </select>
+                                        {!! Form::select('type', ['lecturer' => 'Dosen', 'student' => 'Mahasiswa', 'partner' => 'Mitra'], null, ['class' => 'form-control', 'placeholder' => 'Pilih Jenis Pengguna', 'style' => "border-radius: 2.5rem; padding-top: 0.7rem; padding-bottom: 0.7rem;"]) !!}
                                     </div>
 
                                     <div class="d-grid gap-2">
