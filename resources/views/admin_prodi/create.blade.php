@@ -3,7 +3,7 @@
 @section('content')
     <div class="card py-4">
         <div class="card-body">
-            @include('validation')
+            @include('alert')
             {{ Form::open(['url' => route('admin_prodi.store')]) }}
             <div class="form-group row">
                 <label class="col-md-2 col-form-label text-md-right">Nama Pengguna</label>
