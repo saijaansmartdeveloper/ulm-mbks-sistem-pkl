@@ -13,7 +13,7 @@
                         <th>Email</th>
                         <th>Jurusan</th>
                         <th>Prodi</th>
-                        <th class='text-center' width="100">Action</th>
+                        <th class='text-center' width="85">Action</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -43,12 +43,12 @@
                         name: 'email'
                     },
                     {
-                        data: 'jurusan_uuid',
-                        name: 'jurusan_uuid'
+                        data: 'jurusan.nama_jurusan',
+                        name: 'jurusan.nama_jurusan'
                     },
                     {
-                        data: 'prodi_uuid',
-                        name: 'prodi_uuid'
+                        data: 'prodi.nama_prodi',
+                        name: 'prodi.nama_prodi'
                     },
                     {
                         data: 'action',

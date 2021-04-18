@@ -27,6 +27,7 @@ class CreateMagangTable extends Migration
             $table->foreignUuid('mitra_uuid')->nullable();
             $table->foreignUuid('mahasiswa_uuid')->nullable();
             $table->foreignUuid('user_uuid')->nullable();
+            $table->foreignUuid('jenis_kegiatan_uuid')->nullable();
             $table->foreignUuid('prodi_uuid')->nullable();
             $table->foreignUuid('jurusan_uuid')->nullable();
             $table->timestamps();
@@ -35,6 +36,7 @@ class CreateMagangTable extends Migration
             $table->foreign('dosen_uuid')->references('uuid')->on('dosen')->cascadeOnUpdate()->nullOnDelete();
             $table->foreign('mahasiswa_uuid')->references('uuid')->on('mahasiswa')->cascadeOnUpdate()->nullOnDelete();
             $table->foreign('user_uuid')->references('uuid')->on('users')->cascadeOnUpdate()->nullOnDelete();
+            // $table->foreign('jenis_kegiatan_uuid')->references('uuid')->on('jenis_kegiatan')->cascadeOnUpdate()->nullOnDelete();
 
             $table->foreign('prodi_uuid')->references('uuid')->on('prodi')->cascadeOnUpdate()->nullOnDelete();
             $table->foreign('jurusan_uuid')->references('uuid')->on('jurusan')->cascadeOnUpdate()->nullOnDelete();

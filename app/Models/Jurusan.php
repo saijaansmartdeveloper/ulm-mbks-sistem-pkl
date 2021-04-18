@@ -12,4 +12,14 @@ class Jurusan extends Model
     protected $table = 'jurusan';
     protected $primaryKey  = 'uuid';
     public $incrementing = false;
+
+    public function prodi()
+    {
+        return $this->hasMany(Prodi::class, 'uuid');
+    }
+
+    public function user()
+    {
+        return $this->hasMany(User::class, 'uuid');
+    }
 }

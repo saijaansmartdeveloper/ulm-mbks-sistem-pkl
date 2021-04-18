@@ -13,11 +13,11 @@
         <script src="{{ asset('sbadmin/js/all.min.js') }}" crossorigin="anonymous"></script>
     </head>
     <body class="sb-nav-fixed">
-        @include('components.admin.top-navbar')
+        @include('layouts.components.admin.top-navbar')
 
         <div id="layoutSidenav">
             <div id="layoutSidenav_nav">
-                @include('components.admin.left-side-menu')
+                @include('layouts.components.admin.left-side-menu')
             </div>
             <div id="layoutSidenav_content">
                 <main>
@@ -38,7 +38,7 @@
                         </div>
                     </div>
                 </main>
-                @include('components/admin/bottom-navbar-menu')
+                @include('layouts.components.admin.bottom-navbar-menu')
             </div>
         </div>
 

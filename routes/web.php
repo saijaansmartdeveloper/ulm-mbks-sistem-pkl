@@ -66,8 +66,8 @@ Route::group(['middleware' => 'auth'], function () {
         });
     });
 
-    Route::group(['middleware' => 'role:admin_prodi'], function(){
-        Route::group(['namespace' => 'dosen'], function(){
+    Route::group(['middleware' => 'role:admin_prodi'], function () {
+        Route::group(['namespace' => 'dosen'], function () {
             Route::get('dosen/list', "DosenController@getDosen")->name('dosen.list');
 
 
@@ -79,7 +79,7 @@ Route::group(['middleware' => 'auth'], function () {
             Route::delete('/dosen/{id}', "DosenController@destroy")->name('dosen.destroy');
         });
 
-        Route::group(['namespace' => 'Mitra'], function(){
+        Route::group(['namespace' => 'Mitra'], function () {
             Route::get('mitra/list', "MitraController@getMitra")->name('mitra.list');
 
 
@@ -90,7 +90,7 @@ Route::group(['middleware' => 'auth'], function () {
             Route::put('/mitra/{id}', "MitraController@update")->name('mitra.update');
             Route::delete('/mitra/{id}', "MitraController@destroy")->name('mitra.destroy');
         });
-        Route::group(['namespace' => 'Mahasiswa'], function(){
+        Route::group(['namespace' => 'Mahasiswa'], function () {
             Route::get('mahasiswa/list', "MahasiswaController@getMahasiswa")->name('mahasiswa.list');
 
 
@@ -101,14 +101,35 @@ Route::group(['middleware' => 'auth'], function () {
             Route::put('/mahasiswa/{id}', "MahasiswaController@update")->name('mahasiswa.update');
             Route::delete('/mahasiswa/{id}', "MahasiswaController@destroy")->name('mahasiswa.destroy');
         });
+
+        Route::group(['namespace' => 'Kegiatan'], function () {
+            Route::get('jenis_kegiatan/list', "JenisKegiatanController@getJenisKegiatan")->name('jenis_kegiatan.list');
+
+
+            Route::get('/jenis_kegiatan', "JenisKegiatanController@index")->name('jenis_kegiatan.index');
+            Route::get('/jenis_kegiatan/create', "JenisKegiatanController@create")->name('jenis_kegiatan.create');
+            Route::post('/jenis_kegiatan', "JenisKegiatanController@store")->name('jenis_kegiatan.store');
+            Route::get('/jenis_kegiatan/{id}/edit', "JenisKegiatanController@edit")->name('jenis_kegiatan.edit');
+            Route::put('/jenis_kegiatan/{id}', "JenisKegiatanController@update")->name('jenis_kegiatan.update');
+            Route::delete('/jenis_kegiatan/{id}', "JenisKegiatanController@destroy")->name('jenis_kegiatan.destroy');
+
+            
+            Route::get('magang/list', "MagangController@getMagang")->name('magang.list');
+
+
+            Route::get('/magang', "MagangController@index")->name('magang.index');
+            Route::get('/magang/create', "MagangController@create")->name('magang.create');
+            Route::post('/magang', "MagangController@store")->name('magang.store');
+            Route::get('/magang/{id}/edit', "MagangController@edit")->name('magang.edit');
+            Route::put('/magang/{id}', "MagangController@update")->name('magang.update');
+            Route::delete('/magang/{id}', "MagangController@destroy")->name('magang.destroy');
+        });
     });
 });
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
-Route::group(['prefix' => 'public', 'as' => 'public.'],function () {
+Route::group(['prefix' => 'public', 'as' => 'public.'], function () {
     require __DIR__ . '/public/auth.php';
     require __DIR__ . '/public/lecturer.php';
 });
-
-

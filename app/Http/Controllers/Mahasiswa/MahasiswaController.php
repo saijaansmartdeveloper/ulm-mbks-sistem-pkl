@@ -148,6 +148,6 @@ class MahasiswaController extends Controller
         $mahasiswa = Mahasiswa::findOrFail($id);
         $mahasiswa->delete();
 
-        return redirect('/mahasiswa')->with('delete', 'Data Berhasil Dihapus')
+        return redirect('/mahasiswa')->with('delete', 'Data Berhasil Dihapus');
     }
 }
