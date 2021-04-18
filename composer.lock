@@ -5037,16 +5037,16 @@
         },
         {
             "name": "yajra/laravel-datatables-oracle",
-            "version": "v9.17.2",
+            "version": "v9.18.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/yajra/laravel-datatables.git",
-                "reference": "a970ba1159df6940a87fabcf44f571ef14b57927"
+                "reference": "b00f25b1941879b34e05f270835235a32b46567c"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/yajra/laravel-datatables/zipball/a970ba1159df6940a87fabcf44f571ef14b57927",
-                "reference": "a970ba1159df6940a87fabcf44f571ef14b57927",
+                "url": "https://api.github.com/repos/yajra/laravel-datatables/zipball/b00f25b1941879b34e05f270835235a32b46567c",
+                "reference": "b00f25b1941879b34e05f270835235a32b46567c",
                 "shasum": ""
             },
             "require": {
@@ -5106,7 +5106,7 @@
             ],
             "support": {
                 "issues": "https://github.com/yajra/laravel-datatables/issues",
-                "source": "https://github.com/yajra/laravel-datatables/tree/v9.17.2"
+                "source": "https://github.com/yajra/laravel-datatables/tree/v9.18.0"
             },
             "funding": [
                 {
@@ -5118,7 +5118,7 @@
                     "type": "patreon"
                 }
             ],
-            "time": "2021-04-12T04:03:34+00:00"
+            "time": "2021-04-16T12:08:33+00:00"
         }
     ],
     "packages-dev": [
@@ -5656,16 +5656,16 @@
         },
         {
             "name": "laravel/sail",
-            "version": "v1.4.11",
+            "version": "v1.4.12",
             "source": {
                 "type": "git",
                 "url": "https://github.com/laravel/sail.git",
-                "reference": "e46a3228da4e95a411a981ac807bd119ab2485fa"
+                "reference": "d1a91b03885c9c29bc2d88d61a4b10bd1f678156"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/laravel/sail/zipball/e46a3228da4e95a411a981ac807bd119ab2485fa",
-                "reference": "e46a3228da4e95a411a981ac807bd119ab2485fa",
+                "url": "https://api.github.com/repos/laravel/sail/zipball/d1a91b03885c9c29bc2d88d61a4b10bd1f678156",
+                "reference": "d1a91b03885c9c29bc2d88d61a4b10bd1f678156",
                 "shasum": ""
             },
             "require": {
@@ -5712,7 +5712,7 @@
                 "issues": "https://github.com/laravel/sail/issues",
                 "source": "https://github.com/laravel/sail"
             },
-            "time": "2021-04-06T14:00:39+00:00"
+            "time": "2021-04-13T15:35:40+00:00"
         },
         {
             "name": "maximebf/debugbar",

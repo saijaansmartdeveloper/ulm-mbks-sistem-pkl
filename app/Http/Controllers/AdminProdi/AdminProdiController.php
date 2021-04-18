@@ -17,7 +17,7 @@ class AdminProdiController extends Controller
     public function getAdminProdi(Request $request)
     {
 
-        $data = User::where('role_pengguna', 'admin_prodi')->get();
+        $data = User::where('role_pengguna', 'admin_prodi')->with('prodi')->with('jurusan')->get();
         return Datatables::of($data)
             ->addIndexColumn()
             ->addColumn('action', function ($data) {
@@ -31,22 +31,14 @@ class AdminProdiController extends Controller
             ->rawColumns(['action'])
             ->make(true);
     }
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+
     public function index()
     {
         $data['title'] = 'Master Data Prodi';
         return view('admin_prodi.index', $data);
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+
     public function create()
     {
         $data['title']      = 'Master Data Admin Prodi';
@@ -57,12 +49,7 @@ class AdminProdiController extends Controller
         return view('admin_prodi.create', $data);
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
+
     public function store(Request $request)
     {
         $request->validate(
@@ -89,22 +76,12 @@ class AdminProdiController extends Controller
         return redirect('/admin_prodi')->with('success', 'Data Berhasil Dibuat');
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
+
     public function show($id)
     {
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
+
     public function edit($id)
     {
         $data['title']          = 'Master Data Admin Prodi';
@@ -116,13 +93,7 @@ class AdminProdiController extends Controller
         return view('admin_prodi.edit', $data);
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
+
     public function update(Request $request, $id)
     {
         $request->validate(
@@ -133,7 +104,7 @@ class AdminProdiController extends Controller
             ]
         );
 
-        
+
 
         $admin_prodi = User::where('uuid', $id)->first();
         $admin_prodi->nama_pengguna     = $request->nama_pengguna;
@@ -147,12 +118,7 @@ class AdminProdiController extends Controller
         return redirect('/admin_prodi')->with('update', 'Data Berhasil Diubah');
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
+
     public function destroy($id)
     {
         $admin_prodi = User::where('uuid', $id)->first();

@@ -3,15 +3,14 @@
 @section('content')
     <div class="card py-4">
         <div class="card-body">
-            <a href="{{ route('prodi.create') }}" class="btn btn-primary">Tambah Data</a>
+            <a href="{{ route('jenis_kegiatan.create') }}" class="btn btn-primary">Tambah Data</a>
             <hr>
             @include('alert')
-            <table class="table table-bordered" id="table-prodi">
+            <table class="table table-bordered" id="table-jenis-kegiatan">
                 <thead>
                     <tr>
-                        <th>Kode Prodi</th>
-                        <th>Nama Prodi</th>
-                        <th>Jurusan</th>
+                        <th>Kode Jenis Kegiatan</th>
+                        <th>Nama Jenis Kegiatan</th>
                         <th class='text-center' width="85">Action</th>
                     </tr>
                 </thead>
@@ -29,21 +28,17 @@
     <script src="https://cdn.datatables.net/1.10.21/js/dataTables.bootstrap4.min.js"></script>
     <script>
         $(function() {
-            $('#table-prodi').DataTable({
+            $('#table-jenis-kegiatan').DataTable({
                 processing: true,
                 serverSide: true,
-                ajax: "{{ route('prodi.list') }}",
+                ajax: "{{ route('jenis_kegiatan.list') }}",
                 columns: [{
-                        data: 'kode_prodi',
-                        name: 'kode_prodi'
+                        data: 'kode_jenis_kegiatan',
+                        name: 'kode_jenis_kegiatan'
                     },
                     {
-                        data: 'nama_prodi',
-                        name: 'nama_prodi'
-                    },
-                    {
-                        data: 'jurusan.nama_jurusan',
-                        name: 'jurusan.nama_jurusan'
+                        data: 'nama_jenis_kegiatan',
+                        name: 'nama_jenis_kegiatan'
                     },
                     {
                         data: 'action',

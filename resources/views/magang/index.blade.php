@@ -3,15 +3,16 @@
 @section('content')
     <div class="card py-4">
         <div class="card-body">
-            <a href="{{ route('prodi.create') }}" class="btn btn-primary">Tambah Data</a>
+            <a href="{{ route('magang.create') }}" class="btn btn-primary">Tambah Data</a>
             <hr>
             @include('alert')
-            <table class="table table-bordered" id="table-prodi">
+            <table class="table table-bordered" id="table-jenis-kegiatan">
                 <thead>
                     <tr>
-                        <th>Kode Prodi</th>
-                        <th>Nama Prodi</th>
-                        <th>Jurusan</th>
+                        <th>Mulai Magang</th>
+                        <th>Akhir Magang</th>
+                        <th>Lama Magang</th>
+                        <th>Status Magang</th>
                         <th class='text-center' width="85">Action</th>
                     </tr>
                 </thead>
@@ -29,21 +30,25 @@
     <script src="https://cdn.datatables.net/1.10.21/js/dataTables.bootstrap4.min.js"></script>
     <script>
         $(function() {
-            $('#table-prodi').DataTable({
+            $('#table-jenis-kegiatan').DataTable({
                 processing: true,
                 serverSide: true,
-                ajax: "{{ route('prodi.list') }}",
+                ajax: "{{ route('magang.list') }}",
                 columns: [{
-                        data: 'kode_prodi',
-                        name: 'kode_prodi'
+                        data: 'mulai_magang',
+                        name: 'mulai_magang'
                     },
                     {
-                        data: 'nama_prodi',
-                        name: 'nama_prodi'
+                        data: 'akhir_magang',
+                        name: 'akhir_magang'
                     },
                     {
-                        data: 'jurusan.nama_jurusan',
-                        name: 'jurusan.nama_jurusan'
+                        data: 'lama_magang',
+                        name: 'lama_magang'
+                    },
+                    {
+                        data: 'status_magang',
+                        name: 'status_magang'
                     },
                     {
                         data: 'action',

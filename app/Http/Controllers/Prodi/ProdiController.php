@@ -15,7 +15,7 @@ class ProdiController extends Controller
     public function getProdi(Request $request)
     {
 
-        $data = Prodi::all();
+        $data = Prodi::with('jurusan')->get();
         return Datatables::of($data)
             ->addIndexColumn()
             ->addColumn('action', function ($data) {
