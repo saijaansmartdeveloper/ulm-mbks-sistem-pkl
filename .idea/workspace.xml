@@ -2,7 +2,17 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="2ac97ffa-0254-4e1a-9881-581d0e7e3b0f" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Auth/AnotherUser/LoginController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Auth/AnotherUser/LoginController.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/views/layouts/components/menu/lecturer.blade.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/views/public/lecturer/index.blade.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/views/public/student/index.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/php.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/php.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/LecturerController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/LecturerController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Mahasiswa/MahasiswaController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Mahasiswa/MahasiswaController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/auth/another_user/login.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/auth/another_user/login.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/layouts/components/admin/left-side-menu.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/layouts/components/admin/left-side-menu.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/routes/public/lecturer.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/public/lecturer.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/web.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -160,6 +170,7 @@
       <updated>1618680680170</updated>
       <workItem from="1618680682457" duration="6271000" />
       <workItem from="1618763396486" duration="87000" />
+      <workItem from="1618852117218" duration="497000" />
     </task>
     <servers />
   </component>

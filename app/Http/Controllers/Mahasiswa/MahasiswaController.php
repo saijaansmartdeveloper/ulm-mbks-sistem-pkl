@@ -11,6 +11,10 @@ use Ramsey\Uuid\Uuid;
 
 class MahasiswaController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware(['auth:lecturer','student','partner'])->only('getMahasiswa');
+    }
 
     public function getMahasiswa(Request $request)
     {
@@ -102,7 +106,7 @@ class MahasiswaController extends Controller
     public function edit($id)
     {
         $data['mahasiswa'] = Mahasiswa::findOrFail($id);
-        
+
         return view('mahasiswa.edit', $data);
     }
 
