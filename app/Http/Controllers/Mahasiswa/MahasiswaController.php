@@ -15,7 +15,9 @@ class MahasiswaController extends Controller
 {
     public function __construct()
     {
+
         $this->middleware('guest')->except('register_store');
+
     }
 
     public function getMahasiswa(Request $request)
@@ -150,7 +152,7 @@ class MahasiswaController extends Controller
     public function edit($id)
     {
         $data['mahasiswa'] = Mahasiswa::findOrFail($id);
-        
+
         return view('mahasiswa.edit', $data);
     }
 
