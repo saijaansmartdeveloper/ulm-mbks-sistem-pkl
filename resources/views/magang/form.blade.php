@@ -7,8 +7,8 @@
 
 <div class="form-group row">
     <label class="col-md-2 col-form-label text-md-right">Lama Magang</label>
-    <div class="col-md-5">
-        {{ Form::text('lama_magang', null, ['class' => 'form-control', 'placeholder' => 'Lama Magang']) }}
+    <div class="col-md-3">
+        {{ Form::number('lama_magang', null, ['class' => 'form-control', 'placeholder' => 'Lama Magang (Minggu)']) }} 
     </div>
 </div>
 
@@ -32,7 +32,7 @@
     <label class="col-md-2 col-form-label text-md-right">Dosen</label>
 
     <div class="col-md-6">
-        {{ Form::select('dosen_uuid', $dosen, null, ['placeholder' => '-- Pilih Dosen --' , 'class' => 'form-control']) }}
+        {{ Form::select('dosen_uuid', $dosen, null, ['placeholder' => '-- Pilih Dosen --' , 'class' => 'form-control dosen-select2']) }}
     </div>
 </div>
 
@@ -40,7 +40,7 @@
     <label class="col-md-2 col-form-label text-md-right">Mahasiswa</label>
 
     <div class="col-md-6">
-        {{ Form::select('mahasiswa_uuid', $mahasiswa, null, ['placeholder' => '-- Pilih Mahasiswa --' , 'class' => 'form-control']) }}
+        {{ Form::select('mahasiswa_uuid[]', $mahasiswa, null, ['multiple' => 'multiple' , 'class' => 'form-control mahasiswa-select2']) }}
     </div>
 </div>
 
@@ -48,7 +48,7 @@
     <label class="col-md-2 col-form-label text-md-right">Mitra</label>
 
     <div class="col-md-6">
-        {{ Form::select('mitra_uuid', $mitra, null, ['placeholder' => '-- Pilih Mitra --' , 'class' => 'form-control']) }}
+        {{ Form::select('mitra_uuid', $mitra, null, ['placeholder' => '-- Pilih Mitra --' , 'class' => 'form-control mitra-select2']) }}
     </div>
 </div>
 
@@ -56,7 +56,7 @@
     <label class="col-md-2 col-form-label text-md-right">Jenis Kegiatan</label>
 
     <div class="col-md-6">
-        {{ Form::select('jenis_kegiatan_uuid', $jenis_kegiatan, null, ['placeholder' => '-- Pilih Jenis Kegiatan --' , 'class' => 'form-control']) }}
+        {{ Form::select('jenis_kegiatan_uuid', $jenis_kegiatan, null, ['placeholder' => '-- Pilih Jenis Kegiatan --' , 'class' => 'form-control jenis_kegiatan-select2']) }}
     </div>
 </div>
 

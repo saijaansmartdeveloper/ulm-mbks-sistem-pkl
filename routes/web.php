@@ -15,10 +15,23 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('auth.login');
+    return redirect()->route('public.user.form_login');
 });
 
-Auth::routes();
+route::get('register/mahasiswa', 'Mahasiswa\MahasiswaController@register')->name('mahasiswa.register');
+route::post('register/mahasiswa', 'Mahasiswa\MahasiswaController@register_store')->name('mahasiswa.register.store');
+
+
+Route::group(['namespace' => 'auth'], function(){
+    route::get('user/login', 'LoginController@showLoginForm')->name('login');
+    route::post('user/login', 'LoginController@login');
+    route::post('logout', 'LoginController@logout')->name('logout');
+
+    // route::post('password/email', 'ForgotPasswordController@sendResetLinkEmail')->name('password.email');
+    // route::get('password/reset', 'ForgotPasswordController@showLinkRequestForm')->name('password.request');
+    // // route::get('');
+});
+
 Route::group(['middleware' => 'auth'], function () {
     Route::group(['middleware' => 'role:super_admin'], function () {
         Route::group(['namespace' => 'Supervisor'], function () {

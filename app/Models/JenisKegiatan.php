@@ -13,4 +13,8 @@ class JenisKegiatan extends Model
     protected $primaryKey   = 'uuid';
     public $incrementing    = false;
 
+    public function magang()
+    {
+        return $this->hasMany(Magang::class, 'uuid');
+    }
 }

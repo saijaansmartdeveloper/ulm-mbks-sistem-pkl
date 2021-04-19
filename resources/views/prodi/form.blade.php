@@ -9,6 +9,6 @@
     <label class="col-md-2 col-form-label text-md-right">Jurusan</label>
 
     <div class="col-md-6">
-        {{ Form::select('jurusan_uuid', $jurusan, null, ['placeholder' => '-- Pilih Jurusan --', 'id' => 'jurusan', 'class' => 'form-control']) }}
+        {{ Form::select('jurusan_uuid', $jurusan, null, ['placeholder' => '-- Pilih Jurusan --', 'id' => 'jurusan', 'class' => 'form-control jurusan-select2']) }}
     </div>
 </div>

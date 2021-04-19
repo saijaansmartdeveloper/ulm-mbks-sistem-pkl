@@ -61,13 +61,14 @@ class AdminProdiController extends Controller
         );
 
         $uuid   =  Uuid::uuid4()->getHex();
+        $prodi  = Prodi::findOrFail($request->prodi_uuid);
 
         $admin_prodi = new User;
         $admin_prodi->uuid              = $uuid;
         $admin_prodi->nama_pengguna     = $request->nama_pengguna;
         $admin_prodi->email             = $request->email;
         $admin_prodi->password          = bcrypt($request->password);
-        $admin_prodi->jurusan_uuid      = $request->jurusan_uuid;
+        $admin_prodi->jurusan_uuid      = $prodi->jurusan_uuid;
         $admin_prodi->prodi_uuid        = $request->prodi_uuid;
         $admin_prodi->role_pengguna     = 'admin_prodi';
         $admin_prodi->save();
@@ -104,13 +105,14 @@ class AdminProdiController extends Controller
             ]
         );
 
+        $prodi  = Prodi::findOrFail($request->prodi_uuid);
 
 
         $admin_prodi = User::where('uuid', $id)->first();
         $admin_prodi->nama_pengguna     = $request->nama_pengguna;
         $admin_prodi->email             = $request->email;
         $admin_prodi->password          = bcrypt($request->password);
-        $admin_prodi->jurusan_uuid      = $request->jurusan_uuid;
+        $admin_prodi->jurusan_uuid      = $prodi->jurusan_uuid;
         $admin_prodi->prodi_uuid        = $request->prodi_uuid;
         $admin_prodi->role_pengguna     = 'admin_prodi';
         $admin_prodi->save();

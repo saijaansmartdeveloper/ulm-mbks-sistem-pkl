@@ -9,10 +9,11 @@
             <table class="table table-bordered" id="table-jenis-kegiatan">
                 <thead>
                     <tr>
+                        <th>Jenis Kegiatan</th>
                         <th>Mulai Magang</th>
                         <th>Akhir Magang</th>
                         <th>Lama Magang</th>
-                        <th>Status Magang</th>
+                        {{-- <th>Status Magang</th> --}}
                         <th class='text-center' width="85">Action</th>
                     </tr>
                 </thead>
@@ -35,6 +36,10 @@
                 serverSide: true,
                 ajax: "{{ route('magang.list') }}",
                 columns: [{
+                        data: 'jenis_kegiatan.nama_jenis_kegiatan',
+                        name: 'jenis_kegiatan.nama_jenis_kegiatan'
+                    },
+                    {
                         data: 'mulai_magang',
                         name: 'mulai_magang'
                     },
@@ -46,10 +51,10 @@
                         data: 'lama_magang',
                         name: 'lama_magang'
                     },
-                    {
-                        data: 'status_magang',
-                        name: 'status_magang'
-                    },
+                    // {
+                    //     data: 'status_magang',
+                    //     name: 'status_magang'
+                    // },
                     {
                         data: 'action',
                         name: 'action',
