@@ -14,6 +14,12 @@ class LecturerController extends Controller
 
     public function index()
     {
-        return dd(Auth::user());
+        $data = [
+            'title' => 'Dosen',
+            'guard' => 'lecturer',
+            'data'  => null
+        ];
+
+        return view("public.lecturer.index", $data);
     }
 }

@@ -90,6 +90,7 @@ Route::group(['middleware' => 'auth'], function () {
             Route::put('/mitra/{id}', "MitraController@update")->name('mitra.update');
             Route::delete('/mitra/{id}', "MitraController@destroy")->name('mitra.destroy');
         });
+
         Route::group(['namespace' => 'Mahasiswa'], function () {
             Route::get('mahasiswa/list', "MahasiswaController@getMahasiswa")->name('mahasiswa.list');
 
@@ -113,7 +114,7 @@ Route::group(['middleware' => 'auth'], function () {
             Route::put('/jenis_kegiatan/{id}', "JenisKegiatanController@update")->name('jenis_kegiatan.update');
             Route::delete('/jenis_kegiatan/{id}', "JenisKegiatanController@destroy")->name('jenis_kegiatan.destroy');
 
-            
+
             Route::get('magang/list', "MagangController@getMagang")->name('magang.list');
 
 
@@ -130,6 +131,11 @@ Route::group(['middleware' => 'auth'], function () {
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 Route::group(['prefix' => 'public', 'as' => 'public.'], function () {
+
+    Route::get('/', function () {
+        return redirect()->route('public.user.form_login');
+    });
+
     require __DIR__ . '/public/auth.php';
     require __DIR__ . '/public/lecturer.php';
 });
