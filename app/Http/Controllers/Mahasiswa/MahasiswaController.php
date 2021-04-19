@@ -4,6 +4,8 @@ namespace App\Http\Controllers\Mahasiswa;
 
 use App\Http\Controllers\Controller;
 use App\Models\Mahasiswa;
+use App\Models\Jurusan;
+use App\Models\Prodi;
 use Illuminate\Http\Request;
 use DataTables;
 use Illuminate\Support\Facades\Auth;
@@ -11,6 +13,10 @@ use Ramsey\Uuid\Uuid;
 
 class MahasiswaController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('guest')->except('register_store');
+    }
 
     public function getMahasiswa(Request $request)
     {
@@ -49,6 +55,47 @@ class MahasiswaController extends Controller
         return view('mahasiswa.create');
     }
 
+    public function register()
+    {
+        $data['jurusan']    = Jurusan::pluck('nama_jurusan', 'uuid');
+        $data['prodi']    = Prodi::pluck('nama_prodi', 'uuid');
+        $data['title'] = 'Register Mahasiswa';
+        return view('mahasiswa.register.create', $data);
+    }
+
+    public function register_store(Request $request)
+    {
+        $request->validate([
+            'nim_mahasiswa'     => 'required',
+            'nama_mahasiswa'    => 'required',
+            'email'             => 'required|email',
+            'password'          => 'required',
+            'phone'             => 'required',
+            'foto_mahasiswa'    => 'image|mimes:jpeg,png,jpg|max:1024'
+        ]);
+
+        $uuid   = Uuid::uuid4()->getHex();
+        $prodi  = Prodi::findOrFail($request->prodi_uuid);
+
+        $foto_mahasiswa = request()->file('foto_mahasiswa');
+        $fotoUrl        = $foto_mahasiswa->storeAs('file/foto_mahasiswa', "{$request->nim_mahasiswa}.{$foto_mahasiswa->extension()}", "public");
+
+        $mahasiswa = new Mahasiswa;
+        $mahasiswa->uuid            = $uuid;
+        $mahasiswa->nim_mahasiswa   = $request->nim_mahasiswa;
+        $mahasiswa->nama_mahasiswa  = $request->nama_mahasiswa;
+        $mahasiswa->email           = $request->email;
+        $mahasiswa->password        = bcrypt($request->password);
+        $mahasiswa->phone           = $request->phone;
+        $mahasiswa->foto_mahasiswa  = $fotoUrl;
+        $mahasiswa->jurusan_uuid    = $prodi->jurusan_uuid;
+        $mahasiswa->prodi_uuid      = $request->prodi_uuid;
+        $mahasiswa->save();
+        $mahasiswa->assignRoles('student');
+        
+        return redirect()->back()->with('success', 'Registrasi Mahasiswa Berhasil, Tunggu Penetapan Magang Selanjutnya');
+    }
+
     /**
      * Store a newly created resource in storage.
      *
@@ -73,6 +120,7 @@ class MahasiswaController extends Controller
         $mahasiswa->nama_mahasiswa  = $request->nama_mahasiswa;
         $mahasiswa->email           = $request->email;
         $mahasiswa->password        = bcrypt($request->password);
+        $mahasiswa->phone           = $request->phone;
         $mahasiswa->phone           = $request->phone;
         $mahasiswa->jurusan_uuid    = Auth::User()->jurusan_uuid;
         $mahasiswa->prodi_uuid      = Auth::User()->prodi_uuid;

@@ -18,7 +18,7 @@ class MagangController extends Controller
     public function getMagang(Request $request)
     {
 
-        $data = Magang::all();
+        $data = Magang::with('jenis_kegiatan')->get();
         return Datatables::of($data)
             ->addIndexColumn()
             ->addColumn('action', function ($data) {
@@ -56,49 +56,58 @@ class MagangController extends Controller
             'mulai_magang'          => 'required',
             'lama_magang'           => 'required',
             'akhir_magang'          => 'required',
-            'file_laporan_magang'   => 'required',
-            'file_jurnal_magang'    => 'required',
             'file_sk_magang'        => 'required',
             'status_magang'         => 'required',
         ]);
-        
-         
-        // MAHASISWA
-        // UPLOAD FILE LAPORAN MAGANG
-        // $file_laporan_magang = request()->file('file_laporan_magang');
-        // $slug_file_laporan_magang = \Str::slug($file_laporan_magang->getClientOriginalName());
-        // $file_laporan_magangUrl = $file_laporan_magang->storeAs('file/laporan_magang', "{$slug_file_laporan_magang}.{$file_laporan_magang->extension()}", "public");
 
-        // // UPLOAD FILE JURNAL MAGANG
-        // $file_jurnal_magang = request()->file('file_jurnal_magang');
-        // $slug_file_jurnal_magang = \Str::slug($file_jurnal_magang->getClientOriginalName());
-        // $file_jurnal_magangUrl = $file_jurnal_magang->storeAs('file/jurnal_magang', "{$slug_file_jurnal_magang}.{$file_jurnal_magang->extension()}", "public");
+        // return request('mahasiswa_uuid'); 
 
-        // LINK GD
-        // UPLOAD FILE SK MAGANG
-        // $file_sk_magang = request()->file('file_sk_magang');
-        // $slug_file_sk_magang = \Str::slug($file_sk_magang->getClientOriginalName());
-        // $file_sk_magangUrl = $file_sk_magang->storeAs('file/sk_magang', "{$slug_file_sk_magang}.{$file_sk_magang->extension()}", "public");
+        foreach (request('mahasiswa_uuid') as $mahasiswa) {
+            $magang = Magang::create([
+                'uuid'                  => Uuid::uuid4()->getHex(),
+                'mulai_magang'          => request('mulai_magang'),
+                'akhir_magang'          => request('akhir_magang'),
+                'lama_magang'           => request('lama_magang'),
+                'file_laporan_magang'   => null,
+                'file_jurnal_magang'    => null,
+                'file_sk_magang'        => request('file_sk_magang'),
+                'status_magang'         => request('status_magang'),
+                'dosen_uuid'            => request('dosen_uuid'),
+                'mahasiswa_uuid'        => $mahasiswa,
+                'mitra_uuid'            => request('mitra_uuid'),
+                'jenis_kegiatan_uuid'   => request('jenis_kegiatan_uuid'),
+                'user_uuid'             => Auth::User()->uuid,
+                'prodi_uuid'            => Auth::User()->prodi_uuid,
+                'jurusan_uuid'          => Auth::User()->jurusan_uuid,
+            ]);
+        }
 
-        $uuid = Uuid::uuid4()->getHex();
 
-        $magang = new Magang;
-        $magang->uuid                   = $uuid;
-        $magang->mulai_magang           = $request->mulai_magang;
-        $magang->lama_magang            = $request->lama_magang;
-        $magang->akhir_magang           = $request->akhir_magang;
-        $magang->file_laporan_magang    = null;
-        $magang->file_jurnal_magang     = null;
-        $magang->file_sk_magang         = $request->file_sk_magang;
-        $magang->status_magang          = $request->status_magang;
-        $magang->dosen_uuid             = $request->dosen_uuid;
-        $magang->mitra_uuid             = $request->mitra_uuid;
-        $magang->mahasiswa_uuid         = $request->mahasiswa_uuid;
-        $magang->jenis_kegiatan_uuid    = $request->jenis_kegiatan_uuid;
-        $magang->user_uuid              = Auth::User()->uuid;
-        $magang->prodi_uuid             = Auth::User()->prodi_uuid;
-        $magang->jurusan_uuid           = Auth::User()->jurusan_uuid;
-        $magang->save();
+
+
+
+
+
+
+        // $uuid = Uuid::uuid4()->getHex();
+
+        // $magang = new Magang;
+        // $magang->uuid                   = $uuid;
+        // $magang->mulai_magang           = $request->mulai_magang;
+        // $magang->lama_magang            = $request->lama_magang;
+        // $magang->akhir_magang           = $request->akhir_magang;
+        // $magang->file_laporan_magang    = null;
+        // $magang->file_jurnal_magang     = null;
+        // $magang->file_sk_magang         = $request->file_sk_magang;
+        // $magang->status_magang          = $request->status_magang;
+        // $magang->dosen_uuid             = $request->dosen_uuid;
+        // $magang->mitra_uuid             = $request->mitra_uuid;
+        // $magang->mahasiswa_uuid         = $request->mahasiswa_uuid;
+        // $magang->jenis_kegiatan_uuid    = $request->jenis_kegiatan_uuid;
+        // $magang->user_uuid              = Auth::User()->uuid;
+        // $magang->prodi_uuid             = Auth::User()->prodi_uuid;
+        // $magang->jurusan_uuid           = Auth::User()->jurusan_uuid;
+        // $magang->save();
 
         return redirect(route('magang.index'))->with('success', 'Data Berhasil Ditambah');
     }

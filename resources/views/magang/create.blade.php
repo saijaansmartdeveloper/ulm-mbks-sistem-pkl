@@ -26,5 +26,16 @@
 @endsection
 
 @section('js')
-    
+    <link href="{{ asset('select2/css/select2.min.css') }}" rel="stylesheet" />
+    <script src="{{ asset('select2/js/select2.min.js') }}"></script>
+
+    <script>
+        $(document).ready(function() {
+            $('.dosen-select2').select2();
+            $('.mitra-select2').select2();
+            $('.jenis_kegiatan-select2').select2();
+            $('.mahasiswa-select2').select2();
+        });
+
+    </script>
 @endsection

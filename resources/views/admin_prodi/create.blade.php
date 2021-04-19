@@ -25,8 +25,15 @@
     </div>
 @endsection
 
+
 @section('js')
-    <link href="{{ asset('bootstrapselect/css/bootstrap-select.css') }}" rel="stylesheet">
-    <script src="{{ asset('bootstrapselect/js/bootstrap-select.js') }}"></script>
-    
+    <link href="{{ asset('select2/css/select2.min.css') }}" rel="stylesheet" />
+    <script src="{{ asset('select2/js/select2.min.js') }}"></script>
+
+    <script>
+        $(document).ready(function() {
+            $('.prodi-select2').select2();
+        });
+
+    </script>
 @endsection
