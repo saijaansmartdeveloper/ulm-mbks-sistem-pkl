@@ -68,10 +68,8 @@ class DosenController extends Controller
             ]
         );
 
-        $uuid   =  Uuid::uuid4()->getHex();
-
         $dosen = new Dosen;
-        $dosen->uuid            = $uuid;
+        $dosen->uuid            = Uuid::uuid4();
         $dosen->nip_dosen       = $request->nip_dosen;
         $dosen->nama_dosen      = $request->nama_dosen;
         $dosen->email           = $request->email;
@@ -79,6 +77,7 @@ class DosenController extends Controller
         $dosen->jurusan_uuid    = Auth::User()->jurusan_uuid;
         $dosen->prodi_uuid      = Auth::User()->prodi_uuid;
         $dosen->save();
+        $dosen->assignRole('lecturer');
 
         return redirect('/dosen')->with('success', 'Data Berhasil Dibuat');
     }
