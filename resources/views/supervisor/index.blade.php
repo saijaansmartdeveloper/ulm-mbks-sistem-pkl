@@ -3,6 +3,7 @@
 @section('content')
     <div class="card py-4">
         <div class="card-body">
+            @include('alert')
             <a href="{{ route('supervisor.create') }}" class="btn btn-primary">Tambah Data</a>
             <hr>
             <table class="table table-bordered" id="table_supervisor">
@@ -10,7 +11,7 @@
                     <tr>
                         <th>Nama Pengguna</th>
                         <th>Email</th>
-                        <th class='text-center' width="80">Action</th>
+                        <th class='text-center' width="85">Action</th>
                     </tr>
                 </thead>
                 <tbody>

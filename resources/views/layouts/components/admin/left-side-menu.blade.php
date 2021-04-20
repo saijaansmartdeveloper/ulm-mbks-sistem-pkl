@@ -10,13 +10,13 @@
                 Dashboard
             </a>
             <div class="sb-sidenav-menu-heading">Master Data</div>
-            @auth(@$guard == 'web' ? 'web' : 'web')
+            @auth('web')
                 @include('layouts.components.menu.user_umum')
             @endauth
 
-            @auth(@$guard == 'lecturer' ? 'lecturer' : 'web')
+            {{-- @auth(@$guard == 'lecturer' ? 'lecturer' : '')
                 @include('layouts.components.menu.lecturer')
-            @endauth
+            @endauth --}}
         </div>
     </div>
     {{-- <div class="sb-sidenav-footer">

@@ -13,6 +13,7 @@ class Dosen extends Authenticatable
     use HasFactory, Notifiable, HasRoles;
 
     public $incrementing = false;
+    protected $keyType = 'string';
     protected $guard        = 'lecturer';
     protected $guarded      = ['uuid'];
     protected $table        = 'dosen';
