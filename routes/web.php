@@ -22,8 +22,7 @@ route::get('register/mahasiswa', 'Mahasiswa\MahasiswaController@register')->name
 route::post('register/mahasiswa', 'Mahasiswa\MahasiswaController@register_store')->name('mahasiswa.register.store');
 
 
-
-Route::group(['namespace' => 'auth'], function () {
+Route::group(['namespace' => 'auth'], function(){
     route::get('user/login', 'LoginController@showLoginForm')->name('login');
     route::post('user/login', 'LoginController@login');
     route::post('logout', 'LoginController@logout')->name('logout');
@@ -41,10 +40,6 @@ Route::group(['middleware' => 'auth'], function () {
 
             Route::get('/supervisor', "SupervisorController@index")->name('supervisor.index');
             Route::get('/supervisor/create', "SupervisorController@create")->name('supervisor.create');
-            Route::post('/supervisor', "SupervisorController@store")->name('supervisor.store');
-            Route::get('/supervisor/{id}/edit', "SupervisorController@edit")->name('supervisor.edit');
-            Route::put('/supervisor/{id}', "SupervisorController@update")->name('supervisor.update');
-            Route::delete('/supervisor', "SupervisorController@destroy")->name('supervisor.destroy');
         });
 
         Route::group(['namespace' => 'Jurusan'], function () {
@@ -111,6 +106,7 @@ Route::group(['middleware' => 'auth'], function () {
 
         Route::group(['namespace' => 'Mahasiswa'], function () {
             Route::get('mahasiswa/list', "MahasiswaController@getMahasiswa")->name('mahasiswa.list');
+
 
             Route::get('/mahasiswa', "MahasiswaController@index")->name('mahasiswa.index');
             Route::get('/mahasiswa/create', "MahasiswaController@create")->name('mahasiswa.create');

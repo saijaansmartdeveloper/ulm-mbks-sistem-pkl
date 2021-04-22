@@ -9,7 +9,6 @@ use App\Models\Prodi;
 use Illuminate\Http\Request;
 use DataTables;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Storage;
 use Ramsey\Uuid\Uuid;
 
 class MahasiswaController extends Controller
@@ -17,7 +16,7 @@ class MahasiswaController extends Controller
     public function __construct()
     {
 
-        // $this->middleware('guest')->except('register_store');
+        $this->middleware('guest')->except('register_store');
 
     }
 
@@ -45,8 +44,7 @@ class MahasiswaController extends Controller
      */
     public function index()
     {
-        $data['title'] = 'Master Data Mahasiswa';
-        return view('mahasiswa.index', $data);
+        return view('mahasiswa.view');
     }
 
     /**
@@ -56,15 +54,14 @@ class MahasiswaController extends Controller
      */
     public function create()
     {
-        $data['title']  = 'Tambah Data Mahasiswa';
-        return view('mahasiswa.create', $data);
+        return view('mahasiswa.create');
     }
 
     public function register()
     {
         $data['jurusan']    = Jurusan::pluck('nama_jurusan', 'uuid');
-        $data['prodi']      = Prodi::pluck('nama_prodi', 'uuid');
-        $data['title']      = 'Register Mahasiswa';
+        $data['prodi']    = Prodi::pluck('nama_prodi', 'uuid');
+        $data['title'] = 'Register Mahasiswa';
         return view('mahasiswa.register.create', $data);
     }
 
@@ -76,19 +73,14 @@ class MahasiswaController extends Controller
             'email'             => 'required|email',
             'password'          => 'required',
             'phone'             => 'required',
-            'foto_mahasiswa'    => 'nullable|image|mimes:jpeg,png,jpg|max:1024'
-
+            'foto_mahasiswa'    => 'image|mimes:jpeg,png,jpg|max:1024'
         ]);
 
         $uuid   = Uuid::uuid4()->getHex();
         $prodi  = Prodi::findOrFail($request->prodi_uuid);
 
-        if (request()->file('foto_mahasiswa')) {
-            $foto_mahasiswa = request()->file('foto_mahasiswa');
-            $fotoUrl        = $foto_mahasiswa->storeAs('file/foto_mahasiswa', "{$request->nim_mahasiswa}.{$foto_mahasiswa->extension()}", "public");
-        } else {
-            $fotoUrl = null;
-        }
+        $foto_mahasiswa = request()->file('foto_mahasiswa');
+        $fotoUrl        = $foto_mahasiswa->storeAs('file/foto_mahasiswa', "{$request->nim_mahasiswa}.{$foto_mahasiswa->extension()}", "public");
 
         $mahasiswa = new Mahasiswa;
         $mahasiswa->uuid            = $uuid;
@@ -101,8 +93,8 @@ class MahasiswaController extends Controller
         $mahasiswa->jurusan_uuid    = $prodi->jurusan_uuid;
         $mahasiswa->prodi_uuid      = $request->prodi_uuid;
         $mahasiswa->save();
-        $mahasiswa->assignRole('student');
-
+        $mahasiswa->assignRoles('student');
+        
         return redirect()->back()->with('success', 'Registrasi Mahasiswa Berhasil, Tunggu Penetapan Magang Selanjutnya');
     }
 
@@ -120,20 +112,9 @@ class MahasiswaController extends Controller
             'email'             => 'required',
             'password'          => 'required',
             'phone'             => 'required',
-            'foto_mahasiswa'    => 'nullable|image|mimes:jpeg,png,jpg|max:1024'
-
         ]);
 
         $uuid = Uuid::uuid4()->getHex();
-
-        if (request()->file('foto_mahasiswa')) {
-            $foto_mahasiswa = request()->file('foto_mahasiswa');
-            $fotoUrl        = $foto_mahasiswa->storeAs('file/foto_mahasiswa', "{$request->nim_mahasiswa}.{$foto_mahasiswa->extension()}", "public");
-        } else {
-            $fotoUrl = null;
-        }
-
-
 
         $mahasiswa = new Mahasiswa;
         $mahasiswa->uuid            = $uuid;
@@ -142,13 +123,13 @@ class MahasiswaController extends Controller
         $mahasiswa->email           = $request->email;
         $mahasiswa->password        = bcrypt($request->password);
         $mahasiswa->phone           = $request->phone;
-        $mahasiswa->foto_mahasiswa  = $fotoUrl;
+        $mahasiswa->phone           = $request->phone;
         $mahasiswa->jurusan_uuid    = Auth::User()->jurusan_uuid;
         $mahasiswa->prodi_uuid      = Auth::User()->prodi_uuid;
         $mahasiswa->save();
-        $mahasiswa->assignRole('student');
 
         return redirect('/mahasiswa')->with('success', 'Data Berhasi Dibuat');
+
     }
 
     /**
@@ -171,7 +152,6 @@ class MahasiswaController extends Controller
     public function edit($id)
     {
         $data['mahasiswa'] = Mahasiswa::findOrFail($id);
-        $data['title'] = 'Ubah Data Mahasiswa';
 
         return view('mahasiswa.edit', $data);
     }
@@ -191,27 +171,15 @@ class MahasiswaController extends Controller
             'email'             => 'required',
             'password'          => 'required',
             'phone'             => 'required',
-            'foto_mahasiswa'    => 'nullable|image|mimes:jpeg,png,jpg|max:1024',
-
         ]);
 
 
         $mahasiswa = Mahasiswa::findOrFail($id);
-
-        if (request()->file('foto_mahasiswa')) {
-            Storage::delete($mahasiswa->foto_mahasiswa);
-            $foto_mahasiswa = request()->file('foto_mahasiswa');
-            $fotoUrl        = $foto_mahasiswa->storeAs('file/foto_mahasiswa', "{$request->nim_mahasiswa}.{$foto_mahasiswa->extension()}", "public");
-        } else {
-            $fotoUrl = $mahasiswa->foto_mahasiswa;
-        }
-
         $mahasiswa->nim_mahasiswa   = $request->nim_mahasiswa;
         $mahasiswa->nama_mahasiswa  = $request->nama_mahasiswa;
         $mahasiswa->email           = $request->email;
         $mahasiswa->password        = bcrypt($request->password);
         $mahasiswa->phone           = $request->phone;
-        $mahasiswa->foto_mahasiswa  = $fotoUrl;
         $mahasiswa->jurusan_uuid    = Auth::User()->jurusan_uuid;
         $mahasiswa->prodi_uuid      = Auth::User()->prodi_uuid;
         $mahasiswa->save();
@@ -228,7 +196,6 @@ class MahasiswaController extends Controller
     public function destroy($id)
     {
         $mahasiswa = Mahasiswa::findOrFail($id);
-        Storage::delete($mahasiswa->foto_mahasiswa);
         $mahasiswa->delete();
 
         return redirect('/mahasiswa')->with('delete', 'Data Berhasil Dihapus');

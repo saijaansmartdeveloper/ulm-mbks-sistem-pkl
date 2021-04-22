@@ -6,8 +6,6 @@ use App\Http\Controllers\Controller;
 use App\Models\User;
 use Illuminate\Http\Request;
 use DataTables;
-use Illuminate\Support\Facades\Auth;
-use Ramsey\Uuid\Uuid;
 
 class SupervisorController extends Controller
 {
@@ -18,12 +16,9 @@ class SupervisorController extends Controller
         $data = User::where('role_pengguna', 'supervisor')->get();
         return Datatables::of($data)
             ->addIndexColumn()
-            ->addColumn('action', function ($data) {
-                $action = '<a href="/supervisor/' . $data->uuid . '/edit" class="btn btn-sm btn-primary" >Ubah</a>';
-                $action .= \Form::open(['url' => '/supervisor/' . $data->uuid, 'method' => 'delete', 'style' => 'float:right']);
-                $action .= "<button type='submit' class = 'btn btn-danger btn-sm' >Hapus</button>";
-                $action .= \Form::close();
-                return $action;
+            ->addColumn('action', function ($row) {
+                $actionBtn = '<a href="javascript:void(0)" class="edit btn btn-success btn-sm">Edit</a> <a href="javascript:void(0)" class="delete btn btn-danger btn-sm">Delete</a>';
+                return $actionBtn;
             })
             ->rawColumns(['action'])
             ->make(true);
@@ -35,7 +30,7 @@ class SupervisorController extends Controller
      */
     public function index()
     {
-        $data['title'] = 'Master Data Supervisor';
+        $data['title'] = 'Supervisor';
         return view('supervisor.index', $data);
     }
 
@@ -46,7 +41,7 @@ class SupervisorController extends Controller
      */
     public function create()
     {
-        $data['title'] = 'Tambah Data Supervisor';
+        $data['title'] = 'Tambah Supervisor';
         return view('supervisor.create', $data);
     }
 
@@ -58,24 +53,7 @@ class SupervisorController extends Controller
      */
     public function store(Request $request)
     {
-        $request->validate([
-            'nama_pengguna' => 'required',
-            'email'         => 'required|email',
-            'password'      => 'required'
-        ]);
-
-        $uuid = Uuid::uuid4()->getHex();
-
-        $supervisor = new User;
-        $supervisor->uuid           = $uuid;
-        $supervisor->nama_pengguna  = $request->nama_pengguna;
-        $supervisor->email          = $request->email;
-        $supervisor->password       = bcrypt($request->password);
-        $supervisor->role_pengguna  = 'supervisor';
-        $supervisor->save();
-        $supervisor->assignRole('supervisor');
-
-        return redirect(route('supervisor.index'))->with('success', 'Data Berhasil Ditambah');
+        //
     }
 
     /**
@@ -97,9 +75,7 @@ class SupervisorController extends Controller
      */
     public function edit($id)
     {
-        $data['supervisor'] = User::where('uuid', $id)->first();
-        $data['title'] = 'Ubah Data Supervisor';
-        return view('supervisor.edit', $data);
+        //
     }
 
     /**
@@ -111,20 +87,7 @@ class SupervisorController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $request->validate([
-            'nama_pengguna' => 'required',
-            'email'         => 'required|email',
-            'password'      => 'required'
-        ]);
-
-        $supervisor = User::where('uuid', $id)->first();
-        $supervisor->nama_pengguna  = $request->nama_pengguna;
-        $supervisor->email          = $request->email;
-        $supervisor->password       = bcrypt($request->password);
-        $supervisor->role_pengguna  = 'supervisor';
-        $supervisor->save();
-
-        return redirect(route('supervisor.index'))->with('update', 'Data Berhasil Diubah');
+        //
     }
 
     /**
@@ -135,10 +98,6 @@ class SupervisorController extends Controller
      */
     public function destroy($id)
     {
-        $supervisor = User::where('uuid', $id)->first();
-        $supervisor->delete();
-
-        return redirect(route('supervisor.index'))->with('delete', 'Data Berhasil Dihapus');
-
+        //
     }
 }

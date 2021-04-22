@@ -30,12 +30,12 @@
         <div class="sb-nav-link-icon"><i class="fas fa-building fa-fw"></i></div>
         Magang
     </a>
-    <a class="nav-link collapsed" href="{{ route('mitra.index') }}">
+    <a class="nav-link collapsed" href="">
         <div class="sb-nav-link-icon"><i class="fas fa-building fa-fw"></i></div>
         Mitra
     </a>
 
-    <a class="nav-link collapsed" href="{{ route('mahasiswa.index') }}">
+    <a class="nav-link collapsed" href="">
         <div class="sb-nav-link-icon"><i class="fas fa-building fa-fw"></i></div>
         Mahasiswa
     </a>

@@ -12,7 +12,9 @@
                         <th>NIP</th>
                         <th>Nama</th>
                         <th>Email</th>
-                        <th class='text-center' width="85">Action</th>
+                        <th>Jurusan</th>
+                        <th>Prodi</th>
+                        <th class='text-center' width="80">Action</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -44,6 +46,14 @@
                     {
                         data: 'email',
                         name: 'email'
+                    },
+                    {
+                        data: 'jurusan_uuid',
+                        name: 'jurusan_uuid'
+                    },
+                    {
+                        data: 'prodi_uuid',
+                        name: 'prodi_uuid'
                     },
                     {
                         data: 'action',
