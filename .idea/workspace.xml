@@ -1,17 +1,24 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
   <component name="ChangeListManager">
     <list default="true" id="2ac97ffa-0254-4e1a-9881-581d0e7e3b0f" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/resources/views/layouts/components/menu/lecturer.blade.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/views/public/lecturer/index.blade.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/views/public/student/index.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/php.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/php.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Exceptions/Handler.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Exceptions/Handler.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Auth/AnotherUser/LoginController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Auth/AnotherUser/LoginController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Http/Controllers/LecturerController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/LecturerController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Mahasiswa/MahasiswaController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Mahasiswa/MahasiswaController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Middleware/Authenticate.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Middleware/Authenticate.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Middleware/RedirectIfAuthenticated.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Middleware/RedirectIfAuthenticated.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/seeders/DatabaseSeeder.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/seeders/DatabaseSeeder.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/seeders/MahasiswaSeeder.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/seeders/MahasiswaSeeder.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/seeders/MitraSeeder.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/seeders/MitraSeeder.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/views/auth/another_user/login.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/auth/another_user/login.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/views/layouts/components/admin/left-side-menu.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/layouts/components/admin/left-side-menu.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/routes/public/lecturer.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/public/lecturer.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/layouts/components/admin/top-navbar.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/layouts/components/admin/top-navbar.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/layouts/components/menu/lecturer.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/layouts/components/menu/lecturer.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/web.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -26,7 +33,15 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
-  <component name="PhpWorkspaceProjectConfiguration">
+  <component name="GitSEFilterConfiguration">
+    <file-type-list>
+      <filtered-out-file-type name="LOCAL_BRANCH" />
+      <filtered-out-file-type name="REMOTE_BRANCH" />
+      <filtered-out-file-type name="TAG" />
+      <filtered-out-file-type name="COMMIT_BY_MESSAGE" />
+    </file-type-list>
+  </component>
+  <component name="PhpWorkspaceProjectConfiguration" interpreter_name="PHP 7.4">
     <include_path>
       <path value="$PROJECT_DIR$/vendor/composer" />
       <path value="$PROJECT_DIR$/vendor/psr/log" />
@@ -170,7 +185,9 @@
       <updated>1618680680170</updated>
       <workItem from="1618680682457" duration="6271000" />
       <workItem from="1618763396486" duration="87000" />
-      <workItem from="1618852117218" duration="497000" />
+      <workItem from="1618852117218" duration="5558000" />
+      <workItem from="1618901635159" duration="1116000" />
+      <workItem from="1619028300216" duration="4460000" />
     </task>
     <servers />
   </component>
