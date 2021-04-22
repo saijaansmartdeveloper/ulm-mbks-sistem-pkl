@@ -10,7 +10,7 @@
         <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" id="userDropdown" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fas fa-user fa-fw"></i></a>
             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="userDropdown">
-                <a class="dropdown-item" href="#">{{ Auth::User()->roles->first()->name }}</a>
+                <a class="dropdown-item" href="#">tes</a>
                 <div class="dropdown-divider"></div>
                 <form method="POST" action="{{ route('logout') }}" onclick="event.preventDefault();
                 this.closest('form').submit();">
