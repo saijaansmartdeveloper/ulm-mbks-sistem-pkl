@@ -137,8 +137,6 @@
                             <div class="col-md-9 col-lg-8 mx-auto">
                                 <h3 class="login-heading mb-4">Selamat Datang!</h3>
 
-                                @include('alert')
-
                                 <form action="{{route('public.user.login')}}" method="post">
                                     @csrf
                                     <div class="form-label-group">

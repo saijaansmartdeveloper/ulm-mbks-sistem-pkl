@@ -14,8 +14,6 @@ class MahasiswaSeeder extends Seeder
      */
     public function run()
     {
-        Mahasiswa::factory()->count(50)->create()->each(function ($user) {
-            $user->assignRole('student');
-        });;
+        // Mahasiswa::factory()->count(50)->create();
     }
 }

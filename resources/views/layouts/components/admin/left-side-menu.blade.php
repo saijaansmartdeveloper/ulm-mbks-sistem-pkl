@@ -13,11 +13,9 @@
             @auth('web')
                 @include('layouts.components.menu.user_umum')
             @endauth
-            @auth('lecturer')
-                @include('layouts.components.menu.lecturer')
-            @endauth
 
             {{-- @auth(@$guard == 'lecturer' ? 'lecturer' : '')
+                @include('layouts.components.menu.lecturer')
             @endauth --}}
         </div>
     </div>
