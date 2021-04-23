@@ -5,16 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="2ac97ffa-0254-4e1a-9881-581d0e7e3b0f" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/resources/views/layouts/components/menu/student.blade.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/routes/public/student.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/php.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/php.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Auth/AnotherUser/LoginController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Auth/AnotherUser/LoginController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/LecturerController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/LecturerController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/StudentController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/StudentController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/layouts/components/admin/left-side-menu.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/layouts/components/admin/left-side-menu.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/public/student/index.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/public/student/index.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/web.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Middleware/Authenticate.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Middleware/Authenticate.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -182,7 +174,7 @@
       <workItem from="1618680682457" duration="6271000" />
       <workItem from="1618763396486" duration="87000" />
       <workItem from="1618852117218" duration="497000" />
-      <workItem from="1619204961501" duration="3652000" />
+      <workItem from="1619204961501" duration="4640000" />
     </task>
     <servers />
   </component>
