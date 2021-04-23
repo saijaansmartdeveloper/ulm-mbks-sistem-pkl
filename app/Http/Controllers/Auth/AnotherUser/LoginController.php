@@ -25,7 +25,7 @@ class LoginController extends Controller
     {
         $credentials = $request->only('email', 'password');
         $type = $request->type;
-        if (Auth::guard( $type)->attempt($credentials)) {
+        if (Auth::guard($type)->attempt($credentials)) {
             $request->session()->regenerate();
 
             return redirect()->intended('public/' .$type  .'/dashboard');
