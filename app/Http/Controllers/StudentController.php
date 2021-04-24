@@ -6,14 +6,20 @@ use Illuminate\Http\Request;
 
 class StudentController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+    public function __construct()
+    {
+        $this->middleware('auth:student');
+    }
+
     public function index()
     {
-        return view("public.student.index");
+        $data = [
+            'title' => 'Mahasiswa',
+            'guard' => 'student',
+            'data'  => null
+        ];
+
+        return view("public.student.index", $data);
     }
 
     /**

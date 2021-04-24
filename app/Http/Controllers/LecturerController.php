@@ -9,7 +9,7 @@ class LecturerController extends Controller
 {
     public function __construct()
     {
-//        $this->middleware
+        $this->middleware('auth:lecturer');
     }
 
     public function index()
