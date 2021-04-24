@@ -8,8 +8,8 @@ use App\Http\Controllers\MonevController;
 use Illuminate\Support\Facades\Route;
 
 Route::prefix('student')->group(function () {
-    // Route::get('dashboard', [LecturerController::class, 'index'])
-    //     ->name('lecturer.index');
+    Route::get('dashboard', [StudentController::class, 'index'])
+        ->name('student.index');;
     Route::get('jurnal/list', [JurnalController::class, 'getjurnal'])->name('jurnal.list');
     Route::get('jurnal', [JurnalController::class, 'index'])->name('jurnal.index');
     Route::get('jurnal/create', [JurnalController::class, 'create'])->name('jurnal.create');
@@ -18,6 +18,7 @@ Route::prefix('student')->group(function () {
     Route::put('jurnal/{id}', [JurnalController::class, 'update'])->name('jurnal.update');
     Route::delete('jurnal/{id}', [JurnalController::class, 'destroy'])->name('jurnal.destroy');
 
+    
 
 
 
