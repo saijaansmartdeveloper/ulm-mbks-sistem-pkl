@@ -41,4 +41,9 @@ class Mahasiswa extends Authenticatable
         return "student";
     }
 
+    public function kegiatan()
+    {
+        return $this->hasOne(Magang::class, 'mahasiswa_uuid');
+    }
+
 }

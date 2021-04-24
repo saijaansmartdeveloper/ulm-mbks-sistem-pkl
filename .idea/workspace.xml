@@ -5,8 +5,30 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="2ac97ffa-0254-4e1a-9881-581d0e7e3b0f" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/public/vendor/evo-calendar/css/evo-calendar.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/vendor/evo-calendar/css/evo-calendar.midnight-blue.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/vendor/evo-calendar/css/evo-calendar.midnight-blue.min.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/vendor/evo-calendar/css/evo-calendar.min.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/vendor/evo-calendar/css/evo-calendar.orange-coral.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/vendor/evo-calendar/css/evo-calendar.orange-coral.min.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/vendor/evo-calendar/css/evo-calendar.royal-navy.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/vendor/evo-calendar/css/evo-calendar.royal-navy.min.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/vendor/evo-calendar/js/evo-calendar.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/vendor/evo-calendar/js/evo-calendar.min.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/php.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/php.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/ulm-mbks-sistem-pkl.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/ulm-mbks-sistem-pkl.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Middleware/Authenticate.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Middleware/Authenticate.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/StudentController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/StudentController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Middleware/RedirectIfAuthenticated.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Middleware/RedirectIfAuthenticated.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Models/Mahasiswa.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/Mahasiswa.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/composer.json" beforeDir="false" afterPath="$PROJECT_DIR$/composer.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/composer.lock" beforeDir="false" afterPath="$PROJECT_DIR$/composer.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/layouts/admin.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/layouts/admin.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/layouts/components/admin/left-side-menu.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/layouts/components/admin/left-side-menu.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/layouts/components/menu/lecturer.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/layouts/components/menu/lecturer.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/layouts/components/menu/student.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/layouts/components/menu/student.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/layouts/components/menu/user_umum.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/layouts/components/menu/user_umum.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/public/student/index.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/public/student/index.blade.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -142,6 +164,20 @@
       <path value="$PROJECT_DIR$/vendor/phpdocumentor/reflection-common" />
       <path value="$PROJECT_DIR$/vendor/phpdocumentor/reflection-docblock" />
       <path value="$PROJECT_DIR$/vendor/phpdocumentor/type-resolver" />
+      <path value="$PROJECT_DIR$/vendor/myclabs/php-enum" />
+      <path value="$PROJECT_DIR$/vendor/psr/http-factory" />
+      <path value="$PROJECT_DIR$/vendor/markbaker/matrix" />
+      <path value="$PROJECT_DIR$/vendor/maennchen/zipstream-php" />
+      <path value="$PROJECT_DIR$/vendor/markbaker/complex" />
+      <path value="$PROJECT_DIR$/vendor/yajra/laravel-datatables-editor" />
+      <path value="$PROJECT_DIR$/vendor/yajra/laravel-datatables" />
+      <path value="$PROJECT_DIR$/vendor/yajra/laravel-datatables-fractal" />
+      <path value="$PROJECT_DIR$/vendor/yajra/laravel-datatables-html" />
+      <path value="$PROJECT_DIR$/vendor/yajra/laravel-datatables-buttons" />
+      <path value="$PROJECT_DIR$/vendor/maatwebsite/excel" />
+      <path value="$PROJECT_DIR$/vendor/ezyang/htmlpurifier" />
+      <path value="$PROJECT_DIR$/vendor/phpoffice/phpspreadsheet" />
+      <path value="$PROJECT_DIR$/vendor/league/fractal" />
     </include_path>
   </component>
   <component name="ProjectId" id="1rJ462YhGDoGJyiRWHKRuZ451y1" />
@@ -153,9 +189,17 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/public/vendor/evo-calender" />
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="vue.rearranger.settings.migration" value="true" />
+  </component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\Luthfy Eka Permana\PhpstormProjects\ulm-mbks-sistem-pkl\public\vendor\evo-calender" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\Luthfy Eka Permana\PhpstormProjects\ulm-mbks-sistem-pkl\public\vendor" />
+    </key>
   </component>
   <component name="RunManager">
     <configuration name="phpunit.xml" type="PHPUnitRunConfigurationType" factoryName="PHPUnit">

@@ -9,7 +9,9 @@
         <title>@yield('content-header')</title>
 
         <link href="{{ asset('sbadmin/css/styles.css') }}" rel="stylesheet" />
-        
+        <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/evo-calendar@1.1.2/evo-calendar/css/evo-calendar.min.css"/>
+
+
         <script src="{{ asset('sbadmin/js/all.min.js') }}" crossorigin="anonymous"></script>
     </head>
     <body class="sb-nav-fixed">
@@ -44,8 +46,11 @@
 
         <script src="{{ asset('sbadmin/js/jquery-3.5.1.min.js') }}"></script>
         <script src="{{ asset('sbadmin/js/bootstrap.min.js') }}"></script>
-        @yield('js')
+        <script src="https://cdn.jsdelivr.net/npm/evo-calendar@1.1.2/evo-calendar/js/evo-calendar.min.js"></script>
 
         <script src="{{ asset('sbadmin/js/scripts.js') }}"></script>
+
+        @yield('js')
+
     </body>
 </html>
