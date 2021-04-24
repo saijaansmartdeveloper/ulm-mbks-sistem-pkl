@@ -1,3 +1,7 @@
+<a class="nav-link collapsed" href="{{ route('public.monev.index') }} ">
+    <div class="sb-nav-link-icon"><i class="fas fa-users fa-fw"></i></div>
+    Monev
+</a>
 <a class="nav-link collapsed" href="{{ route('public.lecturer.student') }} ">
     <div class="sb-nav-link-icon"><i class="fas fa-users fa-fw"></i></div>
     Mahasiswa

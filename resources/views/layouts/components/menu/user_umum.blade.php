@@ -15,6 +15,10 @@
         <div class="sb-nav-link-icon"><i class="fas fa-building fa-fw"></i></div>
         Admin Prodi
     </a>
+    <a class="nav-link collapsed" href="{{ route('pengumuman.index') }}">
+        <div class="sb-nav-link-icon"><i class="fas fa-building fa-fw"></i></div>
+        Pengumuman
+    </a>
 @endif
 
 @if (Auth::User()->hasRole('admin_prodi'))
@@ -38,5 +42,9 @@
     <a class="nav-link collapsed" href="{{ route('mahasiswa.index') }}">
         <div class="sb-nav-link-icon"><i class="fas fa-building fa-fw"></i></div>
         Mahasiswa
+    </a>
+    <a class="nav-link collapsed" href="{{ route('pengumuman.index') }}">
+        <div class="sb-nav-link-icon"><i class="fas fa-building fa-fw"></i></div>
+        Pengumuman
     </a>
 @endif

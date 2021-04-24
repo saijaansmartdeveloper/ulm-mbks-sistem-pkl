@@ -3,15 +3,14 @@
 @section('content')
     <div class="card py-4">
         <div class="card-body">
-            <a href="{{ route('prodi.create') }}" class="btn btn-primary">Tambah Data</a>
+            <a href="{{ route('pengumuman.create') }}" class="btn btn-primary">Tambah Data</a>
             <hr>
             @include('alert')
-            <table class="table table-bordered" id="table-prodi">
+            <table class="table table-bordered" id="table-pengumuman">
                 <thead>
                     <tr>
-                        <th>Kode Prodi</th>
-                        <th>Nama Prodi</th>
-                        <th>Jurusan</th>
+                        <th>Judul</th>
+                        <th>Tanggal</th>
                         <th class='text-center' width="85">Action</th>
                     </tr>
                 </thead>
@@ -29,23 +28,17 @@
     <script src="{{ asset('datatables/js/dataTables.bootstrap4.min.js') }}"></script>
     <script>
         $(function() {
-            $('#table-prodi').DataTable({
+            $('#table-pengumuman').DataTable({
                 processing: true,
                 serverSide: true,
-                ajax: "{{ route('prodi.list') }}",
+                ajax: "{{ route('pengumuman.list') }}",
                 columns: [{
-                        data: 'kode_prodi',
-                        name: 'kode_prodi'
+                        data: 'judul_pengumuman',
+                        name: 'judul_pengumuman'
                     },
                     {
-                        data: 'nama_prodi',
-                        name: 'nama_prodi'
-                    },
-                    {
-                        data: 'jurusan.nama_jurusan',
-                        defaultContent : 'Data Kosong',
-                        name: 'jurusan.nama_jurusan'
-                        
+                        data: 'tanggal_pengumuman',
+                        name: 'tanggal_pengumuman'
                     },
                     {
                         data: 'action',

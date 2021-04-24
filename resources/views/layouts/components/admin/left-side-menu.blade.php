@@ -14,9 +14,9 @@
                 @include('layouts.components.menu.user_umum')
             @endauth
 
-            {{-- @auth(@$guard == 'lecturer' ? 'lecturer' : '')
+            @auth('lecturer')
                 @include('layouts.components.menu.lecturer')
-            @endauth --}}
+            @endauth
         </div>
     </div>
     {{-- <div class="sb-sidenav-footer">
