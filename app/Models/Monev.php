@@ -5,10 +5,11 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Pengumuman extends Model
+class Monev extends Model
 {
     use HasFactory;
-    protected $table = 'pengumuman';
 
-    
+    protected $table = 'monev';
+    protected $primaryKey = 'uuid';
+    public $incrementing = 'false';
 }

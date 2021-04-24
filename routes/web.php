@@ -34,12 +34,29 @@ Route::group(['namespace' => 'auth'], function(){
 
 Route::group(['middleware' => 'auth'], function () {
     Route::group(['middleware' => 'role:super_admin'], function () {
+
+        Route::group(['namespace' => 'Pengumuman'], function () {
+            Route::get('pengumuman/list', "PengumumanController@getpengumuman")->name('pengumuman.list');
+
+
+            Route::get('/pengumuman', "PengumumanController@index")->name('pengumuman.index');
+            Route::get('/pengumuman/create', "PengumumanController@create")->name('pengumuman.create');
+            Route::post('/pengumuman', "PengumumanController@store")->name('pengumuman.store');
+            Route::get('/pengumuman/{id}/edit', "PengumumanController@edit")->name('pengumuman.edit');
+            Route::put('/pengumuman/{id}', "PengumumanController@update")->name('pengumuman.update');
+            Route::delete('/pengumuman/{id}', "PengumumanController@destroy")->name('pengumuman.destroy');
+        });
         Route::group(['namespace' => 'Supervisor'], function () {
             Route::get('supervisor/list', "SupervisorController@getSupervisor")->name('supervisor.list');
 
 
             Route::get('/supervisor', "SupervisorController@index")->name('supervisor.index');
             Route::get('/supervisor/create', "SupervisorController@create")->name('supervisor.create');
+            Route::post('/supervisor', "SupervisorController@store")->name('supervisor.store');
+            Route::get('/supervisor/{id}/edit', "SupervisorController@edit")->name('supervisor.edit');
+            Route::put('/supervisor/{id}', "SupervisorController@update")->name('supervisor.update');
+            Route::delete('/supervisor/{id}', "SupervisorController@destroy")->name('supervisor.destroy');
+
         });
 
         Route::group(['namespace' => 'Jurusan'], function () {

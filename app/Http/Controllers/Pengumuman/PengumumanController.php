@@ -3,10 +3,29 @@
 namespace App\Http\Controllers\Pengumuman;
 
 use App\Http\Controllers\Controller;
+use App\Models\Pengumuman;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use DataTables;
 
 class PengumumanController extends Controller
 {
+    public function getPengumuman()
+    {
+
+        $data = Pengumuman::all();
+        return Datatables::of($data)
+            ->addIndexColumn()
+            ->addColumn('action', function ($data) {
+                $action = '<a href="/pengumuman/' . $data->id . '/edit" class="btn btn-sm btn-primary" >Ubah</a>';
+                $action .= \Form::open(['url' => '/pengumuman/' . $data->id, 'method' => 'delete', 'style' => 'float:right']);
+                $action .= "<button type='submit' class = 'btn btn-danger btn-sm' >Hapus</button>";
+                $action .= \Form::close();
+                return $action;
+            })
+            ->rawColumns(['action'])
+            ->make(true);
+    }
     /**
      * Display a listing of the resource.
      *
@@ -14,7 +33,10 @@ class PengumumanController extends Controller
      */
     public function index()
     {
-        //
+        $data = [
+            'title' => 'Master Data Pengumuman'
+        ];
+        return view('pengumuman.super_admin.index', $data);
     }
 
     /**
@@ -24,7 +46,11 @@ class PengumumanController extends Controller
      */
     public function create()
     {
-        //
+        $data = [
+            'title' => 'Tambah Data Pengumuman',
+            'data'  => null
+        ];
+        return view('pengumuman.super_admin.form', $data);
     }
 
     /**
@@ -35,7 +61,22 @@ class PengumumanController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'judul_pengumuman'      => 'required',
+            'content_pengumuman'    => 'required',
+            'tanggal_pengumuman'    => 'required',
+        ]);
+
+        $pengumuman = new Pengumuman;
+        $pengumuman->judul_pengumuman   = $request->judul_pengumuman;
+        $pengumuman->content_pengumuman = $request->content_pengumuman;
+        $pengumuman->tanggal_pengumuman = $request->tanggal_pengumuman;
+        $pengumuman->user_id            = Auth::User()->uuid;
+        $pengumuman->prodi_uuid         = Auth::User()->prodi_uuid;
+        $pengumuman->jurusan_uuid       = Auth::user()->jurusan_uuid;
+        $pengumuman->save();
+
+        return redirect(route('pengumuman.index'))->with('success', 'Data Berhasil Dibuat');
     }
 
     /**
@@ -57,7 +98,11 @@ class PengumumanController extends Controller
      */
     public function edit($id)
     {
-        //
+        $data = [
+            'title' => 'Ubah Data Pengumuman',
+            'data'  => Pengumuman::findOrFail($id)
+        ];
+        return view('pengumuman.super_admin.form', $data);
     }
 
     /**
@@ -69,7 +114,23 @@ class PengumumanController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $request->validate([
+            'judul_pengumuman'      => 'required',
+            'content_pengumuman'    => 'required',
+            'tanggal_pengumuman'    => 'required',
+        ]);
+
+        $pengumuman = Pengumuman::findOrFail($id);
+        $pengumuman->judul_pengumuman   = $request->judul_pengumuman;
+        $pengumuman->content_pengumuman = $request->content_pengumuman;
+        $pengumuman->tanggal_pengumuman = $request->tanggal_pengumuman;
+        $pengumuman->user_id            = Auth::User()->uuid;
+        $pengumuman->prodi_uuid         = Auth::User()->prodi_uuid;
+        $pengumuman->jurusan_uuid       = Auth::user()->jurusan_uuid;
+        $pengumuman->save();
+
+        return redirect(route('pengumuman.index'))->with('update', 'Data Berhasil Diubah');
+
     }
 
     /**
@@ -80,6 +141,9 @@ class PengumumanController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $pengumuman = Pengumuman::findOrFail($id);
+        $pengumuman->delete();
+
+        return redirect()->back()->with('delete', 'Data Berhasil Dihapus');
     }
 }

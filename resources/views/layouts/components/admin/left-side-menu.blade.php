@@ -17,10 +17,11 @@
             @auth('lecturer')
                 @include('layouts.components.menu.lecturer')
             @endauth
-
+            
             @auth('student')
                 @include('layouts.components.menu.student')
             @endauth
+
         </div>
     </div>
     {{-- <div class="sb-sidenav-footer">

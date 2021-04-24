@@ -12,7 +12,7 @@ use Ramsey\Uuid\Uuid;
 
 class ProdiController extends Controller
 {
-    public function getProdi(Request $request)
+    public function getProdi()
     {
 
         $data = Prodi::with('jurusan')->get();
@@ -23,7 +23,6 @@ class ProdiController extends Controller
                 $action .= \Form::open(['url' => '/prodi/' . $data->uuid, 'method' => 'delete', 'style' => 'float:right']);
                 $action .= "<button type='submit' class = 'btn btn-danger btn-sm' >Hapus</button>";
                 $action .= \Form::close();
-
                 return $action;
             })
             ->rawColumns(['action'])
