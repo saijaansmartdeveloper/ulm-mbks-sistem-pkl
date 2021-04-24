@@ -41,7 +41,7 @@ class RolePermissionSeeder extends Seeder
 
         Role::create(['id' => Uuid::uuid4(), 'name' => 'super_admin', 'guard_name'  => 'web']);
         Role::create(['id' => Uuid::uuid4(), 'name' => 'admin_prodi', 'guard_name'  => 'web']);
-        Role::create(['id' => Uuid::uuid4(), 'name' => 'supervisor', 'guard_name'  => 'web']);
+        Role::create(['id' => Uuid::uuid4(), 'name' => 'suvervisor', 'guard_name'  => 'web']);
         Role::create(['id' => Uuid::uuid4(), 'name' => 'lecturer', 'guard_name' => 'lecturer']);
         Role::create(['id' => Uuid::uuid4(), 'name' => 'student', 'guard_name' => 'student']);
         Role::create(['id' => Uuid::uuid4(), 'name' => 'partner', 'guard_name' => 'partner']);

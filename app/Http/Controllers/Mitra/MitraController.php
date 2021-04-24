@@ -30,14 +30,12 @@ class MitraController extends Controller
 
     public function index()
     {
-        $data['title'] = 'Master Data Mitra';
-        return view('mitra.index', $data);
+        return view('mitra.index');
     }
 
     public function create()
     {
-        $data['title'] = 'Tambah Data Mitra';
-        return view('mitra.create', $data);
+        return view('mitra.create');
     }
 
     public function store(Request $request)
@@ -47,9 +45,9 @@ class MitraController extends Controller
                 'nama_mitra'                => 'required',
                 'divisi_mitra'              => 'required',
                 'alamat_mitra'              => 'required',
-                'penanggung_jawab_mitra'    => 'required',
+                'penanggung_jawab_prodi'    => 'required',
                 'pamong_mitra'              => 'required',
-                'email'                     => 'required|email',
+                'email'                     => 'required',
                 'username'                  => 'required',
                 'password'                  => 'required',
                 'phone'                     => 'required',
@@ -70,7 +68,6 @@ class MitraController extends Controller
         $mitra->password                = $request->password;
         $mitra->phone                   = $request->phone;
         $mitra->save();
-        $mitra->assignRole('partner');
 
         return redirect('/mitra')->with('success', 'Data Berhasil Dibuat');
     }
@@ -82,7 +79,6 @@ class MitraController extends Controller
     public function edit($id)
     {
         $data['mitra']  = Mitra::findOrFail($id);
-        $data['title'] = 'Ubah Data Mitra';
 
         return view('mitra.edit', $data);
     }
@@ -94,7 +90,7 @@ class MitraController extends Controller
                 'nama_mitra'                => 'required',
                 'divisi_mitra'              => 'required',
                 'alamat_mitra'              => 'required',
-                'penanggung_jawab_mitra'    => 'required',
+                'penanggung_jawab_prodi'    => 'required',
                 'pamong_mitra'              => 'required',
                 'email'                     => 'required',
                 'username'                  => 'required',

@@ -18,7 +18,6 @@ class Mahasiswa extends Authenticatable
     protected $guarded      = 'student';
     protected $table        = 'mahasiswa';
     protected $primaryKey   = 'uuid';
-    protected $keyType      = 'string';
 
     protected $fillable = [
         'uuid', 'nim_mahasiswa', 'nama_mahasiswa', 'email', 'password', 'phone', 'prodi_uuid', 'jurusan_uuid'
