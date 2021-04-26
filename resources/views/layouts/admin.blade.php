@@ -8,8 +8,13 @@
         <meta name="author" content="" />
         <title>@yield('content-header')</title>
 
+        <link href="{{ asset('vendor/jquery-ui/jquery-ui.min.css') }}" rel="stylesheet" />
+        <link href="{{ asset('vendor/jquery-ui/jquery-ui.structure.min.css') }}" rel="stylesheet" />
         <link href="{{ asset('sbadmin/css/styles.css') }}" rel="stylesheet" />
-        
+
+        <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/evo-calendar@1.1.2/evo-calendar/css/evo-calendar.min.css"/>
+
+
         <script src="{{ asset('sbadmin/js/all.min.js') }}" crossorigin="anonymous"></script>
     </head>
     <body class="sb-nav-fixed">
@@ -43,9 +48,17 @@
         </div>
 
         <script src="{{ asset('sbadmin/js/jquery-3.5.1.min.js') }}"></script>
+        <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.1/dist/umd/popper.min.js" integrity="sha384-SR1sx49pcuLnqZUnnPwx6FCym0wLsk5JZuNx2bPPENzswTNFaQU1RDvt3wT4gWFG" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.min.js" integrity="sha384-j0CNLUeiqtyaRmlzUHCPZ+Gy5fQu0dQ6eZ/xAww941Ai1SxSY+0EQqNXNE6DZiVc" crossorigin="anonymous"></script>
+
         <script src="{{ asset('sbadmin/js/bootstrap.min.js') }}"></script>
-        @yield('js')
+        <script src="https://cdn.jsdelivr.net/npm/evo-calendar@1.1.2/evo-calendar/js/evo-calendar.min.js"></script>
 
         <script src="{{ asset('sbadmin/js/scripts.js') }}"></script>
+        <script src="{{ asset('vendor/jquery-ui/jquery-ui.min.js') }}"></script>
+
+
+        @yield('js')
+
     </body>
 </html>

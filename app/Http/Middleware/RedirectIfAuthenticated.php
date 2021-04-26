@@ -27,10 +27,10 @@ class RedirectIfAuthenticated
                 switch ($guard) {
                     case 'lecturer':
                         return redirect()->route('public.lecturer.index');
-                        break;
+                    case 'student' :
+                        return redirect()->route('public.student.index');
                     default:
                         return redirect(RouteServiceProvider::HOME);
-                        break;
                 }
             }
         }

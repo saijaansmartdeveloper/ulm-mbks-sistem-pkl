@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Magang;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class StudentController extends Controller
 {
@@ -13,10 +15,12 @@ class StudentController extends Controller
 
     public function index()
     {
+        $user   = Auth::guard('student')->user();
+
         $data = [
-            'title' => 'Mahasiswa',
-            'guard' => 'student',
-            'data'  => null
+            'title'     => $user->nama_mahasiswa,
+            'guard'     => 'student',
+            'data'      => Magang::where('mahasiswa_uuid', $user->uuid)->first()
         ];
 
         return view("public.student.index", $data);
