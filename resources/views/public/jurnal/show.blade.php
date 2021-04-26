@@ -43,8 +43,6 @@
         });
 
         $('#calendar').on('selectDate', function(event, newDate, oldDate) {
-            var active_events = $('#calendar').evoCalendar('getActiveEvents');
-            console.log(active_events)
             if (newDate === oldDate) {
                 $('#calendar').evoCalendar('toggleEventList');
             }

@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use function PHPUnit\Framework\isNull;
 
 class Jurnal extends Model
 {
@@ -30,4 +31,21 @@ class Jurnal extends Model
         'created_at' => 'datetime',
         'updated_at' => 'datetime',
     ];
+
+    function getStatusJurnalWithLabelAttribute()
+    {
+        switch ($this->status_jurnal) {
+            case 'submit' || 'resubmit' :
+                return '<i class="text-success">' . $this->status_jurnal . '</i>';
+            case 'revision' :
+                return '<i class="text-warning">' . $this->status_jurnal . '</i>';
+            case 'rejected' :
+                return '<i class="text-danger">' . $this->status_jurnal . '</i>';
+            case 'accepted' :
+                return '<i class="text-primary">' . $this->status_jurnal . '</i>';
+            default :
+                return '<i class="text-secondary">undefinied</i>';
+
+        }
+    }
 }

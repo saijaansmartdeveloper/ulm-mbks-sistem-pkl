@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Jurnal;
 use App\Models\Magang;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Ramsey\Uuid\Uuid;
@@ -30,10 +31,8 @@ class JournalController extends Controller
 
     public function create()
     {
-        $user   = Auth::guard('student')->user();
-
         $data = [
-            'title'     => $user->nama_mahasiswa,
+            'title'     => Auth::guard('student')->user()->nama_mahasiswa,
             'guard'     => 'student',
             'data'      => null
         ];
@@ -71,46 +70,64 @@ class JournalController extends Controller
         return redirect()->route('public.journal.index')->with('success', 'Jurnal berhasil Dibuat');
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function show($id)
     {
-        //
+        $user   = Auth::guard('student')->user();
+
+        $data = [
+            'title'     => $user->nama_mahasiswa,
+            'guard'     => 'student',
+            'data'      => Jurnal::findOrFail($id)
+        ];
+
+        return view("public.jurnal.show", $data);
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function edit($id)
     {
-        //
+        $user   = Auth::guard('student')->user();
+
+        $data = [
+            'title'     => $user->nama_mahasiswa,
+            'guard'     => 'student',
+            'data'      => Jurnal::findOrFail($id)
+        ];
+
+        return view("public.jurnal.form", $data);
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function update(Request $request, $id)
     {
-        //
+
+        $user = Auth::guard('student')->user();
+
+        $request->validate([
+            'catatan_jurnal'            => 'required',
+            'tanggal_jurnal'            => 'required',
+        ]);
+
+        $jurnal = Jurnal::find($id);
+        $jurnal->catatan_jurnal = $request->catatan_jurnal;
+        $jurnal->tanggal_jurnal = $request->tanggal_jurnal;
+        $jurnal->status_jurnal  = 'resubmit';
+
+        if ($request->hasFile('file_image_jurnal')) {
+            $file_image     = request()->file('file_image_jurnal');
+            $fileNameImg    = $user->nim_mahasiswa . '_' . time() . '.' . $file_image->extension();
+            $jurnal->file_image_jurnal = $file_image->storeAs('file/file_image_jurnal', $fileNameImg, "public");
+        }
+
+        if ($request->hasFile('file_dokumen_jurnal')) {
+            $file_doc       = request()->file('file_dokumen_jurnal');
+            $fileNameDoc    = $user->nim_mahasiswa . '_' . time() . '.' . $file_doc->extension();
+            $jurnal->file_dokumen_jurnal = $file_image->storeAs('file/file_dokumen_jurnal', $fileNameDoc, "public");
+        }
+
+        $jurnal->save();
+
+        return redirect()->route('public.journal.index')->with('success', 'Jurnal berhasil Diperbarui');
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function destroy($id)
     {
         //
@@ -119,5 +136,17 @@ class JournalController extends Controller
     public function verify($id)
     {
 
+    }
+
+    public function print()
+    {
+        $user   = Auth::guard('student')->user();
+        $data = [
+            'title'     => $user->nama_mahasiswa,
+            'guard'     => 'student',
+            'data'      => null
+        ];
+
+        return view('public.jurnal.print', $data);
     }
 }

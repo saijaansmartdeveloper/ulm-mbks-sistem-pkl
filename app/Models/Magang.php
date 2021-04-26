@@ -21,7 +21,7 @@ class Magang extends Model
 
     public function journals()
     {
-        return $this->hasMany(Jurnal::class, 'magang_uuid');
+        return $this->hasMany(Jurnal::class, 'magang_uuid')->orderBy('updated_at', 'desc')->take(3);
     }
 
     public function student()

@@ -12,7 +12,7 @@
     Jurnal
 </a>
 
-<a class="nav-link collapsed" href="#">
+<a class="nav-link collapsed" href="{{ route('public.journal.print') }}">
     <div class="sb-nav-link-icon"><i class="fas fa-print"></i></div>
     Cetak Jurnal
 </a>
