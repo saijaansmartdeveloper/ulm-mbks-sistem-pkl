@@ -48,12 +48,14 @@
                         name: 'email'
                     },
                     {
-                        data: 'jurusan_uuid',
-                        name: 'jurusan_uuid'
+                        data: 'jurusan.nama_jurusan',
+                        defaultContent : 'Data Kosong',
+                        name: 'jurusan.nama_jurusan'
                     },
                     {
-                        data: 'prodi_uuid',
-                        name: 'prodi_uuid'
+                        data: 'prodi.nama_prodi',
+                        defaultContent : 'Data Kosong',
+                        name: 'prodi.nama_prodi'
                     },
                     {
                         data: 'action',

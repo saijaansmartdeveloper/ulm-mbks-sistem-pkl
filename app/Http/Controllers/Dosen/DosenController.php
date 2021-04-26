@@ -14,7 +14,7 @@ class DosenController extends Controller
     public function getDosen(Request $request)
     {
 
-        $data = Dosen::all();
+        $data = Dosen::with('prodi', 'jurusan')->get();
         return Datatables::of($data)
             ->addIndexColumn()
             ->addColumn('action', function ($data) {
@@ -79,6 +79,7 @@ class DosenController extends Controller
         $dosen->jurusan_uuid    = Auth::User()->jurusan_uuid;
         $dosen->prodi_uuid      = Auth::User()->prodi_uuid;
         $dosen->save();
+        $dosen->assignRole('lecturer');
 
         return redirect('/dosen')->with('success', 'Data Berhasil Dibuat');
     }

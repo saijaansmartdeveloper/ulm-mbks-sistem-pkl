@@ -17,7 +17,6 @@ class MahasiswaController extends Controller
     {
 
         $this->middleware('guest')->except('register_store');
-
     }
 
     public function getMahasiswa(Request $request)
@@ -79,8 +78,12 @@ class MahasiswaController extends Controller
         $uuid   = Uuid::uuid4()->getHex();
         $prodi  = Prodi::findOrFail($request->prodi_uuid);
 
-        $foto_mahasiswa = request()->file('foto_mahasiswa');
-        $fotoUrl        = $foto_mahasiswa->storeAs('file/foto_mahasiswa', "{$request->nim_mahasiswa}.{$foto_mahasiswa->extension()}", "public");
+        if (request()->file('foto_mahasiswa')) {
+            $foto_mahasiswa = request()->file('foto_mahasiswa');
+            $fotoUrl        = $foto_mahasiswa->storeAs('file/foto_mahasiswa', "{$request->nim_mahasiswa}.{$foto_mahasiswa->extension()}", "public");
+        } else {
+            $fotoUrl = null;
+        }
 
         $mahasiswa = new Mahasiswa;
         $mahasiswa->uuid            = $uuid;
@@ -93,8 +96,8 @@ class MahasiswaController extends Controller
         $mahasiswa->jurusan_uuid    = $prodi->jurusan_uuid;
         $mahasiswa->prodi_uuid      = $request->prodi_uuid;
         $mahasiswa->save();
-        $mahasiswa->assignRoles('student');
-        
+        $mahasiswa->assignRole('student');
+
         return redirect()->back()->with('success', 'Registrasi Mahasiswa Berhasil, Tunggu Penetapan Magang Selanjutnya');
     }
 
@@ -129,7 +132,6 @@ class MahasiswaController extends Controller
         $mahasiswa->save();
 
         return redirect('/mahasiswa')->with('success', 'Data Berhasi Dibuat');
-
     }
 
     /**
