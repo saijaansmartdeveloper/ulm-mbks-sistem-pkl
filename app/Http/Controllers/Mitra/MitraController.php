@@ -68,6 +68,7 @@ class MitraController extends Controller
         $mitra->password                = $request->password;
         $mitra->phone                   = $request->phone;
         $mitra->save();
+        $mitra->assignRole('partner');
 
         return redirect('/mitra')->with('success', 'Data Berhasil Dibuat');
     }

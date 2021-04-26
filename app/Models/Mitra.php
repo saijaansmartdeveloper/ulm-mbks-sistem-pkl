@@ -19,6 +19,8 @@ class Mitra extends Authenticatable
     protected $guarded      = 'partner';
     protected $table        = 'mitra';
     protected $primaryKey   = 'uuid';
+    protected $keyType      = 'string';
+
 
     protected $fillable = [
         'uuid', 'nama_mitra', 'divisi_mitra', 'alamat_mitra', 'penanggung_jawab_mitra', 'pamong_mitra', 'email', 'username', 'password', 'phone'

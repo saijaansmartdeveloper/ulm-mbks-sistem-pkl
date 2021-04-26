@@ -17,6 +17,8 @@ class Dosen extends Authenticatable
     protected $guarded      = ['uuid'];
     protected $table        = 'dosen';
     protected $primaryKey   = 'uuid';
+    protected $keyType      = 'string';
+
 
     protected $fillable = [
         'uuid', 'nip_dosen', 'nama_dosen', 'email', 'password', 'prodi_uuid', 'jurusan_uuid'
@@ -46,7 +48,18 @@ class Dosen extends Authenticatable
         return $this->password;
     }
 
-    public function guardName() {
+    public function guardName()
+    {
         return "lecturer";
+    }
+
+    public function prodi()
+    {
+        return $this->belongsTo(Prodi::class, 'prodi_uuid');
+    }
+
+    public function jurusan()
+    {
+        return $this->belongsTo(jurusan::class, 'jurusan_uuid');
     }
 }
