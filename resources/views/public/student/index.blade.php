@@ -100,7 +100,7 @@
 
     <!-- Modal -->
     <div class="modal fade" id="uploadJournal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-        <div class="modal-dialog">
+        <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content">
                 {{ Form::model($data, ['route' => ['public.internship.report_file', ['id' => $data->uuid]], 'method' => 'put', 'files' => true]) }}
                 <div class="modal-header">
@@ -126,7 +126,7 @@
 
     <!-- Modal -->
     <div class="modal fade" id="uploadReport" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-        <div class="modal-dialog">
+        <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content">
                 {{ Form::model($data, ['route' => ['public.internship.report_file', ['id' => $data->uuid]], 'method' => 'put', 'files' => true]) }}
                 <div class="modal-header">

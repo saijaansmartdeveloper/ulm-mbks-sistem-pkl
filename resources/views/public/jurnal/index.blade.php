@@ -16,20 +16,72 @@
         <div id="calendar" style="box-shadow: none"></div>
     @endif
 
+    <!-- Modal -->
+    <div class="modal fade" id="modal-confirm-add-journal" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+        <div class="modal-dialog modal-xl">
+            <div class="modal-content">
+                {{ Form::open(['url' => route('public.journal.store'), 'files' => true]) }}
+                <div class="modal-header">
+                    <h5 class="modal-title" id="staticBackdropLabel">Form Jurnal</h5>
+                    <a href="#" class="close" data-dismiss="modal" data-bs-dismiss="modal" aria-label="close">&times;</a>
+                </div>
+                <div class="modal-body">
+                   <div class="col-12">
+                        <div class="form-group">
+                            <label class="col-form-label text-md-right" for="tanggal_jurnal">Tanggal Jurnal</label>
+                            {{ Form::text('tanggal_jurnal', null, ['class' => 'form-control', 'id' => 'date_journal']) }}
+                        </div>
+
+                        <div class="form-group">
+                            <label class="col-form-label text-md-right" for="catatan_monev">Catatan Jurnal</label>
+                            {{ Form::textarea('catatan_jurnal', null, ['class' => 'form-control', 'rows' => '8', 'placeholder' => 'Catatan Jurnal']) }}
+                        </div>
+
+                        <div class="form-group ">
+                            <label class="col-form-label text-md-right" for="file_image_jurnal">File Image Dokumentasi</label><br>
+                            {{ Form::file('file_image_jurnal', ['class' => 'form-control-file', 'accept' => 'image/png, image/jpeg']) }}
+                        </div>
+
+                        <div class="form-group">
+                            <label class="col-form-label text-md-right" for="file_dokumen_jurnal">File Laporan</label><br>
+                            {{ Form::file('file_dokumen_jurnal', ['class' => 'form-control-file', 'accept' => ".doc,.docx,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document"]) }}
+                        </div>
+                        <div class="form-group">
+                        </div>
+                    </div>
+
+                </div>
+                <div class="modal-footer">
+                    <a href="" data-bs-dismiss="modal" class="btn btn-secondary">Kembali</a>
+                    {{ Form::submit('Simpan', ['class' => 'btn btn-primary']) }}
+                </div>
+                {{ Form::close() }}
+            </div>
+        </div>
+    </div>
+
+
+
 @endsection
 
 @section('js')
     <script type="text/javascript">
 
+        $(document).ready(function () {
+            $("#date_journal").datepicker({ maxDate: "0D" });
+        })
+
         let journal = [
+            @foreach($data->journals as $key => $item)
             {
-                id: 'bHay68s', // Event's ID (required)
-                name: "Test", // Event name (required)
-                date: "January/1/2020", // Event date (required)
-                type: "holiday", // Event type (required)
-                everyYear: true, // Same event every year (optional),
-                detail : '{{ route('public.journal.show', ['uuid' => 'bHay68s'])}}'
+                id: '{{$item->uuid}}', // Event's ID (required)
+                name: "Journal {{$title}}", // Event name (required)
+                description: '{{ substr($item->catatan_jurnal, 0, 20) }}',
+                date: '{{$item->tanggal_jurnal}}', // Event date (required)
+                type: "event", // Event type (required)
+                detail : '{{ route('public.journal.show', ['uuid' => $item->uuid])}}'
             },
+            @endforeach
         ]
 
         $("#calendar").evoCalendar({
@@ -43,11 +95,24 @@
         });
 
         $('#calendar').on('selectDate', function(event, newDate, oldDate) {
-            var active_events = $('#calendar').evoCalendar('getActiveEvents');
-            console.log(active_events)
-            if (newDate === oldDate) {
-                $('#calendar').evoCalendar('toggleEventList');
+            let active_events   = $('#calendar').evoCalendar('getActiveEvents').length;
+            let active_date     = $('#calendar').evoCalendar('getActiveDate');
+
+            if (active_events > 0) {
+                $('#calendar').evoCalendar('toggleEventList', true);
+            } else {
+                $('#calendar').evoCalendar('toggleEventList', false);
+
+                var myModal = new bootstrap.Modal(document.getElementById('modal-confirm-add-journal'), {
+                    backdrop : 'static',
+                    keyboard : false
+                })
+                myModal.show()
+
+                $("#date_journal").val(active_date)
+
             }
+
         });
 
         $('#calendar').on('selectEvent', function(event, activeEvent)  {

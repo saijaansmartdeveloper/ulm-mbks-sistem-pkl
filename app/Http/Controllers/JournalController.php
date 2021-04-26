@@ -50,21 +50,25 @@ class JournalController extends Controller
             'tanggal_jurnal'            => 'required',
         ]);
 
-        $file_image     = request()->file('file_image_jurnal');
-        $fileNameImg    = $user->nim_mahasiswa . '_' . time() . '.' . $file_image->extension();
-        $fileImage      = $file_image->storeAs('file/file_image_jurnal', $fileNameImg, "public");
+        if ($request->hasFile('file_image_jurnal')) {
+            $file_image     = $request->file('file_image_jurnal');
+            $fileNameImg    = $user->nim_mahasiswa . '_' . time() . '.' . $file_image->extension();
+            $fileImage      = $file_image->storeAs('file/file_image_jurnal', $fileNameImg, "public");
+        }
 
-        $file_doc       = request()->file('file_dokumen_jurnal');
-        $fileNameDoc    = $user->nim_mahasiswa . '_' . time() . '.' . $file_doc->extension();
-        $fileDoc        = $file_image->storeAs('file/file_dokumen_jurnal', $fileNameDoc, "public");
+        if ($request->hasFile('file_image_jurnal')) {
+            $file_doc       = $request->file('file_dokumen_jurnal');
+            $fileNameDoc    = $user->nim_mahasiswa . '_' . time() . '.' . $file_doc->extension();
+            $fileDoc        = $file_doc->storeAs('file/file_dokumen_jurnal', $fileNameDoc, "public");
+        }
 
         Jurnal::create([
-            'catatan_jurnal'    => $request->catatan_jurnal,
-            'tanggal_jurnal'    => $request->tanggal_jurnal,
-            'uuid'              => Uuid::uuid4(),
-            'magang_uuid'       => $user->kegiatan()->first()->uuid,
-            'file_image_jurnal' => $fileImage,
-            'file_dokumen_jurnal' => $fileDoc
+            'catatan_jurnal'        => $request->catatan_jurnal,
+            'tanggal_jurnal'        => Carbon::parse($request->tanggal_jurnal)->format('Y-m-d'),
+            'uuid'                  => Uuid::uuid4(),
+            'magang_uuid'           => $user->kegiatan()->first()->uuid,
+            'file_image_jurnal'     => $fileImage ?? null,
+            'file_dokumen_jurnal'   => $fileDoc ?? null
         ]);
 
         return redirect()->route('public.journal.index')->with('success', 'Jurnal berhasil Dibuat');

@@ -19,7 +19,7 @@
                     <hr>
                     <div class="form-group">
                         <label class="col-form-label text-md-right" for="tanggal_jurnal">Tanggal Jurnal</label>
-                        {{ Form::text('tanggal_jurnal', \Carbon\Carbon::now(), ['class' => 'form-control', 'id' => 'date_journal']) }}
+                        {{ Form::text('tanggal_jurnal', \Carbon\Carbon::today(), ['class' => 'form-control', 'id' => 'date_journal']) }}
                     </div>
 
                     <div class="form-group">
@@ -43,6 +43,7 @@
                 </div>
 
             {{ Form::close() }}
+
         </div>
     </div>
 @endsection
