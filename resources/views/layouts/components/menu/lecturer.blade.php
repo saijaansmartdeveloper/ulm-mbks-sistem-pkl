@@ -7,9 +7,9 @@
 
 <div class="sb-sidenav-menu-heading">Master Data</div>
 
-<a class="nav-link collapsed" href="{{ route('public.lecturer.student') }} ">
+<a class="nav-link collapsed" href="{{ route('public.lecturer.student_guidance.index') }} ">
     <div class="sb-nav-link-icon"><i class="fas fa-users fa-fw"></i></div>
-    Mahasiswa
+    Mahasiswa Bimbingan
 </a>
 
 <a class="nav-link collapsed" href="{{ route('public.monev.index') }} ">

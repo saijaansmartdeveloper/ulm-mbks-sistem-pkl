@@ -3,16 +3,13 @@
 @section('content')
     <div class="card py-4">
         <div class="card-body">
-            <a href="{{ route('mitra.create') }}" class="btn btn-primary">Tambah Data</a>
-            <hr>
-            @include('alert')
-            <table class="table table-bordered" id="table-mitra">
+            <table class="table table-striped" id="table-student">
                 <thead>
                     <tr>
-                        <th>Nama Mitra</th>
-                        <th>Divisi Mitra</th>
-                        <th>Pamong Mitra</th>
-                        <th class='text-center' width="85">Action</th>
+                        <th>NIM Mahasiswa</th>
+                        <th>Nama Mahasiswa</th>
+                        <th>Tempat Magang</th>
+                        <th class='text-center' width="60">Action</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -29,30 +26,33 @@
     <script src="{{ asset('datatables/js/dataTables.bootstrap4.min.js') }}"></script>
     <script>
         $(function() {
-            $('#table-mitra').DataTable({
+            $('#table-student').DataTable({
                 processing: true,
                 serverSide: true,
-                ajax: "{{ route('mitra.list') }}",
+                ajax: "{{ route('public.lecturer.student_guidance.list') }}",
                 columns: [{
-                        data: 'nama_mitra',
-                        name: 'nama_mitra'
+                        data: 'student.nim_mahasiswa',
+                        name: 'student.nim_mahasiswa'
                     },
                     {
-                        data: 'divisi_mitra',
-                        name: 'divisi_mitra'
+                        data: 'student.nama_mahasiswa',
+                        name: 'student.nama_mahasiswa'
                     },
                     {
-                        data: 'pamong_mitra',
-                        name: 'pamong_mitra'
+                        data: 'partner.nama_mitra',
+                        name: 'partner.nama_mitra'
                     },
                     {
                         data: 'action',
+                        className: 'text-center',
                         name: 'action',
                         orderable: true,
                         searchable: true
                     },
                 ]
             });
+
         });
+
     </script>
 @endsection

@@ -30,12 +30,19 @@ class MitraController extends Controller
 
     public function index()
     {
-        return view('mitra.index');
+        $data = [
+            'title' => 'Master Data Mitra',
+        ];
+        return view('mitra.index', $data);
     }
 
     public function create()
     {
-        return view('mitra.create');
+        $data = [
+            'title' => 'Tambah Data Mitra',
+            'data'  => null,
+        ];
+        return view('mitra.form', $data);
     }
 
     public function store(Request $request)
@@ -45,7 +52,7 @@ class MitraController extends Controller
                 'nama_mitra'                => 'required',
                 'divisi_mitra'              => 'required',
                 'alamat_mitra'              => 'required',
-                'penanggung_jawab_prodi'    => 'required',
+                'penanggung_jawab_mitra'    => 'required',
                 'pamong_mitra'              => 'required',
                 'email'                     => 'required',
                 'username'                  => 'required',
@@ -79,9 +86,12 @@ class MitraController extends Controller
 
     public function edit($id)
     {
-        $data['mitra']  = Mitra::findOrFail($id);
+        $data = [
+            'title' => 'Ubah Data Mitra',
+            'data'  => Mitra::findOrFail($id),
+        ];
 
-        return view('mitra.edit', $data);
+        return view('mitra.form', $data);
     }
 
     public function update(Request $request, $id)
@@ -91,7 +101,7 @@ class MitraController extends Controller
                 'nama_mitra'                => 'required',
                 'divisi_mitra'              => 'required',
                 'alamat_mitra'              => 'required',
-                'penanggung_jawab_prodi'    => 'required',
+                'penanggung_jawab_mitra'    => 'required',
                 'pamong_mitra'              => 'required',
                 'email'                     => 'required',
                 'username'                  => 'required',

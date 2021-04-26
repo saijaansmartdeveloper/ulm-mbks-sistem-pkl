@@ -17,9 +17,11 @@ Route::prefix('lecturer')->group(function () {
     Route::put('monev/{id}', [MonevController::class, 'update'])->name('monev.update');
     Route::delete('monev/{id}', [MonevController::class, 'destroy'])->name('monev.destroy');
 
-
-
-
+    Route::get('mahasiswa_bimbingan/list', [LecturerController::class, 'getListMahasiswaBimbingan'])->name('lecturer.student_guidance.list');
+    Route::get('mahasiswa_bimbingan', [LecturerController::class, 'index_journal'])->name('lecturer.student_guidance.index');
+    Route::get('mahasiswa_bimbingan/{id}', [LecturerController::class, 'show_student_detail'])->name('lecturer.student_guidance.show');
+    Route::get('mahasiswa_bimbingan/jurnal/{id}', [LecturerController::class, 'show_student_journal'])->name('lecturer.student_guidance.show_journal');
+    Route::put('mahasiswa_bimbingan/jurnal/{id}', [LecturerController::class, 'update_journal'])->name('lecturer.student_guidance.update_journal');
 });
 
 Route::prefix('lecturer')->group(function () {
@@ -27,17 +29,17 @@ Route::prefix('lecturer')->group(function () {
         ->name('lecturer.student');
 });
 
-Route::prefix('lecturer')->group(function () {
-    Route::get('journals', [JournalController::class, 'show'])
-        ->name('lecturer.journal.show');
-});
+// Route::prefix('lecturer')->group(function () {
+//     Route::get('journals', [JournalController::class, 'show'])
+//         ->name('lecturer.journal.show');
+// });
 
-Route::prefix('lecturer')->group(function () {
-    Route::get('journals/{id}/verify', [JournalController::class, 'verify'])
-        ->name('lecturer.journal.verify');
-});
+// Route::prefix('lecturer')->group(function () {
+//     Route::get('journals/{id}/verify', [JournalController::class, 'verify'])
+//         ->name('lecturer.journal.verify');
+// });
 
-Route::prefix('lecturer')->group(function () {
-    Route::post('journals/{id}/verify', [JournalController::class, 'verified'])
-        ->name('lecturer.journal.verified');
-});
+// Route::prefix('lecturer')->group(function () {
+//     Route::post('journals/{id}/verify', [JournalController::class, 'verified'])
+//         ->name('lecturer.journal.verified');
+// });
