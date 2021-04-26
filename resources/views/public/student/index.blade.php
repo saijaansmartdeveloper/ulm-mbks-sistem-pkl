@@ -30,7 +30,7 @@
                         <td>{{ ($data->partner()->first()->pamong_mitra) }}</td>
                         <td>Lama Magang</td>
                         <td>{{ ($data->lama_magang) }} Minggu</td>
-                        <td>SK MAgang</td>
+                        <td>SK Magang</td>
                         <td><a href="{{ url($data->file_sk_magang) }}" target="__blank" class="btn btn-outline-info btn-sm">Download SK</a></td>
                     </tr>
                     <tr>
@@ -88,8 +88,10 @@
                     @empty
                         <tr>
                             <td></td>
-                            <td>a</td>
-                            <td>a</td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
                         </tr>
                     @endforelse
 

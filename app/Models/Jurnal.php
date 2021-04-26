@@ -48,4 +48,9 @@ class Jurnal extends Model
 
         }
     }
+
+    public function magang()
+    {
+        return $this->belongsTo(Magang::class, 'magang_uuid');
+    }
 }
