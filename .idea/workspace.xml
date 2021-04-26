@@ -5,30 +5,19 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="2ac97ffa-0254-4e1a-9881-581d0e7e3b0f" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/public/vendor/evo-calendar/css/evo-calendar.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/vendor/evo-calendar/css/evo-calendar.midnight-blue.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/vendor/evo-calendar/css/evo-calendar.midnight-blue.min.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/vendor/evo-calendar/css/evo-calendar.min.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/vendor/evo-calendar/css/evo-calendar.orange-coral.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/vendor/evo-calendar/css/evo-calendar.orange-coral.min.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/vendor/evo-calendar/css/evo-calendar.royal-navy.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/vendor/evo-calendar/css/evo-calendar.royal-navy.min.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/vendor/evo-calendar/js/evo-calendar.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/vendor/evo-calendar/js/evo-calendar.min.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/php.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/php.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/ulm-mbks-sistem-pkl.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/ulm-mbks-sistem-pkl.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/routes/public/journal.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/JournalController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/JournalController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/JurnalController.php" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Http/Controllers/StudentController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/StudentController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Middleware/RedirectIfAuthenticated.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Middleware/RedirectIfAuthenticated.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Models/Mahasiswa.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/Mahasiswa.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/composer.json" beforeDir="false" afterPath="$PROJECT_DIR$/composer.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/composer.lock" beforeDir="false" afterPath="$PROJECT_DIR$/composer.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/layouts/admin.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/layouts/admin.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/layouts/components/admin/left-side-menu.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/layouts/components/admin/left-side-menu.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/layouts/components/menu/lecturer.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/layouts/components/menu/lecturer.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Models/Jurnal.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/Jurnal.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Models/Magang.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/Magang.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/migrations/2021_04_08_102537_create_jurnal_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2021_04_08_102537_create_jurnal_table.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/views/layouts/components/menu/student.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/layouts/components/menu/student.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/layouts/components/menu/user_umum.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/layouts/components/menu/user_umum.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/public/jurnal/form.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/public/jurnal/form.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/public/jurnal/index.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/public/jurnal/index.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/views/public/student/index.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/public/student/index.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/web.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -219,6 +208,8 @@
       <workItem from="1618763396486" duration="87000" />
       <workItem from="1618852117218" duration="497000" />
       <workItem from="1619204961501" duration="4640000" />
+      <workItem from="1619375045448" duration="5431000" />
+      <workItem from="1619416469949" duration="1772000" />
     </task>
     <servers />
   </component>

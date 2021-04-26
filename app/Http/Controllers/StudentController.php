@@ -15,7 +15,8 @@ class StudentController extends Controller
 
     public function index()
     {
-        $user = Auth::guard('student')->user();
+        $user   = Auth::guard('student')->user();
+
         $data = [
             'title'     => $user->nama_mahasiswa,
             'guard'     => 'student',
