@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\HomeController;
 use Illuminate\Routing\RouteGroup;
 use Illuminate\Support\Facades\Route;
 
@@ -158,7 +159,7 @@ Route::group(['middleware' => 'auth'], function () {
     });
 });
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('/home', [HomeController::class, 'index'])->name('home');
 
 Route::group(['prefix' => 'public', 'as' => 'public.'], function () {
 
@@ -169,5 +170,6 @@ Route::group(['prefix' => 'public', 'as' => 'public.'], function () {
     require __DIR__ . '/public/auth.php';
     require __DIR__ . '/public/lecturer.php';
     require __DIR__ . '/public/student.php';
+    require __DIR__ . '/public/internship.php';
     require __DIR__ . '/public/journal.php';
 });
