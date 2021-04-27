@@ -98,58 +98,59 @@
                 </table>
             </div>
         </div>
+
+        <!-- Modal -->
+        <div class="modal fade" id="uploadJournal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content">
+                    {{ Form::model($data, ['route' => ['public.internship.report_file', ['id' => $data->uuid]], 'method' => 'put', 'files' => true]) }}
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="staticBackdropLabel">Upload Jurnal</h5>
+                        <a href="#" class="close" data-dismiss="modal" data-bs-dismiss="modal" aria-label="close">&times;</a>
+                    </div>
+                    <div class="modal-body">
+                        <div class="col-12">
+                            <div class="form-group">
+                                <label for="file_jurnal_magang">File Upload Jurnal</label>
+                                {{ Form::file('file_jurnal_magang', ['class' => 'form-control-file']) }}
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        <button type="submit" class="btn btn-primary">Submit</button>
+                    </div>
+                    {{Form::close()}}
+                </div>
+            </div>
+        </div>
+
+        <!-- Modal -->
+        <div class="modal fade" id="uploadReport" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content">
+                    {{ Form::model($data, ['route' => ['public.internship.report_file', ['id' => $data->uuid]], 'method' => 'put', 'files' => true]) }}
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="staticBackdropLabel">Upload Laporan Magang <sup>*</sup></h5>
+                        <a href="#" class="close" data-dismiss="modal" data-bs-dismiss="modal" aria-label="close">&times;</a>
+                    </div>
+                    <div class="modal-body">
+                        <div class="col-12">
+                            <div class="form-group">
+                                <label for="file_laporan_magang">File Upload Jurnal (FINAL)</label>
+                                {{ Form::file('file_laporan_magang', ['class' => 'form-control-file']) }}
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        <button type="submit" class="btn btn-primary">Submit</button>
+                    </div>
+                    {{Form::close()}}
+                </div>
+            </div>
+        </div>
+
     @endif
-
-    <!-- Modal -->
-    <div class="modal fade" id="uploadJournal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered">
-            <div class="modal-content">
-                {{ Form::model($data, ['route' => ['public.internship.report_file', ['id' => $data->uuid]], 'method' => 'put', 'files' => true]) }}
-                <div class="modal-header">
-                    <h5 class="modal-title" id="staticBackdropLabel">Upload Jurnal</h5>
-                    <a href="#" class="close" data-dismiss="modal" data-bs-dismiss="modal" aria-label="close">&times;</a>
-                </div>
-                <div class="modal-body">
-                    <div class="col-12">
-                        <div class="form-group">
-                            <label for="file_jurnal_magang">File Upload Jurnal</label>
-                            {{ Form::file('file_jurnal_magang', ['class' => 'form-control-file']) }}
-                        </div>
-                    </div>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                    <button type="submit" class="btn btn-primary">Submit</button>
-                </div>
-                {{Form::close()}}
-            </div>
-        </div>
-    </div>
-
-    <!-- Modal -->
-    <div class="modal fade" id="uploadReport" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered">
-            <div class="modal-content">
-                {{ Form::model($data, ['route' => ['public.internship.report_file', ['id' => $data->uuid]], 'method' => 'put', 'files' => true]) }}
-                <div class="modal-header">
-                    <h5 class="modal-title" id="staticBackdropLabel">Upload Laporan Magang <sup>*</sup></h5>
-                    <a href="#" class="close" data-dismiss="modal" data-bs-dismiss="modal" aria-label="close">&times;</a>
-                </div>
-                <div class="modal-body">
-                    <div class="col-12">
-                        <div class="form-group">
-                            <label for="file_laporan_magang">File Upload Jurnal (FINAL)</label>
-                            {{ Form::file('file_laporan_magang', ['class' => 'form-control-file']) }}
-                        </div>
-                    </div>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                    <button type="submit" class="btn btn-primary">Submit</button>
-                </div>
-                {{Form::close()}}
-            </div>
-        </div>
-    </div>
 
 @endsection

@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use App\DataTables\StudentDataTable;
 use App\Models\Jurnal;
 use App\Models\Magang;
-use App\Models\Mahasiswa;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use DataTables;

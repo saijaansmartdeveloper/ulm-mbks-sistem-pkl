@@ -5,28 +5,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="56f6580f-bc2a-4056-98d9-44735ab73c9e" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/public/img/ULM-KampusMerdeka.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/views/public/jurnal/pdf/journal.blade.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/views/public/student/list.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/php.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/php.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/ulm-mbks-sistem-pkl.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/ulm-mbks-sistem-pkl.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/DataTables/StudentDataTable.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/DataTables/StudentDataTable.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/JournalController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/JournalController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Http/Controllers/LecturerController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/LecturerController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Models/Jurnal.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/Jurnal.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/composer.json" beforeDir="false" afterPath="$PROJECT_DIR$/composer.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/composer.lock" beforeDir="false" afterPath="$PROJECT_DIR$/composer.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/app.php" beforeDir="false" afterPath="$PROJECT_DIR$/config/app.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/layouts/components/admin/left-side-menu.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/layouts/components/admin/left-side-menu.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/layouts/components/menu/lecturer.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/layouts/components/menu/lecturer.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/public/jurnal/print.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/public/jurnal/print.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/public/jurnal/show.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/public/jurnal/show.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/public/lecturer/index.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/public/lecturer/index.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/public/lecturer/journal/form.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/public/lecturer/journal/form.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/public/lecturer/journal/show.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/public/lecturer/journal/show.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/routes/public/journal.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/public/journal.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/routes/public/lecturer.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/public/lecturer.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/public/student/index.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/public/student/index.blade.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
