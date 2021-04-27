@@ -35,17 +35,22 @@ class Jurnal extends Model
     function getStatusJurnalWithLabelAttribute()
     {
         switch ($this->status_jurnal) {
-            case 'submit' || 'resubmit' :
+            case 'resubmit':
+            case 'submit' :
                 return '<i class="text-success">' . $this->status_jurnal . '</i>';
+                break;
             case 'revision' :
-                return '<i class="text-warning">' . $this->status_jurnal . '</i>';
+                return '<i class="text-warning">' . $this->status_jurnal . '</i> <a href="' .route('public.journal.edit', ['uuid' => $this->uuid]). '" class="btn btn-outline-success btn-sm ml-4">Ubah</a>';
+                break;
             case 'rejected' :
-                return '<i class="text-danger">' . $this->status_jurnal . '</i>';
+                return '<i class="text-danger">' . $this->status_jurnal . '</i> <a href="' .route('public.journal.edit', ['uuid' => $this->uuid]). '" class="btn btn-outline-success btn-sm ml-4">Ubah</a>';
+                break;
             case 'accepted' :
                 return '<i class="text-primary">' . $this->status_jurnal . '</i>';
+                break;
             default :
                 return '<i class="text-secondary">undefinied</i>';
-
+                break;
         }
     }
 

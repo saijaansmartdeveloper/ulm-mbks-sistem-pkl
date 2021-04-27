@@ -5,13 +5,28 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="56f6580f-bc2a-4056-98d9-44735ab73c9e" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/public/img/ULM-KampusMerdeka.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/views/public/jurnal/pdf/journal.blade.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/views/public/student/list.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/php.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/php.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/ulm-mbks-sistem-pkl.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/ulm-mbks-sistem-pkl.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/DataTables/StudentDataTable.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/DataTables/StudentDataTable.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Http/Controllers/JournalController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/JournalController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/public/jurnal/form.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/public/jurnal/form.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/public/jurnal/index.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/public/jurnal/index.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/LecturerController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/LecturerController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Models/Jurnal.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/Jurnal.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/composer.json" beforeDir="false" afterPath="$PROJECT_DIR$/composer.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/composer.lock" beforeDir="false" afterPath="$PROJECT_DIR$/composer.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/config/app.php" beforeDir="false" afterPath="$PROJECT_DIR$/config/app.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/layouts/components/admin/left-side-menu.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/layouts/components/admin/left-side-menu.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/layouts/components/menu/lecturer.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/layouts/components/menu/lecturer.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/public/jurnal/print.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/public/jurnal/print.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/views/public/jurnal/show.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/public/jurnal/show.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/public/student/index.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/public/student/index.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/public/lecturer/index.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/public/lecturer/index.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/public/lecturer/journal/form.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/public/lecturer/journal/form.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/public/lecturer/journal/show.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/public/lecturer/journal/show.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/routes/public/journal.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/public/journal.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/routes/public/lecturer.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/public/lecturer.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -161,6 +176,11 @@
       <path value="$PROJECT_DIR$/vendor/ezyang/htmlpurifier" />
       <path value="$PROJECT_DIR$/vendor/phpoffice/phpspreadsheet" />
       <path value="$PROJECT_DIR$/vendor/league/fractal" />
+      <path value="$PROJECT_DIR$/vendor/dompdf/dompdf" />
+      <path value="$PROJECT_DIR$/vendor/sabberworm/php-css-parser" />
+      <path value="$PROJECT_DIR$/vendor/barryvdh/laravel-dompdf" />
+      <path value="$PROJECT_DIR$/vendor/phenx/php-font-lib" />
+      <path value="$PROJECT_DIR$/vendor/phenx/php-svg-lib" />
     </include_path>
   </component>
   <component name="ProjectId" id="1rJ462YhGDoGJyiRWHKRuZ451y1" />
@@ -172,12 +192,13 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/public/vendor/evo-calender" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/public/img" />
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="vue.rearranger.settings.migration" value="true" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\Luthfy Eka Permana\PhpstormProjects\ulm-mbks-sistem-pkl\public\img" />
       <recent name="C:\Users\Luthfy Eka Permana\PhpstormProjects\ulm-mbks-sistem-pkl\public\vendor\evo-calender" />
     </key>
     <key name="MoveFile.RECENT_KEYS">

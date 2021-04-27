@@ -17,9 +17,10 @@ class StudentDataTable extends DataTable
             ->addColumn('action', 'studentdatatable.action');
     }
 
-    public function query(Mahasiswa $model)
+    public function query()
     {
-        return $model->all();
+        $users = Mahasiswa::select();
+        return $this->applyScopes($users);
     }
 
     public function html()
@@ -47,8 +48,7 @@ class StudentDataTable extends DataTable
                   ->printable(false)
                   ->width(60)
                   ->addClass('text-center'),
-            Column::make('id'),
-            Column::make('add your columns'),
+            Column::make('uuid'),
             Column::make('created_at'),
             Column::make('updated_at'),
         ];
