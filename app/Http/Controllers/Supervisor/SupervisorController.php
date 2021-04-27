@@ -51,7 +51,7 @@ class SupervisorController extends Controller
             'title' => 'Tambah Data Supervisor',
             'data'  => null,
         ];
-        return view('supervisor.create', $data);
+        return view('supervisor.form', $data);
     }
 
     /**
@@ -105,7 +105,7 @@ class SupervisorController extends Controller
             'title' => 'Ubah Data Supervisor',
             'data'  => User::where('uuid', $id)->first(),
         ];
-        return view('supervisor.edit', $data);
+        return view('supervisor.form', $data);
     }
 
     /**
