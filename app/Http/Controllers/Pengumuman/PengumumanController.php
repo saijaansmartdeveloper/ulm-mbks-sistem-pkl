@@ -17,8 +17,8 @@ class PengumumanController extends Controller
         return Datatables::of($data)
             ->addIndexColumn()
             ->addColumn('action', function ($data) {
-                $action = '<a href="/pengumuman/' . $data->id . '/edit" class="btn btn-sm btn-primary" >Ubah</a>';
-                $action .= \Form::open(['url' => '/pengumuman/' . $data->id, 'method' => 'delete', 'style' => 'float:right']);
+                $action = '<a href='. route('pengumuman.edit', ['id' => $data->id]).' class="btn btn-sm btn-primary" >Ubah</a>';
+                $action .= \Form::open(['url' => route('pengumuman.destroy', ['id' => $data->id]), 'method' => 'delete', 'style' => 'float:right']);
                 $action .= "<button type='submit' class = 'btn btn-danger btn-sm' >Hapus</button>";
                 $action .= \Form::close();
                 return $action;

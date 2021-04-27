@@ -18,8 +18,8 @@ class SupervisorController extends Controller
         return Datatables::of($data)
             ->addIndexColumn()
             ->addColumn('action', function ($data) {
-                $action = '<a href="/supervisor/' . $data->uuid . '/edit" class="btn btn-sm btn-primary" >Ubah</a>';
-                $action .= \Form::open(['url' => '/supervisor/' . $data->uuid, 'method' => 'delete', 'style' => 'float:right']);
+                $action = '<a href=' . route('supervisor.edit', ['id' => $data->uuid]) . ' class="btn btn-sm btn-primary" >Ubah</a>';
+                $action .= \Form::open(['url' => route('supervisor.destroy', ['id' => $data->uuid]), 'method' => 'delete', 'style' => 'float:right']);
                 $action .= "<button type='submit' class = 'btn btn-danger btn-sm' >Hapus</button>";
                 $action .= \Form::close();
                 return $action;
@@ -62,17 +62,20 @@ class SupervisorController extends Controller
      */
     public function store(Request $request)
     {
-        $request->validate([
-            'nama_pengguna' => 'required',
-            'email'         => 'required|email',
-            'password'      => 'required'
-        ], [
-            'nama_pengguna.required'    => 'Nama Pengguna Tidak Boleh Kosong',
-            'email.required'            => 'Email Tidak Boleh Kosong',
-            'email.email'               => 'Masukkan Email Dengan Benar',
-            'password.required'         => 'Password Tidak Boleh Kosong',
-            'password.min'              => 'Password Minimal 5 Karakter'
-        ]);
+        $request->validate(
+            [
+                'nama_pengguna' => 'required',
+                'email'         => 'required|email',
+                'password'      => 'required'
+            ],
+            [
+                'nama_pengguna.required'    => 'Nama Pengguna Tidak Boleh Kosong',
+                'email.required'            => 'Email Tidak Boleh Kosong',
+                'email.email'               => 'Masukkan Email Dengan Benar',
+                'password.required'         => 'Password Tidak Boleh Kosong',
+                'password.min'              => 'Password Minimal 5 Karakter'
+            ]
+        );
 
         $uuid = Uuid::uuid4()->getHex();
 
@@ -123,16 +126,19 @@ class SupervisorController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $request->validate([
-            'nama_pengguna' => 'required',
-            'email'         => 'required|email',
-        ], [
-            'nama_pengguna.required'    => 'Nama Pengguna Tidak Boleh Kosong',
-            'email.required'            => 'Email Tidak Boleh Kosong',
-            'email.email'               => 'Masukkan Email Dengan Benar',
-            'password.required'         => 'Password Tidak Boleh Kosong',
-            'password.min'              => 'Password Minimal 5 Karakter'
-        ]);
+        $request->validate(
+            [
+                'nama_pengguna' => 'required',
+                'email'         => 'required|email',
+            ],
+            [
+                'nama_pengguna.required'    => 'Nama Pengguna Tidak Boleh Kosong',
+                'email.required'            => 'Email Tidak Boleh Kosong',
+                'email.email'               => 'Masukkan Email Dengan Benar',
+                'password.required'         => 'Password Tidak Boleh Kosong',
+                'password.min'              => 'Password Minimal 5 Karakter'
+            ]
+        );
 
 
         $supervisor = User::where('uuid', $id)->first();

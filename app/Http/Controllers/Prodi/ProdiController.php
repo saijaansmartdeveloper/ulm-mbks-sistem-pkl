@@ -19,8 +19,8 @@ class ProdiController extends Controller
         return Datatables::of($data)
             ->addIndexColumn()
             ->addColumn('action', function ($data) {
-                $action = '<a href="/prodi/' . $data->uuid . '/edit" class="btn btn-sm btn-primary" >Ubah</a>';
-                $action .= \Form::open(['url' => '/prodi/' . $data->uuid, 'method' => 'delete', 'style' => 'float:right']);
+                $action = '<a href=' . route('jurusan.edit', ['id' => $data->uuid]) . ' class="btn btn-sm btn-primary" >Ubah</a>';
+                $action .= \Form::open(['url' => route('jurusan.destroy', ['id' => $data->uuid]), 'method' => 'delete', 'style' => 'float:right']);
                 $action .= "<button type='submit' class = 'btn btn-danger btn-sm' >Hapus</button>";
                 $action .= \Form::close();
                 return $action;

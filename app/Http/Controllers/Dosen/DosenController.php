@@ -18,8 +18,8 @@ class DosenController extends Controller
         return Datatables::of($data)
             ->addIndexColumn()
             ->addColumn('action', function ($data) {
-                $action   = '<a href="/dosen/' . $data->uuid . '/edit" class="btn btn-sm btn-primary" >Ubah</a>';
-                $action  .= \Form::open(['url' => '/dosen/' . $data->uuid, 'method' => 'delete', 'style' => 'float:right']);
+                $action   = '<a href=' . route('dosen.edit', ['id' => $data->uuid]) . ' class="btn btn-sm btn-primary" >Ubah</a>';
+                $action  .= \Form::open(['url' => route('dosen.destroy', ['id' => $data->uuid]), 'method' => 'delete', 'style' => 'float:right']);
                 $action  .= "<button type='submit' class = 'btn btn-danger btn-sm' >Hapus</button>";
                 $action  .= \Form::close();
 
@@ -147,7 +147,7 @@ class DosenController extends Controller
         );
 
         $dosen = Dosen::findOrFail($id);
-        
+
         if ($request->password == null) {
             $password = $dosen->password;
         } else {
