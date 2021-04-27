@@ -17,8 +17,8 @@ class JenisKegiatanController extends Controller
         return Datatables::of($data)
             ->addIndexColumn()
             ->addColumn('action', function ($data) {
-                $action   = '<a href="/jenis_kegiatan/' . $data->uuid . '/edit" class="btn btn-sm btn-primary" >Ubah</a>';
-                $action  .= \Form::open(['url' => '/jenis_kegiatan/' . $data->uuid, 'method' => 'delete', 'style' => 'float:right']);
+                $action   = '<a href=' . route('jenis_kegiatan.edit', ['id' => $data->uuid]) . ' class="btn btn-sm btn-primary" >Ubah</a>';
+                $action  .= \Form::open(['url' => route('jenis_kegiatan.destroy', ['id' => $data->uuid]), 'method' => 'delete', 'style' => 'float:right']);
                 $action  .= "<button type='submit' class = 'btn btn-danger btn-sm' >Hapus</button>";
                 $action  .= \Form::close();
 
@@ -34,7 +34,9 @@ class JenisKegiatanController extends Controller
      */
     public function index()
     {
-        $data['title']  = 'Master Data Jenis Kegiatan';
+        $data = [
+            'title' => 'Master Data Jenis Kegiatan',
+        ];
         return view('jenis_kegiatan.index', $data);
     }
 
@@ -45,8 +47,12 @@ class JenisKegiatanController extends Controller
      */
     public function create()
     {
-        $data['title']  = 'Tambah Data Jenis Kegiatan';
-        return view('jenis_kegiatan.create', $data);
+        $data = [
+            'title' => 'Tambah Data Jenis Kegiatan',
+            'data'  => null,
+        ];
+
+        return view('jenis_kegiatan.form', $data);
     }
 
     /**
@@ -57,10 +63,16 @@ class JenisKegiatanController extends Controller
      */
     public function store(Request $request)
     {
-        $request->validate([
-            'kode_jenis_kegiatan' => 'required',
-            'nama_jenis_kegiatan' => 'required',
-        ]);
+        $request->validate(
+            [
+                'kode_jenis_kegiatan' => 'required',
+                'nama_jenis_kegiatan' => 'required',
+            ],
+            [
+                'kode_jenis_kegiatan.required' => 'Kode Jenis Kegiatan Tidak Boleh Kosong',
+                'nama_jenis_kegiatan.required' => 'Nama Jenis Kegiatan Tidak Boleh Kosong',
+            ]
+        );
 
         $uuid = Uuid::uuid4()->getHex();
 
@@ -70,7 +82,7 @@ class JenisKegiatanController extends Controller
         $jenis_kegiatan->nama_jenis_kegiatan    = $request->nama_jenis_kegiatan;
         $jenis_kegiatan->save();
 
-        return redirect(route('jenis_kegiatan.index'))->with('success', 'Data Berhasil Ditambah');
+        return redirect()->route('jenis_kegiatan.index')->with('success', 'Data Berhasil Ditambah');
     }
 
     /**
@@ -92,9 +104,12 @@ class JenisKegiatanController extends Controller
      */
     public function edit($id)
     {
-        $data['title']          = 'Ubah Data Jenis Kegiatan';
-        $data['jenis_kegiatan'] = JenisKegiatan::findOrFail($id);
-        return view('jenis_kegiatan.edit', $data);
+        $data = [
+            'title' => 'Ubah Data Jenis Kegiatan',
+            'data'  => JenisKegiatan::findOrFail($id),
+        ];
+
+        return view('jenis_kegiatan.form', $data);
     }
 
     /**
@@ -106,17 +121,23 @@ class JenisKegiatanController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $request->validate([
-            'kode_jenis_kegiatan' => 'required',
-            'nama_jenis_kegiatan' => 'required',
-        ]);
+        $request->validate(
+            [
+                'kode_jenis_kegiatan' => 'required',
+                'nama_jenis_kegiatan' => 'required',
+            ],
+            [
+                'kode_jenis_kegiatan.required' => 'Kode Jenis Kegiatan Tidak Boleh Kosong',
+                'nama_jenis_kegiatan.required' => 'Nama Jenis Kegiatan Tidak Boleh Kosong',
+            ]
+        );
 
         $jenis_kegiatan = JenisKegiatan::findOrFail($id);
         $jenis_kegiatan->kode_jenis_kegiatan    = $request->kode_jenis_kegiatan;
         $jenis_kegiatan->nama_jenis_kegiatan    = $request->nama_jenis_kegiatan;
         $jenis_kegiatan->save();
 
-        return redirect(route('jenis_kegiatan.index'))->with('update', 'Data Berhasil Diubah');
+        return redirect()->route('jenis_kegiatan.index')->with('update', 'Data Berhasil Diubah');
     }
 
     /**
@@ -130,6 +151,6 @@ class JenisKegiatanController extends Controller
         $jenis_kegiatan = JenisKegiatan::findOrFail($id);
         $jenis_kegiatan->delete();
 
-        return redirect(route('jenis_kegiatan.index'))->with('delete', 'Data Berhasil Dihapus');
+        return redirect()->back()->with('delete', 'Data Berhasil Dihapus');
     }
 }

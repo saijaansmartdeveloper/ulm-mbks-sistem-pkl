@@ -17,8 +17,8 @@ class JurusanController extends Controller
         return Datatables::of($data)
             ->addIndexColumn()
             ->addColumn('action', function ($data) {
-                $action   = '<a href="/jurusan/' . $data->uuid . '/edit" class="btn btn-sm btn-primary" >Ubah</a>';
-                $action  .= \Form::open(['url' => '/jurusan/' . $data->uuid, 'method' => 'delete', 'style' => 'float:right']);
+                $action   = '<a href=' . route('jurusan.edit', ['id' => $data->uuid]) . ' class="btn btn-sm btn-primary" >Ubah</a>';
+                $action  .= \Form::open(['url' => route('jurusan.destroy', ['id' => $data->uuid]), 'method' => 'delete', 'style' => 'float:right']);
                 $action  .= "<button type='submit' class = 'btn btn-danger btn-sm' >Hapus</button>";
                 $action  .= \Form::close();
 
@@ -34,7 +34,10 @@ class JurusanController extends Controller
      */
     public function index()
     {
-        $data['title'] = 'Maste Data Jurusan';
+        $data = [
+            'title' => 'Master Data Jurusan',
+
+        ];
         return view('jurusan.index', $data);
     }
 
@@ -45,8 +48,11 @@ class JurusanController extends Controller
      */
     public function create()
     {
-        $data['title'] = 'Tambah Data Jurusan';
-        return view('jurusan.create', $data);
+        $data = [
+            'title' => 'Tambah Data Jurusan',
+            'data'  => null,
+        ];
+        return view('jurusan.form', $data);
     }
 
     /**
@@ -61,6 +67,10 @@ class JurusanController extends Controller
             [
                 'kode_jurusan'  => 'required',
                 'nama_jurusan'  => 'required',
+            ],
+            [
+                'kode_jurusan.required'  => 'Kode Jurusan Tidak Boleh Kosong',
+                'nama_jurusan.required'  => 'Nama Jurusan Tidak Boleh Kosong',
             ]
         );
 
@@ -72,7 +82,7 @@ class JurusanController extends Controller
         $jurusan->nama_jurusan  = $request->nama_jurusan;
         $jurusan->save();
 
-        return redirect('/jurusan')->with('success', 'Data Berhasil Dibuat');
+        return redirect()->route('jurusan.index')->with('success', 'Data Berhasil Dibuat');
     }
 
     /**
@@ -94,9 +104,11 @@ class JurusanController extends Controller
      */
     public function edit($id)
     {
-        $data['title'] = 'Ubah Data Jurusan';
-        $data['jurusan'] = Jurusan::findOrFail($id);
-        return view('jurusan.edit', $data);
+        $data = [
+            'title' => 'Ubah Data Jurusan',
+            'data'  =>  Jurusan::findOrFail($id),
+        ];
+        return view('jurusan.form', $data);
     }
 
     /**
@@ -112,6 +124,10 @@ class JurusanController extends Controller
             [
                 'kode_jurusan'  => 'required',
                 'nama_jurusan'  => 'required',
+            ],
+            [
+                'kode_jurusan.required'  => 'Kode Jurusan Tidak Boleh Kosong',
+                'nama_jurusan.required'  => 'Nama Jurusan Tidak Boleh Kosong',
             ]
         );
 
@@ -120,7 +136,7 @@ class JurusanController extends Controller
         $jurusan->nama_jurusan  = $request->nama_jurusan;
         $jurusan->save();
 
-        return redirect('/jurusan')->with('update', 'Data Berhasil Diubah');
+        return redirect()->route('jurusan.index')->with('update', 'Data Berhasil Diubah');
     }
 
     /**
@@ -134,6 +150,6 @@ class JurusanController extends Controller
         $jurusan = Jurusan::findOrFail($id);
         $jurusan->delete();
 
-        return redirect('/jurusan')->with('delete', 'Data Berhasil Dihapus');
+        return redirect()->back()->with('delete', 'Data Berhasil Dihapus');
     }
 }

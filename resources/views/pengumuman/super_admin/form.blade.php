@@ -8,7 +8,7 @@
             @if ($data == null)
                 {{ Form::open(['url' => route('pengumuman.store')]) }}
             @else
-                {{ Form::model($data, ['url' => 'pengumuman/' . $data->id, 'method' => 'put']) }}
+                {{ Form::model($data, ['url' => route('pengumuman.update', ['id' => $data->id]), 'method' => 'put']) }}
             @endif
             <div class="form-group row">
                 <label class="col-md-2 col-form-label text-md-right">Judul Pengumuman</label>
@@ -33,7 +33,7 @@
                 <div class="col-md-6 offset-md-2">
                     {{ Form::submit('Simpan', ['class' => 'btn btn-primary']) }}
                     </form>
-                    <a href="{{ route('prodi.index') }}" class="btn btn-danger">Kembali</a>
+                    <a href="{{ route('pengumuman.index') }}" class="btn btn-danger">Kembali</a>
                 </div>
             </div>
         </div>

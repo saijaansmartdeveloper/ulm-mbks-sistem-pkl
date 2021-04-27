@@ -18,8 +18,8 @@ class SupervisorController extends Controller
         return Datatables::of($data)
             ->addIndexColumn()
             ->addColumn('action', function ($data) {
-                $action = '<a href="/supervisor/' . $data->uuid . '/edit" class="btn btn-sm btn-primary" >Ubah</a>';
-                $action .= \Form::open(['url' => '/supervisor/' . $data->uuid, 'method' => 'delete', 'style' => 'float:right']);
+                $action = '<a href=' . route('supervisor.edit', ['id' => $data->uuid]) . ' class="btn btn-sm btn-primary" >Ubah</a>';
+                $action .= \Form::open(['url' => route('supervisor.destroy', ['id' => $data->uuid]), 'method' => 'delete', 'style' => 'float:right']);
                 $action .= "<button type='submit' class = 'btn btn-danger btn-sm' >Hapus</button>";
                 $action .= \Form::close();
                 return $action;
@@ -62,11 +62,20 @@ class SupervisorController extends Controller
      */
     public function store(Request $request)
     {
-        $request->validate([
-            'nama_pengguna' => 'required',
-            'email'         => 'required|email',
-            'password'      => 'required'
-        ]);
+        $request->validate(
+            [
+                'nama_pengguna' => 'required',
+                'email'         => 'required|email',
+                'password'      => 'required'
+            ],
+            [
+                'nama_pengguna.required'    => 'Nama Pengguna Tidak Boleh Kosong',
+                'email.required'            => 'Email Tidak Boleh Kosong',
+                'email.email'               => 'Masukkan Email Dengan Benar',
+                'password.required'         => 'Password Tidak Boleh Kosong',
+                'password.min'              => 'Password Minimal 5 Karakter'
+            ]
+        );
 
         $uuid = Uuid::uuid4()->getHex();
 
@@ -79,7 +88,7 @@ class SupervisorController extends Controller
         $supervisor->save();
         $supervisor->assignRole('supervisor');
 
-        return redirect(route('supervisor.index'))->with('success', 'Data Berhasil Ditambah');
+        return redirect()->route('supervisor.index')->with('success', 'Data Berhasil Ditambah');
     }
 
     /**
@@ -117,20 +126,36 @@ class SupervisorController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $request->validate([
-            'nama_pengguna' => 'required',
-            'email'         => 'required|email',
-            'password'      => 'required'
-        ]);
+        $request->validate(
+            [
+                'nama_pengguna' => 'required',
+                'email'         => 'required|email',
+            ],
+            [
+                'nama_pengguna.required'    => 'Nama Pengguna Tidak Boleh Kosong',
+                'email.required'            => 'Email Tidak Boleh Kosong',
+                'email.email'               => 'Masukkan Email Dengan Benar',
+                'password.required'         => 'Password Tidak Boleh Kosong',
+                'password.min'              => 'Password Minimal 5 Karakter'
+            ]
+        );
+
 
         $supervisor = User::where('uuid', $id)->first();
+
+        if ($request->password == null) {
+            $password = $supervisor->password;
+        } else {
+            $password = $request->password;
+        }
+
         $supervisor->nama_pengguna  = $request->nama_pengguna;
         $supervisor->email          = $request->email;
-        $supervisor->password       = bcrypt($request->password);
+        $supervisor->password       = bcrypt($password);
         $supervisor->role_pengguna  = 'supervisor';
         $supervisor->save();
 
-        return redirect(route('supervisor.index'))->with('update', 'Data Berhasil Diubah');
+        return redirect()->route('supervisor.index')->with('update', 'Data Berhasil Diubah');
     }
 
     /**
@@ -144,7 +169,7 @@ class SupervisorController extends Controller
         $supervisor = User::where('uuid', $id)->first();
         $supervisor->delete();
 
-        return redirect(route('supervisor.index'))->with('delete', 'Data Berhasil Dihapus');
+        return redirect()->route('supervisor.index')->with('delete', 'Data Berhasil Dihapus');
 
         //
     }

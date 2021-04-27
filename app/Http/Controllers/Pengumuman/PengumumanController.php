@@ -17,8 +17,8 @@ class PengumumanController extends Controller
         return Datatables::of($data)
             ->addIndexColumn()
             ->addColumn('action', function ($data) {
-                $action = '<a href="/pengumuman/' . $data->id . '/edit" class="btn btn-sm btn-primary" >Ubah</a>';
-                $action .= \Form::open(['url' => '/pengumuman/' . $data->id, 'method' => 'delete', 'style' => 'float:right']);
+                $action = '<a href='. route('pengumuman.edit', ['id' => $data->id]).' class="btn btn-sm btn-primary" >Ubah</a>';
+                $action .= \Form::open(['url' => route('pengumuman.destroy', ['id' => $data->id]), 'method' => 'delete', 'style' => 'float:right']);
                 $action .= "<button type='submit' class = 'btn btn-danger btn-sm' >Hapus</button>";
                 $action .= \Form::close();
                 return $action;
@@ -61,11 +61,18 @@ class PengumumanController extends Controller
      */
     public function store(Request $request)
     {
-        $request->validate([
-            'judul_pengumuman'      => 'required',
-            'content_pengumuman'    => 'required',
-            'tanggal_pengumuman'    => 'required',
-        ]);
+        $request->validate(
+            [
+                'judul_pengumuman'      => 'required',
+                'content_pengumuman'    => 'required',
+                'tanggal_pengumuman'    => 'required',
+            ],
+            [
+                'judul_pengumuman.required'      => 'Judul Pengumuman Tidak Boleh Kosong',
+                'content_pengumuman.required'    => 'Isi Pengumuman Tidak Boleh Kosong',
+                'tanggal_pengumuman.required'    => 'Tanggal Pengumuman Tidak Boleh Kosong',
+            ]
+        );
 
         $pengumuman = new Pengumuman;
         $pengumuman->judul_pengumuman   = $request->judul_pengumuman;
@@ -114,11 +121,18 @@ class PengumumanController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $request->validate([
-            'judul_pengumuman'      => 'required',
-            'content_pengumuman'    => 'required',
-            'tanggal_pengumuman'    => 'required',
-        ]);
+        $request->validate(
+            [
+                'judul_pengumuman'      => 'required',
+                'content_pengumuman'    => 'required',
+                'tanggal_pengumuman'    => 'required',
+            ],
+            [
+                'judul_pengumuman.required'      => 'Judul Pengumuman Tidak Boleh Kosong',
+                'content_pengumuman.required'    => 'Isi Pengumuman Tidak Boleh Kosong',
+                'tanggal_pengumuman.required'    => 'Tanggal Pengumuman Tidak Boleh Kosong',
+            ]
+        );
 
         $pengumuman = Pengumuman::findOrFail($id);
         $pengumuman->judul_pengumuman   = $request->judul_pengumuman;
@@ -130,7 +144,6 @@ class PengumumanController extends Controller
         $pengumuman->save();
 
         return redirect(route('pengumuman.index'))->with('update', 'Data Berhasil Diubah');
-
     }
 
     /**
