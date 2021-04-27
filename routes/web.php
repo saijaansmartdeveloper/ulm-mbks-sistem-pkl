@@ -5,6 +5,7 @@ use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Dosen\DosenController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\Jurusan\JurusanController;
+use App\Http\Controllers\Kegiatan\JenisKegiatanController;
 use App\Http\Controllers\Kegiatan\MagangController;
 use App\Http\Controllers\Mahasiswa\MahasiswaController;
 use App\Http\Controllers\Mitra\MitraController;
@@ -154,7 +155,7 @@ Route::group(['middleware' => 'auth'], function () {
             Route::get('/jenis_kegiatan/create', [JenisKegiatanController::class, 'create'])->name('jenis_kegiatan.create');
             Route::post('/jenis_kegiatan', [JenisKegiatanController::class, 'store'])->name('jenis_kegiatan.store');
             Route::get('/jenis_kegiatan/{id}/edit', [JenisKegiatanController::class, 'edit'])->name('jenis_kegiatan.edit');
-            Route::put('/jenis_kegiatan/{id}', [JenisKegiatanController::class, 'update'])->name('jenis_kegiatan.update');
+            Route::put('/jenis_kegiatan/{id}', [JenisKegiatanControllerontroller::class, 'update'])->name('jenis_kegiatan.update');
             Route::delete('/jenis_kegiatan/{id}', [JenisKegiatanController::class, 'destroy'])->name('jenis_kegiatan.destroy');
 
 
