@@ -19,8 +19,7 @@ class MonevController extends Controller
     public function getMonev()
     {
 
-        $data = Monev::all();
-
+        $data = Magang::all();
         return Datatables::of($data)
             ->addIndexColumn()
             ->addColumn('action', function ($data) {
