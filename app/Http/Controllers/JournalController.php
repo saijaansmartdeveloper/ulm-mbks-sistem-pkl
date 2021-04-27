@@ -4,8 +4,10 @@ namespace App\Http\Controllers;
 
 use App\Models\Jurnal;
 use App\Models\Magang;
+use Barryvdh\DomPDF\PDF;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Auth;
 use Ramsey\Uuid\Uuid;
 
@@ -79,7 +81,7 @@ class JournalController extends Controller
         $user   = Auth::guard('student')->user();
 
         $data = [
-            'title'     => $user->nama_mahasiswa,
+            'title'     => $user->nama_mahasiswa . ' - Detail Jurnal',
             'guard'     => 'student',
             'data'      => Jurnal::findOrFail($id)
         ];
@@ -144,12 +146,33 @@ class JournalController extends Controller
 
     public function print()
     {
+
         $user   = Auth::guard('student')->user();
         $data = [
             'title'     => $user->nama_mahasiswa,
             'guard'     => 'student',
             'data'      => null
         ];
+
+        return view('public.jurnal.print', $data);
+    }
+
+    public function print_proc(Request $request)
+    {
+        $from   = Carbon::parse($request->date_from)->toDateString();
+        $to     = Carbon::parse($request->date_to)->toDateString();
+
+        $user   = Auth::guard('student')->user();
+        $data = [
+            'title'     => $user->nama_mahasiswa,
+            'guard'     => 'student',
+            'data'      => [
+                'from'      => $from,
+                'to'        => $to,
+                'journals'  => Jurnal::whereBetween('tanggal_jurnal', [$from, $to])->orderBy('tanggal_jurnal', 'asc')->get() ?? null
+            ]
+        ];
+
 
         return view('public.jurnal.print', $data);
     }

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\DataTables\StudentDataTable;
 use App\Models\Jurnal;
 use App\Models\Magang;
 use App\Models\Mahasiswa;
@@ -18,13 +19,36 @@ class LecturerController extends Controller
 
     public function index()
     {
+        $user   = Auth::guard('lecturer')->user();
+
         $data = [
-            'title' => 'Dosen',
+            'title' => 'Welcome, ' . $user->nama_dosen,
             'guard' => 'lecturer',
-            'data'  => null
+            'data'  => [
+                'magang' => Magang::where('dosen_uuid', $user->uuid)->get()
+            ]
         ];
 
         return view("public.lecturer.index", $data);
+    }
+
+    public function guidance(StudentDataTable $dataTable)
+    {
+//        $user   = Auth::guard('lecturer')->user();
+//
+//        $data = [
+//            'title' => 'Welcome, ' . $user->nama_dosen,
+//            'guard' => 'lecturer',
+//            'data'  => null
+//        ];
+//
+//        return $dataTable->render('public.student.list', $data);
+
+        $data = [
+            'title' => 'Daftar Mahasiswa',
+        ];
+
+        return view('public.lecturer.journal.index', $data);
     }
 
     public function getListMahasiswaBimbingan()
@@ -73,11 +97,23 @@ class LecturerController extends Controller
 
     public function update_journal(Request $request, $id)
     {
-        $jurnal = Jurnal::where('uuid', $id)->first();
-        $jurnal->komentar_jurnal = $request->komentar_jurnal;
+        $jurnal = Jurnal::find($id);
+
+        if ($request->komentar_jurnal != null) {
+            $jurnal->komentar_jurnal    = $request->komentar_jurnal;
+        }
+        $jurnal->status_jurnal      = $request->status_jurnal;
         $jurnal->save();
 
-        
-        return redirect()->route('public.lecturer.student_guidance.show', ['id' => $jurnal->magang()->first()->mahasiswa_uuid])->with('update', 'Komentar Berhasil Ditambahkan');
+        return redirect()->back()->with('info', 'Jurnal Berhasil Diterima');
+
+//        return redirect()->route('public.lecturer.student_guidance.show', ['id' => $jurnal->magang()->first()->mahasiswa_uuid])->with('update', 'Komentar Berhasil Ditambahkan');
     }
+
+    public function update_status_all(Request $request)
+    {
+        $jurnal = Jurnal::whereIn('uuid', $request->ids)->update(['status_jurnal' => 'accepted']);
+        return redirect()->back()->with('info', 'Jurnal Berhasil Diterima');
+    }
+
 }

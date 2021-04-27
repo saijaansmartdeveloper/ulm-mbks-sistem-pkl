@@ -38,20 +38,25 @@
             </div>
             <hr>
             <div class="col-12">
+                {{ Form::open(['url' => route('public.journal.update_status_all'), 'method' => 'PUT']) }}
                 <table class="table table-striped">
                     <tr>
-                        <th width='100px'>No</th>
-                        <th width='200px'>Tanggal</th>
+                        <th width='10%' class="text-center">No</th>
+                        <th width='20%' class="text-center">Tanggal</th>
                         <th>Catatan</th>
-                        <th width='100px'>Komentar</th>
+                        <th>Komentar</th>
+                        <th>Status Jurnal</th>
+                        <th>Tanggal Verifikasi</th>
                         <th class="text-center" width='80px'>Action</th>
                     </tr>
                     @forelse($data->journals as $key => $item)
                         <tr>
-                            <td class="text-center">{{ ++$key }}</td>
+                            <td class="text-center"><input type="checkbox" name="ids[]" value="{{ $item->uuid }}" class="mr-2">{{ ++$key }}</td>
                             <td>{{ \Carbon\Carbon::parse($item->tanggal_jurnal)->format('d M Y') }}</td>
                             <td>{!! $item->catatan_jurnal !!}</td>
-                            <td>{{ $item->komentar_jurnal ?? 'Kosong' }}</td>
+                            <td>{{ $item->komentar_jurnal ?? '' }}</td>
+                            <td>{!! $item->status_jurnal_with_label !!}</td>
+                            <td>{!! $item->tanggal_verifikasi_jurnal !!}</td>
                             <td class="text-center">
                                 <a href='jurnal/{{ $item->uuid }}' class="btn btn-warning">Show</a>
                             </td>
@@ -66,6 +71,8 @@
                         </tr>
                     @endforelse
                 </table>
+                <input type="submit" value="Update Status Accepted" class="btn btn-success">
+                {{ Form::close() }}
             </div>
         </div>
     </div>

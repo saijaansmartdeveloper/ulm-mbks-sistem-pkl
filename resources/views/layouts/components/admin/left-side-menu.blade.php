@@ -2,7 +2,7 @@
     <div class="sb-sidenav-menu">
         <div class="nav">
             <div class="d-flex justify-content-center">
-                <img src="{{ asset('logoulm.png') }}" alt="" srcset="" style="width: 120px">
+                <img src="{{ asset('img/ULM-KampusMerdeka.png') }}" alt="" srcset="" style="width: 90%; margin-top: 2rem">
             </div>
 
             @auth('web')
