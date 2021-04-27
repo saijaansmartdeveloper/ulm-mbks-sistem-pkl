@@ -48,7 +48,7 @@
 
         </div>
     </div>
-    <div class="card py-4">
+    <div class="card py-4 my-4">
         <div class="card-body">
             <h4>{{ $data->jenis_kegiatan()->first()->nama_jenis_kegiatan }}
                 ({{ $data->jenis_kegiatan()->first()->kode_jenis_kegiatan }})</h4>
