@@ -35,7 +35,9 @@ class DosenController extends Controller
      */
     public function index()
     {
-        $data['title'] = 'Master Data Dosen';
+        $data = [
+            'title' => 'Master Data Dosen',
+        ];
         return view('dosen.index', $data);
     }
 
@@ -46,8 +48,12 @@ class DosenController extends Controller
      */
     public function create()
     {
-        $data['title'] = 'Tambah Data Dosen';
-        return view('dosen.create', $data);
+        $data = [
+            'title' => 'Tambah Data Dosen',
+            'data'  => null,
+        ];
+
+        return view('dosen.form', $data);
     }
 
     /**
@@ -65,6 +71,12 @@ class DosenController extends Controller
                 'email'         => 'required',
                 'password'      => 'required',
 
+            ],
+            [
+                'nip_dosen.required'     => 'NIP Dosen Tidak Boleh Kosong',
+                'nama_dosen.required'    => 'Nama Dosen Tidak Boleh Kosong',
+                'email.required'         => 'Email Tidak Boleh Kosong',
+                'password.required'      => 'Password Tidak Boleh Kosong',
             ]
         );
 
@@ -81,7 +93,7 @@ class DosenController extends Controller
         $dosen->save();
         $dosen->assignRole('lecturer');
 
-        return redirect('/dosen')->with('success', 'Data Berhasil Dibuat');
+        return redirect()->route('dosen.index')->with('success', 'Data Berhasil Dibuat');
     }
 
     /**
@@ -103,10 +115,12 @@ class DosenController extends Controller
      */
     public function edit($id)
     {
-        $data['title'] = 'Ubah Data Dosen';
-        $data['dosen'] = Dosen::findOrFail($id);
+        $data = [
+            'title' => 'Tambah Data Dosen',
+            'data'  => Dosen::findOrFail($id),
+        ];
 
-        return view('dosen.edit', $data);
+        return view('dosen.form', $data);
     }
 
     /**
@@ -123,21 +137,32 @@ class DosenController extends Controller
                 'nip_dosen'     => 'required',
                 'nama_dosen'    => 'required',
                 'email'         => 'required',
-                'password'      => 'required',
 
+            ],
+            [
+                'nip_dosen.required'     => 'NIP Dosen Tidak Boleh Kosong',
+                'nama_dosen.required'    => 'Nama Dosen Tidak Boleh Kosong',
+                'email.required'         => 'Email Tidak Boleh Kosong',
             ]
         );
 
         $dosen = Dosen::findOrFail($id);
+        
+        if ($request->password == null) {
+            $password = $dosen->password;
+        } else {
+            $password = bcrypt($request->password);
+        }
+
         $dosen->nip_dosen       = $request->nip_dosen;
         $dosen->nama_dosen      = $request->nama_dosen;
         $dosen->email           = $request->email;
-        $dosen->password        = bcrypt($request->password);
+        $dosen->password        = $password;
         $dosen->jurusan_uuid    = Auth::User()->jurusan_uuid;
         $dosen->prodi_uuid      = Auth::User()->prodi_uuid;
         $dosen->save();
 
-        return redirect('/dosen')->with('update', 'Data Berhasil Diubah');
+        return redirect()->route('dosen.index')->with('update', 'Data Berhasil Diubah');
     }
 
     /**
@@ -151,6 +176,6 @@ class DosenController extends Controller
         $dosen = Dosen::findOrFail($id);
         $dosen->delete();
 
-        return redirect('/dosen')->with('delete', 'Data Berhasil Dihapus');
+        return redirect()->back()->with('delete', 'Data Berhasil Dihapus');
     }
 }

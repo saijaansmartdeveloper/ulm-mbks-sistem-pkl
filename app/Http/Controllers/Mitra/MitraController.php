@@ -58,6 +58,17 @@ class MitraController extends Controller
                 'username'                  => 'required',
                 'password'                  => 'required',
                 'phone'                     => 'required',
+            ],
+            [
+                'nama_mitra.required'                => 'Nama Mitra Tidak Boleh Kosong',
+                'divisi_mitra.required'              => 'Divisi Mitra Tidak Boleh Kosong',
+                'alamat_mitra.required'              => 'Alamat Mitra Tidak Boleh Kosong',
+                'penanggung_jawab_mitra.required'    => 'Penanggung Jawab Mitra Tidak Boleh Kosong',
+                'pamong_mitra.required'              => 'Pamong Mitra Tidak Boleh Kosong',
+                'email.required'                     => 'Email Tidak Boleh Kosong',
+                'username.required'                  => 'Username Tidak Boleh Kosong',
+                'password.required'                  => 'Password Tidak Boleh Kosong',
+                'phone.required'                     => 'No Telpon Tidak Boleh Kosong',
             ]
         );
 
@@ -72,12 +83,12 @@ class MitraController extends Controller
         $mitra->pamong_mitra            = $request->pamong_mitra;
         $mitra->email                   = $request->email;
         $mitra->username                = $request->username;
-        $mitra->password                = $request->password;
+        $mitra->password                = bcrypt($request->password);
         $mitra->phone                   = $request->phone;
         $mitra->save();
         $mitra->assignRole('partner');
 
-        return redirect('/mitra')->with('success', 'Data Berhasil Dibuat');
+        return redirect()->route('mitra.index')->with('success', 'Data Berhasil Dibuat');
     }
 
     public function show($id)
@@ -105,13 +116,28 @@ class MitraController extends Controller
                 'pamong_mitra'              => 'required',
                 'email'                     => 'required',
                 'username'                  => 'required',
-                'password'                  => 'required',
                 'phone'                     => 'required',
+            ],
+            [
+                'nama_mitra.required'                => 'Nama Mitra Tidak Boleh Kosong',
+                'divisi_mitra.required'              => 'Divisi Mitra Tidak Boleh Kosong',
+                'alamat_mitra.required'              => 'Alamat Mitra Tidak Boleh Kosong',
+                'penanggung_jawab_mitra.required'    => 'Penanggung Jawab Mitra Tidak Boleh Kosong',
+                'pamong_mitra.required'              => 'Pamong Mitra Tidak Boleh Kosong',
+                'email.required'                     => 'Email Tidak Boleh Kosong',
+                'username.required'                  => 'Username Tidak Boleh Kosong',
+                'phone.required'                     => 'No Telpon Tidak Boleh Kosong',
             ]
         );
 
 
         $mitra = Mitra::findOrFail($id);
+        if ($request->password == null) {
+            $password = $mitra->password;
+        } else {
+            $password = bcrypt($request->password);
+        }
+
         $mitra->nama_mitra              = $request->nama_mitra;
         $mitra->divisi_mitra            = $request->divisi_mitra;
         $mitra->alamat_mitra            = $request->alamat_mitra;
@@ -119,11 +145,11 @@ class MitraController extends Controller
         $mitra->pamong_mitra            = $request->pamong_mitra;
         $mitra->email                   = $request->email;
         $mitra->username                = $request->username;
-        $mitra->password                = $request->password;
+        $mitra->password                = $password;
         $mitra->phone                   = $request->phone;
         $mitra->save();
 
-        return redirect('/mitra')->with('update', 'Data Berhasil Diubah');
+        return redirect()->route('mitra.index')->with('update', 'Data Berhasil Diubah');
     }
 
     public function destroy($id)
@@ -131,6 +157,6 @@ class MitraController extends Controller
         $mitra = Mitra::findOrFail($id);
         $mitra->delete();
 
-        return redirect('/mitra')->with('delete', 'Data Berhasil Dihapus');
+        return redirect()->back()->with('delete', 'Data Berhasil Dihapus');
     }
 }

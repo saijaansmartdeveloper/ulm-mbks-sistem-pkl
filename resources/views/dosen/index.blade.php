@@ -49,12 +49,12 @@
                     },
                     {
                         data: 'jurusan.nama_jurusan',
-                        defaultContent : 'Data Kosong',
+                        defaultContent : '-',
                         name: 'jurusan.nama_jurusan'
                     },
                     {
                         data: 'prodi.nama_prodi',
-                        defaultContent : 'Data Kosong',
+                        defaultContent : '-',
                         name: 'prodi.nama_prodi'
                     },
                     {

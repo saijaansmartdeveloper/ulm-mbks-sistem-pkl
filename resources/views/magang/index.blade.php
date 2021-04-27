@@ -37,6 +37,7 @@
                 ajax: "{{ route('magang.list') }}",
                 columns: [{
                         data: 'jenis_kegiatan.nama_jenis_kegiatan',
+                        defaultContent: '-',
                         name: 'jenis_kegiatan.nama_jenis_kegiatan'
                     },
                     {

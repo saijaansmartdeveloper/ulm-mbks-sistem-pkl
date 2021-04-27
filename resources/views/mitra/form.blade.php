@@ -58,7 +58,7 @@
                 </div>
             </div>
             <div class="form-group row">
-                <label class="col-md-2 col-form-label text-md-right">Phone</label>
+                <label class="col-md-2 col-form-label text-md-right">No. Telpon</label>
                 <div class="col-md-5">
                     {{ Form::text('phone', null, ['class' => 'form-control', 'placeholder' => 'Phone']) }}
                 </div>

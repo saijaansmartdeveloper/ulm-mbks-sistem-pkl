@@ -128,11 +128,11 @@ class AdminProdiController extends Controller
         if ($request->password == null) {
             $password = $admin_prodi->password;
         } else {
-            $password = $request->password;
+            $password = bcrypt($request->password);
         }
         $admin_prodi->nama_pengguna     = $request->nama_pengguna;
         $admin_prodi->email             = $request->email;
-        $admin_prodi->password          = bcrypt($password);
+        $admin_prodi->password          = $password;
         $admin_prodi->jurusan_uuid      = $prodi->jurusan_uuid;
         $admin_prodi->prodi_uuid        = $request->prodi_uuid;
         $admin_prodi->role_pengguna     = 'admin_prodi';
