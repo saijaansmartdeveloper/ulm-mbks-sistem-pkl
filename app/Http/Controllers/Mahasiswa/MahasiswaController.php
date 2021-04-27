@@ -16,21 +16,17 @@ class MahasiswaController extends Controller
     public function __construct()
     {
 
-        $this->middleware('guest')->except('register_store');
+        // $this->middleware('guest')->except('register_store');
     }
 
     public function getMahasiswa(Request $request)
     {
-
-        $data = Mahasiswa::all();
+        $user = Auth::User()->prodi_uuid;
+        $data = Mahasiswa::where('prodi_uuid', $user)->get();
         return Datatables::of($data)
             ->addIndexColumn()
             ->addColumn('action', function ($data) {
-                $action   = '<a href="/mahasiswa/' . $data->uuid . '/edit" class="btn btn-sm btn-primary" >Ubah</a>';
-                $action  .= \Form::open(['url' => '/mahasiswa/' . $data->uuid, 'method' => 'delete', 'style' => 'float:right']);
-                $action  .= "<button type='submit' class = 'btn btn-danger btn-sm' >Hapus</button>";
-                $action  .= \Form::close();
-
+                $action   = '<a href=' . route('mahasiswa.show', ['id' => $data->uuid]) . ' class="btn btn-sm btn-info" >Show</a>';
                 return $action;
             })
             ->rawColumns(['action'])
@@ -43,7 +39,11 @@ class MahasiswaController extends Controller
      */
     public function index()
     {
-        return view('mahasiswa.view');
+        $data = [
+            'title' => 'Data Mahasiswa',
+        ];
+
+        return view('mahasiswa.index', $data);
     }
 
     /**
@@ -142,7 +142,12 @@ class MahasiswaController extends Controller
      */
     public function show($id)
     {
-        //
+        $data = [
+            'title' => 'Detail Mahasiswa',
+            'data'  => Mahasiswa::findOrFail($id),
+        ];
+
+        return view('mahasiswa.show', $data);
     }
 
     /**
