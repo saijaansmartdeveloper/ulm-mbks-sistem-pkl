@@ -5,10 +5,10 @@
         <div class="card-body">
             @include('alert')
             @if ($data == null)
-                {{ Form::open(['url' => '/supervisor']) }}
+                {{ Form::open(['url' => route('supervisor.store')]) }}
 
             @else
-                {{ Form::model($data, ['url' => 'supervisor/' . $data->uuid, 'method' => 'put']) }}
+                {{ Form::model($data, ['url' => route('supervisor.update', ['id' => $data->uuid]), 'method' => 'put']) }}
             @endif
 
             <div class="form-group row">

@@ -36,7 +36,9 @@ class ProdiController extends Controller
      */
     public function index()
     {
-        $data['title'] = 'Master Data Prodi';
+        $data = [
+            'title' => 'Master Data Prodi'
+        ];
         return view('prodi.index', $data);
     }
 
@@ -47,9 +49,13 @@ class ProdiController extends Controller
      */
     public function create()
     {
-        $data['title'] = 'Tambah Data Prodi';
-        $data['jurusan'] = Jurusan::pluck('nama_jurusan', 'uuid');
-        return view('prodi.create', $data);
+        $data = [
+            'title'     => 'Tambah Data Prodi',
+            'jurusan'   => Jurusan::pluck('nama_jurusan', 'uuid'),
+            'data'      => null,
+        ];
+
+        return view('prodi.form', $data);
     }
 
     /**
@@ -62,9 +68,14 @@ class ProdiController extends Controller
     {
         $request->validate(
             [
-                'kode_prodi' => 'required',
-                'nama_prodi' => 'required',
-                'jurusan_uuid' => 'required',
+                'kode_prodi'    => 'required',
+                'nama_prodi'    => 'required',
+                'jurusan_uuid'  => 'required',
+            ],
+            [
+                'kode_prodi.required'    => 'Kode Prodi Tidak Boleh Kosong',
+                'nama_prodi.required'    => 'Nama Prodi Tidak Boleh Kosong',
+                'jurusan_uuid.required'  => 'Jurusan Tidak Boleh Kosong',
             ]
         );
 
@@ -77,7 +88,7 @@ class ProdiController extends Controller
         $prodi->jurusan_uuid = $request->jurusan_uuid;
         $prodi->save();
 
-        return redirect('/prodi')->with('success', 'Data Berhasil Dibuat');
+        return redirect()->route('prodi.index')->with('success', 'Data Berhasil Dibuat');
     }
 
     /**
@@ -99,10 +110,13 @@ class ProdiController extends Controller
      */
     public function edit($id)
     {
-        $data['title'] = 'Ubah Data Prodi';
-        $data['prodi'] = Prodi::findOrFail($id);
-        $data['jurusan'] = Jurusan::pluck('nama_jurusan', 'uuid');
-        return view('prodi.edit', $data);
+        $data = [
+            'title'     => 'Tambah Data Prodi',
+            'jurusan'   => Jurusan::pluck('nama_jurusan', 'uuid'),
+            'data'      => Prodi::findOrFail($id),
+        ];
+
+        return view('prodi.form', $data);
     }
 
     /**
@@ -119,6 +133,11 @@ class ProdiController extends Controller
                 'kode_prodi' => 'required',
                 'nama_prodi' => 'required',
                 'jurusan_uuid' => 'required',
+            ],
+            [
+                'kode_prodi.required'    => 'Kode Prodi Tidak Boleh Kosong',
+                'nama_prodi.required'    => 'Nama Prodi Tidak Boleh Kosong',
+                'jurusan_uuid.required'  => 'Jurusan Tidak Boleh Kosong',
             ]
         );
 
@@ -128,7 +147,7 @@ class ProdiController extends Controller
         $prodi->jurusan_uuid = $request->jurusan_uuid;
         $prodi->save();
 
-        return redirect('/prodi')->with('update', 'Data Berhasil Diubah');
+        return redirect()->route('prodi.index')->with('update', 'Data Berhasil Diubah');
     }
 
     /**
@@ -142,6 +161,6 @@ class ProdiController extends Controller
         $prodi = Prodi::findOrFail($id);
         $prodi->delete();
 
-        return redirect('/prodi')->with('delete', 'Data Berhasil Dihapus');
+        return redirect()->back()->with('delete', 'Data Berhasil Dihapus');
     }
 }
