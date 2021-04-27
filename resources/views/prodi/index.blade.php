@@ -43,9 +43,9 @@
                     },
                     {
                         data: 'jurusan.nama_jurusan',
-                        defaultContent : 'Data Kosong',
+                        defaultContent: '-',
                         name: 'jurusan.nama_jurusan'
-                        
+
                     },
                     {
                         data: 'action',

@@ -44,11 +44,13 @@
                     },
                     {
                         data: 'jurusan.nama_jurusan',
-                        name: 'jurusan.nama_jurusan'
+                        name: 'jurusan.nama_jurusan',
+                        defaultContent: '-',
                     },
                     {
                         data: 'prodi.nama_prodi',
-                        name: 'prodi.nama_prodi'
+                        name: 'prodi.nama_prodi',
+                        defaultContent: '-',
                     },
                     {
                         data: 'action',
