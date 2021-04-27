@@ -46,5 +46,13 @@ class Mahasiswa extends Authenticatable
     {
         return $this->hasOne(Magang::class, 'mahasiswa_uuid');
     }
+    public function jurusan()
+    {
+        return $this->belongsTo(Jurusan::class, 'jurusan_uuid');
+    }
+    public function prodi()
+    {
+        return $this->belongsTo(Prodi::class, 'prodi_uuid');
+    }
 
 }
