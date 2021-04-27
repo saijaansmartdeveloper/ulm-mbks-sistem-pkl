@@ -25,7 +25,7 @@ class JournalController extends Controller
         $data = [
             'title'     => $user->nama_mahasiswa,
             'guard'     => 'student',
-            'data'      => Magang::where('mahasiswa_uuid', $user->uuid)->first()
+            'data'      => Magang::where('mahasiswa_uuid', $user->uuid)->firstOrFail()
         ];
 
         return view("public.jurnal.index", $data);
