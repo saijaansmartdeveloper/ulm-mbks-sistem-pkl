@@ -7,9 +7,9 @@
 
 <div class="sb-sidenav-menu-heading">Master Data</div>
 @if (Auth::User()->hasRole('super_admin'))
-    <a class="nav-link collapsed" href="{{ route('supervisor.index') }} ">
+    <a class="nav-link collapsed" href="{{ route('user.index') }} ">
         <div class="sb-nav-link-icon"><i class="fas fa-users fa-fw"></i></div>
-        Supervisor
+        User
     </a>
     <a class="nav-link collapsed" href="{{ route('jurusan.index') }}">
         <div class="sb-nav-link-icon"><i class="fas fa-building fa-fw"></i></div>
@@ -18,10 +18,6 @@
     <a class="nav-link collapsed" href="{{ route('prodi.index') }}">
         <div class="sb-nav-link-icon"><i class="fas fa-building fa-fw"></i></div>
         Prodi
-    </a>
-    <a class="nav-link collapsed" href="{{ route('admin_prodi.index') }}">
-        <div class="sb-nav-link-icon"><i class="fas fa-building fa-fw"></i></div>
-        Admin Prodi
     </a>
     <a class="nav-link collapsed" href="{{ route('pengumuman.index') }}">
         <div class="sb-nav-link-icon"><i class="fas fa-building fa-fw"></i></div>

@@ -3,18 +3,20 @@
 @section('content')
     <div class="card py-4">
         <div class="card-body">
-            <table class="table table-striped" id="table-student">
-                <thead>
-                    <tr>
-                        <th>NIM Mahasiswa</th>
-                        <th>Nama Mahasiswa</th>
-                        <th>Tempat Magang</th>
-                        <th class='text-center' width="60">Action</th>
-                    </tr>
-                </thead>
-                <tbody>
-                </tbody>
-            </table>
+            <div class="table-responsive">
+                <table class="table table-striped" id="table-student">
+                    <thead>
+                        <tr>
+                            <th>NIM Mahasiswa</th>
+                            <th>Nama Mahasiswa</th>
+                            <th>Tempat Magang</th>
+                            <th class='text-center' width="60">Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    </tbody>
+                </table>
+            </div>
         </div>
     </div>
 @endsection

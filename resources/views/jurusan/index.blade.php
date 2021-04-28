@@ -7,17 +7,19 @@
             <a href="{{ route('jurusan.create') }}" class="btn btn-primary">Tambah Data</a>
             <hr>
             @include('alert')
-            <table class="table table-bordered" id="table-jurusan">
-                <thead>
-                    <tr>
-                        <th>Kode Jurusan</th>
-                        <th>Nama Jurusan</th>
-                        <th class='text-center' width="85">Action</th>
-                    </tr>
-                </thead>
-                <tbody>
-                </tbody>
-            </table>
+            <div class="table-responsive">
+                <table class="table table-bordered" id="table-jurusan">
+                    <thead>
+                        <tr>
+                            <th>Kode Jurusan</th>
+                            <th>Nama Jurusan</th>
+                            <th class='text-center' width="85">Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    </tbody>
+                </table>
+            </div>
         </div>
     </div>
 @endsection

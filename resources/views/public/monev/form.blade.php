@@ -1,48 +1,40 @@
 @extends('layouts.admin')
 @section('content-header', $title ?? '')
 @section('content')
-    <div class="card py-4">
+    <div class="card">
         <div class="card-body">
             @include('alert')
-
             @if ($data == null)
-                {{ Form::open(['url' => route('public.monev.store')]) }}
+                {{ Form::open(['url' => route('public.monev.store'), 'files' => true]) }}
             @else
-                {{ Form::model($data, ['url' => 'monev/' . $data->uuid, 'method' => 'put']) }}
+                {{ Form::model($data, ['url' => 'monev/' . $data->uuid, 'method' => 'put', 'files' => true]) }}
             @endif
-            <div class="form-group row">
-                <label class="col-md-2 col-form-label text-md-right">Catatan Monev</label>
-                <div class="col-md-5">
-                    {{ Form::textarea('catatan_monev', null, ['class' => 'form-control', 'rows' => '4', 'placeholder' => 'Catatan Monev']) }}
-                </div>
-            </div>
-            <div class="form-group row">
-                <label class="col-md-2 col-form-label text-md-right">Tanggal Monev</label>
-                <div class="col-md-5">
-                    {{ Form::date('tanggal_monev', null, ['class' => 'form-control', 'placeholder' => 'Tanggal Monev']) }}
-                </div>
-            </div>
-            <div class="form-group row">
-                <label class="col-md-2 col-form-label text-md-right">File Monev</label>
-                <div class="col-md-5">
-                    {{ Form::text('file_monev', null, ['class' => 'form-control', 'placeholder' => 'file_monev']) }}
-                </div>
+
+            <div class="form-group ">
+                {{ Form::label('catatan_monev', 'Catatan') }}
+                {{ Form::textarea('catatan_monev', null, ['class' => 'form-control', 'placeholder' => 'Catatan Monev']) }}
             </div>
 
-            <div class="form-group row">
-                <label class="col-md-2 col-form-label text-md-right">Kegiatan</label>
-                <div class="col-md-5">
-                    {{ Form::select('file_monev', $magang, null, ['class' => 'form-control magang-select2', 'placeholder' => '--Pilih Magang--']) }}
-                </div>
+            <div class="form-group ">
+                {{ Form::label('tanggal_monev', 'Tanggal') }}
+                {{ Form::date('tanggal_monev', null, ['class' => 'form-control', 'placeholder' => 'Tanggal Monev']) }}
             </div>
 
-            <div class="form-group row">
-                <div class="col-md-6 offset-md-2">
-                    {{ Form::submit('Simpan', ['class' => 'btn btn-primary']) }}
-                    </form>
-                    <a href="{{ route('public.monev.index') }}" class="btn btn-danger">Kembali</a>
-                </div>
+            <div class="form-group">
+                {{ Form::label('file_monev', 'File Dokumen') }}
+                {{ Form::file('file_monev', ['class' => 'form-control-file', 'accept' => '.pdf,.doc,.docx,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document']) }}
             </div>
+
+            <div class="form-group ">
+                {{ Form::label('magang_uuid', 'Kegiatan') }}
+                {{ Form::select('magang_uuid', $magang, null, ['class' => 'form-control magang-select2', 'placeholder' => '-- Pilih Kegiatan --']) }}
+            </div>
+
+            <div class="form-group text-right">
+                <a href="{{ route('public.monev.index') }}" class="btn btn-danger">Kembali</a>
+                {{ Form::submit('Simpan', ['class' => 'btn btn-primary']) }}
+            </div>
+            {{ Form::close() }}
         </div>
     </div>
 @endsection

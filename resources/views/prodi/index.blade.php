@@ -6,18 +6,20 @@
             <a href="{{ route('prodi.create') }}" class="btn btn-primary">Tambah Data</a>
             <hr>
             @include('alert')
-            <table class="table table-bordered" id="table-prodi">
-                <thead>
-                    <tr>
-                        <th>Kode Prodi</th>
-                        <th>Nama Prodi</th>
-                        <th>Jurusan</th>
-                        <th class='text-center' width="85">Action</th>
-                    </tr>
-                </thead>
-                <tbody>
-                </tbody>
-            </table>
+            <div class="table-responsive">
+                <table class="table table-bordered" id="table-prodi">
+                    <thead>
+                        <tr>
+                            <th>Kode Prodi</th>
+                            <th>Nama Prodi</th>
+                            <th>Jurusan</th>
+                            <th class='text-center' width="85">Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    </tbody>
+                </table>
+            </div>
         </div>
     </div>
 @endsection

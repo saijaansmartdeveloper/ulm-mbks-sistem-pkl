@@ -6,17 +6,19 @@
             <a href="{{ route('jenis_kegiatan.create') }}" class="btn btn-primary">Tambah Data</a>
             <hr>
             @include('alert')
-            <table class="table table-bordered" id="table-jenis-kegiatan">
-                <thead>
-                    <tr>
-                        <th>Kode Jenis Kegiatan</th>
-                        <th>Nama Jenis Kegiatan</th>
-                        <th class='text-center' width="85">Action</th>
-                    </tr>
-                </thead>
-                <tbody>
-                </tbody>
-            </table>
+            <div class="table-responsive">
+                <table class="table table-bordered" id="table-jenis-kegiatan">
+                    <thead>
+                        <tr>
+                            <th>Kode Jenis Kegiatan</th>
+                            <th>Nama Jenis Kegiatan</th>
+                            <th class='text-center' width="85">Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    </tbody>
+                </table>
+            </div>
         </div>
     </div>
 @endsection

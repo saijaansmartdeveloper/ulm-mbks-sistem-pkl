@@ -22,6 +22,7 @@ Route::prefix('lecturer')->group(function () {
     Route::post('monev', [MonevController::class, 'store'])->name('monev.store');
     Route::get('monev/{id}/edit', [MonevController::class, 'edit'])->name('monev.edit');
     Route::put('monev/{id}', [MonevController::class, 'update'])->name('monev.update');
+    Route::get('monev/{id}', [MonevController::class, 'show'])->name('monev.show');
     Route::delete('monev/{id}', [MonevController::class, 'destroy'])->name('monev.destroy');
 
     Route::get('mahasiswa_bimbingan/list', [LecturerController::class, 'getListMahasiswaBimbingan'])->name('lecturer.student_guidance.list');
