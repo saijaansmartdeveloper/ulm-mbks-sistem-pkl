@@ -116,7 +116,7 @@ class DosenController extends Controller
     public function edit($id)
     {
         $data = [
-            'title' => 'Tambah Data Dosen',
+            'title' => 'Ubah Data Dosen',
             'data'  => Dosen::findOrFail($id),
         ];
 

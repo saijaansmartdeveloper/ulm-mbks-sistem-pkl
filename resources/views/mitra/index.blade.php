@@ -12,7 +12,7 @@
                         <th>Nama Mitra</th>
                         <th>Divisi Mitra</th>
                         <th>Pamong Mitra</th>
-                        <th class='text-center' width="85">Action</th>
+                        <th class='text-center' width="16.8%">Action</th>
                     </tr>
                 </thead>
                 <tbody>

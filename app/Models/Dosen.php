@@ -60,6 +60,6 @@ class Dosen extends Authenticatable
 
     public function jurusan()
     {
-        return $this->belongsTo(jurusan::class, 'jurusan_uuid');
+        return $this->belongsTo(Jurusan::class, 'jurusan_uuid');
     }
 }

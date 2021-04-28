@@ -22,8 +22,8 @@ class MagangController extends Controller
         return Datatables::of($data)
             ->addIndexColumn()
             ->addColumn('action', function ($data) {
-                // $action = '<a href="/magang/' . $data->uuid . '/edit" class="btn btn-sm btn-primary" >Ubah</a>';
-                $action = \Form::open(['url' => route('magang.destroy', ['id' => $data->uuid]), 'method' => 'delete', 'style' => 'float:right']);
+                $action = '<a href=' . route('magang.show', ['id' => $data->uuid]) . ' class="btn btn-info btn-sm " >Show</a>';
+                $action .= \Form::open(['url' => route('magang.destroy', ['id' => $data->uuid]), 'method' => 'delete', 'style' => 'float:right']);
                 $action .= "<button type='submit' class = 'btn btn-danger btn-sm' >Hapus</button>";
                 $action .= \Form::close();
 
@@ -36,7 +36,7 @@ class MagangController extends Controller
     public function index()
     {
         $data = [
-            'title' => 'Master Data Magang'
+            'title' => 'Master Data Kegiatan'
         ];
 
         return view('magang.index', $data);
@@ -45,7 +45,7 @@ class MagangController extends Controller
     public function create()
     {
         $data = [
-            'title'             => 'Tambah Data Magang',
+            'title'             => 'Tambah Data Kegiatan',
             'dosen'             => Dosen::pluck('nama_dosen', 'uuid'),
             'mitra'             => Mitra::pluck('nama_mitra', 'uuid'),
             'mahasiswa'         => Mahasiswa::pluck('nama_mahasiswa', 'uuid'),
@@ -109,7 +109,7 @@ class MagangController extends Controller
     public function edit($id)
     {
         $data = [
-            'title'             => 'Ubah Data Magang',
+            'title'             => 'Ubah Data Kegiatan',
             'dosen'             => Dosen::pluck('nama_dosen', 'uuid'),
             'mitra'             => Mitra::pluck('nama_mitra', 'uuid'),
             'mahasiswa'         => Mahasiswa::pluck('nama_mahasiswa', 'uuid'),
@@ -173,5 +173,15 @@ class MagangController extends Controller
         $magang->delete();
 
         return redirect()->back()->with('delete', 'Data Berhasi Dihapus');
+    }
+
+    public function show($id)
+    {
+        $data = [
+            'title' => 'Detail Data Kegiatan',
+            'data'  => Magang::where('uuid', $id)->first(),
+        ];
+
+        return view('magang.show', $data);
     }
 }
