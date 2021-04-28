@@ -44,11 +44,12 @@ class MagangController extends Controller
 
     public function create()
     {
+        $prodi_uuid = Auth::User()->prodi_uuid;
         $data = [
             'title'             => 'Tambah Data Kegiatan',
-            'dosen'             => Dosen::pluck('nama_dosen', 'uuid'),
+            'dosen'             => Dosen::where('prodi_uuid', $prodi_uuid)->pluck('nama_dosen', 'uuid'),
             'mitra'             => Mitra::pluck('nama_mitra', 'uuid'),
-            'mahasiswa'         => Mahasiswa::pluck('nama_mahasiswa', 'uuid'),
+            'mahasiswa'         => Mahasiswa::where('prodi_uuid', $prodi_uuid)->pluck('nama_mahasiswa', 'uuid'),
             'jenis_kegiatan'    => JenisKegiatan::pluck('nama_jenis_kegiatan', 'uuid'),
             'data'              => null,
         ];
@@ -108,11 +109,12 @@ class MagangController extends Controller
 
     public function edit($id)
     {
+        $prodi_uuid = Auth::User()->prodi_uuid;
         $data = [
             'title'             => 'Ubah Data Kegiatan',
-            'dosen'             => Dosen::pluck('nama_dosen', 'uuid'),
+            'dosen'             => Dosen::where('prodi_uuid', $prodi_uuid)->pluck('nama_dosen', 'uuid'),
             'mitra'             => Mitra::pluck('nama_mitra', 'uuid'),
-            'mahasiswa'         => Mahasiswa::pluck('nama_mahasiswa', 'uuid'),
+            'mahasiswa'         => Mahasiswa::where('prodi_uuid', $prodi_uuid)->pluck('nama_mahasiswa', 'uuid'),
             'jenis_kegiatan'    => JenisKegiatan::pluck('nama_jenis_kegiatan', 'uuid'),
             'data'              => Magang::findOrFail($id),
         ];

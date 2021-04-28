@@ -20,6 +20,7 @@ class CreateDosenTable extends Migration
             $table->string('nama_dosen', 100);
             $table->string('email')->unique();
             $table->string('password');
+            $table->string('foto_dosen')->nullable();
             $table->rememberToken();
             $table->foreignUuid('prodi_uuid')->nullable();
             $table->foreignUuid('jurusan_uuid')->nullable();

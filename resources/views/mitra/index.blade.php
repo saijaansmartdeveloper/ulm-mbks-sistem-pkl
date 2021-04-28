@@ -6,18 +6,20 @@
             <a href="{{ route('mitra.create') }}" class="btn btn-primary">Tambah Data</a>
             <hr>
             @include('alert')
-            <table class="table table-bordered" id="table-mitra">
-                <thead>
-                    <tr>
-                        <th>Nama Mitra</th>
-                        <th>Divisi Mitra</th>
-                        <th>Pamong Mitra</th>
-                        <th class='text-center' width="16.8%">Action</th>
-                    </tr>
-                </thead>
-                <tbody>
-                </tbody>
-            </table>
+            <div class="table-responsive">
+                <table class="table table-bordered" id="table-mitra">
+                    <thead>
+                        <tr>
+                            <th>Nama Mitra</th>
+                            <th>Divisi Mitra</th>
+                            <th>Pamong Mitra</th>
+                            <th class='text-center' width="16.8%">Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    </tbody>
+                </table>
+            </div>
         </div>
     </div>
 @endsection
@@ -54,5 +56,6 @@
                 ]
             });
         });
+
     </script>
 @endsection

@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use Ramsey\Uuid\Uuid;
 use DataTables;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Storage;
 
 class MonevController extends Controller
 {
@@ -15,16 +16,17 @@ class MonevController extends Controller
     {
         $this->middleware('auth:lecturer');
     }
-    
+
     public function getMonev()
     {
 
-        $data = Magang::all();
+        $data = Monev::all();
         return Datatables::of($data)
             ->addIndexColumn()
             ->addColumn('action', function ($data) {
-                $action   = '<a href="/monev/' . $data->uuid . '/edit" class="btn btn-sm btn-primary" >Ubah</a>';
-                $action  .= \Form::open(['url' => '/monev/' . $data->uuid, 'method' => 'delete', 'style' => 'float:right']);
+                $action   = '<a href="' . route('public.monev.edit', ['id' => $data->uuid]) . '" class="btn btn-sm btn-primary" >Ubah</a>';
+                $action  .= '<a href="' . route('public.monev.show', ['id' => $data->uuid]) . '" class="btn btn-sm btn-info" >show</a>';
+                $action  .= \Form::open(['url' => route('public.monev.destroy', ['id' => $data->uuid]), 'method' => 'delete', 'style' => 'float:right']);
                 $action  .= "<button type='submit' class = 'btn btn-danger btn-sm' >Hapus</button>";
                 $action  .= \Form::close();
 
@@ -41,7 +43,7 @@ class MonevController extends Controller
     public function index()
     {
         $data = [
-            'title' => 'Master Data Monev',
+            'title' => 'Monitor Evaluasi',
         ];
 
         return view('public.monev.index', $data);
@@ -54,10 +56,18 @@ class MonevController extends Controller
      */
     public function create()
     {
+
+        $dosen_uuid = Auth::guard('lecturer')->user()->uuid;
+        $magang = Magang::where('dosen_uuid', $dosen_uuid)->get();
+
+        foreach ($magang as $value) {
+            $magangParsing[$value->uuid] = $value->partner()->first()->nama_mitra . " - " . $value->student()->first()->nama_mahasiswa;
+        }
+
         $data = [
-            'title' => 'Tambah Data Monev',
-            'magang'    => Magang::pluck('uuid', 'uuid'),
-            'data'  => null,
+            'title'     => 'Tambah Data Monitor Evaluasi',
+            'magang'    => $magangParsing ?? [],
+            'data'      => null,
         ];
 
         return view('public.monev.form', $data);
@@ -71,17 +81,35 @@ class MonevController extends Controller
      */
     public function store(Request $request)
     {
-        $request->validate([
-            'catatan_monev' => 'required',
-            'tanggal_monev' => 'required',
-            'file_monev'    => 'required',
-        ]);
+        $request->validate(
+            [
+                'catatan_monev' => 'required',
+                'tanggal_monev' => 'required',
+                'magang_uuid'   => 'required',
+                'file_monev'    => 'max:1024',
+            ],
+            [
+                'catatan_monev.required'    => 'Catatan Tidak Boleh Kosong',
+                'tanggal_monev.required'    => 'Tanggal Tidak Boleh Kosong',
+                'magang_uuid.required'      => 'Kegiatan Tidak Boleh Kosong',
+                'file_monev.max'            => 'File Monitor Evaluasi Maksimal 1MB',
+            ]
+        );
+
+        $uuid = Uuid::uuid4();
+
+        if (request()->file('file_monev')) {
+            $file_monev = request()->file('file_monev');
+            $fileUrl    = $file_monev->storeAs('file/file_monev', "{$uuid}.{$file_monev->extension()}", "public");
+        } else {
+            $fileUrl = null;
+        }
 
         $monev = new Monev;
-        $monev->uuid        = Uuid::uuid4();
+        $monev->uuid            = $uuid;
         $monev->catatan_monev   = $request->catatan_monev;
         $monev->tanggal_monev   = $request->tanggal_monev;
-        $monev->file_monev      = $request->file_monev;
+        $monev->file_monev      = $fileUrl;
         $monev->magang_uuid     = $request->magang_uuid;
         $monev->prodi_uuid      = Auth::guard('lecturer')->User()->prodi_uuid;
         $monev->jurusan_uuid    = Auth::guard('lecturer')->User()->jurusan_uuid;
@@ -98,7 +126,12 @@ class MonevController extends Controller
      */
     public function show($id)
     {
-        //
+        $data = [
+            'title' => 'Detail Monitor Evaluasi',
+            'data'  => Monev::findOrFail($id),
+        ];
+
+        return view('public.monev.show', $data);
     }
 
     /**
@@ -109,9 +142,15 @@ class MonevController extends Controller
      */
     public function edit($id)
     {
+        $dosen_uuid = Auth::guard('lecturer')->user()->uuid;
+        $magang = Magang::where('dosen_uuid', $dosen_uuid)->get();
+
+        foreach ($magang as $value) {
+            $magangParsing[$value->uuid] = $value->partner()->first()->nama_mitra . " - " . $value->student()->first()->nama_mahasiswa;
+        }
         $data = [
-            'title' => 'Ubah Data Monev',
-            'magang'    => Magang::pluck('uuid', 'uuid'),
+            'title' => 'Ubah Data Monitor Evaluasi',
+            'magang'    => $magangParsing ?? [],
             'data'  => Monev::findOrFail($id),
         ];
 
@@ -127,16 +166,34 @@ class MonevController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $request->validate([
-            'catatan_monev' => 'required',
-            'tanggal_monev' => 'required',
-            'file_monev'    => 'required',
-        ]);
+        $request->validate(
+            [
+                'catatan_monev' => 'required',
+                'tanggal_monev' => 'required',
+                'magang_uuid'   => 'required',
+                'file_monev'    => 'max:1024',
+            ],
+            [
+                'catatan_monev.required'    => 'Catatan Tidak Boleh Kosong',
+                'tanggal_monev.required'    => 'Tanggal Tidak Boleh Kosong',
+                'magang_uuid.required'      => 'Kegiatan Tidak Boleh Kosong',
+                'file_monev.max'            => 'File Monitor Evaluasi Maksimal 1MB',
+            ]
+        );
 
         $monev =  Monev::findOrFail($id);
+
+        if (request()->file('file_monev')) {
+            Storage::delete($monev->file_monev);
+            $file_monev = request()->file('file_monev');
+            $fileUrl    = $file_monev->storeAs('file/file_monev', "{$id}.{$file_monev->extension()}", "public");
+        } else {
+            $fileUrl = $monev->file_monev;
+        }
+
         $monev->catatan_monev   = $request->catatan_monev;
         $monev->tanggal_monev   = $request->tanggal_monev;
-        $monev->file_monev      = $request->file_monev;
+        $monev->file_monev      = $fileUrl;
         $monev->magang_uuid     = $request->magang_uuid;
         $monev->prodi_uuid      = Auth::guard('lecturer')->User()->prodi_uuid;
         $monev->jurusan_uuid    = Auth::guard('lecturer')->User()->jurusan_uuid;
@@ -154,6 +211,7 @@ class MonevController extends Controller
     public function destroy($id)
     {
         $monev = Monev::findOrFail($id);
+        Storage::delete($monev->file_monev);
         $monev->delete();
 
         return redirect()->back()->with('delete', 'Data Berhasil Dihapus');

@@ -1,7 +1,7 @@
 @extends('layouts.admin')
 @section('content-header', $title ?? '')
 @section('content')
-    <div class="card py-4">
+    <div class="card">
         <div class="card-body">
             @include('alert')
 
@@ -11,35 +11,27 @@
                 {{ Form::model($data, ['url' => route('prodi.update', ['id' => $data->uuid]), 'method' => 'put']) }}
             @endif
 
-            <div class="form-group row">
-                <label class="col-md-2 col-form-label text-md-right">Kode Prodi</label>
-                <div class="col-md-5">
-                    {{ Form::text('kode_prodi', null, ['class' => 'form-control', 'placeholder' => 'Kode Prodi']) }}
-                </div>
+            <div class="form-group">
+                {{ Form::label('kode_prodi', 'Kode Prodi') }}
+                {{ Form::text('kode_prodi', null, ['class' => 'form-control', 'placeholder' => 'Masukkan Kode Prodi']) }}
+
             </div>
 
-            <div class="form-group row">
-                <label class="col-md-2 col-form-label text-md-right">Nama Prodi</label>
-                <div class="col-md-5">
-                    {{ Form::text('nama_prodi', null, ['class' => 'form-control', 'placeholder' => 'Nama Prodi']) }}
-                </div>
+            <div class="form-group">
+                {{ Form::label('nama_prodi', 'Nama Prodi') }}
+                {{ Form::text('nama_prodi', null, ['class' => 'form-control', 'placeholder' => 'Masukkan Nama Prodi']) }}
             </div>
 
-            <div class="form-group row">
-                <label class="col-md-2 col-form-label text-md-right">Jurusan</label>
-
-                <div class="col-md-6">
-                    {{ Form::select('jurusan_uuid', $jurusan, null, ['placeholder' => '-- Pilih Jurusan --', 'id' => 'jurusan', 'class' => 'form-control jurusan-select2']) }}
-                </div>
+            <div class="form-group">
+                {{ Form::label('jurusan_uuid', 'Jurusan') }}
+                {{ Form::select('jurusan_uuid', $jurusan, null, ['placeholder' => '-- Pilih Jurusan --', 'id' => 'jurusan', 'class' => 'form-control jurusan-select2']) }}
             </div>
 
-            <div class="form-group row">
-                <div class="col-md-6 offset-md-2">
-                    {{ Form::submit('Simpan', ['class' => 'btn btn-primary']) }}
-                    </form>
-                    <a href="{{ route('prodi.index') }}" class="btn btn-danger">Kembali</a>
-                </div>
+            <div class="form-group text-right">
+                <a href="{{ route('prodi.index') }}" class="btn btn-danger">Kembali</a>
+                {{ Form::submit('Simpan', ['class' => 'btn btn-primary']) }}
             </div>
+            {{ Form::close() }}
         </div>
     </div>
 @endsection
@@ -51,6 +43,7 @@
     <script>
         $(document).ready(function() {
             $('.jurusan-select2').select2();
+            $('.select2').css('width', "100%");
         });
 
     </script>

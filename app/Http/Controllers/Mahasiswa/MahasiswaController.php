@@ -66,14 +66,24 @@ class MahasiswaController extends Controller
 
     public function register_store(Request $request)
     {
-        $request->validate([
-            'nim_mahasiswa'     => 'required',
-            'nama_mahasiswa'    => 'required',
-            'email'             => 'required|email',
-            'password'          => 'required',
-            'phone'             => 'required',
-            'foto_mahasiswa'    => 'image|mimes:jpeg,png,jpg|max:1024'
-        ]);
+        $request->validate(
+            [
+                'nim_mahasiswa'     => 'required',
+                'nama_mahasiswa'    => 'required',
+                'email'             => 'required|email',
+                'password'          => 'required',
+                'phone'             => 'required',
+                'foto_mahasiswa'    => 'image|mimes:jpeg,png,jpg|max:512'
+            ],
+            [
+                'nim_mahasiswa.required'     => 'NIM Mahasiswa Tidak Boleh Kosong',
+                'nama_mahasiswa.required'    => 'Nama Mahasiswa Tidak Boleh Kosong',
+                'email.required'             => 'Email Tidak Boleh Kosong',
+                'password.required'          => 'Password Tidak Boleh Kosong',
+                'phone.required'             => 'No. Telepon Tidak Boleh Kosong',
+                'foto_mahasiswa.max'         => 'File Foto Maksimal 512KB'
+            ]
+        );
 
         $uuid   = Uuid::uuid4()->getHex();
         $prodi  = Prodi::findOrFail($request->prodi_uuid);

@@ -71,7 +71,7 @@
                     </div>
                     <div class="form-group">
                         <label for="foto_mahasiswa">Foto Mahasiswa : </label>
-                        {{ Form::file('foto_mahasiswa', null, ['placeholder' => 'Foto Mahasiswa', 'class' => 'form-input']) }}
+                        {{ Form::file('foto_mahasiswa', null, ['class' => 'form-input', 'accept' => 'image/png,image/gif,image/jpeg']) }}
                     </div>
                     {{-- <div class="form-group">
                             <input type="password" class="form-input" name="re_password" id="re_password" placeholder="Ulangi Password" />
@@ -81,7 +81,8 @@
                     </div>
                     </form>
                     <p class="loginhere">
-                        Have already an account ? <a href="{{ route('public.user.form_login') }}" class="loginhere-link">Login here</a>
+                        Have already an account ? <a href="{{ route('public.user.form_login') }}"
+                            class="loginhere-link">Login here</a>
                     </p>
                 </div>
             </div>

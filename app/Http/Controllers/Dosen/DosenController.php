@@ -7,18 +7,20 @@ use App\Models\Dosen;
 use Illuminate\Http\Request;
 use DataTables;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Storage;
 use Ramsey\Uuid\Uuid;
 
 class DosenController extends Controller
 {
     public function getDosen(Request $request)
     {
-
-        $data = Dosen::with('prodi', 'jurusan')->get();
+        $user = Auth::User()->prodi_uuid;
+        $data = Dosen::where('prodi_uuid', $user)->with('prodi', 'jurusan')->get();
         return Datatables::of($data)
             ->addIndexColumn()
             ->addColumn('action', function ($data) {
                 $action   = '<a href=' . route('dosen.edit', ['id' => $data->uuid]) . ' class="btn btn-sm btn-primary" >Ubah</a>';
+                $action  .= '<a href=' . route('dosen.show', ['id' => $data->uuid]) . ' class="btn btn-sm btn-info" >Show</a>';
                 $action  .= \Form::open(['url' => route('dosen.destroy', ['id' => $data->uuid]), 'method' => 'delete', 'style' => 'float:right']);
                 $action  .= "<button type='submit' class = 'btn btn-danger btn-sm' >Hapus</button>";
                 $action  .= \Form::close();
@@ -66,30 +68,37 @@ class DosenController extends Controller
     {
         $request->validate(
             [
-                'nip_dosen'     => 'required',
-                'nama_dosen'    => 'required',
-                'email'         => 'required',
-                'password'      => 'required',
-
+                'nip_dosen'         => 'required',
+                'nama_dosen'        => 'required',
+                'email'             => 'required',
+                'password'          => 'required',
+                'foto_dosen'        => 'image|mimes:jpeg,png,jpg|max:512'
             ],
             [
                 'nip_dosen.required'     => 'NIP Dosen Tidak Boleh Kosong',
                 'nama_dosen.required'    => 'Nama Dosen Tidak Boleh Kosong',
                 'email.required'         => 'Email Tidak Boleh Kosong',
                 'password.required'      => 'Password Tidak Boleh Kosong',
+                'foto_dosen.max'         => 'File Foto Maksimal 512KB'
             ]
         );
 
-        $uuid   =  Uuid::uuid4()->getHex();
+        if (request()->file('foto_dosen')) {
+            $foto_dosen = request()->file('foto_dosen');
+            $fotoUrl        = $foto_dosen->storeAs('file/foto_dosen', "{$request->nip_dosen}.{$foto_dosen->extension()}", "public");
+        } else {
+            $fotoUrl = null;
+        }
 
         $dosen = new Dosen;
-        $dosen->uuid            = $uuid;
+        $dosen->uuid            = Uuid::uuid4()->getHex();
         $dosen->nip_dosen       = $request->nip_dosen;
         $dosen->nama_dosen      = $request->nama_dosen;
         $dosen->email           = $request->email;
         $dosen->password        = bcrypt($request->password);
         $dosen->jurusan_uuid    = Auth::User()->jurusan_uuid;
         $dosen->prodi_uuid      = Auth::User()->prodi_uuid;
+        $dosen->foto_dosen      = $fotoUrl;
         $dosen->save();
         $dosen->assignRole('lecturer');
 
@@ -104,7 +113,12 @@ class DosenController extends Controller
      */
     public function show($id)
     {
-        //
+        $data = [
+            'title' => 'Detail Dosen',
+            'data'  => Dosen::findOrFail($id),
+        ];
+
+        return view('dosen.show', $data);
     }
 
     /**
@@ -134,15 +148,18 @@ class DosenController extends Controller
     {
         $request->validate(
             [
-                'nip_dosen'     => 'required',
-                'nama_dosen'    => 'required',
-                'email'         => 'required',
-
+                'nip_dosen'         => 'required',
+                'nama_dosen'        => 'required',
+                'email'             => 'required',
+                'password'          => 'required',
+                'foto_dosen'        => 'image|mimes:jpeg,png,jpg|max:512'
             ],
             [
                 'nip_dosen.required'     => 'NIP Dosen Tidak Boleh Kosong',
                 'nama_dosen.required'    => 'Nama Dosen Tidak Boleh Kosong',
                 'email.required'         => 'Email Tidak Boleh Kosong',
+                'password.required'      => 'Password Tidak Boleh Kosong',
+                'foto_dosen.max'         => 'File Foto Maksimal 512KB'
             ]
         );
 
@@ -154,12 +171,21 @@ class DosenController extends Controller
             $password = bcrypt($request->password);
         }
 
+        if (request()->file('foto_dosen')) {
+            Storage::delete($dosen->foto_dosen);
+            $foto_dosen = request()->file('foto_dosen');
+            $fotoUrl    = $foto_dosen->storeAs('file/foto_dosen', "{$request->nip_dosen}.{$foto_dosen->extension()}", "public");
+        } else {
+            $fotoUrl = $dosen->foto_dosen;
+        }
+
         $dosen->nip_dosen       = $request->nip_dosen;
         $dosen->nama_dosen      = $request->nama_dosen;
         $dosen->email           = $request->email;
         $dosen->password        = $password;
         $dosen->jurusan_uuid    = Auth::User()->jurusan_uuid;
         $dosen->prodi_uuid      = Auth::User()->prodi_uuid;
+        $dosen->foto_dosen      = $fotoUrl;
         $dosen->save();
 
         return redirect()->route('dosen.index')->with('update', 'Data Berhasil Diubah');
@@ -174,6 +200,7 @@ class DosenController extends Controller
     public function destroy($id)
     {
         $dosen = Dosen::findOrFail($id);
+        Storage::delete($dosen->foto_dosen);
         $dosen->delete();
 
         return redirect()->back()->with('delete', 'Data Berhasil Dihapus');

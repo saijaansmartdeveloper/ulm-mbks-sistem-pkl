@@ -6,17 +6,19 @@
             @include('alert')
             <a href="{{ route('public.monev.create') }}" class="btn btn-primary">Tambah Data</a>
             <hr>
-            <table class="table table-bordered" id="table-monev">
-                <thead>
-                    <tr>
-                        <th>Catatan</th>
-                        <th>Tanggal</th>
-                        <th class='text-center' width="85">Action</th>
-                    </tr>
-                </thead>
-                <tbody>
-                </tbody>
-            </table>
+            <div class="table-responsive">
+                <table class="table table-bordered " id="table-monev">
+                    <thead>
+                        <tr>
+                            <th>Catatan</th>
+                            <th>Tanggal</th>
+                            <th class='text-center' width="122">Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    </tbody>
+                </table>
+            </div>
         </div>
     </div>
 @endsection

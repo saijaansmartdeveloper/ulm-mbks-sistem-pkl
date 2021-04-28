@@ -6,20 +6,21 @@
             <a href="{{ route('magang.create') }}" class="btn btn-primary">Tambah Data</a>
             <hr>
             @include('alert')
-            <table class="table table-bordered" id="table-jenis-kegiatan">
-                <thead>
-                    <tr>
-                        <th>Jenis Kegiatan</th>
-                        <th>Mulai Magang</th>
-                        <th>Akhir Magang</th>
-                        <th>Lama Magang</th>
-                        {{-- <th>Status Magang</th> --}}
-                        <th class='text-center' width="85">Action</th>
-                    </tr>
-                </thead>
-                <tbody>
-                </tbody>
-            </table>
+            <div class="table-responsive">
+                <table class="table table-bordered" id="table-jenis-kegiatan">
+                    <thead>
+                        <tr>
+                            <th>Jenis Kegiatan</th>
+                            <th>Mulai Magang</th>
+                            <th>Akhir Magang</th>
+                            <th>Lama Magang</th>
+                            <th class='text-center' width="85">Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    </tbody>
+                </table>
+            </div>
         </div>
     </div>
 @endsection
