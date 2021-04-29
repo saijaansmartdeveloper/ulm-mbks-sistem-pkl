@@ -12,7 +12,7 @@
     <style>
         :root {
             --input-padding-x: 1.5rem;
-            --input-padding-y: 0.75rem;
+            --input-padding-y: 0.4rem;
         }
 
         .login,
@@ -135,6 +135,8 @@
                     <div class="container">
                         <div class="row">
                             <div class="col-md-9 col-lg-8 mx-auto">
+                                <img src="{{ asset('img/ULM-KampusMerdeka.png') }}" alt="" height="80px" class="mb-4">
+
                                 <h3 class="login-heading mb-4">Selamat Datang!</h3>
 
                                 <form action="{{route('public.user.login')}}" method="post">
@@ -158,7 +160,7 @@
                                     </div>
 
                                     <div class="text-center">
-                                        <a class="small" href="#">Forgot password?</a>
+                                        <a class="small text-secondary" href="#">App Version {{ config('app.version') }}</a>
                                     </div>
                                 </form>
                                 {!! Form::close() !!}

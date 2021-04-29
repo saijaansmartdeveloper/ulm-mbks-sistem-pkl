@@ -147,14 +147,15 @@
                                     <div class="form-label-group">
                                         <input name="password" type="password" id="inputPassword" class="form-control" placeholder="Masukan Password" required>
                                         <label for="inputPassword">Password</label>
-                                    </div>  
+                                    </div>
                                     <div class="d-grid gap-2">
                                         <button class="btn btn-lg btn-primary btn-block btn-login text-uppercase font-weight-bold mb-2" type="submit">Sign in</button>
                                     </div>
 
-                                    {{-- <div class="text-center">
-                                        <a class="small" href="{{ route('password.request') }}">Forgot password?</a>
-                                    </div> --}}
+                                    <div class="text-center">
+                                        {{-- <a class="small" href="{{ route('password.request') }}">Forgot password?</a> --}}
+                                        <a class="small text-secondary" href="#">APP Version {{ config('app.version') }}</a>
+                                    </div>
                                 </form>
                                 {!! Form::close() !!}
                             </div>
