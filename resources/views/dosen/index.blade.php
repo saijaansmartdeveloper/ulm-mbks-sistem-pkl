@@ -12,6 +12,7 @@
                         <tr>
                             <th>NIP</th>
                             <th>Nama</th>
+                            <th>Email</th>
                             <th>Jurusan</th>
                             <th>Prodi</th>
                             <th class='text-center' width="124">Action</th>
@@ -43,6 +44,10 @@
                     {
                         data: 'nama_dosen',
                         name: 'nama_dosen'
+                    },
+                    {
+                        data: 'email',
+                        name: 'email'
                     },
                     {
                         data: 'jurusan.nama_jurusan',

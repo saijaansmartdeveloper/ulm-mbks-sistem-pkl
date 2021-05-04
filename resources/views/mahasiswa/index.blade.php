@@ -12,6 +12,7 @@
                         <tr>
                             <th width='20%'>NIM Mahasiswa</th>
                             <th>Nama Mahasiswa</th>
+                            <th>Email</th>
                             <th class='text-center' width="85">Action</th>
                         </tr>
                     </thead>
@@ -41,6 +42,10 @@
                     {
                         data: 'nama_mahasiswa',
                         name: 'nama_mahasiswa'
+                    },
+                    {
+                        data: 'email',
+                        name: 'email'
                     },
                     {
                         data: 'action',

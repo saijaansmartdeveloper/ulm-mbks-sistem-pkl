@@ -11,6 +11,7 @@
                     <thead>
                         <tr>
                             <th>Nama Pengguna</th>
+                            <th>Email</th>
                             <th>Jurusan</th>
                             <th>Prodi</th>
                             <th class='text-center' width="124">Action</th>
@@ -38,6 +39,11 @@
                 columns: [{
                         data: 'nama_pengguna',
                         name: 'nama_pengguna'
+                    },
+                    {
+                        data: 'email',
+                        name: 'email',
+                        defaultContent: '-',
                     },
                     {
                         data: 'jurusan.kode_jurusan',
