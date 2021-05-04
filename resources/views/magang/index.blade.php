@@ -11,10 +11,9 @@
                     <thead>
                         <tr>
                             <th>Jenis Kegiatan</th>
-                            <th>Mulai Magang</th>
-                            <th>Akhir Magang</th>
-                            <th>Lama Magang</th>
-                            <th class='text-center' width="85">Action</th>
+                            <th>Email Mahasiswa</th>
+                            <th>Lama Magang (Minggu)</th>
+                            <th class='text-center'>Action</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -44,12 +43,9 @@
                         name: 'jenis_kegiatan.nama_jenis_kegiatan'
                     },
                     {
-                        data: 'mulai_magang',
-                        name: 'mulai_magang'
-                    },
-                    {
-                        data: 'akhir_magang',
-                        name: 'akhir_magang'
+                        data: 'student.email',
+                        defaultContent: '-',
+                        name: 'student.email'
                     },
                     {
                         data: 'lama_magang',
@@ -61,6 +57,7 @@
                     // },
                     {
                         data: 'action',
+                        className: 'text-center',
                         name: 'action',
                         orderable: true,
                         searchable: true
