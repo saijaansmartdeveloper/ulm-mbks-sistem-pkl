@@ -14,7 +14,7 @@
                             <th>Email</th>
                             <th>Jurusan</th>
                             <th>Prodi</th>
-                            <th class='text-center' width="124">Action</th>
+                            <th class='text-center'>Action</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -57,6 +57,7 @@
                     },
                     {
                         data: 'action',
+                        className: 'text-center',
                         name: 'action',
                         orderable: true,
                         searchable: true

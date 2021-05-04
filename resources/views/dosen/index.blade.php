@@ -13,9 +13,8 @@
                             <th>NIP</th>
                             <th>Nama</th>
                             <th>Email</th>
-                            <th>Jurusan</th>
                             <th>Prodi</th>
-                            <th class='text-center' width="124">Action</th>
+                            <th class='text-center'>Action</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -50,17 +49,13 @@
                         name: 'email'
                     },
                     {
-                        data: 'jurusan.nama_jurusan',
-                        defaultContent: '-',
-                        name: 'jurusan.nama_jurusan'
-                    },
-                    {
                         data: 'prodi.nama_prodi',
                         defaultContent: '-',
                         name: 'prodi.nama_prodi'
                     },
                     {
                         data: 'action',
+                        className: 'text-center',
                         name: 'action',
                         orderable: true,
                         searchable: true

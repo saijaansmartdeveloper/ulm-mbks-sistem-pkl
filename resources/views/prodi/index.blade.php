@@ -13,7 +13,7 @@
                             <th>Kode Prodi</th>
                             <th>Nama Prodi</th>
                             <th>Jurusan</th>
-                            <th class='text-center' width="85">Action</th>
+                            <th class='text-center'>Action</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -51,6 +51,7 @@
                     },
                     {
                         data: 'action',
+                        className: 'text-center',
                         name: 'action',
                         orderable: true,
                         searchable: true

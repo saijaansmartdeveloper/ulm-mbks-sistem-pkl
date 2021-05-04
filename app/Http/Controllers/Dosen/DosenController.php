@@ -19,10 +19,10 @@ class DosenController extends Controller
         return Datatables::of($data)
             ->addIndexColumn()
             ->addColumn('action', function ($data) {
-                $action   = '<a href=' . route('dosen.edit', ['id' => $data->uuid]) . ' class="btn btn-sm btn-primary" >Ubah</a>';
-                $action  .= '<a href=' . route('dosen.show', ['id' => $data->uuid]) . ' class="btn btn-sm btn-info" >Show</a>';
-                $action  .= \Form::open(['url' => route('dosen.destroy', ['id' => $data->uuid]), 'method' => 'delete', 'style' => 'float:right']);
-                $action  .= "<button type='submit' class = 'btn btn-danger btn-sm' >Hapus</button>";
+                $action   = \Form::open(['url' => route('dosen.destroy', ['id' => $data->uuid]), 'method' => 'delete']);
+                $action  .= '<a href=' . route('dosen.edit', ['id' => $data->uuid]) . ' class="btn btn-sm btn-primary" ><i class="fa fa-edit"></i></a> ';
+                $action  .= '<a href=' . route('dosen.show', ['id' => $data->uuid]) . ' class="btn btn-sm btn-info" ><i class="fa fa-search"></i></a> ';
+                $action  .= "<button type='submit' class = 'btn btn-danger btn-sm'><i class='fa fa-trash'></i></button>";
                 $action  .= \Form::close();
 
                 return $action;

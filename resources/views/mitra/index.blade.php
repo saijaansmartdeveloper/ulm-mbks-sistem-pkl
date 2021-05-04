@@ -13,7 +13,7 @@
                             <th>Nama Mitra</th>
                             <th>Divisi Mitra</th>
                             <th>Pamong Mitra</th>
-                            <th class='text-center' width="16.8%">Action</th>
+                            <th class='text-center'>Action</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -49,6 +49,7 @@
                     },
                     {
                         data: 'action',
+                        className: 'text-center',
                         name: 'action',
                         orderable: true,
                         searchable: true

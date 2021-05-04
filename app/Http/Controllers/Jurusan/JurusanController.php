@@ -17,9 +17,9 @@ class JurusanController extends Controller
         return Datatables::of($data)
             ->addIndexColumn()
             ->addColumn('action', function ($data) {
-                $action   = '<a href=' . route('jurusan.edit', ['id' => $data->uuid]) . ' class="btn btn-sm btn-primary" >Ubah</a>';
-                $action  .= \Form::open(['url' => route('jurusan.destroy', ['id' => $data->uuid]), 'method' => 'delete', 'style' => 'float:right']);
-                $action  .= "<button type='submit' class = 'btn btn-danger btn-sm' >Hapus</button>";
+                $action   = \Form::open(['url' => route('jurusan.destroy', ['id' => $data->uuid]), 'method' => 'delete']);
+                $action  .= '<a href=' . route('jurusan.edit', ['id' => $data->uuid]) . ' class="btn btn-sm btn-primary"><i class="fa fa-edit"></i></a> ';
+                $action  .= "<button type='submit' class = 'btn btn-danger btn-sm' ><i class='fa fa-trash'></i></button>";
                 $action  .= \Form::close();
 
                 return $action;

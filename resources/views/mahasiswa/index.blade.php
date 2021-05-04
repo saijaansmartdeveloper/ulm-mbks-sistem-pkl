@@ -4,8 +4,8 @@
     <div class="card py-4">
         <div class="card-body">
             @include('alert')
-            {{-- <a href="{{ route('supervisor.create') }}" class="btn btn-primary">Tambah Data</a> --}}
-            {{-- <hr> --}}
+            <a href="{{ route('mahasiswa.create') }}" class="btn btn-primary">Tambah Data</a>
+            <hr>
             <div class="table-responsive">
                 <table class="table table-bordered" id="table-mahasiswa">
                     <thead>
