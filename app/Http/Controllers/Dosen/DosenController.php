@@ -165,11 +165,7 @@ class DosenController extends Controller
 
         $dosen = Dosen::findOrFail($id);
 
-        if ($request->password == null) {
-            $password = $dosen->password;
-        } else {
-            $password = bcrypt($request->password);
-        }
+
 
         if (request()->file('foto_dosen')) {
             Storage::delete($dosen->foto_dosen);
@@ -182,7 +178,9 @@ class DosenController extends Controller
         $dosen->nip_dosen       = $request->nip_dosen;
         $dosen->nama_dosen      = $request->nama_dosen;
         $dosen->email           = $request->email;
-        $dosen->password        = $password;
+        if ($request->password != null) {
+            $dosen->password = bcrypt($request->password);
+        }
         $dosen->jurusan_uuid    = Auth::User()->jurusan_uuid;
         $dosen->prodi_uuid      = Auth::User()->prodi_uuid;
         $dosen->foto_dosen      = $fotoUrl;

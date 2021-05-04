@@ -9,7 +9,11 @@
 @if (Auth::User()->hasRole('super_admin'))
     <a class="nav-link collapsed" href="{{ route('user.index') }} ">
         <div class="sb-nav-link-icon"><i class="fas fa-users fa-fw"></i></div>
-        User
+        Pengguna
+    </a>
+    <a class="nav-link collapsed" href="{{ route('jenis_kegiatan.index') }}">
+        <div class="sb-nav-link-icon"><i class="fas fa-building fa-fw"></i></div>
+        Jenis Kegiatan
     </a>
     <a class="nav-link collapsed" href="{{ route('jurusan.index') }}">
         <div class="sb-nav-link-icon"><i class="fas fa-building fa-fw"></i></div>
@@ -30,10 +34,7 @@
         <div class="sb-nav-link-icon"><i class="fas fa-users fa-fw"></i></div>
         Dosen
     </a>
-    <a class="nav-link collapsed" href="{{ route('jenis_kegiatan.index') }}">
-        <div class="sb-nav-link-icon"><i class="fas fa-building fa-fw"></i></div>
-        Jenis Kegiatan
-    </a>
+    
     <a class="nav-link collapsed" href="{{ route('magang.index') }}">
         <div class="sb-nav-link-icon"><i class="fas fa-building fa-fw"></i></div>
         Kegiatan
