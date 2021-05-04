@@ -17,10 +17,10 @@ class JenisKegiatanController extends Controller
         return Datatables::of($data)
             ->addIndexColumn()
             ->addColumn('action', function ($data) {
-                $action   = \Form::open(['url' => route('jenis_kegiatan.destroy', ['id' => $data->uuid]), 'method' => 'delete']);
-                $action  .= '<a href=' . route('jenis_kegiatan.edit', ['id' => $data->uuid]) . ' class="btn btn-sm btn-primary" ><i class="fa fa-edit"></i></a> ';
-                $action  .= "<button type='submit' class = 'btn btn-danger btn-sm' ><i class='fa fa-trash'></i></button>";
+                $action   = \Form::open(['url' => route('jenis_kegiatan.destroy', ['id' => $data->uuid]),  'id' => 'data-' . $data->id, 'method' => 'delete']);
                 $action  .= \Form::close();
+                $action  .= '<a href=' . route('jenis_kegiatan.edit', ['id' => $data->uuid]) . ' class="btn btn-sm btn-primary" ><i class="fa fa-edit"></i></a> ';
+                $action  .= '<button onclick="deleteRow(' . $data->id . ')" class = "btn btn-danger btn-sm" ><i class="fa fa-trash"></i></button>';
 
                 return $action;
             })

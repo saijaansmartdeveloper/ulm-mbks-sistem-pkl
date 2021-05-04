@@ -12,6 +12,8 @@
     <link href="{{ asset('vendor/jquery-ui/jquery-ui.min.css') }}" rel="stylesheet" />
     <link href="{{ asset('vendor/jquery-ui/jquery-ui.structure.min.css') }}" rel="stylesheet" />
     <link href="{{ asset('sbadmin/css/styles.css') }}" rel="stylesheet" />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/7.33.1/sweetalert2.min.css" rel="stylesheet">
+    </link>
 
     <link rel="stylesheet" type="text/css"
         href="https://cdn.jsdelivr.net/npm/evo-calendar@1.1.2/evo-calendar/css/evo-calendar.min.css" />
@@ -74,6 +76,8 @@
 
     <script src="{{ asset('sbadmin/js/bootstrap.min.js') }}"></script>
     <script src="https://cdn.jsdelivr.net/npm/evo-calendar@1.1.2/evo-calendar/js/evo-calendar.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/7.33.1/sweetalert2.min.js"></script>
+
 
     <script src="{{ asset('sbadmin/js/scripts.js') }}"></script>
     <script src="{{ asset('vendor/jquery-ui/jquery-ui.min.js') }}"></script>

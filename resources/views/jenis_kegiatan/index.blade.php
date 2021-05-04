@@ -28,6 +28,8 @@
     <script src="{{ asset('datatables/js/jquery.validate.js') }}"></script>
     <script src="{{ asset('datatables/js/jquery.dataTables.min.js') }}"></script>
     <script src="{{ asset('datatables/js/dataTables.bootstrap4.min.js') }}"></script>
+    <script src="{{ asset('sweetalert/alert.js') }}"></script>
+
     <script>
         $(function() {
             $('#table-jenis-kegiatan').DataTable({

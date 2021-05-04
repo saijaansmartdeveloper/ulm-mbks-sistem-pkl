@@ -27,11 +27,11 @@ class MahasiswaController extends Controller
         return Datatables::of($data)
             ->addIndexColumn()
             ->addColumn('action', function ($data) {
-                $action   = \Form::open(['url' => route('mahasiswa.destroy', ['id' => $data->uuid]), 'method' => 'delete']);
+                $action   = \Form::open(['url' => route('mahasiswa.destroy', ['id' => $data->uuid]), 'id' => 'data-' . $data->id, 'method' => 'delete']);
+                $action  .= \Form::close();
                 $action  .= '<a href=' . route('mahasiswa.edit', ['id' => $data->uuid]) . ' class="btn btn-sm btn-primary" ><i class="fa fa-edit"></i></a> ';
                 $action  .= '<a href=' . route('mahasiswa.show', ['id' => $data->uuid]) . ' class="btn btn-sm btn-info" ><i class="fa fa-search"></i></a> ';
-                $action  .= "<button type='submit' class = 'btn btn-danger btn-sm'><i class='fa fa-trash'></i></button>";
-                $action  .= \Form::close();
+                $action  .= '<button onclick="deleteRow(' . $data->id . ')" class = "btn btn-danger btn-sm"><i class="fa fa-trash"></i></button>';
                 return $action;
             })
             ->rawColumns(['action'])
