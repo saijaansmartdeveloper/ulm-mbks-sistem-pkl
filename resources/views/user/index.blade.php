@@ -11,9 +11,10 @@
                     <thead>
                         <tr>
                             <th>Nama Pengguna</th>
+                            <th>Email</th>
                             <th>Jurusan</th>
                             <th>Prodi</th>
-                            <th class='text-center' width="124">Action</th>
+                            <th class='text-center'>Action</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -29,6 +30,8 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.0/jquery.validate.js"></script>
     <script src="https://cdn.datatables.net/1.10.21/js/jquery.dataTables.min.js"></script>
     <script src="https://cdn.datatables.net/1.10.21/js/dataTables.bootstrap4.min.js"></script>
+    <script src="{{ asset('sweetalert/alert.js') }}"></script>
+
     <script>
         $(function() {
             $('#table-user').DataTable({
@@ -38,6 +41,11 @@
                 columns: [{
                         data: 'nama_pengguna',
                         name: 'nama_pengguna'
+                    },
+                    {
+                        data: 'email',
+                        name: 'email',
+                        defaultContent: '-',
                     },
                     {
                         data: 'jurusan.kode_jurusan',
@@ -51,6 +59,7 @@
                     },
                     {
                         data: 'action',
+                        className: 'text-center',
                         name: 'action',
                         orderable: true,
                         searchable: true

@@ -35,7 +35,6 @@
                     <td>Status Jurnal</td>
                     <td>
                         {!! $data->status_jurnal_with_label !!}
-
                     </td>
                 </tr>
                 <tr>

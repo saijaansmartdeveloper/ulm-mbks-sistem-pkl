@@ -47,16 +47,7 @@ Route::group(['namespace' => 'Mahasiswa'], function () {
 });
 
 Route::group(['namespace' => 'Kegiatan'], function () {
-    Route::get('jenis_kegiatan/list', [JenisKegiatanController::class, 'getJenisKegiatan'])->name('jenis_kegiatan.list');
-
-
-    Route::get('/jenis_kegiatan', [JenisKegiatanController::class, 'index'])->name('jenis_kegiatan.index');
-    Route::get('/jenis_kegiatan/create', [JenisKegiatanController::class, 'create'])->name('jenis_kegiatan.create');
-    Route::post('/jenis_kegiatan', [JenisKegiatanController::class, 'store'])->name('jenis_kegiatan.store');
-    Route::get('/jenis_kegiatan/{id}/edit', [JenisKegiatanController::class, 'edit'])->name('jenis_kegiatan.edit');
-    Route::put('/jenis_kegiatan/{id}', [JenisKegiatanController::class, 'update'])->name('jenis_kegiatan.update');
-    Route::delete('/jenis_kegiatan/{id}', [JenisKegiatanController::class, 'destroy'])->name('jenis_kegiatan.destroy');
-
+   
 
     Route::get('magang/list', [MagangController::class, 'getMagang'])->name('magang.list');
 

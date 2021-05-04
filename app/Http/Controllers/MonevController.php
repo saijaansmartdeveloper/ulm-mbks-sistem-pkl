@@ -110,6 +110,7 @@ class MonevController extends Controller
         $monev->catatan_monev   = $request->catatan_monev;
         $monev->tanggal_monev   = $request->tanggal_monev;
         $monev->file_monev      = $fileUrl;
+        $monev->komentar_monev  = null;
         $monev->magang_uuid     = $request->magang_uuid;
         $monev->prodi_uuid      = Auth::guard('lecturer')->User()->prodi_uuid;
         $monev->jurusan_uuid    = Auth::guard('lecturer')->User()->jurusan_uuid;

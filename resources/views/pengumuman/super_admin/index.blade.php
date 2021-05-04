@@ -12,7 +12,7 @@
                         <tr>
                             <th>Judul</th>
                             <th>Tanggal</th>
-                            <th class='text-center' width="85">Action</th>
+                            <th class='text-center'>Action</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -28,6 +28,8 @@
     <script src="{{ asset('datatables/js/jquery.validate.js') }}"></script>
     <script src="{{ asset('datatables/js/jquery.dataTables.min.js') }}"></script>
     <script src="{{ asset('datatables/js/dataTables.bootstrap4.min.js') }}"></script>
+    <script src="{{ asset('sweetalert/alert.js') }}"></script>
+
     <script>
         $(function() {
             $('#table-pengumuman').DataTable({
@@ -44,6 +46,7 @@
                     },
                     {
                         data: 'action',
+                        className: 'text-center',
                         name: 'action',
                         orderable: true,
                         searchable: true

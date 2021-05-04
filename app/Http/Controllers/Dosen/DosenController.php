@@ -19,11 +19,11 @@ class DosenController extends Controller
         return Datatables::of($data)
             ->addIndexColumn()
             ->addColumn('action', function ($data) {
-                $action   = '<a href=' . route('dosen.edit', ['id' => $data->uuid]) . ' class="btn btn-sm btn-primary" >Ubah</a>';
-                $action  .= '<a href=' . route('dosen.show', ['id' => $data->uuid]) . ' class="btn btn-sm btn-info" >Show</a>';
-                $action  .= \Form::open(['url' => route('dosen.destroy', ['id' => $data->uuid]), 'method' => 'delete', 'style' => 'float:right']);
-                $action  .= "<button type='submit' class = 'btn btn-danger btn-sm' >Hapus</button>";
+                $action   = \Form::open(['url' => route('dosen.destroy', ['id' => $data->uuid]), 'id' => 'data-' . $data->id, 'method' => 'delete']);
                 $action  .= \Form::close();
+                $action  .= '<a href=' . route('dosen.edit', ['id' => $data->uuid]) . ' class="btn btn-sm btn-primary" ><i class="fa fa-edit"></i></a> ';
+                $action  .= '<a href=' . route('dosen.show', ['id' => $data->uuid]) . ' class="btn btn-sm btn-info" ><i class="fa fa-search"></i></a> ';
+                $action  .= '<button onclick="deleteRow('.$data->id.')" class = "btn btn-danger btn-sm"><i class="fa fa-trash"></i></button>';
 
                 return $action;
             })
@@ -165,11 +165,7 @@ class DosenController extends Controller
 
         $dosen = Dosen::findOrFail($id);
 
-        if ($request->password == null) {
-            $password = $dosen->password;
-        } else {
-            $password = bcrypt($request->password);
-        }
+
 
         if (request()->file('foto_dosen')) {
             Storage::delete($dosen->foto_dosen);
@@ -182,7 +178,9 @@ class DosenController extends Controller
         $dosen->nip_dosen       = $request->nip_dosen;
         $dosen->nama_dosen      = $request->nama_dosen;
         $dosen->email           = $request->email;
-        $dosen->password        = $password;
+        if ($request->password != null) {
+            $dosen->password = bcrypt($request->password);
+        }
         $dosen->jurusan_uuid    = Auth::User()->jurusan_uuid;
         $dosen->prodi_uuid      = Auth::User()->prodi_uuid;
         $dosen->foto_dosen      = $fotoUrl;

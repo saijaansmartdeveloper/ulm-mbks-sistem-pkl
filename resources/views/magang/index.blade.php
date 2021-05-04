@@ -11,10 +11,9 @@
                     <thead>
                         <tr>
                             <th>Jenis Kegiatan</th>
-                            <th>Mulai Magang</th>
-                            <th>Akhir Magang</th>
-                            <th>Lama Magang</th>
-                            <th class='text-center' width="85">Action</th>
+                            <th>Email Mahasiswa</th>
+                            <th>Lama Magang (Minggu)</th>
+                            <th class='text-center'>Action</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -30,6 +29,8 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.0/jquery.validate.js"></script>
     <script src="https://cdn.datatables.net/1.10.21/js/jquery.dataTables.min.js"></script>
     <script src="https://cdn.datatables.net/1.10.21/js/dataTables.bootstrap4.min.js"></script>
+    <script src="{{ asset('sweetalert/alert.js') }}"></script>
+
     <script>
         $(function() {
             $('#table-jenis-kegiatan').DataTable({
@@ -42,12 +43,9 @@
                         name: 'jenis_kegiatan.nama_jenis_kegiatan'
                     },
                     {
-                        data: 'mulai_magang',
-                        name: 'mulai_magang'
-                    },
-                    {
-                        data: 'akhir_magang',
-                        name: 'akhir_magang'
+                        data: 'student.email',
+                        defaultContent: '-',
+                        name: 'student.email'
                     },
                     {
                         data: 'lama_magang',
@@ -59,6 +57,7 @@
                     // },
                     {
                         data: 'action',
+                        className: 'text-center',
                         name: 'action',
                         orderable: true,
                         searchable: true

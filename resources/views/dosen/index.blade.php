@@ -12,9 +12,9 @@
                         <tr>
                             <th>NIP</th>
                             <th>Nama</th>
-                            <th>Jurusan</th>
+                            <th>Email</th>
                             <th>Prodi</th>
-                            <th class='text-center' width="124">Action</th>
+                            <th class='text-center'>Action</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -30,6 +30,8 @@
     <script src="{{ asset('datatables/js/jquery.validate.js') }}"></script>
     <script src="{{ asset('datatables/js/jquery.dataTables.min.js') }}"></script>
     <script src="{{ asset('datatables/js/dataTables.bootstrap4.min.js') }}"></script>
+    <script src="{{ asset('sweetalert/alert.js') }}"></script>
+
     <script>
         $(function() {
             $('#table-dosen').DataTable({
@@ -45,9 +47,8 @@
                         name: 'nama_dosen'
                     },
                     {
-                        data: 'jurusan.nama_jurusan',
-                        defaultContent: '-',
-                        name: 'jurusan.nama_jurusan'
+                        data: 'email',
+                        name: 'email'
                     },
                     {
                         data: 'prodi.nama_prodi',
@@ -56,6 +57,7 @@
                     },
                     {
                         data: 'action',
+                        className: 'text-center',
                         name: 'action',
                         orderable: true,
                         searchable: true

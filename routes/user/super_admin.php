@@ -2,10 +2,12 @@
 
 use App\Http\Controllers\AdminProdi\AdminProdiController;
 use App\Http\Controllers\Jurusan\JurusanController;
+use App\Http\Controllers\Kegiatan\JenisKegiatanController;
 use App\Http\Controllers\Pengumuman\PengumumanController;
 use App\Http\Controllers\Prodi\ProdiController;
 use App\Http\Controllers\Supervisor\SupervisorController;
 use App\Http\Controllers\UserController;
+use App\Models\JenisKegiatan;
 use Illuminate\Support\Facades\Route;
 
 Route::group(['namespace' => 'User'], function () {
@@ -31,6 +33,20 @@ Route::group(['namespace' => 'Pengumuman'], function () {
     Route::put('/pengumuman/{id}', [PengumumanController::class, 'update'])->name('pengumuman.update');
     Route::delete('/pengumuman/{id}', [PengumumanController::class, 'destroy'])->name('pengumuman.destroy');
 });
+Route::group(['namespace' => 'Kegiatan'], function () {
+    Route::get('jenis_kegiatan/list', [JenisKegiatanController::class, 'getJenisKegiatan'])->name('jenis_kegiatan.list');
+
+
+    Route::get('/jenis_kegiatan', [JenisKegiatanController::class, 'index'])->name('jenis_kegiatan.index');
+    Route::get('/jenis_kegiatan/create', [JenisKegiatanController::class, 'create'])->name('jenis_kegiatan.create');
+    Route::post('/jenis_kegiatan', [JenisKegiatanController::class, 'store'])->name('jenis_kegiatan.store');
+    Route::get('/jenis_kegiatan/{id}/edit', [JenisKegiatanController::class, 'edit'])->name('jenis_kegiatan.edit');
+    Route::put('/jenis_kegiatan/{id}', [JenisKegiatanController::class, 'update'])->name('jenis_kegiatan.update');
+    Route::delete('/jenis_kegiatan/{id}', [JenisKegiatanController::class, 'destroy'])->name('jenis_kegiatan.destroy');
+});
+
+
+
 
 Route::group(['namespace' => 'Jurusan'], function () {
     Route::get('jurusan/list', [JurusanController::class, 'getJurusan'])->name('jurusan.list');

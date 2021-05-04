@@ -3,7 +3,6 @@
 @section('content')
     <div class="card py-4">
         <div class="card-body">
-
             <a href="{{ route('jurusan.create') }}" class="btn btn-primary">Tambah Data</a>
             <hr>
             @include('alert')
@@ -13,7 +12,7 @@
                         <tr>
                             <th>Kode Jurusan</th>
                             <th>Nama Jurusan</th>
-                            <th class='text-center' width="85">Action</th>
+                            <th class='text-center'>Action</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -29,6 +28,8 @@
     <script src="{{ asset('datatables/js/jquery.validate.js') }}"></script>
     <script src="{{ asset('datatables/js/jquery.dataTables.min.js') }}"></script>
     <script src="{{ asset('datatables/js/dataTables.bootstrap4.min.js') }}"></script>
+    <script src="{{ asset('sweetalert/alert.js') }}"></script>
+
     <script>
         $(function() {
             $('#table-jurusan').DataTable({
@@ -45,6 +46,7 @@
                     },
                     {
                         data: 'action',
+                        className: 'text-center',
                         name: 'action',
                         orderable: true,
                         searchable: true

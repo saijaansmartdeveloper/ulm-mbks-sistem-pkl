@@ -18,11 +18,11 @@ class UserController extends Controller
         return Datatables::of($data)
             ->addIndexColumn()
             ->addColumn('action', function ($data) {
-                $action   = '<a href=' . route('user.edit', ['id' => $data->uuid]) . ' class="btn btn-sm btn-primary" >Ubah</a>';
-                $action  .= '<a href=' . route('user.show', ['id' => $data->uuid]) . ' class="btn btn-sm btn-info" >Show</a>';
-                $action  .= \Form::open(['url' => route('user.destroy', ['id' => $data->uuid]), 'method' => 'delete', 'style' => 'float:right']);
-                $action  .= "<button type='submit' class = 'btn btn-danger btn-sm' >Hapus</button>";
+                $action   = \Form::open(['url' => route('user.destroy', ['id' => $data->uuid]), 'id' => 'data-' . $data->id, 'method' => 'delete']);
                 $action  .= \Form::close();
+                $action  .= '<a href=' . route('user.edit', ['id' => $data->uuid]) . ' class="btn btn-sm btn-primary"><i class="fa fa-edit"></i></a> ';
+                $action  .= '<a href=' . route('user.show', ['id' => $data->uuid]) . ' class="btn btn-sm btn-info"><i class="fa fa-search"></i></a> ';
+                $action  .= '<button onclick="deleteRow(' . $data->id . ')" class = "btn btn-danger btn-sm"><i class="fa fa-trash"></i></button>';
 
                 return $action;
             })

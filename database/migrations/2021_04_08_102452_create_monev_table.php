@@ -19,6 +19,7 @@ class CreateMonevTable extends Migration
             $table->text('catatan_monev')->nullable();
             $table->date('tanggal_monev')->nullable();
             $table->string('file_monev')->nullable();
+            $table->longText('komentar_monev')->nullable();
             $table->foreignUuid('magang_uuid')->nullable();
             $table->foreignUuid('prodi_uuid')->nullable();
             $table->foreignUuid('jurusan_uuid')->nullable();
