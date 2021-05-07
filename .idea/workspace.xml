@@ -5,8 +5,43 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="56f6580f-bc2a-4056-98d9-44735ab73c9e" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/resources/views/layouts/components/menu/partner.blade.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/views/public/partner/index.blade.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/routes/public/partner.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/composer.json" beforeDir="false" afterPath="$PROJECT_DIR$/composer.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/InternshipController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/InternshipController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/JournalController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/JournalController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Kegiatan/MagangController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Kegiatan/MagangController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/LecturerController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/LecturerController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Mahasiswa/MahasiswaController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Mahasiswa/MahasiswaController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/MonevController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/MonevController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/StudentController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/StudentController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Models/Dosen.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/Dosen.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Models/JenisKegiatan.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/JenisKegiatan.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Models/Jurnal.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/Jurnal.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Models/Magang.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/Kegiatan.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Models/Mahasiswa.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/Mahasiswa.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Models/Mitra.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/Mitra.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Models/Monev.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/Monev.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/factories/MitraFactory.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/factories/MitraFactory.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/migrations/2021_04_08_102341_create_pengumuman_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2021_04_08_102341_create_pengumuman_table.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/migrations/2021_04_08_102435_create_mitra_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2021_04_08_102435_create_mitra_table.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/migrations/2021_04_08_102438_create_jenis_kegiatans_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2021_04_08_102438_create_jenis_kegiatans_table.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/migrations/2021_04_08_102440_create_magang_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2021_04_08_102440_create_kegiatan_table.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/migrations/2021_04_08_102452_create_monev_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2021_04_08_102452_create_monev_table.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/migrations/2021_04_08_102537_create_jurnal_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2021_04_08_102537_create_jurnal_table.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/seeders/DatabaseSeeder.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/seeders/DatabaseSeeder.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/seeders/DosenSeeder.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/seeders/DosenSeeder.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/seeders/JurusanProdiSeeder.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/seeders/JurusanProdiSeeder.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/seeders/MahasiswaSeeder.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/seeders/MahasiswaSeeder.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/seeders/MitraSeeder.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/seeders/MitraSeeder.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/seeders/ProdiSeeder.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/seeders/UsersSeeder.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/seeders/UsersSeeder.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/layouts/admin.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/layouts/admin.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/layouts/components/admin/left-side-menu.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/layouts/components/admin/left-side-menu.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/magang/form.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/magang/form.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/routes/public/lecturer.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/public/lecturer.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/web.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -172,12 +207,13 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/public/img" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/resources/views/public" />
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="vue.rearranger.settings.migration" value="true" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\Luthfy Eka Permana\PhpstormProjects\ulm-mbks-sistem-pkl\resources\views\public" />
       <recent name="C:\Users\Luthfy Eka Permana\PhpstormProjects\ulm-mbks-sistem-pkl\public\img" />
       <recent name="C:\Users\Luthfy Eka Permana\PhpstormProjects\ulm-mbks-sistem-pkl\public\vendor\evo-calender" />
     </key>
@@ -208,6 +244,7 @@
       <workItem from="1619463341551" duration="7873000" />
       <workItem from="1620021816115" duration="62000" />
       <workItem from="1620052619579" duration="132000" />
+      <workItem from="1620391485772" duration="4715000" />
     </task>
     <servers />
   </component>

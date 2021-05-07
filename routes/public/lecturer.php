@@ -15,7 +15,6 @@ Route::prefix('lecturer')->group(function () {
         ->name('lecturer.guidance');
 
 
-
     Route::get('monev/list', [MonevController::class, 'getMonev'])->name('monev.list');
     Route::get('monev', [MonevController::class, 'index'])->name('monev.index');
     Route::get('monev/create', [MonevController::class, 'create'])->name('monev.create');

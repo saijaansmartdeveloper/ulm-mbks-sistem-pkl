@@ -62,4 +62,9 @@ class Dosen extends Authenticatable
     {
         return $this->belongsTo(Jurusan::class, 'jurusan_uuid');
     }
+
+    public function kegiatan()
+    {
+        return $this->hasOne(Kegiatan::class, 'dosen_uuid');
+    }
 }

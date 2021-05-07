@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateMagangTable extends Migration
+class CreateKegiatanTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,16 +13,17 @@ class CreateMagangTable extends Migration
      */
     public function up()
     {
-        Schema::create('magang', function (Blueprint $table) {
+        Schema::create('kegiatan', function (Blueprint $table) {
             $table->id();
             $table->uuid('uuid')->unique();
-            $table->date('mulai_magang')->nullable();
-            $table->integer('lama_magang')->nullable();
-            $table->date('akhir_magang')->nullable();
-            $table->string('file_laporan_magang')->nullable();
-            $table->string('file_jurnal_magang')->nullable();
-            $table->string('file_sk_magang')->nullable();
-            $table->integer('status_magang')->default(0);
+            $table->date('mulai_kegiatan')->nullable();
+            $table->integer('lama_kegiatan')->nullable();
+            $table->date('akhir_kegiatan')->nullable();
+            $table->string('file_laporan_kegiatan')->nullable();
+            $table->string('file_jurnal_kegiatan')->nullable();
+            $table->string('file_penilaian_kegiatan')->nullable();
+            $table->string('file_sk_kegiatan')->nullable();
+            $table->integer('status_kegiatan')->default(0);
             $table->foreignUuid('dosen_uuid')->nullable();
             $table->foreignUuid('mitra_uuid')->nullable();
             $table->foreignUuid('mahasiswa_uuid')->nullable();

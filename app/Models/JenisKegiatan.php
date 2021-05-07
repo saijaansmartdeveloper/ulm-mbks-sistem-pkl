@@ -13,8 +13,10 @@ class JenisKegiatan extends Model
     protected $primaryKey   = 'uuid';
     public $incrementing    = false;
 
+    protected $fillable = ['kode_jenis_kegiatan', 'nama_kampus_mengajar', 'deskripsi_kampus_mengajar'];
+
     public function magang()
     {
-        return $this->hasMany(Magang::class, 'uuid');
+        return $this->hasMany(Kegiatan::class, 'uuid');
     }
 }

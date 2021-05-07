@@ -20,12 +20,12 @@ class CreateMonevTable extends Migration
             $table->date('tanggal_monev')->nullable();
             $table->string('file_monev')->nullable();
             $table->longText('komentar_monev')->nullable();
-            $table->foreignUuid('magang_uuid')->nullable();
+            $table->foreignUuid('kegiatan_uuid')->nullable();
             $table->foreignUuid('prodi_uuid')->nullable();
             $table->foreignUuid('jurusan_uuid')->nullable();
             $table->timestamps();
 
-            $table->foreign('magang_uuid')->references('uuid')->on('magang')->cascadeOnUpdate()->nullOnDelete();
+            $table->foreign('kegiatan_uuid')->references('uuid')->on('kegiatan')->cascadeOnUpdate()->nullOnDelete();
             $table->foreign('prodi_uuid')->references('uuid')->on('prodi')->cascadeOnUpdate()->nullOnDelete();
             $table->foreign('jurusan_uuid')->references('uuid')->on('jurusan')->cascadeOnUpdate()->nullOnDelete();
 

@@ -30,8 +30,8 @@ class MitraFactory extends Factory
             'alamat_mitra'              => $this->faker->address,
             'penanggung_jawab_mitra'    => $this->faker->name,
             'pamong_mitra'              => $this->faker->name,
-            'email'                     => $this->faker->companyEmail,
-            'username'                  => $this->faker->unique()->firstName,
+            'email_mitra'               => $this->faker->companyEmail,
+            'email'                     => $this->faker->email,
             'password'                  => Hash::make('secret'),
             'phone'                     => $this->faker->phoneNumber
         ];

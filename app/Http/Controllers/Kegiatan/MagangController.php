@@ -5,7 +5,7 @@ namespace App\Http\Controllers\Kegiatan;
 use App\Http\Controllers\Controller;
 use App\Models\Dosen;
 use App\Models\JenisKegiatan;
-use App\Models\Magang;
+use App\Models\Kegiatan;
 use App\Models\Mahasiswa;
 use App\Models\Mitra;
 use Illuminate\Http\Request;
@@ -18,7 +18,7 @@ class MagangController extends Controller
     public function getMagang(Request $request)
     {
 
-        $data = Magang::with('jenis_kegiatan', 'student')->get();
+        $data = Kegiatan::with('jenis_kegiatan', 'student')->get();
         return Datatables::of($data)
             ->addIndexColumn()
             ->addColumn('action', function ($data) {
@@ -72,11 +72,11 @@ class MagangController extends Controller
                 'jenis_kegiatan_uuid'   => 'required',
             ],
             [
-                'mulai_magang.required'          => 'Tanggal Mulai Magang Tidak Boleh Kosong',
-                'lama_magang.required'           => 'Lama Magang Tidak Boleh Kosong',
-                'akhir_magang.required'          => 'Tangal Akhir Magang Tidak Boleh Kosong',
-                'file_sk_magang.required'        => 'File SK Magang Tidak Boleh Kosong',
-                'status_magang.required'         => 'Status Magang Tidak Boleh Kosong',
+                'mulai_magang.required'          => 'Tanggal Mulai Kegiatan Tidak Boleh Kosong',
+                'lama_magang.required'           => 'Lama Kegiatan Tidak Boleh Kosong',
+                'akhir_magang.required'          => 'Tangal Akhir Kegiatan Tidak Boleh Kosong',
+                'file_sk_magang.required'        => 'File SK Kegiatan Tidak Boleh Kosong',
+                'status_magang.required'         => 'Status Kegiatan Tidak Boleh Kosong',
                 'dosen_uuid.required'            => 'Dosen Tidak Boleh Kosong',
                 'mahasiswa_uuid.required'        => 'Mahasiswa Tidak Boleh Kosong',
                 'mitra_uuid.required'            => 'Mitra Tidak Boleh Kosong',
@@ -85,7 +85,7 @@ class MagangController extends Controller
         );
 
         foreach (request('mahasiswa_uuid') as $mahasiswa) {
-            $magang = Magang::create([
+            $magang = Kegiatan::create([
                 'uuid'                  => Uuid::uuid4()->getHex(),
                 'mulai_magang'          => request('mulai_magang'),
                 'akhir_magang'          => request('akhir_magang'),
@@ -116,7 +116,7 @@ class MagangController extends Controller
             'mitra'             => Mitra::pluck('nama_mitra', 'uuid'),
             'mahasiswa'         => Mahasiswa::where('prodi_uuid', $prodi_uuid)->pluck('nama_mahasiswa', 'uuid'),
             'jenis_kegiatan'    => JenisKegiatan::pluck('nama_jenis_kegiatan', 'uuid'),
-            'data'              => Magang::findOrFail($id),
+            'data'              => Kegiatan::findOrFail($id),
         ];
 
         return view('magang.edit', $data);
@@ -137,11 +137,11 @@ class MagangController extends Controller
                 'jenis_kegiatan_uuid'   => 'required',
             ],
             [
-                'mulai_magang.required'          => 'Tanggal Mulai Magang Tidak Boleh Kosong',
-                'lama_magang.required'           => 'Lama Magang Tidak Boleh Kosong',
-                'akhir_magang.required'          => 'Tangal Akhir Magang Tidak Boleh Kosong',
-                'file_sk_magang.required'        => 'File SK Magang Tidak Boleh Kosong',
-                'status_magang.required'         => 'Status Magang Tidak Boleh Kosong',
+                'mulai_magang.required'          => 'Tanggal Mulai Kegiatan Tidak Boleh Kosong',
+                'lama_magang.required'           => 'Lama Kegiatan Tidak Boleh Kosong',
+                'akhir_magang.required'          => 'Tangal Akhir Kegiatan Tidak Boleh Kosong',
+                'file_sk_magang.required'        => 'File SK Kegiatan Tidak Boleh Kosong',
+                'status_magang.required'         => 'Status Kegiatan Tidak Boleh Kosong',
                 'dosen_uuid.required'            => 'Dosen Tidak Boleh Kosong',
                 'mahasiswa_uuid.required'        => 'Mahasiswa Tidak Boleh Kosong',
                 'mitra_uuid.required'            => 'Mitra Tidak Boleh Kosong',
@@ -149,7 +149,7 @@ class MagangController extends Controller
             ]
         );
 
-        $magang = Magang::findOrFail($id);
+        $magang = Kegiatan::findOrFail($id);
         $magang->mulai_magang           = $request->mulai_magang;
         $magang->lama_magang            = $request->lama_magang;
         $magang->akhir_magang           = $request->akhir_magang;
@@ -171,7 +171,7 @@ class MagangController extends Controller
 
     public function destroy($id)
     {
-        $magang = Magang::findOrFail($id);
+        $magang = Kegiatan::findOrFail($id);
         $magang->delete();
 
         return redirect()->back()->with('delete', 'Data Berhasi Dihapus');
@@ -181,7 +181,7 @@ class MagangController extends Controller
     {
         $data = [
             'title' => 'Detail Data Kegiatan',
-            'data'  => Magang::where('uuid', $id)->first(),
+            'data'  => Kegiatan::where('uuid', $id)->first(),
         ];
 
         return view('magang.show', $data);

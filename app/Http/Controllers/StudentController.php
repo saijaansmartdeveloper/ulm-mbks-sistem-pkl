@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Magang;
+use App\Models\Kegiatan;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -20,7 +20,7 @@ class StudentController extends Controller
         $data = [
             'title'     => $user->nama_mahasiswa,
             'guard'     => 'student',
-            'data'      => Magang::where('mahasiswa_uuid', $user->uuid)->first()
+            'data'      => Kegiatan::where('mahasiswa_uuid', $user->uuid)->first()
         ];
 
         return view("public.student.index", $data);

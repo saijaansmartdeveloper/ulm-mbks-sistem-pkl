@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Jurnal;
-use App\Models\Magang;
+use App\Models\Kegiatan;
 use Barryvdh\DomPDF\PDF;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
@@ -25,7 +25,7 @@ class JournalController extends Controller
         $data = [
             'title'     => $user->nama_mahasiswa,
             'guard'     => 'student',
-            'data'      => Magang::where('mahasiswa_uuid', $user->uuid)->firstOrFail()
+            'data'      => Kegiatan::where('mahasiswa_uuid', $user->uuid)->firstOrFail()
         ];
 
         return view("public.jurnal.index", $data);

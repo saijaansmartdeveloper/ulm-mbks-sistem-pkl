@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\DataTables\StudentDataTable;
 use App\Models\Jurnal;
-use App\Models\Magang;
+use App\Models\Kegiatan;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use DataTables;
@@ -24,7 +24,7 @@ class LecturerController extends Controller
             'title' => 'Welcome, ' . $user->nama_dosen,
             'guard' => 'lecturer',
             'data'  => [
-                'magang' => Magang::where('dosen_uuid', $user->uuid)->get()
+                'magang' => Kegiatan::where('dosen_uuid', $user->uuid)->get()
             ]
         ];
 
@@ -53,7 +53,7 @@ class LecturerController extends Controller
     public function getListMahasiswaBimbingan()
     {
         $user = Auth::guard('lecturer')->user();
-        $data = Magang::where('dosen_uuid', $user->uuid)->with('student', 'partner')->get();
+        $data = Kegiatan::where('dosen_uuid', $user->uuid)->with('student', 'partner')->get();
         return Datatables::of($data)
             ->addIndexColumn()
             ->addColumn('action', function ($data) {
@@ -77,7 +77,7 @@ class LecturerController extends Controller
     {
         $data = [
             'title' => 'Jurnal Mahasiswa',
-            'data'  => Magang::where('mahasiswa_uuid', $id)->first(),
+            'data'  => Kegiatan::where('mahasiswa_uuid', $id)->first(),
         ];
 
         return view('public.lecturer.journal.show', $data);

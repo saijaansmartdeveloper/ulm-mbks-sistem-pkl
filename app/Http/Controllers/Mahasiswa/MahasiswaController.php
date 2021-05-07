@@ -121,7 +121,7 @@ class MahasiswaController extends Controller
         $mahasiswa->save();
         $mahasiswa->assignRole('student');
 
-        return redirect()->back()->with('success', 'Registrasi Mahasiswa Berhasil, Tunggu Penetapan Magang Selanjutnya');
+        return redirect()->back()->with('success', 'Registrasi Mahasiswa Berhasil, Tunggu Penetapan Kegiatan Selanjutnya');
     }
 
     /**

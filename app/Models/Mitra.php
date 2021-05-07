@@ -23,7 +23,16 @@ class Mitra extends Authenticatable
 
 
     protected $fillable = [
-        'uuid', 'nama_mitra', 'divisi_mitra', 'alamat_mitra', 'penanggung_jawab_mitra', 'pamong_mitra', 'email', 'username', 'password', 'phone'
+        'uuid',
+        'nama_mitra',
+        'divisi_mitra',
+        'alamat_mitra',
+        'penanggung_jawab_mitra',
+        'pamong_mitra',
+        'email_mitra',
+        'email',
+        'password',
+        'phone'
     ];
 
     protected $hidden = [
