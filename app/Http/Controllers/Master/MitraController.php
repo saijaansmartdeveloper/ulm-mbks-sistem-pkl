@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Mitra;
+namespace App\Http\Controllers\Master;
 
 use App\Http\Controllers\Controller;
 use App\Models\Partner;

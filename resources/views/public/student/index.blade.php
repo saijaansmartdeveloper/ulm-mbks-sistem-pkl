@@ -104,7 +104,7 @@
         <div class="modal fade" id="uploadJournal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
             <div class="modal-dialog modal-dialog-centered">
                 <div class="modal-content">
-                    {{ Form::model($data, ['route' => ['public.internship.report_file', ['id' => $data->uuid]], 'method' => 'put', 'files' => true]) }}
+                    {{ Form::model($data, ['route' => ['public.activity.report_file', ['id' => $data->uuid]], 'method' => 'put', 'files' => true]) }}
                     <div class="modal-header">
                         <h5 class="modal-title" id="staticBackdropLabel">Upload Jurnal</h5>
                         <a href="#" class="close" data-dismiss="modal" data-bs-dismiss="modal" aria-label="close">&times;</a>
@@ -130,7 +130,7 @@
         <div class="modal fade" id="uploadReport" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
             <div class="modal-dialog modal-dialog-centered">
                 <div class="modal-content">
-                    {{ Form::model($data, ['route' => ['public.internship.report_file', ['id' => $data->uuid]], 'method' => 'put', 'files' => true]) }}
+                    {{ Form::model($data, ['route' => ['public.activity.report_file', ['id' => $data->uuid]], 'method' => 'put', 'files' => true]) }}
                     <div class="modal-header">
                         <h5 class="modal-title" id="staticBackdropLabel">Upload Laporan Magang <sup>*</sup></h5>
                         <a href="#" class="close" data-dismiss="modal" data-bs-dismiss="modal" aria-label="close">&times;</a>

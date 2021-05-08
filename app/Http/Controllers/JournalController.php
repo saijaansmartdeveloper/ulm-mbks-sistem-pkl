@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Journal;
 use App\Models\Activity;
+use App\Models\Student;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -13,7 +14,7 @@ class JournalController extends Controller
 {
     public function __construct()
     {
-        $this->middleware('auth:student');
+        $this->middleware('auth:student,lecturer');
     }
 
     public function index()
@@ -66,7 +67,7 @@ class JournalController extends Controller
             'catatan_jurnal'        => $request->catatan_jurnal,
             'tanggal_jurnal'        => Carbon::parse($request->tanggal_jurnal)->format('Y-m-d'),
             'uuid'                  => Uuid::uuid4(),
-            'kegiatan_uuid'         => $user->kegiatan()->first()->uuid,
+            'kegiatan_uuid'         => $user->activities()->first()->uuid,
             'file_image_jurnal'     => $fileImage ?? null,
             'file_dokumen_jurnal'   => $fileDoc ?? null
         ]);
@@ -76,12 +77,12 @@ class JournalController extends Controller
 
     public function show($id)
     {
-        $user   = Auth::guard('student')->user();
 
         $data = [
-            'title'     => $user->nama_mahasiswa . ' - Detail Journal',
-            'guard'     => 'student',
-            'data'      => Journal::findOrFail($id)
+            'title'     => 'Detail Journal',
+            'guard'     => 'lecturer',
+            'data'      => Journal::findOrFail($id),
+            'user'      => []
         ];
 
         return view("public.jurnal.show", $data);

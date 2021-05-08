@@ -18,16 +18,16 @@ class PartnerController extends Controller
         $user   = Auth::guard('partner')->user();
 
         $data = [
-            'title' => 'Welcome, ' . $user->pamong_mitra,
+            'title' => 'Selamat Datang, ' . $user->pamong_mitra,
             'guard' => $user->guardname,
             'data'  => [
                 'jumlah_bimbingan'  => $user->activities()->first() == null ? 0 : ($user->activities()->first()->student()->count() ?? 0),
                 'jumlah_jurnal'     => $user->activities()->first() == null ? 0 : ($user->activities()->first()->journals()->count() ?? 0),
-                'jumlah_monev'      => $user->activities()->first() ?? 0,
+                'jumlah_monev'      => 0,
                 'persentase_jurnal' => "0 %",
                 'persentase_monev'  => "0 %",
-                'journals' => $user->activities()->first() ?? [],
-                'monev' => $user->activities()->first() ?? [],
+                'journals' => [] ,
+                'monev' => [],
             ],
             'user'  => $user
         ];

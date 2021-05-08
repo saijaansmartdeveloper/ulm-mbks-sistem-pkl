@@ -38,14 +38,14 @@ class Student extends Authenticatable
         return $this->password;
     }
 
-    public function guard_name()
+    public function getGuardNameAttribute()
     {
-        return "student";
+        return $this->guarded;
     }
 
     public function activities()
     {
-        return $this->hasOne(Activity::class, 'mahasiswa_uuid');
+        return $this->hasMany(Activity::class, 'mahasiswa_uuid');
     }
 
     public function jurusan()

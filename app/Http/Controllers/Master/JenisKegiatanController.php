@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Kegiatan;
+namespace App\Http\Controllers\Master;
 
 use App\Http\Controllers\Controller;
 use App\Models\TypeOfActivity;

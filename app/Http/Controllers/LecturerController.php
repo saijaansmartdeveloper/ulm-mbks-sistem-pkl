@@ -23,7 +23,7 @@ class LecturerController extends Controller
         $user   = Auth::guard('lecturer')->user();
 
         $data = [
-            'title' => 'Welcome, ' . $user->nama_dosen,
+            'title' => 'Selamat Datang, ' . $user->nama_dosen,
             'guard' => $user->guardname,
             'data'  => [
                 'jumlah_bimbingan'  => $user->activities()->first() == null ? 0 : ($user->activities()->first()->student()->count() ?? 0),
@@ -31,7 +31,7 @@ class LecturerController extends Controller
                 'jumlah_monev'      => $user->monev()->count() ?? 0,
                 'persentase_jurnal' => "0 %",
                 'persentase_monev'  => "0 %",
-                'journals' => $user->activities()->first() ?? [],
+                'journals' => $user->activities()->first() == null ? [] : ($user->activities()->first()->journals()) ,
                 'monev' => $user->monev()->take(3) ?? [],
             ],
             'user'  => $user

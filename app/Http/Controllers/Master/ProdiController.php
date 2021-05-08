@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Prodi;
+namespace App\Http\Controllers\Master;
 
 use App\Http\Controllers\Controller;
 use App\Models\Major;

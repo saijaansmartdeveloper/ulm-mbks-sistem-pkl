@@ -20,7 +20,7 @@ class StudentController extends Controller
 
         $data = [
             'title'     => "Hello, " . $user->nama_mahasiswa,
-            'guard'     => $user->guard_name(),
+            'guard'     => $user->guardname,
             'data'      => $user->activities()->first(),
             'user'      => $user
         ];
@@ -39,7 +39,7 @@ class StudentController extends Controller
 
         $data = [
             'title'     => 'Profile ' . $user->nama_mahasiswa,
-            'guard'     => $user->guard_name(),
+            'guard'     => $user->guardname,
             'data'      => $user,
             'user'      => $user
         ];
@@ -54,7 +54,7 @@ class StudentController extends Controller
 
         $data = [
             'title'     => 'Ubah Data Student',
-            'guard'     => $user->guard_name(),
+            'guard'     => $user->guardname,
             'data'      => Student::findOrFail($id),
             'user'      => $user
         ];

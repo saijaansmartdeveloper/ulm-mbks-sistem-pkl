@@ -1,10 +1,9 @@
 <?php
 
-use App\Http\Controllers\Dosen\DosenController;
-use App\Http\Controllers\Kegiatan\JenisKegiatanController;
-use App\Http\Controllers\Kegiatan\MagangController;
-use App\Http\Controllers\Mahasiswa\MahasiswaController;
-use App\Http\Controllers\Mitra\MitraController;
+use App\Http\Controllers\Master\MagangController;
+use App\Http\Controllers\Master\MahasiswaController;
+use App\Http\Controllers\Master\DosenController;
+use App\Http\Controllers\Master\MitraController;
 use Illuminate\Support\Facades\Route;
 
 Route::group(['namespace' => 'dosen'], function () {

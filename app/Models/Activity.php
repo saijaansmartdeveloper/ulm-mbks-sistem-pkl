@@ -14,6 +14,22 @@ class Activity extends Model
     protected $table        = 'kegiatan';
     protected $primaryKey   = 'uuid';
 
+    protected $fillable = [
+        'uuid',
+        'mulai_kegiatan',
+        'lama_kegiatan',
+        'akhir_kegiatan',
+        'file_sk_kegiatan',
+        'status_kegiatan',
+        'dosen_uuid',
+        'mitra_uuid',
+        'mahasiswa_uuid',
+        'user_uuid',
+        'jenis_kegiatan_uuid',
+        'prodi_uuid',
+        'jurusan_uuid'
+    ];
+
     public function jenis_kegiatan()
     {
         return $this->belongsTo(TypeOfActivity::class, 'jenis_kegiatan_uuid');
@@ -21,7 +37,7 @@ class Activity extends Model
 
     public function journals()
     {
-        return $this->hasMany(Journal::class, 'kegiatan_uuid')->orderBy('updated_at', 'desc')->take(3);
+        return $this->hasMany(Journal::class, 'kegiatan_uuid')->orderBy('updated_at', 'desc');
     }
 
     public function student()

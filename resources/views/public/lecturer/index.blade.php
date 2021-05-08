@@ -80,18 +80,20 @@
             <table class="table table-hover table-striped">
                 <tr>
                     <th>No</th>
-                    <th>Nama Mahasiswa</th>
+                    <th>Mahasiswa</th>
                     <th>Mitra</th>
                     <th>Tanggal Jurnal</th>
                     <th>Aksi</th>
                 </tr>
-                @forelse($data['journals'] as $key => $item)
+                @forelse($data['journals']->take(10)->get() as $key => $item)
                     <tr>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
+                        <td class="text-center">{{++$key}}</td>
+                        <td>{{$item->activity()->student()->first()->nama_mahasiswa ?? '-'}}</td>
+                        <td>{{$item->activity()->partner()->first()->pamong_mitra ?? '-'}}</td>
+                        <td class="text-right">{{$item->tanggal_jurnal ? \Carbon\Carbon::parse($item->tanggal_jurnal)->format('d M Y') : '-'}}</td>
+                        <td class="text-center">
+                            <a href="{{ route('public.journal.show', ['uuid' => $item->uuid]) }}"><span class="fas fa-eye"></span></a>
+                        </td>
                     </tr>
                 @empty
                     <tr>

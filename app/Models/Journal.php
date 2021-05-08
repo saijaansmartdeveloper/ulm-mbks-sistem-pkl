@@ -58,4 +58,5 @@ class Journal extends Model
     {
         return $this->belongsTo(Activity::class, 'kegiatan_uuid')->first();
     }
+
 }

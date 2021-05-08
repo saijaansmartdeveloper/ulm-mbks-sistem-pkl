@@ -1,17 +1,8 @@
 <?php
 
-use App\Http\Controllers\AdminProdi\AdminProdiController;
 use App\Http\Controllers\Auth\LoginController;
-use App\Http\Controllers\Dosen\DosenController;
 use App\Http\Controllers\HomeController;
-use App\Http\Controllers\Jurusan\JurusanController;
-use App\Http\Controllers\Kegiatan\JenisKegiatanController;
-use App\Http\Controllers\Kegiatan\MagangController;
 use App\Http\Controllers\Mahasiswa\MahasiswaController;
-use App\Http\Controllers\Mitra\MitraController;
-use App\Http\Controllers\Pengumuman\PengumumanController;
-use App\Http\Controllers\Prodi\ProdiController;
-use App\Http\Controllers\Supervisor\SupervisorController;
 use Illuminate\Routing\RouteGroup;
 use Illuminate\Support\Facades\Route;
 
@@ -64,6 +55,6 @@ Route::group(['prefix' => 'public', 'as' => 'public.'], function () {
     require __DIR__ . '/public/lecturer.php';
     require __DIR__ . '/public/student.php';
     require __DIR__ . '/public/partner.php';
-    require __DIR__ . '/public/internship.php';
+    require __DIR__ . '/public/activity.php';
     require __DIR__ . '/public/journal.php';
 });

@@ -60,7 +60,7 @@ class Lecturer extends Authenticatable
 
     public function activities()
     {
-        return $this->hasOne(Activity::class, 'dosen_uuid');
+        return $this->hasMany(Activity::class, 'dosen_uuid');
     }
 
     public function monev()
