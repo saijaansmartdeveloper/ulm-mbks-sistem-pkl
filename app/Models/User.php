@@ -48,11 +48,11 @@ class User extends Authenticatable
 
     public function jurusan()
     {
-        return $this->belongsTo(Jurusan::class, 'jurusan_uuid');
+        return $this->belongsTo(Major::class, 'jurusan_uuid');
     }
 
     public function prodi()
     {
-        return $this->belongsTo(Prodi::class, 'prodi_uuid');
+        return $this->belongsTo(StudyProgram::class, 'prodi_uuid');
     }
 }

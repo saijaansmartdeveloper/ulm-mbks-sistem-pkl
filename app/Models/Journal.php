@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use function PHPUnit\Framework\isNull;
 
-class Jurnal extends Model
+class Journal extends Model
 {
     use HasFactory;
 
@@ -19,7 +19,7 @@ class Jurnal extends Model
         'uuid',
         'catatan_jurnal',
         'tanggal_jurnal',
-        'magang_uuid',
+        'kegiatan_uuid',
         'status_jurnal',
         'komentar_jurnal',
         'tanggal_verifikasi',
@@ -54,8 +54,8 @@ class Jurnal extends Model
         }
     }
 
-    public function magang()
+    public function activity()
     {
-        return $this->belongsTo(Kegiatan::class, 'magang_uuid');
+        return $this->belongsTo(Activity::class, 'kegiatan_uuid')->first();
     }
 }

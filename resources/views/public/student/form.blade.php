@@ -1,16 +1,21 @@
 @extends('layouts.admin')
 @section('content-header', $title ?? '')
 @section('content')
+
+    @include('alert')
+
     <div class="card">
         <div class="card-body">
-            @include('alert')
 
             @if ($data == null)
-                {{ Form::open(['url' => route('mahasiswa.store')]) }}
+                {{ Form::open(['url' => route('public.student.store'), 'files' => true]) }}
             @else
-                {{ Form::model($data, ['url' => route('mahasiswa.update', ['id' => $data->uuid]), 'method' => 'put']) }}
+                {{ Form::model($data, ['url' => route('public.student.update', ['id' => $data->uuid]), 'method' => 'put', 'files' => true]) }}
             @endif
 
+            <div class="form-group">
+                {{ Form::hidden('guard', $guard, ['class' => 'form-control']) }}
+            </div>
 
             <div class="form-group">
                 {{ Form::label('nim_mahasiswa', 'NIM Student') }}
@@ -39,12 +44,12 @@
 
             <div class="form-group">
                 {{ Form::label('foto_mahasiswa', 'Foto Student') }}
-                {{ Form::file('foto_mahasiswa', ['class' => 'form-control-file']) }}
+                {{ Form::file('foto_mahasiswa', ['class' => 'form-control-file', 'accept' => 'image/png, image/jpeg']) }}
             </div>
 
 
             <div class="form-group text-right">
-                <a href="{{ route('mahasiswa.index') }}" class="btn btn-danger">Kembali</a>
+                {{ Form::reset('Reset', ['class' => 'btn btn-danger']) }}
                 {{ Form::submit('Simpan', ['class' => 'btn btn-primary']) }}
             </div>
 

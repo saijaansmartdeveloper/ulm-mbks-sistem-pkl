@@ -34,7 +34,7 @@
         <div class="sb-nav-link-icon"><i class="fas fa-users fa-fw"></i></div>
         Dosen
     </a>
-    
+
     <a class="nav-link collapsed" href="{{ route('magang.index') }}">
         <div class="sb-nav-link-icon"><i class="fas fa-building fa-fw"></i></div>
         Kegiatan
@@ -50,6 +50,6 @@
     </a>
     {{-- <a class="nav-link collapsed" href="{{ route('pengumuman.index') }}">
         <div class="sb-nav-link-icon"><i class="fas fa-building fa-fw"></i></div>
-        Pengumuman
+        Announcement
     </a> --}}
 @endif

@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\Pengumuman;
 
 use App\Http\Controllers\Controller;
-use App\Models\Pengumuman;
+use App\Models\Announcement;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use DataTables;
@@ -13,7 +13,7 @@ class PengumumanController extends Controller
     public function getPengumuman()
     {
 
-        $data = Pengumuman::all();
+        $data = Announcement::all();
         return Datatables::of($data)
             ->addIndexColumn()
             ->addColumn('action', function ($data) {
@@ -34,7 +34,7 @@ class PengumumanController extends Controller
     public function index()
     {
         $data = [
-            'title' => 'Master Data Pengumuman'
+            'title' => 'Master Data Announcement'
         ];
         return view('pengumuman.super_admin.index', $data);
     }
@@ -47,7 +47,7 @@ class PengumumanController extends Controller
     public function create()
     {
         $data = [
-            'title' => 'Tambah Data Pengumuman',
+            'title' => 'Tambah Data Announcement',
             'data'  => null
         ];
         return view('pengumuman.super_admin.form', $data);
@@ -68,13 +68,13 @@ class PengumumanController extends Controller
                 'tanggal_pengumuman'    => 'required',
             ],
             [
-                'judul_pengumuman.required'      => 'Judul Pengumuman Tidak Boleh Kosong',
-                'content_pengumuman.required'    => 'Isi Pengumuman Tidak Boleh Kosong',
-                'tanggal_pengumuman.required'    => 'Tanggal Pengumuman Tidak Boleh Kosong',
+                'judul_pengumuman.required'      => 'Judul Announcement Tidak Boleh Kosong',
+                'content_pengumuman.required'    => 'Isi Announcement Tidak Boleh Kosong',
+                'tanggal_pengumuman.required'    => 'Tanggal Announcement Tidak Boleh Kosong',
             ]
         );
 
-        $pengumuman = new Pengumuman;
+        $pengumuman = new Announcement;
         $pengumuman->judul_pengumuman   = $request->judul_pengumuman;
         $pengumuman->content_pengumuman = $request->content_pengumuman;
         $pengumuman->tanggal_pengumuman = $request->tanggal_pengumuman;
@@ -106,8 +106,8 @@ class PengumumanController extends Controller
     public function edit($id)
     {
         $data = [
-            'title' => 'Ubah Data Pengumuman',
-            'data'  => Pengumuman::findOrFail($id)
+            'title' => 'Ubah Data Announcement',
+            'data'  => Announcement::findOrFail($id)
         ];
         return view('pengumuman.super_admin.form', $data);
     }
@@ -128,13 +128,13 @@ class PengumumanController extends Controller
                 'tanggal_pengumuman'    => 'required',
             ],
             [
-                'judul_pengumuman.required'      => 'Judul Pengumuman Tidak Boleh Kosong',
-                'content_pengumuman.required'    => 'Isi Pengumuman Tidak Boleh Kosong',
-                'tanggal_pengumuman.required'    => 'Tanggal Pengumuman Tidak Boleh Kosong',
+                'judul_pengumuman.required'      => 'Judul Announcement Tidak Boleh Kosong',
+                'content_pengumuman.required'    => 'Isi Announcement Tidak Boleh Kosong',
+                'tanggal_pengumuman.required'    => 'Tanggal Announcement Tidak Boleh Kosong',
             ]
         );
 
-        $pengumuman = Pengumuman::findOrFail($id);
+        $pengumuman = Announcement::findOrFail($id);
         $pengumuman->judul_pengumuman   = $request->judul_pengumuman;
         $pengumuman->content_pengumuman = $request->content_pengumuman;
         $pengumuman->tanggal_pengumuman = $request->tanggal_pengumuman;
@@ -154,7 +154,7 @@ class PengumumanController extends Controller
      */
     public function destroy($id)
     {
-        $pengumuman = Pengumuman::findOrFail($id);
+        $pengumuman = Announcement::findOrFail($id);
         $pengumuman->delete();
 
         return redirect()->back()->with('delete', 'Data Berhasil Dihapus');

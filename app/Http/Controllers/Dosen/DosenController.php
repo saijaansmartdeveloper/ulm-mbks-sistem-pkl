@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\Dosen;
 
 use App\Http\Controllers\Controller;
-use App\Models\Dosen;
+use App\Models\Lecturer;
 use Illuminate\Http\Request;
 use DataTables;
 use Illuminate\Support\Facades\Auth;
@@ -15,7 +15,7 @@ class DosenController extends Controller
     public function getDosen(Request $request)
     {
         $user = Auth::User()->prodi_uuid;
-        $data = Dosen::where('prodi_uuid', $user)->with('prodi', 'jurusan')->get();
+        $data = Lecturer::where('prodi_uuid', $user)->with('prodi', 'jurusan')->get();
         return Datatables::of($data)
             ->addIndexColumn()
             ->addColumn('action', function ($data) {
@@ -38,7 +38,7 @@ class DosenController extends Controller
     public function index()
     {
         $data = [
-            'title' => 'Master Data Dosen',
+            'title' => 'Master Data Lecturer',
         ];
         return view('dosen.index', $data);
     }
@@ -51,7 +51,7 @@ class DosenController extends Controller
     public function create()
     {
         $data = [
-            'title' => 'Tambah Data Dosen',
+            'title' => 'Tambah Data Lecturer',
             'data'  => null,
         ];
 
@@ -75,8 +75,8 @@ class DosenController extends Controller
                 'foto_dosen'        => 'image|mimes:jpeg,png,jpg|max:512'
             ],
             [
-                'nip_dosen.required'     => 'NIP Dosen Tidak Boleh Kosong',
-                'nama_dosen.required'    => 'Nama Dosen Tidak Boleh Kosong',
+                'nip_dosen.required'     => 'NIP Lecturer Tidak Boleh Kosong',
+                'nama_dosen.required'    => 'Nama Lecturer Tidak Boleh Kosong',
                 'email.required'         => 'Email Tidak Boleh Kosong',
                 'password.required'      => 'Password Tidak Boleh Kosong',
                 'foto_dosen.max'         => 'File Foto Maksimal 512KB'
@@ -90,7 +90,7 @@ class DosenController extends Controller
             $fotoUrl = null;
         }
 
-        $dosen = new Dosen;
+        $dosen = new Lecturer;
         $dosen->uuid            = Uuid::uuid4()->getHex();
         $dosen->nip_dosen       = $request->nip_dosen;
         $dosen->nama_dosen      = $request->nama_dosen;
@@ -114,8 +114,8 @@ class DosenController extends Controller
     public function show($id)
     {
         $data = [
-            'title' => 'Detail Dosen',
-            'data'  => Dosen::findOrFail($id),
+            'title' => 'Detail Lecturer',
+            'data'  => Lecturer::findOrFail($id),
         ];
 
         return view('dosen.show', $data);
@@ -130,8 +130,8 @@ class DosenController extends Controller
     public function edit($id)
     {
         $data = [
-            'title' => 'Ubah Data Dosen',
-            'data'  => Dosen::findOrFail($id),
+            'title' => 'Ubah Data Lecturer',
+            'data'  => Lecturer::findOrFail($id),
         ];
 
         return view('dosen.form', $data);
@@ -155,15 +155,15 @@ class DosenController extends Controller
                 'foto_dosen'        => 'image|mimes:jpeg,png,jpg|max:512'
             ],
             [
-                'nip_dosen.required'     => 'NIP Dosen Tidak Boleh Kosong',
-                'nama_dosen.required'    => 'Nama Dosen Tidak Boleh Kosong',
+                'nip_dosen.required'     => 'NIP Lecturer Tidak Boleh Kosong',
+                'nama_dosen.required'    => 'Nama Lecturer Tidak Boleh Kosong',
                 'email.required'         => 'Email Tidak Boleh Kosong',
                 'password.required'      => 'Password Tidak Boleh Kosong',
                 'foto_dosen.max'         => 'File Foto Maksimal 512KB'
             ]
         );
 
-        $dosen = Dosen::findOrFail($id);
+        $dosen = Lecturer::findOrFail($id);
 
 
 
@@ -197,7 +197,7 @@ class DosenController extends Controller
      */
     public function destroy($id)
     {
-        $dosen = Dosen::findOrFail($id);
+        $dosen = Lecturer::findOrFail($id);
         Storage::delete($dosen->foto_dosen);
         $dosen->delete();
 

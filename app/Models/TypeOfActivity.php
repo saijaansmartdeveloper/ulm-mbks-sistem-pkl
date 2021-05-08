@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class JenisKegiatan extends Model
+class TypeOfActivity extends Model
 {
     use HasFactory;
 
@@ -17,6 +17,6 @@ class JenisKegiatan extends Model
 
     public function magang()
     {
-        return $this->hasMany(Kegiatan::class, 'uuid');
+        return $this->hasMany(Activity::class, 'uuid');
     }
 }

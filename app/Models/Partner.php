@@ -10,7 +10,7 @@ use Spatie\Permission\Traits\HasPermissions;
 use Spatie\Permission\Traits\HasRoles;
 
 
-class Mitra extends Authenticatable
+class Partner extends Authenticatable
 {
     use HasFactory, Notifiable, HasRoles;
 
@@ -49,7 +49,13 @@ class Mitra extends Authenticatable
         return $this->password;
     }
 
-    public function guardName(){
-        return "partner";
+    public function getGuardNameAttribute(){
+        return $this->guarded;
     }
+
+    public function activities()
+    {
+        return $this->hasOne(Activity::class, 'mitra_uuid');
+    }
+
 }

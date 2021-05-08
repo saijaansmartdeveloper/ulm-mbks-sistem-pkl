@@ -12,52 +12,52 @@
             <div class="row">
                 <div class="col-4">
                     <div class="form-group">
-                        {{ Form::label('mulai_magang', 'Mulai Kegiatan') }}
+                        {{ Form::label('mulai_magang', 'Mulai Activity') }}
                         {{ Form::date('mulai_magang', null, ['class' => 'form-control']) }}
                     </div>
                 </div>
                 <div class="col-4">
                     <div class="form-group">
-                        {{ Form::label('akhir_magang', 'Akhir Kegiatan') }}
+                        {{ Form::label('akhir_magang', 'Akhir Activity') }}
                         {{ Form::date('akhir_magang', null, ['class' => 'form-control']) }}
                     </div>
                 </div>
                 <div class="col-4">
                     <div class="form-group">
-                        {{ Form::label('lama_magang', 'Lama Kegiatan') }}
-                        {{ Form::number('lama_magang', null, ['class' => 'form-control', 'placeholder' => 'Lama Kegiatan (Minggu)']) }}
+                        {{ Form::label('lama_magang', 'Lama Activity') }}
+                        {{ Form::number('lama_magang', null, ['class' => 'form-control', 'placeholder' => 'Lama Activity (Minggu)']) }}
                     </div>
                 </div>
             </div>
 
             <div class="form-group">
-                {{ Form::label('file_sk_magang', 'File SK Kegiatan') }}
+                {{ Form::label('file_sk_magang', 'File SK Activity') }}
                 {{ Form::text('file_sk_magang', null, ['class' => 'form-control', 'placeholder' => 'Link File SK Google Drive']) }}
             </div>
 
             <div class="form-group">
-                {{ Form::label('status_magang', 'Status Kegiatan') }}
+                {{ Form::label('status_magang', 'Status Activity') }}
                 {{ Form::select('status_magang', ['1' => 'Masih Berjalan', '2' => 'Selesai'], null, ['class' => 'form-control']) }}
             </div>
 
             <div class="form-group">
-                {{ Form::label('dosen_uuid', 'Dosen Pembimbing') }}
-                {{ Form::select('dosen_uuid', $dosen, null, ['placeholder' => '-- Pilih Dosen --', 'class' => 'form-control dosen-select2']) }}
+                {{ Form::label('dosen_uuid', 'Lecturer Pembimbing') }}
+                {{ Form::select('dosen_uuid', $dosen, null, ['placeholder' => '-- Pilih Lecturer --', 'class' => 'form-control dosen-select2']) }}
             </div>
 
             <div class="form-group">
-                {{ Form::label('mahasiswa_uuid', 'Mahasiswa') }}
+                {{ Form::label('mahasiswa_uuid', 'Student') }}
                 {{ Form::select('mahasiswa_uuid[]', $mahasiswa, null, ['multiple' => 'multiple', 'class' => 'form-control mahasiswa-select2']) }}
             </div>
 
             <div class="form-group">
-                {{ Form::label('mitra_uuid', 'Mitra') }}
-                {{ Form::select('mitra_uuid', $mitra, null, ['placeholder' => '-- Pilih Mitra --', 'class' => 'form-control mitra-select2']) }}
+                {{ Form::label('mitra_uuid', 'Partner') }}
+                {{ Form::select('mitra_uuid', $mitra, null, ['placeholder' => '-- Pilih Partner --', 'class' => 'form-control mitra-select2']) }}
             </div>
 
             <div class="form-group">
-                {{ Form::label('jenis_kegiatan_uuid', 'Jenis Kegiatan') }}
-                {{ Form::select('jenis_kegiatan_uuid', $jenis_kegiatan, null, ['placeholder' => '-- Pilih Jenis Kegiatan --', 'class' => 'form-control jenis_kegiatan-select2']) }}
+                {{ Form::label('jenis_kegiatan_uuid', 'Jenis Activity') }}
+                {{ Form::select('jenis_kegiatan_uuid', $jenis_kegiatan, null, ['placeholder' => '-- Pilih Jenis Activity --', 'class' => 'form-control jenis_kegiatan-select2']) }}
             </div>
 
             <div class="form-group text-right">

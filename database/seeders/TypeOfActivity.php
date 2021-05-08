@@ -2,11 +2,11 @@
 
 namespace Database\Seeders;
 
-use App\Models\JenisKegiatan;
+use App\Models\TypeOfActivity;
 use Illuminate\Database\Seeder;
 use Ramsey\Uuid\Uuid;
 
-class JenisKegiatanSeeder extends Seeder
+class TypeOfActivity extends Seeder
 {
     /**
      * Run the database seeds.
@@ -15,11 +15,11 @@ class JenisKegiatanSeeder extends Seeder
      */
     public function run()
     {
-        JenisKegiatan::create([
+        TypeOfActivity::create([
             'uuid' => Uuid::uuid4(),
             'kode_jenis_kegiatan' => 'KM',
             'nama_jenis_kegiatan' => 'Kampus Mengajar',
-            'deskripsi_jenis_kegiatan' => 'Program Kampus Merdeka Untuk Mahasiswa Mengajar'
+            'deskripsi_jenis_kegiatan' => 'Program Kampus Merdeka Untuk Student Mengajar'
         ]);
     }
 }

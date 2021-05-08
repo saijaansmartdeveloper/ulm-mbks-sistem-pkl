@@ -32,8 +32,8 @@ Route::get('/', function () {
 
 Route::get('register/mahasiswa', [MahasiswaController::class, 'register'])->name('mahasiswa.register');
 Route::post('register/mahasiswa', [MahasiswaController::class, 'register_store'])->name('mahasiswa.register.store');
-// route::get('register/mahasiswa', 'Mahasiswa\MahasiswaController@register')->name('mahasiswa.register');
-// route::post('register/mahasiswa', 'Mahasiswa\MahasiswaController@register_store')->name('mahasiswa.register.store');
+// route::get('register/mahasiswa', 'Student\MahasiswaController@register')->name('mahasiswa.register');
+// route::post('register/mahasiswa', 'Student\MahasiswaController@register_store')->name('mahasiswa.register.store');
 
 
 Route::group(['namespace' => 'auth'], function () {

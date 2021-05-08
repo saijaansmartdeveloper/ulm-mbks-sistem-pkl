@@ -16,6 +16,6 @@ class Monev extends Model
 
     public function magang()
     {
-        return $this->belongsTo(Kegiatan::class, 'magang_uuid');
+        return $this->belongsTo(Activity::class, 'magang_uuid');
     }
 }

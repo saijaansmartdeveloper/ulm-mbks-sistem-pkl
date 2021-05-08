@@ -33,7 +33,7 @@
 
                             <div class="form-group">
                                 <label class="col-form-label text-md-right" for="catatan_monev">Catatan Jurnal</label>
-                                {{ Form::textarea('catatan_jurnal', null, ['class' => 'form-control', 'rows' => '8', 'placeholder' => 'Catatan Jurnal']) }}
+                                {{ Form::textarea('catatan_jurnal', null, ['class' => 'form-control', 'rows' => '8', 'placeholder' => 'Catatan Journal']) }}
                             </div>
 
                             <div class="form-group ">
@@ -97,7 +97,11 @@
             let active_events   = $('#calendar').evoCalendar('getActiveEvents').length;
             let active_date     = $('#calendar').evoCalendar('getActiveDate');
 
-            if (active_events > 0) {
+            let date_picker     = new Date(active_date)
+
+            if ((new Date()).getTime() < date_picker.getTime()) {
+                alert('Tanggal Yang Anda Pilih Masih Belum Dilewati')
+            } else if (active_events > 0) {
                 $('#calendar').evoCalendar('toggleEventList', true);
             } else {
                 $('#calendar').evoCalendar('toggleEventList', false);

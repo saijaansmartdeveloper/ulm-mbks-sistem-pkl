@@ -8,20 +8,20 @@ use Illuminate\Notifications\Notifiable;
 use Spatie\Permission\Traits\HasPermissions;
 use Spatie\Permission\Traits\HasRoles;
 
-class Dosen extends Authenticatable
+
+class Student extends Authenticatable
 {
     use HasFactory, Notifiable, HasRoles;
 
     public $incrementing = false;
-    protected $guard        = 'lecturer';
-    protected $guarded      = ['uuid'];
-    protected $table        = 'dosen';
+
+    protected $guarded      = 'student';
+    protected $table        = 'mahasiswa';
     protected $primaryKey   = 'uuid';
     protected $keyType      = 'string';
 
-
     protected $fillable = [
-        'uuid', 'nip_dosen', 'nama_dosen', 'email', 'password', 'prodi_uuid', 'jurusan_uuid'
+        'uuid', 'nim_mahasiswa', 'nama_mahasiswa', 'email', 'password', 'phone', 'prodi_uuid', 'jurusan_uuid'
     ];
 
     protected $hidden = [
@@ -33,38 +33,29 @@ class Dosen extends Authenticatable
         'updated_at' => 'datetime',
     ];
 
-    public function getAuthIdentifierName()
-    {
-        return $this->getKeyName();
-    }
-
-    public function getAuthIdentifier()
-    {
-        return $this->getKey();
-    }
-
     public function getAuthPassword()
     {
         return $this->password;
     }
 
-    public function guardName()
+    public function guard_name()
     {
-        return "lecturer";
+        return "student";
     }
 
-    public function prodi()
+    public function activities()
     {
-        return $this->belongsTo(Prodi::class, 'prodi_uuid');
+        return $this->hasOne(Activity::class, 'mahasiswa_uuid');
     }
 
     public function jurusan()
     {
-        return $this->belongsTo(Jurusan::class, 'jurusan_uuid');
+        return $this->belongsTo(Major::class, 'jurusan_uuid');
     }
 
-    public function kegiatan()
+    public function prodi()
     {
-        return $this->hasOne(Kegiatan::class, 'dosen_uuid');
+        return $this->belongsTo(StudyProgram::class, 'prodi_uuid');
     }
+
 }

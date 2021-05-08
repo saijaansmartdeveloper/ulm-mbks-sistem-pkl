@@ -2,10 +2,10 @@
 
 namespace Database\Seeders;
 
-use App\Models\Mahasiswa;
+use App\Models\Student;
 use Illuminate\Database\Seeder;
 
-class MahasiswaSeeder extends Seeder
+class StudentSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -14,6 +14,6 @@ class MahasiswaSeeder extends Seeder
      */
     public function run()
     {
-        Mahasiswa::factory()->count(10)->create();
+        Student::factory()->count(10)->create();
     }
 }

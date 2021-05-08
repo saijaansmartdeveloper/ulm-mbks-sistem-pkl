@@ -26,8 +26,8 @@
             </div>
 
             <div class="form-group ">
-                {{ Form::label('magang_uuid', 'Kegiatan') }}
-                {{ Form::select('magang_uuid', $magang, null, ['class' => 'form-control magang-select2', 'placeholder' => '-- Pilih Kegiatan --']) }}
+                {{ Form::label('magang_uuid', 'Activity') }}
+                {{ Form::select('magang_uuid', $magang, null, ['class' => 'form-control magang-select2', 'placeholder' => '-- Pilih Activity --']) }}
             </div>
 
             <div class="form-group text-right">

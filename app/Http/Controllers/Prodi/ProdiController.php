@@ -3,8 +3,8 @@
 namespace App\Http\Controllers\Prodi;
 
 use App\Http\Controllers\Controller;
-use App\Models\Jurusan;
-use App\Models\Prodi;
+use App\Models\Major;
+use App\Models\StudyProgram;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\Request;
 use DataTables;
@@ -15,7 +15,7 @@ class ProdiController extends Controller
     public function getProdi()
     {
 
-        $data = Prodi::with('jurusan')->get();
+        $data = StudyProgram::with('jurusan')->get();
         return Datatables::of($data)
             ->addIndexColumn()
             ->addColumn('action', function ($data) {
@@ -37,7 +37,7 @@ class ProdiController extends Controller
     public function index()
     {
         $data = [
-            'title' => 'Master Data Prodi'
+            'title' => 'Master Data StudyProgram'
         ];
         return view('prodi.index', $data);
     }
@@ -50,8 +50,8 @@ class ProdiController extends Controller
     public function create()
     {
         $data = [
-            'title'     => 'Tambah Data Prodi',
-            'jurusan'   => Jurusan::pluck('nama_jurusan', 'uuid'),
+            'title'     => 'Tambah Data StudyProgram',
+            'jurusan'   => Major::pluck('nama_jurusan', 'uuid'),
             'data'      => null,
         ];
 
@@ -73,15 +73,15 @@ class ProdiController extends Controller
                 'jurusan_uuid'  => 'required',
             ],
             [
-                'kode_prodi.required'    => 'Kode Prodi Tidak Boleh Kosong',
-                'nama_prodi.required'    => 'Nama Prodi Tidak Boleh Kosong',
-                'jurusan_uuid.required'  => 'Jurusan Tidak Boleh Kosong',
+                'kode_prodi.required'    => 'Kode StudyProgram Tidak Boleh Kosong',
+                'nama_prodi.required'    => 'Nama StudyProgram Tidak Boleh Kosong',
+                'jurusan_uuid.required'  => 'Major Tidak Boleh Kosong',
             ]
         );
 
         $uuid = Uuid::uuid4()->getHex();
 
-        $prodi = new Prodi;
+        $prodi = new StudyProgram;
         $prodi->uuid = $uuid;
         $prodi->kode_prodi = $request->kode_prodi;
         $prodi->nama_prodi = $request->nama_prodi;
@@ -111,9 +111,9 @@ class ProdiController extends Controller
     public function edit($id)
     {
         $data = [
-            'title'     => 'Tambah Data Prodi',
-            'jurusan'   => Jurusan::pluck('nama_jurusan', 'uuid'),
-            'data'      => Prodi::findOrFail($id),
+            'title'     => 'Tambah Data StudyProgram',
+            'jurusan'   => Major::pluck('nama_jurusan', 'uuid'),
+            'data'      => StudyProgram::findOrFail($id),
         ];
 
         return view('prodi.form', $data);
@@ -135,13 +135,13 @@ class ProdiController extends Controller
                 'jurusan_uuid' => 'required',
             ],
             [
-                'kode_prodi.required'    => 'Kode Prodi Tidak Boleh Kosong',
-                'nama_prodi.required'    => 'Nama Prodi Tidak Boleh Kosong',
-                'jurusan_uuid.required'  => 'Jurusan Tidak Boleh Kosong',
+                'kode_prodi.required'    => 'Kode StudyProgram Tidak Boleh Kosong',
+                'nama_prodi.required'    => 'Nama StudyProgram Tidak Boleh Kosong',
+                'jurusan_uuid.required'  => 'Major Tidak Boleh Kosong',
             ]
         );
 
-        $prodi = Prodi::findOrFail($id);
+        $prodi = StudyProgram::findOrFail($id);
         $prodi->kode_prodi = $request->kode_prodi;
         $prodi->nama_prodi = $request->nama_prodi;
         $prodi->jurusan_uuid = $request->jurusan_uuid;
@@ -158,7 +158,7 @@ class ProdiController extends Controller
      */
     public function destroy($id)
     {
-        $prodi = Prodi::findOrFail($id);
+        $prodi = StudyProgram::findOrFail($id);
         $prodi->delete();
 
         return redirect()->back()->with('delete', 'Data Berhasil Dihapus');

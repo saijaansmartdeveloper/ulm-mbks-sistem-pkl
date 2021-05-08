@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\Mitra;
 
 use App\Http\Controllers\Controller;
-use App\Models\Mitra;
+use App\Models\Partner;
 use Illuminate\Http\Request;
 use DataTables;
 use Ramsey\Uuid\Uuid;
@@ -13,7 +13,7 @@ class MitraController extends Controller
     public function getMitra(Request $request)
     {
 
-        $data = Mitra::all();
+        $data = Partner::all();
         return Datatables::of($data)
             ->addIndexColumn()
             ->addColumn('action', function ($data) {
@@ -32,7 +32,7 @@ class MitraController extends Controller
     public function index()
     {
         $data = [
-            'title' => 'Master Data Mitra',
+            'title' => 'Master Data Partner',
         ];
         return view('mitra.index', $data);
     }
@@ -40,7 +40,7 @@ class MitraController extends Controller
     public function create()
     {
         $data = [
-            'title' => 'Tambah Data Mitra',
+            'title' => 'Tambah Data Partner',
             'data'  => null,
         ];
         return view('mitra.form', $data);
@@ -61,11 +61,11 @@ class MitraController extends Controller
                 'phone'                     => 'required',
             ],
             [
-                'nama_mitra.required'                => 'Nama Mitra Tidak Boleh Kosong',
-                'divisi_mitra.required'              => 'Divisi Mitra Tidak Boleh Kosong',
-                'alamat_mitra.required'              => 'Alamat Mitra Tidak Boleh Kosong',
-                'penanggung_jawab_mitra.required'    => 'Penanggung Jawab Mitra Tidak Boleh Kosong',
-                'pamong_mitra.required'              => 'Pamong Mitra Tidak Boleh Kosong',
+                'nama_mitra.required'                => 'Nama Partner Tidak Boleh Kosong',
+                'divisi_mitra.required'              => 'Divisi Partner Tidak Boleh Kosong',
+                'alamat_mitra.required'              => 'Alamat Partner Tidak Boleh Kosong',
+                'penanggung_jawab_mitra.required'    => 'Penanggung Jawab Partner Tidak Boleh Kosong',
+                'pamong_mitra.required'              => 'Pamong Partner Tidak Boleh Kosong',
                 'email.required'                     => 'Email Tidak Boleh Kosong',
                 'username.required'                  => 'Username Tidak Boleh Kosong',
                 'password.required'                  => 'Password Tidak Boleh Kosong',
@@ -75,7 +75,7 @@ class MitraController extends Controller
 
         $uuid = Uuid::uuid4()->getHex();
 
-        $mitra = new Mitra;
+        $mitra = new Partner;
         $mitra->uuid                    = $uuid;
         $mitra->nama_mitra              = $request->nama_mitra;
         $mitra->divisi_mitra            = $request->divisi_mitra;
@@ -95,8 +95,8 @@ class MitraController extends Controller
     public function show($id)
     {
         $data = [
-            'title' => 'Detail Mitra',
-            'data'  => Mitra::findOrFail($id),
+            'title' => 'Detail Partner',
+            'data'  => Partner::findOrFail($id),
         ];
 
         return view('mitra.show', $data);
@@ -105,8 +105,8 @@ class MitraController extends Controller
     public function edit($id)
     {
         $data = [
-            'title' => 'Ubah Data Mitra',
-            'data'  => Mitra::findOrFail($id),
+            'title' => 'Ubah Data Partner',
+            'data'  => Partner::findOrFail($id),
         ];
 
         return view('mitra.form', $data);
@@ -126,11 +126,11 @@ class MitraController extends Controller
                 'phone'                     => 'required',
             ],
             [
-                'nama_mitra.required'                => 'Nama Mitra Tidak Boleh Kosong',
-                'divisi_mitra.required'              => 'Divisi Mitra Tidak Boleh Kosong',
-                'alamat_mitra.required'              => 'Alamat Mitra Tidak Boleh Kosong',
-                'penanggung_jawab_mitra.required'    => 'Penanggung Jawab Mitra Tidak Boleh Kosong',
-                'pamong_mitra.required'              => 'Pamong Mitra Tidak Boleh Kosong',
+                'nama_mitra.required'                => 'Nama Partner Tidak Boleh Kosong',
+                'divisi_mitra.required'              => 'Divisi Partner Tidak Boleh Kosong',
+                'alamat_mitra.required'              => 'Alamat Partner Tidak Boleh Kosong',
+                'penanggung_jawab_mitra.required'    => 'Penanggung Jawab Partner Tidak Boleh Kosong',
+                'pamong_mitra.required'              => 'Pamong Partner Tidak Boleh Kosong',
                 'email.required'                     => 'Email Tidak Boleh Kosong',
                 'username.required'                  => 'Username Tidak Boleh Kosong',
                 'phone.required'                     => 'No Telpon Tidak Boleh Kosong',
@@ -138,7 +138,7 @@ class MitraController extends Controller
         );
 
 
-        $mitra = Mitra::findOrFail($id);
+        $mitra = Partner::findOrFail($id);
         if ($request->password == null) {
             $password = $mitra->password;
         } else {
@@ -161,7 +161,7 @@ class MitraController extends Controller
 
     public function destroy($id)
     {
-        $mitra = Mitra::findOrFail($id);
+        $mitra = Partner::findOrFail($id);
         $mitra->delete();
 
         return redirect()->back()->with('delete', 'Data Berhasil Dihapus');

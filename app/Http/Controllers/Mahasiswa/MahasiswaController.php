@@ -3,9 +3,9 @@
 namespace App\Http\Controllers\Mahasiswa;
 
 use App\Http\Controllers\Controller;
-use App\Models\Mahasiswa;
-use App\Models\Jurusan;
-use App\Models\Prodi;
+use App\Models\Student;
+use App\Models\Major;
+use App\Models\StudyProgram;
 use Illuminate\Http\Request;
 use DataTables;
 use Illuminate\Support\Facades\Auth;
@@ -23,7 +23,7 @@ class MahasiswaController extends Controller
     public function getMahasiswa(Request $request)
     {
         $user = Auth::User()->prodi_uuid;
-        $data = Mahasiswa::where('prodi_uuid', $user)->get();
+        $data = Student::where('prodi_uuid', $user)->get();
         return Datatables::of($data)
             ->addIndexColumn()
             ->addColumn('action', function ($data) {
@@ -45,7 +45,7 @@ class MahasiswaController extends Controller
     public function index()
     {
         $data = [
-            'title' => 'Data Mahasiswa',
+            'title' => 'Data Student',
         ];
 
         return view('mahasiswa.index', $data);
@@ -59,7 +59,7 @@ class MahasiswaController extends Controller
     public function create()
     {
         $data = [
-            'title' => 'Tambah Data Mahasiswa',
+            'title' => 'Tambah Data Student',
             'data'  => null,
         ];
 
@@ -69,9 +69,9 @@ class MahasiswaController extends Controller
     public function register()
     {
         $data = [
-            'title'     => 'Registrasi Mahasiswa',
-            'jurusan'   => Jurusan::pluck('nama_jurusan', 'uuid'),
-            'prodi'     => Prodi::pluck('nama_prodi', 'uuid'),
+            'title'     => 'Registrasi Student',
+            'jurusan'   => Major::pluck('nama_jurusan', 'uuid'),
+            'prodi'     => StudyProgram::pluck('nama_prodi', 'uuid'),
         ];
 
         return view('mahasiswa.register.create', $data);
@@ -89,8 +89,8 @@ class MahasiswaController extends Controller
                 'foto_mahasiswa'    => 'image|mimes:jpeg,png,jpg|max:512'
             ],
             [
-                'nim_mahasiswa.required'     => 'NIM Mahasiswa Tidak Boleh Kosong',
-                'nama_mahasiswa.required'    => 'Nama Mahasiswa Tidak Boleh Kosong',
+                'nim_mahasiswa.required'     => 'NIM Student Tidak Boleh Kosong',
+                'nama_mahasiswa.required'    => 'Nama Student Tidak Boleh Kosong',
                 'email.required'             => 'Email Tidak Boleh Kosong',
                 'password.required'          => 'Password Tidak Boleh Kosong',
                 'phone.required'             => 'No. Telepon Tidak Boleh Kosong',
@@ -99,7 +99,7 @@ class MahasiswaController extends Controller
         );
 
         $uuid   = Uuid::uuid4()->getHex();
-        $prodi  = Prodi::findOrFail($request->prodi_uuid);
+        $prodi  = StudyProgram::findOrFail($request->prodi_uuid);
 
         if (request()->file('foto_mahasiswa')) {
             $foto_mahasiswa = request()->file('foto_mahasiswa');
@@ -108,7 +108,7 @@ class MahasiswaController extends Controller
             $fotoUrl = null;
         }
 
-        $mahasiswa = new Mahasiswa;
+        $mahasiswa = new Student;
         $mahasiswa->uuid            = $uuid;
         $mahasiswa->nim_mahasiswa   = $request->nim_mahasiswa;
         $mahasiswa->nama_mahasiswa  = $request->nama_mahasiswa;
@@ -121,7 +121,7 @@ class MahasiswaController extends Controller
         $mahasiswa->save();
         $mahasiswa->assignRole('student');
 
-        return redirect()->back()->with('success', 'Registrasi Mahasiswa Berhasil, Tunggu Penetapan Kegiatan Selanjutnya');
+        return redirect()->back()->with('success', 'Registrasi Student Berhasil, Tunggu Penetapan Activity Selanjutnya');
     }
 
     /**
@@ -141,8 +141,8 @@ class MahasiswaController extends Controller
                 'phone'             => 'required',
             ],
             [
-                'nim_mahasiswa.required'     => 'NIM Mahasiswa Tidak Boleh Kosong',
-                'nama_mahasiswa.required'    => 'Nama Mahasiswa Tidak Boleh Kosong',
+                'nim_mahasiswa.required'     => 'NIM Student Tidak Boleh Kosong',
+                'nama_mahasiswa.required'    => 'Nama Student Tidak Boleh Kosong',
                 'email.required'             => 'Email Tidak Boleh Kosong',
                 'password.required'          => 'Password Tidak Boleh Kosong',
                 'phone.required'             => 'No. Telepon Tidak Boleh Kosong',
@@ -157,7 +157,7 @@ class MahasiswaController extends Controller
             $fotoUrl = null;
         }
 
-        $mahasiswa = new Mahasiswa;
+        $mahasiswa = new Student;
         $mahasiswa->uuid            = Uuid::uuid4();
         $mahasiswa->nim_mahasiswa   = $request->nim_mahasiswa;
         $mahasiswa->nama_mahasiswa  = $request->nama_mahasiswa;
@@ -183,8 +183,8 @@ class MahasiswaController extends Controller
     public function show($id)
     {
         $data = [
-            'title' => 'Detail Mahasiswa',
-            'data'  => Mahasiswa::findOrFail($id),
+            'title' => 'Detail Student',
+            'data'  => Student::findOrFail($id),
         ];
 
         return view('mahasiswa.show', $data);
@@ -199,8 +199,8 @@ class MahasiswaController extends Controller
     public function edit($id)
     {
         $data = [
-            'title' => 'Ubah Data Mahasiswa',
-            'data'  =>  Mahasiswa::findOrFail($id)
+            'title' => 'Ubah Data Student',
+            'data'  =>  Student::findOrFail($id)
         ];
 
         return view('mahasiswa.form', $data);
@@ -223,15 +223,15 @@ class MahasiswaController extends Controller
                 'phone'             => 'required',
             ],
             [
-                'nim_mahasiswa.required'     => 'NIM Mahasiswa Tidak Boleh Kosong',
-                'nama_mahasiswa.required'    => 'Nama Mahasiswa Tidak Boleh Kosong',
+                'nim_mahasiswa.required'     => 'NIM Student Tidak Boleh Kosong',
+                'nama_mahasiswa.required'    => 'Nama Student Tidak Boleh Kosong',
                 'email.required'             => 'Email Tidak Boleh Kosong',
                 'phone.required'             => 'No. Telepon Tidak Boleh Kosong',
                 'foto_mahasiswa.max'         => 'File Foto Maksimal 512KB'
             ]
         );
 
-        $mahasiswa = Mahasiswa::findOrFail($id);
+        $mahasiswa = Student::findOrFail($id);
 
 
         if (request()->file('foto_dosen')) {
@@ -265,7 +265,7 @@ class MahasiswaController extends Controller
      */
     public function destroy($id)
     {
-        $mahasiswa = Mahasiswa::findOrFail($id);
+        $mahasiswa = Student::findOrFail($id);
         Storage::delete($mahasiswa->foto_mahasiswa);
         $mahasiswa->delete();
 

@@ -28,12 +28,12 @@
 
             <div class="form-group">
                 {{ Form::label('role_pengguna', 'Role Pengguna') }}
-                {{ Form::select('role_pengguna', ['admin_prodi' => 'Admin Prodi', 'supervisor' => 'Supervisor'], null, ['placeholder' => '-- Pilih Role --', 'class' => 'form-control role-select2']) }}
+                {{ Form::select('role_pengguna', ['admin_prodi' => 'Admin StudyProgram', 'supervisor' => 'Supervisor'], null, ['placeholder' => '-- Pilih Role --', 'class' => 'form-control role-select2']) }}
             </div>
 
             <div class="form-group">
                 {{ Form::label('prodi_uuid', 'Program Studi') }}
-                {{ Form::select('prodi_uuid', $prodi, null, ['placeholder' => '-- Pilih Prodi --', 'id' => 'prodi', 'class' => 'form-control prodi-select2']) }}
+                {{ Form::select('prodi_uuid', $prodi, null, ['placeholder' => '-- Pilih StudyProgram --', 'id' => 'prodi', 'class' => 'form-control prodi-select2']) }}
             </div>
 
             <div class="form-group text-right">

@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\Jurusan;
 
 use App\Http\Controllers\Controller;
-use App\Models\Jurusan;
+use App\Models\Major;
 use Illuminate\Http\Request;
 use DataTables;
 use Ramsey\Uuid\Uuid;
@@ -13,7 +13,7 @@ class JurusanController extends Controller
     public function getJurusan(Request $request)
     {
 
-        $data = Jurusan::all();
+        $data = Major::all();
         return Datatables::of($data)
             ->addIndexColumn()
             ->addColumn('action', function ($data) {
@@ -35,7 +35,7 @@ class JurusanController extends Controller
     public function index()
     {
         $data = [
-            'title' => 'Master Data Jurusan',
+            'title' => 'Master Data Major',
 
         ];
         return view('jurusan.index', $data);
@@ -49,7 +49,7 @@ class JurusanController extends Controller
     public function create()
     {
         $data = [
-            'title' => 'Tambah Data Jurusan',
+            'title' => 'Tambah Data Major',
             'data'  => null,
         ];
         return view('jurusan.form', $data);
@@ -69,14 +69,14 @@ class JurusanController extends Controller
                 'nama_jurusan'  => 'required',
             ],
             [
-                'kode_jurusan.required'  => 'Kode Jurusan Tidak Boleh Kosong',
-                'nama_jurusan.required'  => 'Nama Jurusan Tidak Boleh Kosong',
+                'kode_jurusan.required'  => 'Kode Major Tidak Boleh Kosong',
+                'nama_jurusan.required'  => 'Nama Major Tidak Boleh Kosong',
             ]
         );
 
         $uuid_jurusan   =  Uuid::uuid4()->getHex();
 
-        $jurusan = new Jurusan;
+        $jurusan = new Major;
         $jurusan->uuid   = $uuid_jurusan;
         $jurusan->kode_jurusan  = $request->kode_jurusan;
         $jurusan->nama_jurusan  = $request->nama_jurusan;
@@ -105,8 +105,8 @@ class JurusanController extends Controller
     public function edit($id)
     {
         $data = [
-            'title' => 'Ubah Data Jurusan',
-            'data'  =>  Jurusan::findOrFail($id),
+            'title' => 'Ubah Data Major',
+            'data'  =>  Major::findOrFail($id),
         ];
         return view('jurusan.form', $data);
     }
@@ -126,12 +126,12 @@ class JurusanController extends Controller
                 'nama_jurusan'  => 'required',
             ],
             [
-                'kode_jurusan.required'  => 'Kode Jurusan Tidak Boleh Kosong',
-                'nama_jurusan.required'  => 'Nama Jurusan Tidak Boleh Kosong',
+                'kode_jurusan.required'  => 'Kode Major Tidak Boleh Kosong',
+                'nama_jurusan.required'  => 'Nama Major Tidak Boleh Kosong',
             ]
         );
 
-        $jurusan = Jurusan::findOrFail($id);
+        $jurusan = Major::findOrFail($id);
         $jurusan->kode_jurusan  = $request->kode_jurusan;
         $jurusan->nama_jurusan  = $request->nama_jurusan;
         $jurusan->save();
@@ -147,7 +147,7 @@ class JurusanController extends Controller
      */
     public function destroy($id)
     {
-        $jurusan = Jurusan::findOrFail($id);
+        $jurusan = Major::findOrFail($id);
         $jurusan->delete();
 
         return redirect()->back()->with('delete', 'Data Berhasil Dihapus');

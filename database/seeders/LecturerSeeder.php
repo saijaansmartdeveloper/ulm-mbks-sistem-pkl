@@ -2,10 +2,10 @@
 
 namespace Database\Seeders;
 
-use App\Models\Dosen;
+use App\Models\Lecturer;
 use Illuminate\Database\Seeder;
 
-class DosenSeeder extends Seeder
+class LecturerSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -14,7 +14,7 @@ class DosenSeeder extends Seeder
      */
     public function run()
     {
-        Dosen::factory()->count(10)->create()->each(function ($user) {
+        Lecturer::factory()->count(10)->create()->each(function ($user) {
             $user->assignRole('lecturer');
         });;
     }

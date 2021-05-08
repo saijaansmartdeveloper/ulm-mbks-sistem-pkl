@@ -2,19 +2,19 @@
 
 namespace Database\Factories;
 
-use App\Models\Mitra;
+use App\Models\Partner;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Support\Facades\Hash;
 use Ramsey\Uuid\Uuid;
 
-class MitraFactory extends Factory
+class PartnerFactory extends Factory
 {
     /**
      * The name of the factory's corresponding model.
      *
      * @var string
      */
-    protected $model = Mitra::class;
+    protected $model = Partner::class;
 
     /**
      * Define the model's default state.

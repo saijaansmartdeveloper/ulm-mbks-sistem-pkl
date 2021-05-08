@@ -1,14 +1,20 @@
 @extends('layouts.admin')
 @section('content-header', $title ?? '')
 @section('content')
+
+    @include('alert')
+
     <div class="card">
         <div class="card-body">
-            @include('alert')
             @if ($data == null)
-                {{ Form::open(['url' => route('dosen.store'), 'enctype' => 'multipart/form-data']) }}
+                {{ Form::open(['url' => route('public.lecturer.store'), 'files' => true]) }}
             @else
-                {{ Form::model($data, ['url' => route('dosen.update', ['id' => $data->uuid]), 'enctype' => 'multipart/form-data', 'method' => 'put']) }}
+                {{ Form::model($data, ['url' => route('public.lecturer.update', ['id' => $data->uuid]), 'files' => true, 'method' => 'put']) }}
             @endif
+
+            <div class="form-group">
+                {{ Form::hidden('guard', $guard, ['class' => 'form-control']) }}
+            </div>
 
             <div class="form-group">
                 {{ Form::label('nip_dosen', 'NIP Lecturer') }}

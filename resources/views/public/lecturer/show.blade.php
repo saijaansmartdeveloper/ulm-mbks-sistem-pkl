@@ -7,23 +7,23 @@
         <div class="card-body">
             <div class="row">
                 <div class="col-3">
-                    @if ($data->foto_mahasiswa == null)
-                        <img src="{{ asset('img/person.png') }}" width='250px' height="250px" alt="">
+                    @if ($data->foto_dosen == null)
+                        <img src="{{ asset('img/person.png') }}" width='250px' alt="">
                     @else
-                        <img src="{{ asset('storage/' . $data->foto_mahasiswa) }}" alt="" style="max-height: 250px">
+                        <img src="{{ asset('storage/' . $data->foto_dosen) }}" width='250px' alt="">
                     @endif
                 </div>
                 <div class="col-9">
                     <table class="table table-striped table-hover">
                         <tr>
-                            <th width='20%'>NIM Mahasiswa</th>
+                            <th width='20%'>NIP Dosen</th>
                             <td width='2%'>:</td>
-                            <td>{{ $data->nim_mahasiswa }}</td>
+                            <td>{{ $data->nip_dosen }}</td>
                         </tr>
                         <tr>
-                            <th width='20%'>Nama Mahasiswa</th>
+                            <th width='20%'>Nama Dosen</th>
                             <td width='2%'>:</td>
-                            <td>{{ $data->nama_mahasiswa }}</td>
+                            <td>{{ $data->nama_dosen }}</td>
                         </tr>
                         <tr>
                             <th width='20%'>Program Studi</th>
@@ -40,11 +40,6 @@
                             <td width='2%'>:</td>
                             <td>{{ $data->email }}</td>
                         </tr>
-                        <tr>
-                            <th width='20%'>No. Telpon</th>
-                            <td width='2%'>:</td>
-                            <td>{{ $data->phone }}</td>
-                        </tr>
                     </table>
                 </div>
             </div>
@@ -52,4 +47,5 @@
 
         </div>
     </div>
+
 @endsection
