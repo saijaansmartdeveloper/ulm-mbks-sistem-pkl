@@ -2,7 +2,7 @@
 
 namespace App\DataTables;
 
-use App\Models\Dosen;
+use App\Models\Lecturer;
 use Yajra\DataTables\Html\Button;
 use Yajra\DataTables\Html\Column;
 use Yajra\DataTables\Services\DataTable;
@@ -18,7 +18,7 @@ class LecturerDataTable extends DataTable
     }
 
 
-    public function query(Dosen $model)
+    public function query(Lecturer $model)
     {
         return $model->all();
     }

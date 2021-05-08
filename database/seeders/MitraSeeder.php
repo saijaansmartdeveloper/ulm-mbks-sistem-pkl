@@ -2,7 +2,7 @@
 
 namespace Database\Seeders;
 
-use App\Models\Mitra;
+use App\Models\Partner;
 use Illuminate\Database\Seeder;
 
 class MitraSeeder extends Seeder
@@ -14,7 +14,7 @@ class MitraSeeder extends Seeder
      */
     public function run()
     {
-        Mitra::factory()->count(50)->create();
+        Partner::factory()->count(10)->create();
 
     }
 }

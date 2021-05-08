@@ -5,14 +5,14 @@
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>{{config('app.name')}}</title>
+    <title>{{config('app.name')}} - LOGIN</title>
 
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-eOJMYsd53ii+scO/bJGFsiCZc+5NDVN2yr8+0RDqr0Ql0h+rP48ckxlpbzKgwra6" crossorigin="anonymous">
 
     <style>
         :root {
             --input-padding-x: 1.5rem;
-            --input-padding-y: 0.4rem;
+            --input-padding-y: 0.8rem;
         }
 
         .login,
@@ -139,6 +139,8 @@
 
                                 <h3 class="login-heading mb-4">Selamat Datang!</h3>
 
+                                @include('alert')
+
                                 <form action="{{route('public.user.login')}}" method="post">
                                     @csrf
                                     <div class="form-label-group">
@@ -152,11 +154,19 @@
                                     </div>
 
                                     <div class="form-label-group">
-                                        {!! Form::select('type', ['lecturer' => 'Dosen', 'student' => 'Mahasiswa', 'partner' => 'Mitra'], null, ['class' => 'form-control' ,'placeholder' => 'Pilih Jenis User', 'style' => 'border-radius: 2rem; padding-top: 14px; padding-bottom: 12px; padding-left: 18px;']) !!}
+                                        {!! Form::select('type', ['lecturer' => 'Dosen', 'student' => 'Mahasiswa', 'partner' => 'Mitra'], null, ['class' => 'form-control' ,'placeholder' => 'Masuk Sebagai', 'style' => 'border-radius: 2rem; padding-top: 14px; padding-bottom: 12px; padding-left: 18px;']) !!}
                                     </div>
 
                                     <div class="d-grid gap-2">
-                                        <button class="btn btn-lg btn-primary btn-block btn-login text-uppercase font-weight-bold mb-2" type="submit">Sign in</button>
+                                        <button class="btn btn-lg btn-primary btn-block btn-login text-uppercase font-weight-bold mb-2" type="submit">Masuk</button>
+                                    </div>
+
+                                    <div class="d-grid gap-2">
+                                        <a href="{{ route('mahasiswa.register') }}" class="btn btn-lg btn-danger btn-block btn-login text-uppercase font-weight-bold mb-2">Registrasi Mahasiswa</a>
+                                    </div>
+
+                                    <div class="text-center mb-2">
+                                        <a class="small text-secondary" href="{{ route('login') }}">Login Sebagai Admin Prodi</a>
                                     </div>
 
                                     <div class="text-center">

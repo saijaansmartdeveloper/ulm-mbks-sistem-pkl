@@ -49,14 +49,14 @@
                     <h2 class="form-title">{{ $title }}</h2>
                     @include('alert')
                     <div class="form-group">
-                        {{ Form::text('nim_mahasiswa', null, ['class' => 'form-input', 'placeholder' => 'NIM Mahasiswa']) }}
+                        {{ Form::text('nim_mahasiswa', null, ['class' => 'form-input', 'placeholder' => 'NIM Student']) }}
 
                     </div>
                     <div class="form-group">
-                        {{ Form::text('nama_mahasiswa', null, ['class' => 'form-input', 'placeholder' => 'Nama Mahasiswa']) }}
+                        {{ Form::text('nama_mahasiswa', null, ['class' => 'form-input', 'placeholder' => 'Nama Student']) }}
                     </div>
                     <div class="form-group">
-                        {{ Form::text('phone', null, ['class' => 'form-input', 'placeholder' => 'No. Telpon Mahasiswa']) }}
+                        {{ Form::text('phone', null, ['class' => 'form-input', 'placeholder' => 'No. Telpon Student']) }}
                     </div>
                     <div class="form-group">
                         {{ Form::email('email', null, ['class' => 'form-input', 'placeholder' => 'Email']) }}
@@ -67,7 +67,7 @@
 
                     </div>
                     <div class="form-group">
-                        {{ Form::select('prodi_uuid', $prodi, null, ['placeholder' => '-- Pilih Prodi --', 'id' => 'prodi', 'class' => 'form-input prodi-select2', 'style' => 'height:100px!important']) }}
+                        {{ Form::select('prodi_uuid', $prodi, null, ['placeholder' => '-- Pilih StudyProgram --', 'id' => 'prodi', 'class' => 'form-input prodi-select2', 'style' => 'height:100px!important']) }}
                     </div>
                     <div class="form-group">
                         <label for="foto_mahasiswa">Foto Mahasiswa : </label>

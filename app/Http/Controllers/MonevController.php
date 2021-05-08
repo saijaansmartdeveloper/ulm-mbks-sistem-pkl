@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Magang;
+use App\Models\Activity;
 use App\Models\Monev;
 use Illuminate\Http\Request;
 use Ramsey\Uuid\Uuid;
@@ -58,7 +58,7 @@ class MonevController extends Controller
     {
 
         $dosen_uuid = Auth::guard('lecturer')->user()->uuid;
-        $magang = Magang::where('dosen_uuid', $dosen_uuid)->get();
+        $magang = Activity::where('dosen_uuid', $dosen_uuid)->get();
 
         foreach ($magang as $value) {
             $magangParsing[$value->uuid] = $value->partner()->first()->nama_mitra . " - " . $value->student()->first()->nama_mahasiswa;
@@ -91,7 +91,7 @@ class MonevController extends Controller
             [
                 'catatan_monev.required'    => 'Catatan Tidak Boleh Kosong',
                 'tanggal_monev.required'    => 'Tanggal Tidak Boleh Kosong',
-                'magang_uuid.required'      => 'Kegiatan Tidak Boleh Kosong',
+                'magang_uuid.required'      => 'Activity Tidak Boleh Kosong',
                 'file_monev.max'            => 'File Monitor Evaluasi Maksimal 1MB',
             ]
         );
@@ -144,7 +144,7 @@ class MonevController extends Controller
     public function edit($id)
     {
         $dosen_uuid = Auth::guard('lecturer')->user()->uuid;
-        $magang = Magang::where('dosen_uuid', $dosen_uuid)->get();
+        $magang = Activity::where('dosen_uuid', $dosen_uuid)->get();
 
         foreach ($magang as $value) {
             $magangParsing[$value->uuid] = $value->partner()->first()->nama_mitra . " - " . $value->student()->first()->nama_mahasiswa;
@@ -177,7 +177,7 @@ class MonevController extends Controller
             [
                 'catatan_monev.required'    => 'Catatan Tidak Boleh Kosong',
                 'tanggal_monev.required'    => 'Tanggal Tidak Boleh Kosong',
-                'magang_uuid.required'      => 'Kegiatan Tidak Boleh Kosong',
+                'magang_uuid.required'      => 'Activity Tidak Boleh Kosong',
                 'file_monev.max'            => 'File Monitor Evaluasi Maksimal 1MB',
             ]
         );

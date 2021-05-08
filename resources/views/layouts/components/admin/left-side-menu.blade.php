@@ -17,6 +17,10 @@
                 @include('layouts.components.menu.student')
             @endauth
 
+            @auth('partner')
+                @include('layouts.components.menu.partner')
+            @endauth
+
         </div>
     </div>
     {{-- <div class="sb-sidenav-footer">

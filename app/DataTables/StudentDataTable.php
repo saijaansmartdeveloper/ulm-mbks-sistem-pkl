@@ -2,7 +2,7 @@
 
 namespace App\DataTables;
 
-use App\Models\Mahasiswa;
+use App\Models\Student;
 use Yajra\DataTables\Html\Button;
 use Yajra\DataTables\Html\Column;
 use Yajra\DataTables\Services\DataTable;
@@ -19,7 +19,7 @@ class StudentDataTable extends DataTable
 
     public function query()
     {
-        $users = Mahasiswa::select();
+        $users = Student::select();
         return $this->applyScopes($users);
     }
 

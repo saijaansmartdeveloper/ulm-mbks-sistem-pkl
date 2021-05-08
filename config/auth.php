@@ -88,17 +88,17 @@ return [
 
         'lecturers' => [
             'driver' => 'eloquent',
-            'model' => App\Models\Dosen::class
+            'model' => App\Models\Lecturer::class
         ],
 
         'students' => [
             'driver' => 'eloquent',
-            'model' => App\Models\Mahasiswa::class
+            'model' => App\Models\Student::class
         ],
 
         'partners' => [
             'driver' => 'eloquent',
-            'model' => App\Models\Mitra::class
+            'model' => App\Models\Partner::class
         ],
 
         // 'users' => [

@@ -2,12 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Jurnal;
-use App\Models\Magang;
-use Barryvdh\DomPDF\PDF;
+use App\Models\Journal;
+use App\Models\Activity;
+use App\Models\Student;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Auth;
 use Ramsey\Uuid\Uuid;
 
@@ -15,17 +14,17 @@ class JournalController extends Controller
 {
     public function __construct()
     {
-        $this->middleware('auth:student');
+        $this->middleware('auth:student,lecturer');
     }
 
     public function index()
     {
-        $user   = Auth::guard('student')->user();
+        $user = Auth::guard('student')->user();
 
         $data = [
             'title'     => $user->nama_mahasiswa,
             'guard'     => 'student',
-            'data'      => Magang::where('mahasiswa_uuid', $user->uuid)->firstOrFail()
+            'data'      => Activity::where('mahasiswa_uuid', $user->uuid)->firstOrFail()
         ];
 
         return view("public.jurnal.index", $data);
@@ -64,26 +63,26 @@ class JournalController extends Controller
             $fileDoc        = $file_doc->storeAs('file/file_dokumen_jurnal', $fileNameDoc, "public");
         }
 
-        Jurnal::create([
+        Journal::create([
             'catatan_jurnal'        => $request->catatan_jurnal,
             'tanggal_jurnal'        => Carbon::parse($request->tanggal_jurnal)->format('Y-m-d'),
             'uuid'                  => Uuid::uuid4(),
-            'magang_uuid'           => $user->kegiatan()->first()->uuid,
+            'kegiatan_uuid'         => $user->activities()->first()->uuid,
             'file_image_jurnal'     => $fileImage ?? null,
             'file_dokumen_jurnal'   => $fileDoc ?? null
         ]);
 
-        return redirect()->route('public.journal.index')->with('success', 'Jurnal berhasil Dibuat');
+        return redirect()->route('public.journal.index')->with('success', 'Journal berhasil Dibuat');
     }
 
     public function show($id)
     {
-        $user   = Auth::guard('student')->user();
 
         $data = [
-            'title'     => $user->nama_mahasiswa . ' - Detail Jurnal',
-            'guard'     => 'student',
-            'data'      => Jurnal::findOrFail($id)
+            'title'     => 'Detail Journal',
+            'guard'     => 'lecturer',
+            'data'      => Journal::findOrFail($id),
+            'user'      => []
         ];
 
         return view("public.jurnal.show", $data);
@@ -96,7 +95,7 @@ class JournalController extends Controller
         $data = [
             'title'     => $user->nama_mahasiswa,
             'guard'     => 'student',
-            'data'      => Jurnal::findOrFail($id)
+            'data'      => Journal::findOrFail($id)
         ];
 
         return view("public.jurnal.form", $data);
@@ -112,7 +111,7 @@ class JournalController extends Controller
             'tanggal_jurnal'            => 'required',
         ]);
 
-        $jurnal = Jurnal::find($id);
+        $jurnal = Journal::find($id);
         $jurnal->catatan_jurnal = $request->catatan_jurnal;
         $jurnal->tanggal_jurnal = $request->tanggal_jurnal;
         $jurnal->status_jurnal  = 'resubmit';
@@ -131,7 +130,7 @@ class JournalController extends Controller
 
         $jurnal->save();
 
-        return redirect()->route('public.journal.index')->with('success', 'Jurnal berhasil Diperbarui');
+        return redirect()->route('public.journal.index')->with('success', 'Journal berhasil Diperbarui');
     }
 
     public function destroy($id)
@@ -146,7 +145,7 @@ class JournalController extends Controller
 
     public function print()
     {
-
+        abort(404);
         $user   = Auth::guard('student')->user();
         $data = [
             'title'     => $user->nama_mahasiswa,
@@ -169,7 +168,7 @@ class JournalController extends Controller
             'data'      => [
                 'from'      => $from,
                 'to'        => $to,
-                'journals'  => Jurnal::whereBetween('tanggal_jurnal', [$from, $to])->orderBy('tanggal_jurnal', 'asc')->get() ?? null
+                'journals'  => Journal::whereBetween('tanggal_jurnal', [$from, $to])->orderBy('tanggal_jurnal', 'asc')->get() ?? null
             ]
         ];
 

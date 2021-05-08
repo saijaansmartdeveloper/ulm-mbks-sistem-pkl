@@ -18,6 +18,7 @@ class CreateJenisKegiatansTable extends Migration
             $table->uuid('uuid')->unique();
             $table->String('kode_jenis_kegiatan');
             $table->String('nama_jenis_kegiatan');
+            $table->String('deskripsi_jenis_kegiatan')->nullable();
             $table->timestamps();
         });
     }

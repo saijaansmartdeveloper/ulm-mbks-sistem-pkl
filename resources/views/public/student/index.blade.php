@@ -7,6 +7,7 @@
     @include('alert')
 
     @if($data == null)
+        <hr>
         <div class="card">
            <div class="card-body">
                <p><i>Anda Belum Didaftarkan untuk Kegiatan Magang <br> Harap Hubungi Admin Prodi Anda</i></p>
@@ -21,41 +22,41 @@
                         <td>Tempat Magang</td>
                         <td>{{ ($data->partner()->first()->nama_mitra) }}</td>
                         <td>Mulai Magang</td>
-                        <td>{{ ($data->mulai_magang) }}</td>
+                        <td>{{ ($data->mulai_kegiatan) }}</td>
                         <td>Akhir Magang</td>
-                        <td>{{ ($data->akhir_magang) }}</td>
+                        <td>{{ ($data->akhir_kegiatan) }}</td>
                     </tr>
                     <tr>
                         <td>Pamong Magang</td>
                         <td>{{ ($data->partner()->first()->pamong_mitra) }}</td>
                         <td>Lama Magang</td>
-                        <td>{{ ($data->lama_magang) }} Minggu</td>
+                        <td>{{ ($data->lama_kegiatan) }} Minggu</td>
                         <td>SK Magang</td>
-                        <td><a href="{{ url($data->file_sk_magang) }}" target="__blank" class="btn btn-outline-info btn-sm">Download SK</a></td>
+                        <td><a href="{{ url($data->file_sk_kegiatan ?? '/not_found') }}" target="__blank" class="btn btn-outline-info btn-sm">Download SK</a></td>
                     </tr>
                     <tr>
                         <td>Dosen Pembimbing</td>
                         <td>{{ ($data->lecturer()->first()->nama_dosen) }}</td>
                         <td>Laporan Magang</td>
                         <td>
-                            @if($data->file_laporan_magang == null)
+                            @if($data->file_laporan_kegiatan == null)
                                 <!-- Button trigger modal -->
                                 <button type="button" class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#uploadReport">
                                     Upload Laporan
                                 </button>
                             @else
-                                    <a href="{{ asset('storage/' . $data->file_laporan_magang) }}" target="_blank">File Jurnal</a>
+                                    <a href="{{ asset('storage/' . $data->file_laporan_kegiatan) }}" target="_blank">File Jurnal</a>
                                 @endif
                         </td>
                         <td>Jurnal Magang</td>
                         <td>
-                        @if($data->file_jurnal_magang == null)
+                        @if($data->file_jurnal_kegiatan == null)
                             <!-- Button trigger modal -->
                                 <button type="button" class="btn btn-success btn-sm" data-bs-toggle="modal" data-bs-target="#uploadJournal">
                                     Jurnal Sah
                                 </button>
                             @else
-                                <a href="{{ asset('storage/' . $data->file_jurnal_magang) }}" target="_blank">File Jurnal</a>
+                                <a href="{{ asset('storage/' . $data->file_jurnal_kegiatan) }}" target="_blank">File Jurnal</a>
                             @endif
                         </td>
                     </tr>
@@ -103,7 +104,7 @@
         <div class="modal fade" id="uploadJournal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
             <div class="modal-dialog modal-dialog-centered">
                 <div class="modal-content">
-                    {{ Form::model($data, ['route' => ['public.internship.report_file', ['id' => $data->uuid]], 'method' => 'put', 'files' => true]) }}
+                    {{ Form::model($data, ['route' => ['public.activity.report_file', ['id' => $data->uuid]], 'method' => 'put', 'files' => true]) }}
                     <div class="modal-header">
                         <h5 class="modal-title" id="staticBackdropLabel">Upload Jurnal</h5>
                         <a href="#" class="close" data-dismiss="modal" data-bs-dismiss="modal" aria-label="close">&times;</a>
@@ -111,8 +112,8 @@
                     <div class="modal-body">
                         <div class="col-12">
                             <div class="form-group">
-                                <label for="file_jurnal_magang">File Upload Jurnal</label>
-                                {{ Form::file('file_jurnal_magang', ['class' => 'form-control-file']) }}
+                                <label for="file_jurnal_kegiatan">File Upload Jurnal</label>
+                                {{ Form::file('file_jurnal_kegiatan', ['class' => 'form-control-file']) }}
                             </div>
                         </div>
                     </div>
@@ -129,7 +130,7 @@
         <div class="modal fade" id="uploadReport" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
             <div class="modal-dialog modal-dialog-centered">
                 <div class="modal-content">
-                    {{ Form::model($data, ['route' => ['public.internship.report_file', ['id' => $data->uuid]], 'method' => 'put', 'files' => true]) }}
+                    {{ Form::model($data, ['route' => ['public.activity.report_file', ['id' => $data->uuid]], 'method' => 'put', 'files' => true]) }}
                     <div class="modal-header">
                         <h5 class="modal-title" id="staticBackdropLabel">Upload Laporan Magang <sup>*</sup></h5>
                         <a href="#" class="close" data-dismiss="modal" data-bs-dismiss="modal" aria-label="close">&times;</a>
@@ -137,8 +138,8 @@
                     <div class="modal-body">
                         <div class="col-12">
                             <div class="form-group">
-                                <label for="file_laporan_magang">File Upload Jurnal (FINAL)</label>
-                                {{ Form::file('file_laporan_magang', ['class' => 'form-control-file']) }}
+                                <label for="file_laporan_kegiatan">File Upload Jurnal (FINAL)</label>
+                                {{ Form::file('file_laporan_kegiatan', ['class' => 'form-control-file']) }}
                             </div>
                         </div>
                     </div>

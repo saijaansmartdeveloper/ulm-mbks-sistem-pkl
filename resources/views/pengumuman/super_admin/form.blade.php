@@ -11,17 +11,17 @@
                 {{ Form::model($data, ['url' => route('pengumuman.update', ['id' => $data->id]), 'method' => 'put']) }}
             @endif
             <div class="form-group">
-                {{ Form::label('judul_pengumuman', 'Judul Pengumuman') }}
-                {{ Form::text('judul_pengumuman', null, ['class' => 'form-control', 'placeholder' => 'Masukkan Judul Pengumuman']) }}
+                {{ Form::label('judul_pengumuman', 'Judul Announcement') }}
+                {{ Form::text('judul_pengumuman', null, ['class' => 'form-control', 'placeholder' => 'Masukkan Judul Announcement']) }}
             </div>
             <div class="form-group">
-                {{ Form::label('content_pengumuman', 'Isi Pengumuman') }}
-                {{ Form::textarea('content_pengumuman', null, ['class' => 'form-control', 'placeholder' => 'Masukkan Isi Pengumuman']) }}
+                {{ Form::label('content_pengumuman', 'Isi Announcement') }}
+                {{ Form::textarea('content_pengumuman', null, ['class' => 'form-control', 'placeholder' => 'Masukkan Isi Announcement']) }}
 
             </div>
             <div class="form-group">
-                {{ Form::label('tanggal_pengumuman', 'Tanggal Pengumuman') }}
-                {{ Form::date('tanggal_pengumuman', null, ['class' => 'form-control', 'placeholder' => 'Masukkan Tanggal Pengumuman']) }}
+                {{ Form::label('tanggal_pengumuman', 'Tanggal Announcement') }}
+                {{ Form::date('tanggal_pengumuman', null, ['class' => 'form-control', 'placeholder' => 'Masukkan Tanggal Announcement']) }}
             </div>
 
             <div class="form-group text-right">

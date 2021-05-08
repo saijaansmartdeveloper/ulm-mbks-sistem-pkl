@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Jurusan;
-use App\Models\Prodi;
+use App\Models\Major;
+use App\Models\StudyProgram;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Ramsey\Uuid\Uuid;
@@ -52,7 +52,7 @@ class UserController extends Controller
     {
         $data = [
             'title'     => 'Tambah Data User',
-            'prodi'     => Prodi::pluck('nama_prodi', 'uuid'),
+            'prodi'     => StudyProgram::pluck('nama_prodi', 'uuid'),
             'data'      => null,
         ];
 
@@ -80,12 +80,12 @@ class UserController extends Controller
                 'email.required'         => 'Email Tidak Boleh Kosong',
                 'password.required'      => 'Password Tidak Boleh Kosong',
                 'role_pengguna.required' => 'Role Pengguna Tidak Boleh Kosong',
-                'prodi_uuid.required'    => 'Prodi Tidak Boleh Kosong',
+                'prodi_uuid.required'    => 'StudyProgram Tidak Boleh Kosong',
             ]
         );
 
         $uuid   =   Uuid::uuid4()->getHex();
-        $prodi  =   Prodi::findOrFail($request->prodi_uuid);
+        $prodi  =   StudyProgram::findOrFail($request->prodi_uuid);
 
         $user = new User;
         $user->uuid              = $uuid;
@@ -127,7 +127,7 @@ class UserController extends Controller
     {
         $data = [
             'title'     => 'Ubah Data User',
-            'prodi'     => Prodi::pluck('nama_prodi', 'uuid'),
+            'prodi'     => StudyProgram::pluck('nama_prodi', 'uuid'),
             'data'      => User::where('uuid', $id)->first(),
         ];
 
@@ -155,11 +155,11 @@ class UserController extends Controller
                 'email.required'         => 'Email Tidak Boleh Kosong',
                 'password.required'      => 'Password Tidak Boleh Kosong',
                 'role_pengguna.required' => 'Role Pengguna Tidak Boleh Kosong',
-                'prodi_uuid.required'    => 'Prodi Tidak Boleh Kosong',
+                'prodi_uuid.required'    => 'StudyProgram Tidak Boleh Kosong',
             ]
         );
 
-        $prodi  =   Prodi::findOrFail($request->prodi_uuid);
+        $prodi  =   StudyProgram::findOrFail($request->prodi_uuid);
 
         $user = User::where('uuid', $id)->first();
         if ($request->password == null) {

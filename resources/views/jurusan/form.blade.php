@@ -13,13 +13,13 @@
 
 
             <div class="form-group">
-                {{ Form::label('kode_jurusan', 'Kode Jurusan') }}
-                {{ Form::text('kode_jurusan', null, ['class' => 'form-control', 'placeholder' => 'Masukkan Kode Jurusan']) }}
+                {{ Form::label('kode_jurusan', 'Kode Major') }}
+                {{ Form::text('kode_jurusan', null, ['class' => 'form-control', 'placeholder' => 'Masukkan Kode Major']) }}
             </div>
 
             <div class="form-group">
-                {{ Form::label('nama_jurusan', 'Nama Jurusan') }}
-                {{ Form::text('nama_jurusan', null, ['class' => 'form-control', 'placeholder' => 'Masukkan Nama Jurusan']) }}
+                {{ Form::label('nama_jurusan', 'Nama Major') }}
+                {{ Form::text('nama_jurusan', null, ['class' => 'form-control', 'placeholder' => 'Masukkan Nama Major']) }}
             </div>
 
 

@@ -24,7 +24,7 @@
 
                 <div class="form-group">
                     <label class="col-form-label text-md-right" for="catatan_monev">Catatan Jurnal</label>
-                    {{ Form::textarea('catatan_jurnal', null, ['class' => 'form-control', 'rows' => '8', 'placeholder' => 'Catatan Jurnal']) }}
+                    {{ Form::textarea('catatan_jurnal', null, ['class' => 'form-control', 'rows' => '8', 'placeholder' => 'Catatan Journal']) }}
                 </div>
 
                 <div class="form-group ">

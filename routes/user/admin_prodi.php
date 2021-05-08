@@ -1,10 +1,9 @@
 <?php
 
-use App\Http\Controllers\Dosen\DosenController;
-use App\Http\Controllers\Kegiatan\JenisKegiatanController;
-use App\Http\Controllers\Kegiatan\MagangController;
-use App\Http\Controllers\Mahasiswa\MahasiswaController;
-use App\Http\Controllers\Mitra\MitraController;
+use App\Http\Controllers\Master\MagangController;
+use App\Http\Controllers\Master\MahasiswaController;
+use App\Http\Controllers\Master\DosenController;
+use App\Http\Controllers\Master\MitraController;
 use Illuminate\Support\Facades\Route;
 
 Route::group(['namespace' => 'dosen'], function () {
@@ -20,7 +19,7 @@ Route::group(['namespace' => 'dosen'], function () {
     Route::delete('/dosen/{id}', [DosenController::class, 'destroy'])->name('dosen.destroy');
 });
 
-Route::group(['namespace' => 'Mitra'], function () {
+Route::group(['namespace' => 'Partner'], function () {
     Route::get('mitra/list', [MitraController::class, 'getMitra'])->name('mitra.list');
 
 
@@ -33,7 +32,7 @@ Route::group(['namespace' => 'Mitra'], function () {
     Route::delete('/mitra/{id}', [MitraController::class, 'destroy'])->name('mitra.destroy');
 });
 
-Route::group(['namespace' => 'Mahasiswa'], function () {
+Route::group(['namespace' => 'Student'], function () {
     Route::get('mahasiswa/list', [MahasiswaController::class, 'getMahasiswa'])->name('mahasiswa.list');
 
 
@@ -46,8 +45,8 @@ Route::group(['namespace' => 'Mahasiswa'], function () {
     Route::delete('/mahasiswa/{id}', [MahasiswaController::class, 'destroy'])->name('mahasiswa.destroy');
 });
 
-Route::group(['namespace' => 'Kegiatan'], function () {
-   
+Route::group(['namespace' => 'Activity'], function () {
+
 
     Route::get('magang/list', [MagangController::class, 'getMagang'])->name('magang.list');
 

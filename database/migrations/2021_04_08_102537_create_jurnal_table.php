@@ -23,10 +23,10 @@ class CreateJurnalTable extends Migration
             $table->string('status_jurnal')->default('submit');
             $table->date('tanggal_verifikasi_jurnal')->nullable();
             $table->longText('komentar_jurnal')->nullable();
-            $table->foreignUuid('magang_uuid')->nullable();
+            $table->foreignUuid('kegiatan_uuid')->nullable();
             $table->timestamps();
 
-            $table->foreign('magang_uuid')->references('uuid')->on('magang')->cascadeOnUpdate()->nullOnDelete();
+            $table->foreign('kegiatan_uuid')->references('uuid')->on('kegiatan')->cascadeOnUpdate()->nullOnDelete();
         });
     }
 

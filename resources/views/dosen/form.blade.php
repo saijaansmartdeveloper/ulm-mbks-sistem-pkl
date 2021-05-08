@@ -11,18 +11,18 @@
             @endif
 
             <div class="form-group">
-                {{ Form::label('nip_dosen', 'NIP Dosen') }}
-                {{ Form::text('nip_dosen', null, ['class' => 'form-control', 'placeholder' => 'Masukkan NIP Dosen']) }}
+                {{ Form::label('nip_dosen', 'NIP Lecturer') }}
+                {{ Form::text('nip_dosen', null, ['class' => 'form-control', 'placeholder' => 'Masukkan NIP Lecturer']) }}
             </div>
 
             <div class="form-group">
-                {{ Form::label('nama_dosen', 'Nama Dosen') }}
-                {{ Form::text('nama_dosen', null, ['class' => 'form-control', 'placeholder' => 'Masukkan Nama Dosen']) }}
+                {{ Form::label('nama_dosen', 'Nama Lecturer') }}
+                {{ Form::text('nama_dosen', null, ['class' => 'form-control', 'placeholder' => 'Masukkan Nama Lecturer']) }}
             </div>
 
             <div class="form-group">
                 {{ Form::label('email', 'Email') }}
-                {{ Form::email('email', null, ['class' => 'form-control', 'placeholder' => 'Masukkan Email Dosen']) }}
+                {{ Form::email('email', null, ['class' => 'form-control', 'placeholder' => 'Masukkan Email Lecturer']) }}
             </div>
 
             <div class="form-group">
@@ -31,7 +31,7 @@
             </div>
 
             <div class="form-group">
-                {{ Form::label('foto_dosen', 'Foto Dosen') }}
+                {{ Form::label('foto_dosen', 'Foto Lecturer') }}
                 {{ Form::file('foto_dosen', ['class' => 'form-control-file', 'accept' => 'image/png,image/gif,image/jpeg']) }}
             </div>
 

@@ -13,23 +13,23 @@
 
 
             <div class="form-group">
-                {{ Form::label('nim_mahasiswa', 'NIM Mahasiswa') }}
-                {{ Form::text('nim_mahasiswa', null, ['class' => 'form-control', 'placeholder' => 'Masukkan NIM Mahasiswa']) }}
+                {{ Form::label('nim_mahasiswa', 'NIM Student') }}
+                {{ Form::text('nim_mahasiswa', null, ['class' => 'form-control', 'placeholder' => 'Masukkan NIM Student']) }}
             </div>
 
             <div class="form-group">
-                {{ Form::label('nama_mahasiswa', 'Nama Mahasiswa') }}
-                {{ Form::text('nama_mahasiswa', null, ['class' => 'form-control', 'placeholder' => 'Masukkan Nama Mahasiswa']) }}
+                {{ Form::label('nama_mahasiswa', 'Nama Student') }}
+                {{ Form::text('nama_mahasiswa', null, ['class' => 'form-control', 'placeholder' => 'Masukkan Nama Student']) }}
             </div>
 
             <div class="form-group">
-                {{ Form::label('phone', 'No. Telepon Mahasiswa') }}
-                {{ Form::text('phone', null, ['class' => 'form-control', 'placeholder' => 'Masukkan No. Telepon Mahasiswa']) }}
+                {{ Form::label('phone', 'No. Telepon Student') }}
+                {{ Form::text('phone', null, ['class' => 'form-control', 'placeholder' => 'Masukkan No. Telepon Student']) }}
             </div>
 
             <div class="form-group">
-                {{ Form::label('email', 'Email Mahasiswa') }}
-                {{ Form::email('email', null, ['class' => 'form-control', 'placeholder' => 'Masukkan Email Mahasiswa']) }}
+                {{ Form::label('email', 'Email Student') }}
+                {{ Form::email('email', null, ['class' => 'form-control', 'placeholder' => 'Masukkan Email Student']) }}
             </div>
 
             <div class="form-group">
@@ -38,7 +38,7 @@
             </div>
 
             <div class="form-group">
-                {{ Form::label('foto_mahasiswa', 'Foto Mahasiswa') }}
+                {{ Form::label('foto_mahasiswa', 'Foto Student') }}
                 {{ Form::file('foto_mahasiswa', ['class' => 'form-control-file']) }}
             </div>
 

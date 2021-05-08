@@ -21,8 +21,8 @@ class CreateMitraTable extends Migration
             $table->text('alamat_mitra')->nullable();
             $table->string('penanggung_jawab_mitra');
             $table->string('pamong_mitra')->nullable();
+            $table->string('email_mitra')->nullable();
             $table->string('email')->unique();
-            $table->string('username')->unique();
             $table->string('password');
             $table->string('phone', 20)->nullable();
             $table->timestamps();

@@ -47,7 +47,6 @@
             <main>
                 <div class="container-fluid">
                     <h1 class="mt-4 mb-4">@yield('content-header')</h1>
-
                     {{-- <ol class="breadcrumb mb-4">
                             @if ($breadcrumb ?? false)
                                 @forelse ($breadcrumb as $item)

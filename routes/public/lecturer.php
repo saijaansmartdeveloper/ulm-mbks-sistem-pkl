@@ -11,10 +11,17 @@ Route::prefix('lecturer')->group(function () {
     Route::get('dashboard', [LecturerController::class, 'index'])
         ->name('lecturer.index');
 
+    Route::get('/{id}', [LecturerController::class, 'show'])
+        ->name('lecturer.show');
+
+    Route::get('/{id}/edit', [LecturerController::class, 'edit'])
+        ->name('lecturer.edit');
+
+    Route::put('/{id}/edit', [LecturerController::class, 'update'])
+        ->name('lecturer.update');;
+
     Route::get('guidance', [LecturerController::class, 'guidance'])
         ->name('lecturer.guidance');
-
-
 
     Route::get('monev/list', [MonevController::class, 'getMonev'])->name('monev.list');
     Route::get('monev', [MonevController::class, 'index'])->name('monev.index');

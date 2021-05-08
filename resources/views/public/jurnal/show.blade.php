@@ -13,21 +13,21 @@
             <table class="table table-hover table-striped">
                 <tr>
                     <td>Tempat Magang</td>
-                    <td>: <strong>{{ $data->magang()->first()->partner()->first()->nama_mitra }}</strong></td>
+                    <td>: <strong>{{ $data->activity()->partner()->first()->nama_mitra }}</strong></td>
                     <td>Waktu Magang</td>
-                    <td>: <strong>{{ $data->magang()->first()->mulai_magang }} s.d {{ $data->magang()->first()->akhir_magang }}</strong></td>
+                    <td>: <strong>{{ $data->activity()->mulai_kegiatan }} s.d {{ $data->activity()->akhir_kegiatan }}</strong></td>
                 </tr>
                 <tr>
                     <td>Pamong Magang</td>
-                    <td>: <strong>{{ $data->magang()->first()->partner()->first()->pamong_mitra }}</strong></td>
+                    <td>: <strong>{{ $data->activity()->partner()->first()->pamong_mitra }}</strong></td>
                     <td>SK Magang</td>
-                    <td><a href="{{ url($data->magang()->first()->file_sk_magang) }}" target="__blank" class="btn btn-outline-info btn-sm">Download SK</a></td>
+                    <td><a href="{{ url($data->activity()->file_sk_kegiatan ?? '/not_found') }}" target="__blank" class="btn btn-outline-info btn-sm">Download SK</a></td>
                 </tr>
                 <tr>
                     <td>Penanggung Jawab Tempat Magang</td>
-                    <td>: <strong>{{ $data->magang()->first()->partner()->first()->penanggung_jawab_mitra }}</strong></td>
+                    <td>: <strong>{{ $data->activity()->partner()->first()->penanggung_jawab_mitra }}</strong></td>
                     <td>Dosen Pembimbing</td>
-                    <td>: <strong>{{ $data->magang()->first()->lecturer()->first()->nama_dosen }}</strong></td>
+                    <td>: <strong>{{ $data->activity()->lecturer()->first()->nama_dosen }}</strong></td>
                 </tr>
                 <tr>
                     <td>File Laporan : <a href="{{ asset($data->file_dokumen_jurnal) }}" target="_blank">Lihat</a></td>

@@ -7,7 +7,7 @@ use App\Http\Controllers\Pengumuman\PengumumanController;
 use App\Http\Controllers\Prodi\ProdiController;
 use App\Http\Controllers\Supervisor\SupervisorController;
 use App\Http\Controllers\UserController;
-use App\Models\JenisKegiatan;
+use App\Models\TypeOfActivity;
 use Illuminate\Support\Facades\Route;
 
 Route::group(['namespace' => 'User'], function () {
@@ -22,7 +22,7 @@ Route::group(['namespace' => 'User'], function () {
     Route::get('/user/{id}', [UserController::class, 'show'])->name('user.show');
     Route::delete('/user/{id}', [UserController::class, 'destroy'])->name('user.destroy');
 });
-Route::group(['namespace' => 'Pengumuman'], function () {
+Route::group(['namespace' => 'Announcement'], function () {
     Route::get('pengumuman/list', [PengumumanController::class, 'getpengumuman'])->name('pengumuman.list');
 
 
@@ -33,7 +33,7 @@ Route::group(['namespace' => 'Pengumuman'], function () {
     Route::put('/pengumuman/{id}', [PengumumanController::class, 'update'])->name('pengumuman.update');
     Route::delete('/pengumuman/{id}', [PengumumanController::class, 'destroy'])->name('pengumuman.destroy');
 });
-Route::group(['namespace' => 'Kegiatan'], function () {
+Route::group(['namespace' => 'Activity'], function () {
     Route::get('jenis_kegiatan/list', [JenisKegiatanController::class, 'getJenisKegiatan'])->name('jenis_kegiatan.list');
 
 
@@ -48,7 +48,7 @@ Route::group(['namespace' => 'Kegiatan'], function () {
 
 
 
-Route::group(['namespace' => 'Jurusan'], function () {
+Route::group(['namespace' => 'Major'], function () {
     Route::get('jurusan/list', [JurusanController::class, 'getJurusan'])->name('jurusan.list');
 
 
@@ -60,7 +60,7 @@ Route::group(['namespace' => 'Jurusan'], function () {
     Route::delete('/jurusan/{id}', [JurusanController::class, 'destroy'])->name('jurusan.destroy');
 });
 
-Route::group(['namespace' => 'Prodi'], function () {
+Route::group(['namespace' => 'StudyProgram'], function () {
     Route::get('prodi/list', [ProdiController::class, 'getProdi'])->name('prodi.list');
 
 
