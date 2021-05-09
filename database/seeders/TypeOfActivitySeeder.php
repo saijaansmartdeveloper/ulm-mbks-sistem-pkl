@@ -6,7 +6,7 @@ use App\Models\TypeOfActivity;
 use Illuminate\Database\Seeder;
 use Ramsey\Uuid\Uuid;
 
-class TypeOfActivity extends Seeder
+class TypeOfActivitySeeder extends Seeder
 {
     /**
      * Run the database seeds.

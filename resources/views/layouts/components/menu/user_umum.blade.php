@@ -11,43 +11,43 @@
         <div class="sb-nav-link-icon"><i class="fas fa-users fa-fw"></i></div>
         Pengguna
     </a>
-    <a class="nav-link collapsed" href="{{ route('jenis_kegiatan.index') }}">
-        <div class="sb-nav-link-icon"><i class="fas fa-building fa-fw"></i></div>
-        Jenis Kegiatan
-    </a>
     <a class="nav-link collapsed" href="{{ route('jurusan.index') }}">
-        <div class="sb-nav-link-icon"><i class="fas fa-building fa-fw"></i></div>
+        <div class="sb-nav-link-icon"><i class="fas fa-university fa-fw"></i></div>
         Jurusan
     </a>
     <a class="nav-link collapsed" href="{{ route('prodi.index') }}">
-        <div class="sb-nav-link-icon"><i class="fas fa-building fa-fw"></i></div>
-        Prodi
+        <div class="sb-nav-link-icon"><i class="fas fa-graduation-cap fa-fw"></i></div>
+        Program Studi
     </a>
     <a class="nav-link collapsed" href="{{ route('pengumuman.index') }}">
-        <div class="sb-nav-link-icon"><i class="fas fa-building fa-fw"></i></div>
+        <div class="sb-nav-link-icon"><i class="fas fa-newspaper fa-fw"></i></div>
         Pengumuman
+    </a>
+    <a class="nav-link collapsed" href="{{ route('jenis_kegiatan.index') }}">
+        <div class="sb-nav-link-icon"><i class="fas fa-folder-open fa-fw"></i></div>
+        Jenis Kegiatan
     </a>
 @endif
 
 @if (Auth::User()->hasRole('admin_prodi'))
     <a class="nav-link collapsed" href="{{ route('dosen.index') }} ">
-        <div class="sb-nav-link-icon"><i class="fas fa-users fa-fw"></i></div>
+        <div class="sb-nav-link-icon"><i class="fas fa-user-graduate fa-fw"></i></div>
         Dosen
     </a>
-
-    <a class="nav-link collapsed" href="{{ route('magang.index') }}">
-        <div class="sb-nav-link-icon"><i class="fas fa-building fa-fw"></i></div>
-        Kegiatan
-    </a>
-    <a class="nav-link collapsed" href="{{ route('mitra.index') }}">
-        <div class="sb-nav-link-icon"><i class="fas fa-building fa-fw"></i></div>
-        Mitra
-    </a>
-
     <a class="nav-link collapsed" href="{{ route('mahasiswa.index') }}">
-        <div class="sb-nav-link-icon"><i class="fas fa-building fa-fw"></i></div>
+        <div class="sb-nav-link-icon"><i class="fas fa-users fa-fw"></i></div>
         Mahasiswa
     </a>
+    <a class="nav-link collapsed" href="{{ route('mitra.index') }}">
+        <div class="sb-nav-link-icon"><i class="fas fa-landmark fa-fw"></i></div>
+        Mitra
+    </a>
+    <a class="nav-link collapsed" href="{{ route('magang.index') }}">
+        <div class="sb-nav-link-icon"><i class="fas fa-folder-open fa-fw"></i></div>
+        Kegiatan
+    </a>
+
+
     {{-- <a class="nav-link collapsed" href="{{ route('pengumuman.index') }}">
         <div class="sb-nav-link-icon"><i class="fas fa-building fa-fw"></i></div>
         Announcement

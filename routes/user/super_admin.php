@@ -1,13 +1,10 @@
 <?php
 
-use App\Http\Controllers\AdminProdi\AdminProdiController;
-use App\Http\Controllers\Jurusan\JurusanController;
-use App\Http\Controllers\Kegiatan\JenisKegiatanController;
-use App\Http\Controllers\Pengumuman\PengumumanController;
-use App\Http\Controllers\Prodi\ProdiController;
-use App\Http\Controllers\Supervisor\SupervisorController;
+use App\Http\Controllers\Master\JurusanController;
+use App\Http\Controllers\Master\JenisKegiatanController;
+use App\Http\Controllers\Master\PengumumanController;
+use App\Http\Controllers\Master\ProdiController;
 use App\Http\Controllers\UserController;
-use App\Models\TypeOfActivity;
 use Illuminate\Support\Facades\Route;
 
 Route::group(['namespace' => 'User'], function () {
@@ -33,7 +30,7 @@ Route::group(['namespace' => 'Announcement'], function () {
     Route::put('/pengumuman/{id}', [PengumumanController::class, 'update'])->name('pengumuman.update');
     Route::delete('/pengumuman/{id}', [PengumumanController::class, 'destroy'])->name('pengumuman.destroy');
 });
-Route::group(['namespace' => 'Activity'], function () {
+Route::group(['namespace' => 'Master'], function () {
     Route::get('jenis_kegiatan/list', [JenisKegiatanController::class, 'getJenisKegiatan'])->name('jenis_kegiatan.list');
 
 

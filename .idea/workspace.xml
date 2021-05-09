@@ -5,33 +5,13 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="56f6580f-bc2a-4056-98d9-44735ab73c9e" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/routes/public/activity.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Dosen/DosenController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Master/DosenController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/HomeController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/HomeController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/InternshipController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/ActivityController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/JournalController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/JournalController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Jurusan/JurusanController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Master/JurusanController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Kegiatan/JenisKegiatanController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Master/JenisKegiatanController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Kegiatan/MagangController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Master/MagangController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/LecturerController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/LecturerController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Mahasiswa/MahasiswaController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Master/MahasiswaController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Mitra/MitraController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Master/MitraController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/PartnerController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/PartnerController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Pengumuman/PengumumanController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Master/PengumumanController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Prodi/ProdiController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Master/ProdiController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/StudentController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/StudentController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Models/Activity.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/Activity.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Models/Journal.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/Journal.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Models/Lecturer.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/Lecturer.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Models/Student.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/Student.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/layouts/components/admin/top-navbar.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/layouts/components/admin/top-navbar.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/public/lecturer/index.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/public/lecturer/index.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/public/student/index.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/public/student/index.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/user/form.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/user/form.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/routes/public/internship.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/routes/user/admin_prodi.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/user/admin_prodi.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/web.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/composer.lock" beforeDir="false" afterPath="$PROJECT_DIR$/composer.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/css/app.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/css/app.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/js/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/js/app.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/mix-manifest.json" beforeDir="false" afterPath="$PROJECT_DIR$/public/mix-manifest.json" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -197,17 +177,17 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/resources/views/public/lecturer" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="vue.rearranger.settings.migration" value="true" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\Bebek\Desktop\ulm-mbks-sistem-pkl" />
       <recent name="C:\Users\Luthfy Eka Permana\PhpstormProjects\ulm-mbks-sistem-pkl\resources\views\public\lecturer" />
       <recent name="C:\Users\Luthfy Eka Permana\PhpstormProjects\ulm-mbks-sistem-pkl\resources\views\public\student" />
       <recent name="C:\Users\Luthfy Eka Permana\PhpstormProjects\ulm-mbks-sistem-pkl\resources\views\public" />
       <recent name="C:\Users\Luthfy Eka Permana\PhpstormProjects\ulm-mbks-sistem-pkl\public\img" />
-      <recent name="C:\Users\Luthfy Eka Permana\PhpstormProjects\ulm-mbks-sistem-pkl\public\vendor\evo-calender" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\Users\Luthfy Eka Permana\PhpstormProjects\ulm-mbks-sistem-pkl\app\Http\Controllers\Master" />
@@ -240,6 +220,7 @@
       <workItem from="1620391485772" duration="9927000" />
       <workItem from="1620466321031" duration="1789000" />
       <workItem from="1620483235457" duration="21399000" />
+      <workItem from="1620585895792" duration="405000" />
     </task>
     <servers />
   </component>
