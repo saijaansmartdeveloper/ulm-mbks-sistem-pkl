@@ -14,44 +14,45 @@ class LecturerDataTable extends DataTable
     {
         return datatables()
             ->eloquent($query)
-            ->addColumn('action', 'lecturerdatatable.action');
+            ->addColumn('action', function ($data) {
+                $action   = \Form::open(['url' => route('dosen.destroy', ['id' => $data->uuid]), 'id' => 'data-' . $data->id, 'method' => 'delete']);
+                $action  .= \Form::close();
+                $action  .= '<a href=' . route('dosen.edit', ['id' => $data->uuid]) . ' class="btn btn-sm btn-primary" ><i class="fa fa-edit"></i></a> ';
+                $action  .= '<a href=' . route('dosen.show', ['id' => $data->uuid]) . ' class="btn btn-sm btn-info" ><i class="fa fa-search"></i></a> ';
+                $action  .= '<button onclick="deleteRow(' . $data->id . ')" class = "btn btn-danger btn-sm"><i class="fa fa-trash"></i></button>';
+
+                return $action;
+            });
     }
 
 
-    public function query(Lecturer $model)
+    public function query()
     {
-        return $model->all();
+        $data = Lecturer::select();
+        return $this->applyScopes($data);
     }
 
     public function html()
     {
         return $this->builder()
-                    ->setTableId('lecturer-table')
-                    ->columns($this->getColumns())
-                    ->minifiedAjax()
-                    ->dom('Bfrtip')
-                    ->orderBy(1)
-                    ->buttons(
-                        Button::make('create'),
-                        Button::make('export'),
-                        Button::make('print'),
-                        Button::make('reset'),
-                        Button::make('reload')
-                    );
+            ->setTableId('lecturer-table')
+            ->columns($this->getColumns())
+            ->parameters([
+                'dom'          => 'Bfrtip',
+                'buttons'      => ['create', 'excel', 'print', 'reload'],
+            ]);
     }
 
     protected function getColumns()
     {
         return [
             Column::computed('action')
-                  ->exportable(false)
-                  ->printable(false)
-                  ->width(60)
-                  ->addClass('text-center'),
-            Column::make('id'),
-            Column::make('add your columns'),
-            Column::make('created_at'),
-            Column::make('updated_at'),
+                ->exportable(false)
+                ->printable(false)
+                ->addClass('text-center'),
+            Column::make('nip_dosen'),
+            Column::make('nama_dosen'),
+            Column::make('email'),
         ];
     }
 

@@ -14,7 +14,14 @@ class StudentDataTable extends DataTable
     {
         return datatables()
             ->eloquent($query)
-            ->addColumn('action', 'studentdatatable.action');
+            ->addColumn('action', function ($data) {
+                $action   = \Form::open(['url' => route('mahasiswa.destroy', ['id' => $data->uuid]), 'id' => 'data-' . $data->id, 'method' => 'delete']);
+                $action  .= \Form::close();
+                $action  .= '<a href=' . route('mahasiswa.edit', ['id' => $data->uuid]) . ' class="btn btn-sm btn-primary" ><i class="fa fa-edit"></i></a> ';
+                $action  .= '<a href=' . route('mahasiswa.show', ['id' => $data->uuid]) . ' class="btn btn-sm btn-info" ><i class="fa fa-search"></i></a> ';
+                $action  .= '<button onclick="deleteRow(' . $data->id . ')" class = "btn btn-danger btn-sm"><i class="fa fa-trash"></i></button>';
+                return $action;
+            });
     }
 
     public function query()
@@ -26,31 +33,24 @@ class StudentDataTable extends DataTable
     public function html()
     {
         return $this->builder()
-                    ->setTableId('studentdatatable-table')
-                    ->columns($this->getColumns())
-                    ->minifiedAjax()
-                    ->dom('Bfrtip')
-                    ->orderBy(1)
-                    ->buttons(
-                        Button::make('create'),
-                        Button::make('export'),
-                        Button::make('print'),
-                        Button::make('reset'),
-                        Button::make('reload')
-                    );
+            ->setTableId('studentdatatable-table')
+            ->columns($this->getColumns())
+            ->parameters([
+                'dom'          => 'Bfrtip',
+                'buttons'      => ['create', 'excel', 'print', 'reload'],
+            ]);
     }
 
     protected function getColumns()
     {
         return [
             Column::computed('action')
-                  ->exportable(false)
-                  ->printable(false)
-                  ->width(60)
-                  ->addClass('text-center'),
-            Column::make('uuid'),
-            Column::make('created_at'),
-            Column::make('updated_at'),
+                ->exportable(false)
+                ->printable(false)
+                ->addClass('text-center'),
+            Column::make('nim_mahasiswa'),
+            Column::make('nama_mahasiswa'),
+            Column::make('email'),
         ];
     }
 

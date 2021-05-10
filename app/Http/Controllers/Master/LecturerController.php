@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers\Master;
 
+use App\DataTables\LecturerDataTable;
+use App\DataTables\Scopes\LecturerDataTableScope;
 use App\Http\Controllers\Controller;
 use App\Models\Lecturer;
 use Illuminate\Http\Request;
@@ -12,35 +14,17 @@ use Ramsey\Uuid\Uuid;
 
 class LecturerController extends Controller
 {
-    public function getDosen(Request $request)
-    {
-        $user = Auth::User()->prodi_uuid;
-        $data = Lecturer::where('prodi_uuid', $user)->with('prodi', 'jurusan')->get();
-        return Datatables::of($data)
-            ->addIndexColumn()
-            ->addColumn('action', function ($data) {
-                $action   = \Form::open(['url' => route('dosen.destroy', ['id' => $data->uuid]), 'id' => 'data-' . $data->id, 'method' => 'delete']);
-                $action  .= \Form::close();
-                $action  .= '<a href=' . route('dosen.edit', ['id' => $data->uuid]) . ' class="btn btn-sm btn-primary" ><i class="fa fa-edit"></i></a> ';
-                $action  .= '<a href=' . route('dosen.show', ['id' => $data->uuid]) . ' class="btn btn-sm btn-info" ><i class="fa fa-search"></i></a> ';
-                $action  .= '<button onclick="deleteRow('.$data->id.')" class = "btn btn-danger btn-sm"><i class="fa fa-trash"></i></button>';
-
-                return $action;
-            })
-            ->rawColumns(['action'])
-            ->make(true);
-    }
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(LecturerDataTable $datatable)
     {
         $data = [
             'title' => 'Master Data Dosen',
         ];
-        return view('dosen.index', $data);
+        return $datatable->addScope(new LecturerDataTableScope(Auth::user()))->render('dosen.index', $data);
     }
 
     /**

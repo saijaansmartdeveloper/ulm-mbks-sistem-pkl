@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers\Master;
 
+use App\DataTables\Scopes\StudentDataTableScope;
+use App\DataTables\StudentDataTable;
 use App\Http\Controllers\Controller;
 use App\Models\Student;
 use App\Models\Major;
@@ -19,36 +21,18 @@ class StudentController extends Controller
 
         // $this->middleware('guest')->except('register_store');
     }
-
-    public function getMahasiswa(Request $request)
-    {
-        $user = Auth::User()->prodi_uuid;
-        $data = Student::where('prodi_uuid', $user)->get();
-        return Datatables::of($data)
-            ->addIndexColumn()
-            ->addColumn('action', function ($data) {
-                $action   = \Form::open(['url' => route('mahasiswa.destroy', ['id' => $data->uuid]), 'id' => 'data-' . $data->id, 'method' => 'delete']);
-                $action  .= \Form::close();
-                $action  .= '<a href=' . route('mahasiswa.edit', ['id' => $data->uuid]) . ' class="btn btn-sm btn-primary" ><i class="fa fa-edit"></i></a> ';
-                $action  .= '<a href=' . route('mahasiswa.show', ['id' => $data->uuid]) . ' class="btn btn-sm btn-info" ><i class="fa fa-search"></i></a> ';
-                $action  .= '<button onclick="deleteRow(' . $data->id . ')" class = "btn btn-danger btn-sm"><i class="fa fa-trash"></i></button>';
-                return $action;
-            })
-            ->rawColumns(['action'])
-            ->make(true);
-    }
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(StudentDataTable $datatable)
     {
         $data = [
             'title' => 'Data Mahasiswa',
         ];
 
-        return view('mahasiswa.index', $data);
+        return $datatable->addScope(new StudentDataTableScope(Auth::user()))->render('mahasiswa.index', $data);
     }
 
     /**
