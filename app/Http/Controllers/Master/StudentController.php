@@ -35,6 +35,15 @@ class StudentController extends Controller
         return $datatable->addScope(new StudentDataTableScope(Auth::user()))->render('mahasiswa.index', $data);
     }
 
+    public function index_superadmin(StudentDataTable $datatable)
+    {
+        $data = [
+            'title' => 'Data Mahasiswa',
+        ];
+
+        return $datatable->render('mahasiswa.index', $data);
+    }
+
     /**
      * Show the form for creating a new resource.
      *
