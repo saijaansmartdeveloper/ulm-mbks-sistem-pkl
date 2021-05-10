@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Master;
 
+use App\DataTables\StudyProgramDataTable;
 use App\Http\Controllers\Controller;
 use App\Models\Major;
 use App\Models\StudyProgram;
@@ -12,34 +13,17 @@ use Ramsey\Uuid\Uuid;
 
 class StudyProgramController extends Controller
 {
-    public function getProdi()
-    {
-
-        $data = StudyProgram::with('jurusan')->get();
-        return Datatables::of($data)
-            ->addIndexColumn()
-            ->addColumn('action', function ($data) {
-                $action  = \Form::open(['url' => route('prodi.destroy', ['id' => $data->uuid]),  'id' => 'data-' . $data->id, 'method' => 'delete']);
-                $action .= \Form::close();
-                $action .= '<a href=' . route('prodi.edit', ['id' => $data->uuid]) . ' class="btn btn-sm btn-primary"><i class="fa fa-edit"></i></a> ';
-                $action .= '<button onclick="deleteRow(' . $data->id . ')" class = "btn btn-danger btn-sm" ><i class="fa fa-trash"></i></button>';
-                return $action;
-            })
-            ->rawColumns(['action'])
-            ->make(true);
-    }
-
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(StudyProgramDataTable $datatable)
     {
         $data = [
             'title' => 'Master Data Program Studi'
         ];
-        return view('prodi.index', $data);
+        return $datatable->render('prodi.index', $data);
     }
 
     /**

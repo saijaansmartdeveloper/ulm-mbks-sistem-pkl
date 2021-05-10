@@ -46,12 +46,12 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
-    public function jurusan()
+    public function major()
     {
         return $this->belongsTo(Major::class, 'jurusan_uuid');
     }
 
-    public function prodi()
+    public function studyprogram()
     {
         return $this->belongsTo(StudyProgram::class, 'prodi_uuid');
     }

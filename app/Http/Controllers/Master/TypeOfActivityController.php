@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Master;
 
+use App\DataTables\TypeOfActivityDataTable;
 use App\Http\Controllers\Controller;
 use App\Models\TypeOfActivity;
 use Illuminate\Http\Request;
@@ -10,34 +11,17 @@ use Ramsey\Uuid\Uuid;
 
 class TypeOfActivityController extends Controller
 {
-    public function getJenisKegiatan(Request $request)
-    {
-
-        $data = TypeOfActivity::all();
-        return Datatables::of($data)
-            ->addIndexColumn()
-            ->addColumn('action', function ($data) {
-                $action   = \Form::open(['url' => route('jenis_kegiatan.destroy', ['id' => $data->uuid]),  'id' => 'data-' . $data->id, 'method' => 'delete']);
-                $action  .= \Form::close();
-                $action  .= '<a href=' . route('jenis_kegiatan.edit', ['id' => $data->uuid]) . ' class="btn btn-sm btn-primary" ><i class="fa fa-edit"></i></a> ';
-                $action  .= '<button onclick="deleteRow(' . $data->id . ')" class = "btn btn-danger btn-sm" ><i class="fa fa-trash"></i></button>';
-
-                return $action;
-            })
-            ->rawColumns(['action'])
-            ->make(true);
-    }
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(TypeOfActivityDataTable $datatable)
     {
         $data = [
             'title' => 'Master Data Jenis Kegiatan',
         ];
-        return view('jenis_kegiatan.index', $data);
+        return $datatable->render('jenis_kegiatan.index', $data);
     }
 
     /**

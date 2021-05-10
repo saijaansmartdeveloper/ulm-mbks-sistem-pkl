@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Master;
 
+use App\DataTables\MajorDataTable;
 use App\Http\Controllers\Controller;
 use App\Models\Major;
 use Illuminate\Http\Request;
@@ -10,35 +11,19 @@ use Ramsey\Uuid\Uuid;
 
 class MajorController extends Controller
 {
-    public function getJurusan(Request $request)
-    {
-
-        $data = Major::all();
-        return Datatables::of($data)
-            ->addIndexColumn()
-            ->addColumn('action', function ($data) {
-                $action   = \Form::open(['url' => route('jurusan.destroy', ['id' => $data->uuid]), 'id' => 'data-' . $data->id, 'method' => 'delete']);
-                $action  .= \Form::close();
-                $action  .= '<a href=' . route('jurusan.edit', ['id' => $data->uuid]) . ' class="btn btn-sm btn-primary"><i class="fa fa-edit"></i></a> ';
-                $action  .= '<button onclick="deleteRow(' . $data->id . ')" class = "btn btn-danger btn-sm" ><i class="fa fa-trash"></i></button>';
-
-                return $action;
-            })
-            ->rawColumns(['action'])
-            ->make(true);
-    }
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(MajorDataTable $datatable)
     {
         $data = [
             'title' => 'Master Data Jurusan',
 
         ];
-        return view('jurusan.index', $data);
+        return $datatable->render('jurusan.index', $data);
+        // return view('jurusan.index', $data);
     }
 
     /**

@@ -16,7 +16,7 @@ class CreateProdiTable extends Migration
         Schema::create('prodi', function (Blueprint $table) {
             $table->id();
             $table->uuid('uuid')->unique();
-            $table->string('kode_prodi');
+            $table->string('kode_prodi')->unique();
             $table->string('nama_prodi');
             $table->foreignUuid('jurusan_uuid')->nullable();
             $table->timestamps();

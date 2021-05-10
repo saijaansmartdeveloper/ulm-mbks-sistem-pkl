@@ -10,34 +10,34 @@
         <hr>
         <div class="card">
            <div class="card-body">
-               <p><i>Anda Belum Didaftarkan untuk Kegiatan Magang <br> Harap Hubungi Admin Prodi Anda</i></p>
+               <p><i>Anda Belum Didaftarkan untuk Kegiatan <br> Harap Hubungi Admin Prodi Anda</i></p>
            </div>
         </div>
     @else
         <div class="card mb-4">
             <div class="card-body">
-                <h4 class="h4">{{ ($data->jenis_kegiatan()->first()->nama_jenis_kegiatan) }}</h4>
+                <h4 class="h4">{{ ($data->typeofactivity()->first()->nama_jenis_kegiatan) }}</h4>
                 <table class="table table-striped table-hover">
                     <tr>
-                        <td>Tempat Magang</td>
+                        <td>Tempat Kegiatan</td>
                         <td>{{ ($data->partner()->first()->nama_mitra) }}</td>
-                        <td>Mulai Magang</td>
+                        <td>Mulai Kegiatan</td>
                         <td>{{ ($data->mulai_kegiatan) }}</td>
-                        <td>Akhir Magang</td>
+                        <td>Akhir Kegiatan</td>
                         <td>{{ ($data->akhir_kegiatan) }}</td>
                     </tr>
                     <tr>
-                        <td>Pamong Magang</td>
+                        <td>Pamong Kegiatan</td>
                         <td>{{ ($data->partner()->first()->pamong_mitra) }}</td>
-                        <td>Lama Magang</td>
+                        <td>Lama Kegiatan</td>
                         <td>{{ ($data->lama_kegiatan) }} Minggu</td>
-                        <td>SK Magang</td>
+                        <td>SK Kegiatan</td>
                         <td><a href="{{ url($data->file_sk_kegiatan ?? '/not_found') }}" target="__blank" class="btn btn-outline-info btn-sm">Download SK</a></td>
                     </tr>
                     <tr>
                         <td>Dosen Pembimbing</td>
                         <td>{{ ($data->lecturer()->first()->nama_dosen) }}</td>
-                        <td>Laporan Magang</td>
+                        <td>Laporan Kegiatan</td>
                         <td>
                             @if($data->file_laporan_kegiatan == null)
                                 <!-- Button trigger modal -->
@@ -48,7 +48,7 @@
                                     <a href="{{ asset('storage/' . $data->file_laporan_kegiatan) }}" target="_blank">File Jurnal</a>
                                 @endif
                         </td>
-                        <td>Jurnal Magang</td>
+                        <td>Jurnal Kegiatan</td>
                         <td>
                         @if($data->file_jurnal_kegiatan == null)
                             <!-- Button trigger modal -->
@@ -132,7 +132,7 @@
                 <div class="modal-content">
                     {{ Form::model($data, ['route' => ['public.activity.report_file', ['id' => $data->uuid]], 'method' => 'put', 'files' => true]) }}
                     <div class="modal-header">
-                        <h5 class="modal-title" id="staticBackdropLabel">Upload Laporan Magang <sup>*</sup></h5>
+                        <h5 class="modal-title" id="staticBackdropLabel">Upload Laporan Kegiatan <sup>*</sup></h5>
                         <a href="#" class="close" data-dismiss="modal" data-bs-dismiss="modal" aria-label="close">&times;</a>
                     </div>
                     <div class="modal-body">

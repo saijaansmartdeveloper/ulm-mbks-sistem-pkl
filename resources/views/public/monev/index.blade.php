@@ -30,6 +30,7 @@
     <script src="{{ asset('datatables/js/jquery.validate.js') }}"></script>
     <script src="{{ asset('datatables/js/jquery.dataTables.min.js') }}"></script>
     <script src="{{ asset('datatables/js/dataTables.bootstrap4.min.js') }}"></script>
+    <script src="{{ asset('sweetalert/alert.js') }}"></script>
     <script>
         $(function() {
             $('#table-monev').DataTable({
@@ -54,6 +55,7 @@
                     },
                     {
                         data: 'action',
+                        className: 'text-center',
                         name: 'action',
                         orderable: true,
                         searchable: true
