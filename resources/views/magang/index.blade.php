@@ -11,8 +11,10 @@
                     <thead>
                         <tr>
                             <th>Jenis Kegiatan</th>
-                            <th>Email Mahasiswa</th>
-                            <th>Lama Magang (Minggu)</th>
+                            <th>Dosen</th>
+                            <th>Mahasiswa</th>
+                            <th>Mitra</th>
+                            <th>Lama Magang (Hari)</th>
                             <th class='text-center'>Action</th>
                         </tr>
                     </thead>
@@ -43,18 +45,24 @@
                         name: 'jenis_kegiatan.nama_jenis_kegiatan'
                     },
                     {
-                        data: 'student.email',
+                        data: 'lecturer.nama_dosen',
                         defaultContent: '-',
-                        name: 'student.email'
+                        name: 'lecturer.nama_dosen'
                     },
                     {
-                        data: 'lama_magang',
-                        name: 'lama_magang'
+                        data: 'student.nama_mahasiswa',
+                        defaultContent: '-',
+                        name: 'student.nama_mahasiswa'
                     },
-                    // {
-                    //     data: 'status_magang',
-                    //     name: 'status_magang'
-                    // },
+                    {
+                        data: 'partner.nama_mitra',
+                        defaultContent: '-',
+                        name: 'partner.nama_mitra'
+                    },
+                    {
+                        data: 'lama_kegiatan',
+                        name: 'lama_kegiatan'
+                    },
                     {
                         data: 'action',
                         className: 'text-center',

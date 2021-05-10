@@ -20,7 +20,7 @@ class MonevController extends Controller
     public function getMonev()
     {
 
-        $data = Monev::all();
+        $data = Monev::with('activity', 'activity.partner', 'activity.student', 'activity.typeofactivity')->get();
         return Datatables::of($data)
             ->addIndexColumn()
             ->addColumn('action', function ($data) {
@@ -91,7 +91,7 @@ class MonevController extends Controller
             [
                 'catatan_monev.required'    => 'Catatan Tidak Boleh Kosong',
                 'tanggal_monev.required'    => 'Tanggal Tidak Boleh Kosong',
-                'magang_uuid.required'      => 'Activity Tidak Boleh Kosong',
+                'magang_uuid.required'      => 'Kegiatan Tidak Boleh Kosong',
                 'file_monev.max'            => 'File Monitor Evaluasi Maksimal 1MB',
             ]
         );
@@ -111,7 +111,8 @@ class MonevController extends Controller
         $monev->tanggal_monev   = $request->tanggal_monev;
         $monev->file_monev      = $fileUrl;
         $monev->komentar_monev  = null;
-        $monev->magang_uuid     = $request->magang_uuid;
+        $monev->kegiatan_uuid   = $request->magang_uuid;
+        $monev->dosen_uuid      = Auth::guard('lecturer')->User()->uuid;
         $monev->prodi_uuid      = Auth::guard('lecturer')->User()->prodi_uuid;
         $monev->jurusan_uuid    = Auth::guard('lecturer')->User()->jurusan_uuid;
         $monev->save();
@@ -177,7 +178,7 @@ class MonevController extends Controller
             [
                 'catatan_monev.required'    => 'Catatan Tidak Boleh Kosong',
                 'tanggal_monev.required'    => 'Tanggal Tidak Boleh Kosong',
-                'magang_uuid.required'      => 'Activity Tidak Boleh Kosong',
+                'magang_uuid.required'      => 'Kegiatan Tidak Boleh Kosong',
                 'file_monev.max'            => 'File Monitor Evaluasi Maksimal 1MB',
             ]
         );
@@ -195,7 +196,8 @@ class MonevController extends Controller
         $monev->catatan_monev   = $request->catatan_monev;
         $monev->tanggal_monev   = $request->tanggal_monev;
         $monev->file_monev      = $fileUrl;
-        $monev->magang_uuid     = $request->magang_uuid;
+        $monev->kegiatan_uuid   = $request->magang_uuid;
+        $monev->dosen_uuid      = Auth::guard('lecturer')->User()->uuid;
         $monev->prodi_uuid      = Auth::guard('lecturer')->User()->prodi_uuid;
         $monev->jurusan_uuid    = Auth::guard('lecturer')->User()->jurusan_uuid;
         $monev->save();

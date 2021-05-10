@@ -12,19 +12,19 @@
             @endif
 
             <div class="form-group">
-                {{ Form::label('kode_prodi', 'Kode StudyProgram') }}
-                {{ Form::text('kode_prodi', null, ['class' => 'form-control', 'placeholder' => 'Masukkan Kode StudyProgram']) }}
+                {{ Form::label('kode_prodi', 'Kode Program Studi') }}
+                {{ Form::text('kode_prodi', null, ['class' => 'form-control', 'placeholder' => 'Masukkan Kode Program Studi']) }}
 
             </div>
 
             <div class="form-group">
-                {{ Form::label('nama_prodi', 'Nama StudyProgram') }}
-                {{ Form::text('nama_prodi', null, ['class' => 'form-control', 'placeholder' => 'Masukkan Nama StudyProgram']) }}
+                {{ Form::label('nama_prodi', 'Nama Program Studi') }}
+                {{ Form::text('nama_prodi', null, ['class' => 'form-control', 'placeholder' => 'Masukkan Nama Program Studi']) }}
             </div>
 
             <div class="form-group">
-                {{ Form::label('jurusan_uuid', 'Major') }}
-                {{ Form::select('jurusan_uuid', $jurusan, null, ['placeholder' => '-- Pilih Major --', 'id' => 'jurusan', 'class' => 'form-control jurusan-select2']) }}
+                {{ Form::label('jurusan_uuid', 'Jurusan') }}
+                {{ Form::select('jurusan_uuid', $jurusan, null, ['placeholder' => '-- Pilih Jurusan --', 'id' => 'jurusan', 'class' => 'form-control jurusan-select2']) }}
             </div>
 
             <div class="form-group text-right">

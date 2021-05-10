@@ -14,8 +14,8 @@ class Monev extends Model
     public $incrementing    = 'false';
     protected $keyType      = 'string';
 
-    public function magang()
+    public function activity()
     {
-        return $this->belongsTo(Activity::class, 'magang_uuid');
+        return $this->belongsTo(Activity::class, 'kegiatan_uuid');
     }
 }

@@ -11,13 +11,13 @@
             @endif
 
             <div class="form-group">
-                {{ Form::label('kode_jenis_kegiatan', 'Kode Jenis Activity') }}
-                {{ Form::text('kode_jenis_kegiatan', null, ['class' => 'form-control', 'placeholder' => 'MasukkanKode Jenis Activity']) }}
+                {{ Form::label('kode_jenis_kegiatan', 'Kode Jenis Kegiatan') }}
+                {{ Form::text('kode_jenis_kegiatan', null, ['class' => 'form-control', 'placeholder' => 'Masukkan Kode Jenis Kegiatan']) }}
             </div>
 
             <div class="form-group">
-                {{ Form::label('nama_jenis_kegiatan', 'Nama Jenis Activity') }}
-                {{ Form::text('nama_jenis_kegiatan', null, ['class' => 'form-control', 'placeholder' => 'Masukkan Nama Jenis Activity']) }}
+                {{ Form::label('nama_jenis_kegiatan', 'Nama Jenis Kegiatan') }}
+                {{ Form::text('nama_jenis_kegiatan', null, ['class' => 'form-control', 'placeholder' => 'Masukkan Nama Jenis Kegiatan']) }}
             </div>
 
             <div class="form-group text-right">

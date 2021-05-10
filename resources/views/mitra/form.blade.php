@@ -11,32 +11,32 @@
             @endif
 
             <div class="form-group">
-                {{ Form::label('nama_mitra', 'Nama Partner') }}
-                {{ Form::text('nama_mitra', null, ['class' => 'form-control', 'placeholder' => 'Masukkan Nama Partner']) }}
+                {{ Form::label('nama_mitra', 'Nama Mitra') }}
+                {{ Form::text('nama_mitra', null, ['class' => 'form-control', 'placeholder' => 'Masukkan Nama Mitra']) }}
             </div>
 
             <div class="form-group">
-                {{ Form::label('divisi_mitra', 'Divisi Partner') }}
-                {{ Form::text('divisi_mitra', null, ['class' => 'form-control', 'placeholder' => 'Masukkan Divisi Partner']) }}
+                {{ Form::label('divisi_mitra', 'Divisi Mitra') }}
+                {{ Form::text('divisi_mitra', null, ['class' => 'form-control', 'placeholder' => 'Masukkan Divisi Mitra']) }}
             </div>
 
             <div class="form-group">
-                {{ Form::label('alamat_mitra', 'Alamat Partner') }}
-                {{ Form::textarea('alamat_mitra', null, ['class' => 'form-control', 'placeholder' => 'Masukkan Alamat Partner']) }}
+                {{ Form::label('alamat_mitra', 'Alamat Mitra') }}
+                {{ Form::textarea('alamat_mitra', null, ['class' => 'form-control', 'placeholder' => 'Masukkan Alamat Mitra']) }}
             </div>
 
             <div class="form-group">
-                {{ Form::label('penanggung_jawab_mitra', 'Penanggung Jawab Partner') }}
-                {{ Form::text('penanggung_jawab_mitra', null, ['class' => 'form-control', 'placeholder' => 'Masukkan Penanggung Jawab Partner']) }}
+                {{ Form::label('penanggung_jawab_mitra', 'Penanggung Jawab Mitra') }}
+                {{ Form::text('penanggung_jawab_mitra', null, ['class' => 'form-control', 'placeholder' => 'Masukkan Penanggung Jawab Mitra']) }}
             </div>
 
             <div class="form-group">
-                {{ Form::label('pamong_mitra', 'Pamong Partner') }}
-                {{ Form::text('pamong_mitra', null, ['class' => 'form-control', 'placeholder' => 'Masukkan Pamong Partner']) }}
+                {{ Form::label('pamong_mitra', 'Pamong Mitra') }}
+                {{ Form::text('pamong_mitra', null, ['class' => 'form-control', 'placeholder' => 'Masukkan Pamong Mitra']) }}
             </div>
 
             <div class="form-group">
-                {{ Form::label('email', 'Email Partner') }}
+                {{ Form::label('email', 'Email Mitra') }}
                 {{ Form::email('email', null, ['class' => 'form-control', 'placeholder' => 'Masukkan Email']) }}
             </div>
 
