@@ -10,7 +10,7 @@ use Illuminate\Http\Request;
 use DataTables;
 use Ramsey\Uuid\Uuid;
 
-class ProdiController extends Controller
+class StudyProgramController extends Controller
 {
     public function getProdi()
     {
@@ -37,7 +37,7 @@ class ProdiController extends Controller
     public function index()
     {
         $data = [
-            'title' => 'Master Data StudyProgram'
+            'title' => 'Master Data Program Studi'
         ];
         return view('prodi.index', $data);
     }
@@ -50,7 +50,7 @@ class ProdiController extends Controller
     public function create()
     {
         $data = [
-            'title'     => 'Tambah Data StudyProgram',
+            'title'     => 'Tambah Data Program Studi',
             'jurusan'   => Major::pluck('nama_jurusan', 'uuid'),
             'data'      => null,
         ];
@@ -73,8 +73,8 @@ class ProdiController extends Controller
                 'jurusan_uuid'  => 'required',
             ],
             [
-                'kode_prodi.required'    => 'Kode StudyProgram Tidak Boleh Kosong',
-                'nama_prodi.required'    => 'Nama StudyProgram Tidak Boleh Kosong',
+                'kode_prodi.required'    => 'Kode Program Studi Tidak Boleh Kosong',
+                'nama_prodi.required'    => 'Nama Program Studi Tidak Boleh Kosong',
                 'jurusan_uuid.required'  => 'Major Tidak Boleh Kosong',
             ]
         );
@@ -111,7 +111,7 @@ class ProdiController extends Controller
     public function edit($id)
     {
         $data = [
-            'title'     => 'Tambah Data StudyProgram',
+            'title'     => 'Tambah Data Program Studi',
             'jurusan'   => Major::pluck('nama_jurusan', 'uuid'),
             'data'      => StudyProgram::findOrFail($id),
         ];
@@ -135,9 +135,9 @@ class ProdiController extends Controller
                 'jurusan_uuid' => 'required',
             ],
             [
-                'kode_prodi.required'    => 'Kode StudyProgram Tidak Boleh Kosong',
-                'nama_prodi.required'    => 'Nama StudyProgram Tidak Boleh Kosong',
-                'jurusan_uuid.required'  => 'Major Tidak Boleh Kosong',
+                'kode_prodi.required'    => 'Kode Program Studi Tidak Boleh Kosong',
+                'nama_prodi.required'    => 'Nama Program Studi Tidak Boleh Kosong',
+                'jurusan_uuid.required'  => 'Jurusan Tidak Boleh Kosong',
             ]
         );
 

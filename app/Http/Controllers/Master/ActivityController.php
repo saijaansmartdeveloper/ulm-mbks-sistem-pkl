@@ -13,7 +13,7 @@ use DataTables;
 use Illuminate\Support\Facades\Auth;
 use Ramsey\Uuid\Uuid;
 
-class MagangController extends Controller
+class ActivityController extends Controller
 {
     public function getMagang(Request $request)
     {
@@ -36,7 +36,7 @@ class MagangController extends Controller
     public function index()
     {
         $data = [
-            'title' => 'Master Data Activity'
+            'title' => 'Master Data Kegiatan'
         ];
 
         return view('magang.index', $data);
@@ -46,7 +46,7 @@ class MagangController extends Controller
     {
         $prodi_uuid = Auth::User()->prodi_uuid;
         $data = [
-            'title'             => 'Tambah Data Activity',
+            'title'             => 'Tambah Data Kegiatan',
             'dosen'             => Lecturer::where('prodi_uuid', $prodi_uuid)->pluck('nama_dosen', 'uuid'),
             'mitra'             => Partner::pluck('nama_mitra', 'uuid'),
             'mahasiswa'         => Student::where('prodi_uuid', $prodi_uuid)->pluck('nama_mahasiswa', 'uuid'),
@@ -71,14 +71,14 @@ class MagangController extends Controller
                 'jenis_kegiatan_uuid'   => 'required',
             ],
             [
-                'mulai_magang.required'          => 'Tanggal Mulai Activity Tidak Boleh Kosong',
-                'lama_magang.required'           => 'Lama Activity Tidak Boleh Kosong',
-                'akhir_magang.required'          => 'Tangal Akhir Activity Tidak Boleh Kosong',
-                'status_magang.required'         => 'Status Activity Tidak Boleh Kosong',
+                'mulai_magang.required'          => 'Tanggal Mulai Kegiatan Tidak Boleh Kosong',
+                'lama_magang.required'           => 'Lama Kegiatan Tidak Boleh Kosong',
+                'akhir_magang.required'          => 'Tangal Akhir Kegiatan Tidak Boleh Kosong',
+                'status_magang.required'         => 'Status Kegiatan Tidak Boleh Kosong',
                 'dosen_uuid.required'            => 'Lecturer Tidak Boleh Kosong',
                 'mahasiswa_uuid.required'        => 'Student Tidak Boleh Kosong',
                 'mitra_uuid.required'            => 'Partner Tidak Boleh Kosong',
-                'jenis_kegiatan_uuid.required'   => 'Jenis Activity Tidak Boleh Kosong',
+                'jenis_kegiatan_uuid.required'   => 'Jenis Kegiatan Tidak Boleh Kosong',
             ]
         );
 
@@ -107,7 +107,7 @@ class MagangController extends Controller
     {
         $prodi_uuid = Auth::User()->prodi_uuid;
         $data = [
-            'title'             => 'Ubah Data Activity',
+            'title'             => 'Ubah Data Kegiatan',
             'dosen'             => Lecturer::where('prodi_uuid', $prodi_uuid)->pluck('nama_dosen', 'uuid'),
             'mitra'             => Partner::pluck('nama_mitra', 'uuid'),
             'mahasiswa'         => Student::where('prodi_uuid', $prodi_uuid)->pluck('nama_mahasiswa', 'uuid'),
@@ -133,15 +133,15 @@ class MagangController extends Controller
                 'jenis_kegiatan_uuid'   => 'required',
             ],
             [
-                'mulai_magang.required'          => 'Tanggal Mulai Activity Tidak Boleh Kosong',
-                'lama_magang.required'           => 'Lama Activity Tidak Boleh Kosong',
-                'akhir_magang.required'          => 'Tangal Akhir Activity Tidak Boleh Kosong',
-                'file_sk_magang.required'        => 'File SK Activity Tidak Boleh Kosong',
-                'status_magang.required'         => 'Status Activity Tidak Boleh Kosong',
+                'mulai_magang.required'          => 'Tanggal Mulai Kegiatan Tidak Boleh Kosong',
+                'lama_magang.required'           => 'Lama Kegiatan Tidak Boleh Kosong',
+                'akhir_magang.required'          => 'Tangal Akhir Kegiatan Tidak Boleh Kosong',
+                'file_sk_magang.required'        => 'File SK Kegiatan Tidak Boleh Kosong',
+                'status_magang.required'         => 'Status Kegiatan Tidak Boleh Kosong',
                 'dosen_uuid.required'            => 'Lecturer Tidak Boleh Kosong',
                 'mahasiswa_uuid.required'        => 'Student Tidak Boleh Kosong',
                 'mitra_uuid.required'            => 'Partner Tidak Boleh Kosong',
-                'jenis_kegiatan_uuid.required'   => 'Jenis Activity Tidak Boleh Kosong',
+                'jenis_kegiatan_uuid.required'   => 'Jenis Kegiatan Tidak Boleh Kosong',
             ]
         );
 
@@ -174,7 +174,7 @@ class MagangController extends Controller
     public function show($id)
     {
         $data = [
-            'title' => 'Detail Data Activity',
+            'title' => 'Detail Data Kegiatan',
             'data'  => Activity::where('uuid', $id)->first(),
         ];
 

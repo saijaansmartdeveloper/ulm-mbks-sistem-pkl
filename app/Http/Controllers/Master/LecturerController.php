@@ -10,7 +10,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 use Ramsey\Uuid\Uuid;
 
-class DosenController extends Controller
+class LecturerController extends Controller
 {
     public function getDosen(Request $request)
     {
@@ -38,7 +38,7 @@ class DosenController extends Controller
     public function index()
     {
         $data = [
-            'title' => 'Master Data Lecturer',
+            'title' => 'Master Data Dosen',
         ];
         return view('dosen.index', $data);
     }
@@ -51,7 +51,7 @@ class DosenController extends Controller
     public function create()
     {
         $data = [
-            'title' => 'Tambah Data Lecturer',
+            'title' => 'Tambah Data Dosen',
             'data'  => null,
         ];
 
@@ -75,8 +75,8 @@ class DosenController extends Controller
                 'foto_dosen'        => 'image|mimes:jpeg,png,jpg|max:512'
             ],
             [
-                'nip_dosen.required'     => 'NIP Lecturer Tidak Boleh Kosong',
-                'nama_dosen.required'    => 'Nama Lecturer Tidak Boleh Kosong',
+                'nip_dosen.required'     => 'NIP Dosen Tidak Boleh Kosong',
+                'nama_dosen.required'    => 'Nama Dosen Tidak Boleh Kosong',
                 'email.required'         => 'Email Tidak Boleh Kosong',
                 'password.required'      => 'Password Tidak Boleh Kosong',
                 'foto_dosen.max'         => 'File Foto Maksimal 512KB'
@@ -114,7 +114,7 @@ class DosenController extends Controller
     public function show($id)
     {
         $data = [
-            'title' => 'Detail Lecturer',
+            'title' => 'Detail Dosen',
             'data'  => Lecturer::findOrFail($id),
         ];
 
@@ -130,7 +130,7 @@ class DosenController extends Controller
     public function edit($id)
     {
         $data = [
-            'title' => 'Ubah Data Lecturer',
+            'title' => 'Ubah Data Dosen',
             'data'  => Lecturer::findOrFail($id),
         ];
 
@@ -155,8 +155,8 @@ class DosenController extends Controller
                 'foto_dosen'        => 'image|mimes:jpeg,png,jpg|max:512'
             ],
             [
-                'nip_dosen.required'     => 'NIP Lecturer Tidak Boleh Kosong',
-                'nama_dosen.required'    => 'Nama Lecturer Tidak Boleh Kosong',
+                'nip_dosen.required'     => 'NIP Dosen Tidak Boleh Kosong',
+                'nama_dosen.required'    => 'Nama Dosen Tidak Boleh Kosong',
                 'email.required'         => 'Email Tidak Boleh Kosong',
                 'password.required'      => 'Password Tidak Boleh Kosong',
                 'foto_dosen.max'         => 'File Foto Maksimal 512KB'

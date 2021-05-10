@@ -12,14 +12,14 @@
             @endif
 
             <div class="form-group">
-                {{ Form::label('kode_prodi', 'Kode StudyProgram') }}
-                {{ Form::text('kode_prodi', null, ['class' => 'form-control', 'placeholder' => 'Masukkan Kode StudyProgram']) }}
+                {{ Form::label('kode_prodi', 'Kode Program Studi') }}
+                {{ Form::text('kode_prodi', null, ['class' => 'form-control', 'placeholder' => 'Masukkan Kode Program Studi']) }}
 
             </div>
 
             <div class="form-group">
-                {{ Form::label('nama_prodi', 'Nama StudyProgram') }}
-                {{ Form::text('nama_prodi', null, ['class' => 'form-control', 'placeholder' => 'Masukkan Nama StudyProgram']) }}
+                {{ Form::label('nama_prodi', 'Nama Program Studi') }}
+                {{ Form::text('nama_prodi', null, ['class' => 'form-control', 'placeholder' => 'Masukkan Nama Program Studi']) }}
             </div>
 
             <div class="form-group">

@@ -8,7 +8,7 @@ use Illuminate\Http\Request;
 use DataTables;
 use Ramsey\Uuid\Uuid;
 
-class JenisKegiatanController extends Controller
+class TypeOfActivityController extends Controller
 {
     public function getJenisKegiatan(Request $request)
     {
@@ -35,7 +35,7 @@ class JenisKegiatanController extends Controller
     public function index()
     {
         $data = [
-            'title' => 'Master Data Jenis Activity',
+            'title' => 'Master Data Jenis Kegiatan',
         ];
         return view('jenis_kegiatan.index', $data);
     }
@@ -48,7 +48,7 @@ class JenisKegiatanController extends Controller
     public function create()
     {
         $data = [
-            'title' => 'Tambah Data Jenis Activity',
+            'title' => 'Tambah Data Jenis Kegiatan',
             'data'  => null,
         ];
 
@@ -69,8 +69,8 @@ class JenisKegiatanController extends Controller
                 'nama_jenis_kegiatan' => 'required',
             ],
             [
-                'kode_jenis_kegiatan.required' => 'Kode Jenis Activity Tidak Boleh Kosong',
-                'nama_jenis_kegiatan.required' => 'Nama Jenis Activity Tidak Boleh Kosong',
+                'kode_jenis_kegiatan.required' => 'Kode Jenis Kegiatan Tidak Boleh Kosong',
+                'nama_jenis_kegiatan.required' => 'Nama Jenis Kegiatan Tidak Boleh Kosong',
             ]
         );
 
@@ -105,7 +105,7 @@ class JenisKegiatanController extends Controller
     public function edit($id)
     {
         $data = [
-            'title' => 'Ubah Data Jenis Activity',
+            'title' => 'Ubah Data Jenis Kegiatan',
             'data'  => TypeOfActivity::findOrFail($id),
         ];
 
@@ -127,8 +127,8 @@ class JenisKegiatanController extends Controller
                 'nama_jenis_kegiatan' => 'required',
             ],
             [
-                'kode_jenis_kegiatan.required' => 'Kode Jenis Activity Tidak Boleh Kosong',
-                'nama_jenis_kegiatan.required' => 'Nama Jenis Activity Tidak Boleh Kosong',
+                'kode_jenis_kegiatan.required' => 'Kode Jenis Kegiatan Tidak Boleh Kosong',
+                'nama_jenis_kegiatan.required' => 'Nama Jenis Kegiatan Tidak Boleh Kosong',
             ]
         );
 

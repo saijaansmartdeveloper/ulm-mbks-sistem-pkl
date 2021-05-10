@@ -12,7 +12,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 use Ramsey\Uuid\Uuid;
 
-class MahasiswaController extends Controller
+class StudentController extends Controller
 {
     public function __construct()
     {
@@ -45,7 +45,7 @@ class MahasiswaController extends Controller
     public function index()
     {
         $data = [
-            'title' => 'Data Student',
+            'title' => 'Data Mahasiswa',
         ];
 
         return view('mahasiswa.index', $data);
@@ -59,7 +59,7 @@ class MahasiswaController extends Controller
     public function create()
     {
         $data = [
-            'title' => 'Tambah Data Student',
+            'title' => 'Tambah Data Mahasiswa',
             'data'  => null,
         ];
 
@@ -69,7 +69,7 @@ class MahasiswaController extends Controller
     public function register()
     {
         $data = [
-            'title'     => 'Registrasi Student',
+            'title'     => 'Registrasi Mahasiswa',
             'jurusan'   => Major::pluck('nama_jurusan', 'uuid'),
             'prodi'     => StudyProgram::pluck('nama_prodi', 'uuid'),
         ];
@@ -89,8 +89,8 @@ class MahasiswaController extends Controller
                 'foto_mahasiswa'    => 'image|mimes:jpeg,png,jpg|max:512'
             ],
             [
-                'nim_mahasiswa.required'     => 'NIM Student Tidak Boleh Kosong',
-                'nama_mahasiswa.required'    => 'Nama Student Tidak Boleh Kosong',
+                'nim_mahasiswa.required'     => 'NIM Mahasiswa Tidak Boleh Kosong',
+                'nama_mahasiswa.required'    => 'Nama Mahasiswa Tidak Boleh Kosong',
                 'email.required'             => 'Email Tidak Boleh Kosong',
                 'password.required'          => 'Password Tidak Boleh Kosong',
                 'phone.required'             => 'No. Telepon Tidak Boleh Kosong',
@@ -141,8 +141,8 @@ class MahasiswaController extends Controller
                 'phone'             => 'required',
             ],
             [
-                'nim_mahasiswa.required'     => 'NIM Student Tidak Boleh Kosong',
-                'nama_mahasiswa.required'    => 'Nama Student Tidak Boleh Kosong',
+                'nim_mahasiswa.required'     => 'NIM Mahasiswa Tidak Boleh Kosong',
+                'nama_mahasiswa.required'    => 'Nama Mahasiswa Tidak Boleh Kosong',
                 'email.required'             => 'Email Tidak Boleh Kosong',
                 'password.required'          => 'Password Tidak Boleh Kosong',
                 'phone.required'             => 'No. Telepon Tidak Boleh Kosong',
@@ -183,7 +183,7 @@ class MahasiswaController extends Controller
     public function show($id)
     {
         $data = [
-            'title' => 'Detail Student',
+            'title' => 'Detail Mahasiswa',
             'data'  => Student::findOrFail($id),
         ];
 
@@ -199,7 +199,7 @@ class MahasiswaController extends Controller
     public function edit($id)
     {
         $data = [
-            'title' => 'Ubah Data Student',
+            'title' => 'Ubah Data Mahasiswa',
             'data'  =>  Student::findOrFail($id)
         ];
 
@@ -223,8 +223,8 @@ class MahasiswaController extends Controller
                 'phone'             => 'required',
             ],
             [
-                'nim_mahasiswa.required'     => 'NIM Student Tidak Boleh Kosong',
-                'nama_mahasiswa.required'    => 'Nama Student Tidak Boleh Kosong',
+                'nim_mahasiswa.required'     => 'NIM Mahasiswa Tidak Boleh Kosong',
+                'nama_mahasiswa.required'    => 'Nama Mahasiswa Tidak Boleh Kosong',
                 'email.required'             => 'Email Tidak Boleh Kosong',
                 'phone.required'             => 'No. Telepon Tidak Boleh Kosong',
                 'foto_mahasiswa.max'         => 'File Foto Maksimal 512KB'

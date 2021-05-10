@@ -8,7 +8,7 @@ use Illuminate\Http\Request;
 use DataTables;
 use Ramsey\Uuid\Uuid;
 
-class JurusanController extends Controller
+class MajorController extends Controller
 {
     public function getJurusan(Request $request)
     {
@@ -35,7 +35,7 @@ class JurusanController extends Controller
     public function index()
     {
         $data = [
-            'title' => 'Master Data Major',
+            'title' => 'Master Data Jurusan',
 
         ];
         return view('jurusan.index', $data);
@@ -49,7 +49,7 @@ class JurusanController extends Controller
     public function create()
     {
         $data = [
-            'title' => 'Tambah Data Major',
+            'title' => 'Tambah Data Jurusan',
             'data'  => null,
         ];
         return view('jurusan.form', $data);
@@ -69,8 +69,8 @@ class JurusanController extends Controller
                 'nama_jurusan'  => 'required',
             ],
             [
-                'kode_jurusan.required'  => 'Kode Major Tidak Boleh Kosong',
-                'nama_jurusan.required'  => 'Nama Major Tidak Boleh Kosong',
+                'kode_jurusan.required'  => 'Kode Jurusan Tidak Boleh Kosong',
+                'nama_jurusan.required'  => 'Nama Jurusan Tidak Boleh Kosong',
             ]
         );
 
@@ -105,7 +105,7 @@ class JurusanController extends Controller
     public function edit($id)
     {
         $data = [
-            'title' => 'Ubah Data Major',
+            'title' => 'Ubah Data Jurusan',
             'data'  =>  Major::findOrFail($id),
         ];
         return view('jurusan.form', $data);
@@ -126,8 +126,8 @@ class JurusanController extends Controller
                 'nama_jurusan'  => 'required',
             ],
             [
-                'kode_jurusan.required'  => 'Kode Major Tidak Boleh Kosong',
-                'nama_jurusan.required'  => 'Nama Major Tidak Boleh Kosong',
+                'kode_jurusan.required'  => 'Kode Jurusan Tidak Boleh Kosong',
+                'nama_jurusan.required'  => 'Nama Jurusan Tidak Boleh Kosong',
             ]
         );
 

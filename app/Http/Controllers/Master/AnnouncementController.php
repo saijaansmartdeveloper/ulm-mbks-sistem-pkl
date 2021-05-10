@@ -8,7 +8,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use DataTables;
 
-class PengumumanController extends Controller
+class AnnouncementController extends Controller
 {
     public function getPengumuman()
     {
@@ -34,7 +34,7 @@ class PengumumanController extends Controller
     public function index()
     {
         $data = [
-            'title' => 'Master Data Announcement'
+            'title' => 'Master Data Pengumuman'
         ];
         return view('pengumuman.super_admin.index', $data);
     }
@@ -47,7 +47,7 @@ class PengumumanController extends Controller
     public function create()
     {
         $data = [
-            'title' => 'Tambah Data Announcement',
+            'title' => 'Tambah Data Pengumuman',
             'data'  => null
         ];
         return view('pengumuman.super_admin.form', $data);
@@ -68,9 +68,9 @@ class PengumumanController extends Controller
                 'tanggal_pengumuman'    => 'required',
             ],
             [
-                'judul_pengumuman.required'      => 'Judul Announcement Tidak Boleh Kosong',
-                'content_pengumuman.required'    => 'Isi Announcement Tidak Boleh Kosong',
-                'tanggal_pengumuman.required'    => 'Tanggal Announcement Tidak Boleh Kosong',
+                'judul_pengumuman.required'      => 'Judul Pengumuman Tidak Boleh Kosong',
+                'content_pengumuman.required'    => 'Isi Pengumuman Tidak Boleh Kosong',
+                'tanggal_pengumuman.required'    => 'Tanggal Pengumuman Tidak Boleh Kosong',
             ]
         );
 
@@ -106,7 +106,7 @@ class PengumumanController extends Controller
     public function edit($id)
     {
         $data = [
-            'title' => 'Ubah Data Announcement',
+            'title' => 'Ubah Data Pengumuman',
             'data'  => Announcement::findOrFail($id)
         ];
         return view('pengumuman.super_admin.form', $data);
@@ -128,9 +128,9 @@ class PengumumanController extends Controller
                 'tanggal_pengumuman'    => 'required',
             ],
             [
-                'judul_pengumuman.required'      => 'Judul Announcement Tidak Boleh Kosong',
-                'content_pengumuman.required'    => 'Isi Announcement Tidak Boleh Kosong',
-                'tanggal_pengumuman.required'    => 'Tanggal Announcement Tidak Boleh Kosong',
+                'judul_pengumuman.required'      => 'Judul Pengumuman Tidak Boleh Kosong',
+                'content_pengumuman.required'    => 'Isi Pengumuman Tidak Boleh Kosong',
+                'tanggal_pengumuman.required'    => 'Tanggal Pengumuman Tidak Boleh Kosong',
             ]
         );
 
