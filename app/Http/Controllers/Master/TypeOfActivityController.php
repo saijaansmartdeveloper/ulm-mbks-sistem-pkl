@@ -49,21 +49,24 @@ class TypeOfActivityController extends Controller
     {
         $request->validate(
             [
-                'kode_jenis_kegiatan' => 'required',
-                'nama_jenis_kegiatan' => 'required',
+                'kode_jenis_kegiatan'       => 'required',
+                'nama_jenis_kegiatan'       => 'required',
+                'deskripsi_jenis_kegiatan'  => 'required',
             ],
             [
-                'kode_jenis_kegiatan.required' => 'Kode Jenis Kegiatan Tidak Boleh Kosong',
-                'nama_jenis_kegiatan.required' => 'Nama Jenis Kegiatan Tidak Boleh Kosong',
+                'kode_jenis_kegiatan.required'      => 'Kode Jenis Kegiatan Tidak Boleh Kosong',
+                'nama_jenis_kegiatan.required'      => 'Nama Jenis Kegiatan Tidak Boleh Kosong',
+                'deskripsi_jenis_kegiatan.required' => 'Deskripsi Jenis Kegiatan Tidak Boleh Kosong',
             ]
         );
 
         $uuid = Uuid::uuid4()->getHex();
 
         $jenis_kegiatan = new TypeOfActivity;
-        $jenis_kegiatan->uuid                   = $uuid;
-        $jenis_kegiatan->kode_jenis_kegiatan    = $request->kode_jenis_kegiatan;
-        $jenis_kegiatan->nama_jenis_kegiatan    = $request->nama_jenis_kegiatan;
+        $jenis_kegiatan->uuid                           = $uuid;
+        $jenis_kegiatan->kode_jenis_kegiatan            = $request->kode_jenis_kegiatan;
+        $jenis_kegiatan->nama_jenis_kegiatan            = $request->nama_jenis_kegiatan;
+        $jenis_kegiatan->deskripsi_jenis_kegiatan       = $request->deskripsi_jenis_kegiatan;
         $jenis_kegiatan->save();
 
         return redirect()->route('jenis_kegiatan.index')->with('success', 'Data Berhasil Ditambah');
@@ -107,18 +110,22 @@ class TypeOfActivityController extends Controller
     {
         $request->validate(
             [
-                'kode_jenis_kegiatan' => 'required',
-                'nama_jenis_kegiatan' => 'required',
+                'kode_jenis_kegiatan'       => 'required',
+                'nama_jenis_kegiatan'       => 'required',
+                'deskripsi_jenis_kegiatan'  => 'required',
             ],
             [
-                'kode_jenis_kegiatan.required' => 'Kode Jenis Kegiatan Tidak Boleh Kosong',
-                'nama_jenis_kegiatan.required' => 'Nama Jenis Kegiatan Tidak Boleh Kosong',
+                'kode_jenis_kegiatan.required'      => 'Kode Jenis Kegiatan Tidak Boleh Kosong',
+                'nama_jenis_kegiatan.required'      => 'Nama Jenis Kegiatan Tidak Boleh Kosong',
+                'deskripsi_jenis_kegiatan.required' => 'Deskripsi Jenis Kegiatan Tidak Boleh Kosong',
             ]
         );
 
         $jenis_kegiatan = TypeOfActivity::findOrFail($id);
-        $jenis_kegiatan->kode_jenis_kegiatan    = $request->kode_jenis_kegiatan;
-        $jenis_kegiatan->nama_jenis_kegiatan    = $request->nama_jenis_kegiatan;
+        $jenis_kegiatan->kode_jenis_kegiatan        = $request->kode_jenis_kegiatan;
+        $jenis_kegiatan->nama_jenis_kegiatan        = $request->nama_jenis_kegiatan;
+        $jenis_kegiatan->deskripsi_jenis_kegiatan   = $request->deskripsi_jenis_kegiatan;
+
         $jenis_kegiatan->save();
 
         return redirect()->route('jenis_kegiatan.index')->with('update', 'Data Berhasil Diubah');

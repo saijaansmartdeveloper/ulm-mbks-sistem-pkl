@@ -72,6 +72,7 @@ class TypeOfActivityDataTable extends DataTable
                 ->addClass('text-center'),
             Column::make('kode_jenis_kegiatan'),
             Column::make('nama_jenis_kegiatan'),
+            Column::make('deskripsi_jenis_kegiatan'),
         ];
     }
 
