@@ -1,12 +1,12 @@
-<div class="sb-sidenav-menu-heading">Core</div>
-
-<a class="nav-link" href="{{ route('home') }}">
-    <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
-    Dashboard
-</a>
-
-<div class="sb-sidenav-menu-heading">Master Data</div>
 @if (Auth::User()->hasRole('super_admin'))
+    <div class="sb-sidenav-menu-heading">Core</div>
+
+    <a class="nav-link" href="{{ route('super_admin.dashboard') }}">
+        <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
+        Dashboard
+    </a>
+
+    <div class="sb-sidenav-menu-heading">Master Data</div>
     <a class="nav-link collapsed" href="{{ route('user.index') }} ">
         <div class="sb-nav-link-icon"><i class="fas fa-users fa-fw"></i></div>
         Pengguna
@@ -30,6 +30,14 @@
 @endif
 
 @if (Auth::User()->hasRole('admin_prodi'))
+    <div class="sb-sidenav-menu-heading">Core</div>
+
+    <a class="nav-link" href="{{ route('admin_prodi.dashboard') }}">
+        <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
+        Dashboard
+    </a>
+
+    <div class="sb-sidenav-menu-heading">Master Data</div>
     <a class="nav-link collapsed" href="{{ route('dosen.index') }} ">
         <div class="sb-nav-link-icon"><i class="fas fa-user-graduate fa-fw"></i></div>
         Dosen

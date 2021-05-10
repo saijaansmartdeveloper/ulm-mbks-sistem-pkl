@@ -18,7 +18,7 @@ class ActivityController extends Controller
     public function getMagang(Request $request)
     {
 
-        $data = Activity::with('jenis_kegiatan', 'student')->get();
+        $data = Activity::with('jenis_kegiatan', 'student', 'lecturer', 'partner')->get();
         return Datatables::of($data)
             ->addIndexColumn()
             ->addColumn('action', function ($data) {
