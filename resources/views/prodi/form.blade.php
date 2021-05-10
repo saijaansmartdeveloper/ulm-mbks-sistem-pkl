@@ -23,8 +23,8 @@
             </div>
 
             <div class="form-group">
-                {{ Form::label('jurusan_uuid', 'Major') }}
-                {{ Form::select('jurusan_uuid', $jurusan, null, ['placeholder' => '-- Pilih Major --', 'id' => 'jurusan', 'class' => 'form-control jurusan-select2']) }}
+                {{ Form::label('jurusan_uuid', 'Jurusan') }}
+                {{ Form::select('jurusan_uuid', $jurusan, null, ['placeholder' => '-- Pilih Jurusan --', 'id' => 'jurusan', 'class' => 'form-control jurusan-select2']) }}
             </div>
 
             <div class="form-group text-right">

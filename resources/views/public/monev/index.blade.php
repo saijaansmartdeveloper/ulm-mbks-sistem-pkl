@@ -10,7 +10,9 @@
                 <table class="table table-bordered " id="table-monev">
                     <thead>
                         <tr>
-                            <th>Catatan</th>
+                            <th>Jenis Kegiatan</th>
+                            <th>Mitra</th>
+                            <th>Mahasiswa</th>
                             <th>Tanggal</th>
                             <th class='text-center' width="122">Action</th>
                         </tr>
@@ -35,8 +37,16 @@
                 serverSide: true,
                 ajax: "{{ route('public.monev.list') }}",
                 columns: [{
-                        data: 'catatan_monev',
-                        name: 'catatan_monev'
+                        data: 'activity.typeofactivity.nama_jenis_kegiatan',
+                        name: 'activity.typeofactivity.nama_jenis_kegiatan'
+                    },
+                    {
+                        data: 'activity.partner.nama_mitra',
+                        name: 'activity.partner.nama_mitra'
+                    },
+                    {
+                        data: 'activity.student.nama_mahasiswa',
+                        name: 'activity.student.nama_mahasiswa'
                     },
                     {
                         data: 'tanggal_monev',
