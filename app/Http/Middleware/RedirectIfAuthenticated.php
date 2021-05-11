@@ -27,10 +27,18 @@ class RedirectIfAuthenticated
                 switch ($guard) {
                     case 'lecturer':
                         return redirect()->route('public.lecturer.index');
-                    case 'student' :
+                    case 'student':
                         return redirect()->route('public.student.index');
                     default:
-                        return redirect(RouteServiceProvider::HOME);
+                        if (Auth::User()->hasRole('super_admin')) {
+                            return redirect()->route('super_admin.dashboard');
+                        } else if (Auth::User()->hasRole('admin_prodi')) {
+                            return redirect()->route('admin_prodi.dashboard');
+                        } else if (Auth::User()->hasRole('supervisor')) {
+                            // return redirect()->route('supervisor.dashboard');
+                        } else {
+                            return redirect(RouteServiceProvider::HOME);
+                        }
                 }
             }
         }

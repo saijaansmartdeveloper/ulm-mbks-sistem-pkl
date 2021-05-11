@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Master;
 
+use App\DataTables\AnnouncementDataTable;
 use App\Http\Controllers\Controller;
 use App\Models\Announcement;
 use Illuminate\Http\Request;
@@ -10,33 +11,17 @@ use DataTables;
 
 class AnnouncementController extends Controller
 {
-    public function getPengumuman()
-    {
-
-        $data = Announcement::all();
-        return Datatables::of($data)
-            ->addIndexColumn()
-            ->addColumn('action', function ($data) {
-                $action = \Form::open(['url' => route('pengumuman.destroy', ['id' => $data->id]),  'id' => 'data-' . $data->id, 'method' => 'delete']);
-                $action .= \Form::close();
-                $action .= '<a href=' . route('pengumuman.edit', ['id' => $data->id]) . ' class="btn btn-sm btn-primary" ><i class="fa fa-edit"></i></a> ';
-                $action .= '<button onclick="deleteRow(' . $data->id . ')" class = "btn btn-danger btn-sm" ><i class="fa fa-trash"></i></button>';
-                return $action;
-            })
-            ->rawColumns(['action'])
-            ->make(true);
-    }
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(AnnouncementDataTable $datatable)
     {
         $data = [
             'title' => 'Master Data Pengumuman'
         ];
-        return view('pengumuman.super_admin.index', $data);
+        return $datatable->render('pengumuman.super_admin.index', $data);
     }
 
     /**

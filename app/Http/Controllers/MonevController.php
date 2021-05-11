@@ -24,11 +24,11 @@ class MonevController extends Controller
         return Datatables::of($data)
             ->addIndexColumn()
             ->addColumn('action', function ($data) {
-                $action   = '<a href="' . route('public.monev.edit', ['id' => $data->uuid]) . '" class="btn btn-sm btn-primary" >Ubah</a>';
-                $action  .= '<a href="' . route('public.monev.show', ['id' => $data->uuid]) . '" class="btn btn-sm btn-info" >show</a>';
-                $action  .= \Form::open(['url' => route('public.monev.destroy', ['id' => $data->uuid]), 'method' => 'delete', 'style' => 'float:right']);
-                $action  .= "<button type='submit' class = 'btn btn-danger btn-sm' >Hapus</button>";
+                $action   = \Form::open(['url' => route('public.monev.destroy', ['id' => $data->uuid]), 'method' => 'delete']);
                 $action  .= \Form::close();
+                $action  .= '<a href="' . route('public.monev.edit', ['id' => $data->uuid]) . '" class="btn btn-sm btn-primary" ><i class="fa fa-edit"></i> </a>';
+                $action  .= '<a href="' . route('public.monev.show', ['id' => $data->uuid]) . '" class="btn btn-sm btn-info" ><i class="fa fa-search"></i> </a>';
+                $action  .= '<button onclick="deleteRow('.$data->id.')" class = "btn btn-danger btn-sm"><i class="fa fa-trash"></i></button>';;
 
                 return $action;
             })
@@ -43,6 +43,7 @@ class MonevController extends Controller
     public function index()
     {
         $data = [
+            'guard' => 'lecturer',
             'title' => 'Monitor Evaluasi',
         ];
 

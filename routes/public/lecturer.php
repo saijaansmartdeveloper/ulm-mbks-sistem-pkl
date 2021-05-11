@@ -8,6 +8,8 @@ use Illuminate\Support\Facades\Route;
 
 Route::prefix('lecturer')->group(function () {
 
+    Route::get('monev', [MonevController::class, 'index'])->name('monev.index');
+
     Route::get('dashboard', [LecturerController::class, 'index'])
         ->name('lecturer.index');
 
@@ -24,7 +26,6 @@ Route::prefix('lecturer')->group(function () {
         ->name('lecturer.guidance');
 
     Route::get('monev/list', [MonevController::class, 'getMonev'])->name('monev.list');
-    Route::get('monev', [MonevController::class, 'index'])->name('monev.index');
     Route::get('monev/create', [MonevController::class, 'create'])->name('monev.create');
     Route::post('monev', [MonevController::class, 'store'])->name('monev.store');
     Route::get('monev/{id}/edit', [MonevController::class, 'edit'])->name('monev.edit');

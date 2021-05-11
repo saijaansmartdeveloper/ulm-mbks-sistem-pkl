@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\DataTables\UserDataTable;
 use App\Models\Major;
 use App\Models\StudyProgram;
 use App\Models\User;
@@ -11,36 +12,18 @@ use DataTables;
 
 class UserController extends Controller
 {
-    public function getUser()
-    {
-
-        $data = User::with('prodi')->with('jurusan')->get();
-        return Datatables::of($data)
-            ->addIndexColumn()
-            ->addColumn('action', function ($data) {
-                $action   = \Form::open(['url' => route('user.destroy', ['id' => $data->uuid]), 'id' => 'data-' . $data->id, 'method' => 'delete']);
-                $action  .= \Form::close();
-                $action  .= '<a href=' . route('user.edit', ['id' => $data->uuid]) . ' class="btn btn-sm btn-primary"><i class="fa fa-edit"></i></a> ';
-                $action  .= '<a href=' . route('user.show', ['id' => $data->uuid]) . ' class="btn btn-sm btn-info"><i class="fa fa-search"></i></a> ';
-                $action  .= '<button onclick="deleteRow(' . $data->id . ')" class = "btn btn-danger btn-sm"><i class="fa fa-trash"></i></button>';
-
-                return $action;
-            })
-            ->rawColumns(['action'])
-            ->make(true);
-    }
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(UserDataTable $datatable)
     {
         $data = [
             'title' => 'Master Data User',
         ];
 
-        return view('user.index', $data);
+        return $datatable->render('user.index', $data);
     }
 
     /**

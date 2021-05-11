@@ -15,21 +15,21 @@ class Activity extends Model
     public $incrementing    = false;
 
 
-    // protected $fillable = [
-    //     'uuid',
-    //     'mulai_kegiatan',
-    //     'lama_kegiatan',
-    //     'akhir_kegiatan',
-    //     'file_sk_kegiatan',
-    //     'status_kegiatan',
-    //     'dosen_uuid',
-    //     'mitra_uuid',
-    //     'mahasiswa_uuid',
-    //     'user_uuid',
-    //     'jenis_kegiatan_uuid',
-    //     'prodi_uuid',
-    //     'jurusan_uuid'
-    // ];
+    protected $fillable = [
+        'uuid',
+        'mulai_kegiatan',
+        'lama_kegiatan',
+        'akhir_kegiatan',
+        'file_sk_kegiatan',
+        'status_kegiatan',
+        'dosen_uuid',
+        'mitra_uuid',
+        'mahasiswa_uuid',
+        'user_uuid',
+        'jenis_kegiatan_uuid',
+        'prodi_uuid',
+        'jurusan_uuid'
+    ];
 
     public function typeofactivity()
     {

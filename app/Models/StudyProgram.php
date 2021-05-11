@@ -14,7 +14,7 @@ class StudyProgram extends Model
     public $incrementing = false;
 
 
-    public function jurusan()
+    public function major()
     {
         return $this->belongsTo(Major::class, 'jurusan_uuid');
     }

@@ -2,39 +2,20 @@
 
 namespace App\Http\Controllers\Master;
 
+use App\DataTables\PartnerDataTable;
 use App\Http\Controllers\Controller;
 use App\Models\Partner;
 use Illuminate\Http\Request;
-use DataTables;
 use Ramsey\Uuid\Uuid;
 
 class PartnerController extends Controller
 {
-    public function getMitra(Request $request)
-    {
-
-        $data = Partner::all();
-        return Datatables::of($data)
-            ->addIndexColumn()
-            ->addColumn('action', function ($data) {
-                $action  = \Form::open(['url' => route('mitra.destroy', ['id' => $data->uuid]), 'id' => 'data-' . $data->id, 'method' => 'delete']);
-                $action .= \Form::close();
-                $action .= '<a href=' . route('mitra.edit', ['id' => $data->uuid]) . ' class="btn btn-sm btn-primary" ><i class="fa fa-edit"></i></a> ';
-                $action .= '<a href=' . route('mitra.show', ['id' => $data->uuid]) . ' class="btn btn-sm btn-info" ><i class="fa fa-search"></i></a> ';
-                $action .= '<button onclick="deleteRow('.$data->id.')" class = "btn btn-danger btn-sm"><i class="fa fa-trash"></i></button>';
-
-                return $action;
-            })
-            ->rawColumns(['action'])
-            ->make(true);
-    }
-
-    public function index()
+    public function index(PartnerDataTable $datatable)
     {
         $data = [
             'title' => 'Master Data Mitra',
         ];
-        return view('mitra.index', $data);
+        return $datatable->render('mitra.index', $data);
     }
 
     public function create()

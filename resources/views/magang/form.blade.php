@@ -25,7 +25,7 @@
                 <div class="col-4">
                     <div class="form-group">
                         {{ Form::label('lama_magang', 'Lama Kegiatan') }}
-                        {{ Form::number('lama_magang', null, ['class' => 'form-control', 'placeholder' => 'Lama Kegiatan (Minggu)']) }}
+                        {{ Form::number('lama_magang', null, ['class' => 'form-control', 'placeholder' => 'Lama Kegiatan (Hari)']) }}
                     </div>
                 </div>
             </div>

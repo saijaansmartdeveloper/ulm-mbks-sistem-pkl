@@ -1,79 +1,24 @@
 @extends('layouts.admin')
 @section('content-header', $title ?? '')
 @section('content')
+
+    @include('alert')
     <div class="card py-4">
         <div class="card-body">
-            <a href="{{ route('magang.create') }}" class="btn btn-primary">Tambah Data</a>
-            <hr>
-            @include('alert')
             <div class="table-responsive">
-                <table class="table table-bordered" id="table-jenis-kegiatan">
-                    <thead>
-                        <tr>
-                            <th>Jenis Kegiatan</th>
-                            <th>Dosen</th>
-                            <th>Mahasiswa</th>
-                            <th>Mitra</th>
-                            <th>Lama Magang (Hari)</th>
-                            <th class='text-center'>Action</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                    </tbody>
-                </table>
+                {!! $dataTable->table() !!}
             </div>
         </div>
     </div>
+
 @endsection
 @section('js')
-    <link href="https://cdn.datatables.net/1.10.21/css/jquery.dataTables.min.css" rel="stylesheet">
-    <link href="https://cdn.datatables.net/1.10.21/css/dataTables.bootstrap4.min.css" rel="stylesheet">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.0/jquery.validate.js"></script>
-    <script src="https://cdn.datatables.net/1.10.21/js/jquery.dataTables.min.js"></script>
-    <script src="https://cdn.datatables.net/1.10.21/js/dataTables.bootstrap4.min.js"></script>
+    <link rel="stylesheet" href="//cdn.datatables.net/1.10.7/css/jquery.dataTables.min.css">
+    <script src="//cdn.datatables.net/1.10.7/js/jquery.dataTables.min.js"></script>
+    <link rel="stylesheet" href="https://cdn.datatables.net/buttons/1.0.3/css/buttons.dataTables.min.css">
+    <script src="https://cdn.datatables.net/buttons/1.0.3/js/dataTables.buttons.min.js"></script>
+    <script src="/vendor/datatables/buttons.server-side.js"></script>
+    {!! $dataTable->scripts() !!}
+
     <script src="{{ asset('sweetalert/alert.js') }}"></script>
-
-    <script>
-        $(function() {
-            $('#table-jenis-kegiatan').DataTable({
-                processing: true,
-                serverSide: true,
-                ajax: "{{ route('magang.list') }}",
-                columns: [{
-                        data: 'jenis_kegiatan.nama_jenis_kegiatan',
-                        defaultContent: '-',
-                        name: 'jenis_kegiatan.nama_jenis_kegiatan'
-                    },
-                    {
-                        data: 'lecturer.nama_dosen',
-                        defaultContent: '-',
-                        name: 'lecturer.nama_dosen'
-                    },
-                    {
-                        data: 'student.nama_mahasiswa',
-                        defaultContent: '-',
-                        name: 'student.nama_mahasiswa'
-                    },
-                    {
-                        data: 'partner.nama_mitra',
-                        defaultContent: '-',
-                        name: 'partner.nama_mitra'
-                    },
-                    {
-                        data: 'lama_kegiatan',
-                        name: 'lama_kegiatan'
-                    },
-                    {
-                        data: 'action',
-                        className: 'text-center',
-                        name: 'action',
-                        orderable: true,
-                        searchable: true
-                    },
-                ]
-            });
-
-        });
-
-    </script>
 @endsection

@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers\Master;
 
+use App\DataTables\ActivityDataTable;
+use App\DataTables\Scopes\ActivityDataTableScope;
 use App\Http\Controllers\Controller;
 use App\Models\Lecturer;
 use App\Models\TypeOfActivity;
@@ -15,31 +17,14 @@ use Ramsey\Uuid\Uuid;
 
 class ActivityController extends Controller
 {
-    public function getMagang(Request $request)
-    {
 
-        $data = Activity::with('jenis_kegiatan', 'student', 'lecturer', 'partner')->get();
-        return Datatables::of($data)
-            ->addIndexColumn()
-            ->addColumn('action', function ($data) {
-                $action = \Form::open(['url' => route('magang.destroy', ['id' => $data->uuid]),  'id' => 'data-' . $data->id, 'method' => 'delete']);
-                $action .= \Form::close();
-                $action .= '<a href=' . route('magang.show', ['id' => $data->uuid]) . ' class="btn btn-info btn-sm"><i class="fa fa-search"></i></a> ';
-                $action .= '<button onclick="deleteRow(' . $data->id . ')" class = "btn btn-danger btn-sm"><i class="fa fa-trash"></i></button>';
-
-                return $action;
-            })
-            ->rawColumns(['action'])
-            ->make(true);
-    }
-
-    public function index()
+    public function index(ActivityDataTable $datatable)
     {
         $data = [
             'title' => 'Master Data Kegiatan'
         ];
 
-        return view('magang.index', $data);
+        return $datatable->addScope(new ActivityDataTableScope(Auth::User()))->render('magang.index', $data);
     }
 
     public function create()

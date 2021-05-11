@@ -20,6 +20,11 @@
                 {{ Form::text('nama_jenis_kegiatan', null, ['class' => 'form-control', 'placeholder' => 'Masukkan Nama Jenis Kegiatan']) }}
             </div>
 
+            <div class="form-group">
+                {{ Form::label('deskripsi_jenis_kegiatan', 'Deskripsi Jenis Kegiatan') }}
+                {{ Form::textarea('deskripsi_jenis_kegiatan', null, ['class' => 'form-control', 'placeholder' => 'Masukkan Deskripsi Jenis Kegiatan']) }}
+            </div>
+
             <div class="form-group text-right">
                 <a href="{{ route('jenis_kegiatan.index') }}" class="btn btn-danger">Kembali</a>
                 {{ Form::submit('Simpan', ['class' => 'btn btn-primary']) }}
