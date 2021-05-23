@@ -3,12 +3,14 @@
 namespace App\Http\Controllers;
 
 use App\DataTables\StudentDataTable;
+use App\Mail\UpdatedJournalNotification;
 use App\Models\Lecturer;
 use App\Models\Journal;
 use App\Models\Activity;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use DataTables;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Storage;
 
 class LecturerController extends Controller
@@ -176,6 +178,8 @@ class LecturerController extends Controller
 
     public function update_journal(Request $request, $id)
     {
+        $user = Auth::guard('lecturer')->user();
+
         $jurnal = Journal::find($id);
 
         if ($request->komentar_jurnal != null) {
@@ -183,6 +187,8 @@ class LecturerController extends Controller
         }
         $jurnal->status_jurnal      = $request->status_jurnal;
         $jurnal->save();
+
+        Mail::to($jurnal->activity()->first()->student()->email)->send(new UpdatedJournalNotification($user->nama_dosen . ' baru saja mengubah status jurnal kegiatan!', $jurnal, 'student'));
 
         return redirect()->back()->with('info', 'Journal Berhasil Diterima');
 

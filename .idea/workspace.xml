@@ -5,13 +5,45 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="56f6580f-bc2a-4056-98d9-44735ab73c9e" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/app/Mail/AssignActivityNotification.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/Mail/NewUserNotification.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/Mail/UpdatedJournalNotification.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/Notifications/Activity.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/Notifications/Journal.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/Notifications/Monev.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/views/mail/assign_activity.blade.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/views/mail/journal_updated.blade.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/views/mail/new_user.blade.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/views/public/partner/form.blade.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/views/public/partner/show.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.env.example" beforeDir="false" afterPath="$PROJECT_DIR$/.env.example" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/composer.lock" beforeDir="false" afterPath="$PROJECT_DIR$/composer.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/css/app.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/css/app.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/js/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/js/app.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/mix-manifest.json" beforeDir="false" afterPath="$PROJECT_DIR$/public/mix-manifest.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/DataTables/AnnouncementDataTable.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/DataTables/AnnouncementDataTable.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/DataTables/LecturerDataTable.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/DataTables/LecturerDataTable.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/DataTables/TypeOfActivityDataTable.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/DataTables/TypeOfActivityDataTable.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Admin/SuperAdmin/HomeController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Admin/SuperAdmin/HomeController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/JournalController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/JournalController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/LecturerController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/LecturerController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Master/ActivityController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Master/ActivityController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Master/AnnouncementController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Master/AnnouncementController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Master/LecturerController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Master/LecturerController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Master/StudentController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Master/StudentController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/PartnerController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/PartnerController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Models/Partner.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/Partner.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/migrations/2021_04_08_102341_create_pengumuman_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2021_04_08_102341_create_pengumuman_table.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/seeders/DatabaseSeeder.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/seeders/DatabaseSeeder.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/seeders/TypeOfActivitySeeder.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/seeders/TypeOfActivitySeeder.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/seeders/UsersSeeder.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/seeders/UsersSeeder.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/admin/admin_prodi/home.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/admin/admin_prodi/home.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/admin/super_admin/home.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/admin/super_admin/home.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/layouts/components/menu/user_umum.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/layouts/components/menu/user_umum.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/pengumuman/super_admin/form.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/pengumuman/super_admin/form.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/user/form.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/user/form.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/routes/public/auth.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/public/auth.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/routes/public/lecturer.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/public/lecturer.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/routes/public/partner.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/public/partner.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/routes/public/student.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/public/student.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/web.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -177,17 +209,17 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/resources/views/public/partner" />
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="vue.rearranger.settings.migration" value="true" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\Luthfy Eka Permana\PhpstormProjects\ulm-mbks-sistem-pkl\resources\views\public\partner" />
       <recent name="C:\Users\Bebek\Desktop\ulm-mbks-sistem-pkl" />
       <recent name="C:\Users\Luthfy Eka Permana\PhpstormProjects\ulm-mbks-sistem-pkl\resources\views\public\lecturer" />
       <recent name="C:\Users\Luthfy Eka Permana\PhpstormProjects\ulm-mbks-sistem-pkl\resources\views\public\student" />
       <recent name="C:\Users\Luthfy Eka Permana\PhpstormProjects\ulm-mbks-sistem-pkl\resources\views\public" />
-      <recent name="C:\Users\Luthfy Eka Permana\PhpstormProjects\ulm-mbks-sistem-pkl\public\img" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\Users\Luthfy Eka Permana\PhpstormProjects\ulm-mbks-sistem-pkl\app\Http\Controllers\Master" />
@@ -221,6 +253,8 @@
       <workItem from="1620466321031" duration="1789000" />
       <workItem from="1620483235457" duration="21399000" />
       <workItem from="1620585895792" duration="405000" />
+      <workItem from="1621661785155" duration="6885000" />
+      <workItem from="1621735695344" duration="13408000" />
     </task>
     <servers />
   </component>

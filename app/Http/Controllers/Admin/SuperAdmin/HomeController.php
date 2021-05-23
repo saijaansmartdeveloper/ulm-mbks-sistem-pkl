@@ -7,6 +7,7 @@ use App\Models\Major;
 use App\Models\StudyProgram;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class HomeController extends Controller
 {
@@ -19,6 +20,7 @@ class HomeController extends Controller
                 'jumlah_jurusan'    => Major::count(),
                 'jumlah_prodi'      => StudyProgram::count(),
             ],
+            'user' => Auth::user()
         ];
 
         return view('admin.super_admin.home', $data);

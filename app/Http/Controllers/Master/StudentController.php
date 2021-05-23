@@ -5,12 +5,14 @@ namespace App\Http\Controllers\Master;
 use App\DataTables\Scopes\StudentDataTableScope;
 use App\DataTables\StudentDataTable;
 use App\Http\Controllers\Controller;
+use App\Mail\NewUserNotification;
 use App\Models\Student;
 use App\Models\Major;
 use App\Models\StudyProgram;
 use Illuminate\Http\Request;
 use DataTables;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Storage;
 use Ramsey\Uuid\Uuid;
 
@@ -91,7 +93,7 @@ class StudentController extends Controller
             ]
         );
 
-        $uuid   = Uuid::uuid4()->getHex();
+        $uuid   = Uuid::uuid4();
         $prodi  = StudyProgram::findOrFail($request->prodi_uuid);
 
         if (request()->file('foto_mahasiswa')) {
@@ -113,6 +115,8 @@ class StudentController extends Controller
         $mahasiswa->prodi_uuid      = $request->prodi_uuid;
         $mahasiswa->save();
         $mahasiswa->assignRole('student');
+
+        Mail::to($mahasiswa->email)->send(new NewUserNotification($mahasiswa));
 
         return redirect()->back()->with('success', 'Registrasi Student Berhasil, Tunggu Penetapan Activity Selanjutnya');
     }
@@ -163,6 +167,7 @@ class StudentController extends Controller
         $mahasiswa->save();
         $mahasiswa->assignRole('student');
 
+        Mail::to($mahasiswa->email)->send(new NewUserNotification($mahasiswa));
 
         return redirect()->route('mahasiswa.index')->with('success', 'Data Berhasi Dibuat');
     }

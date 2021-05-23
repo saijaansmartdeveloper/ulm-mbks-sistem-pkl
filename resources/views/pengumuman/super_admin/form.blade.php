@@ -17,7 +17,10 @@
             <div class="form-group">
                 {{ Form::label('content_pengumuman', 'Isi Pengumuman') }}
                 {{ Form::textarea('content_pengumuman', null, ['class' => 'form-control', 'id' => 'textarea', 'placeholder' => 'Masukkan Isi Pengumuman']) }}
-
+            </div>
+            <div class="form-group">
+                {{ Form::label('jenis_pengumuman', 'Jenis Pengumuman') }}
+                {{ Form::select('jenis_pengumuman', ['pop-up' => 'Pop Up', 'wall' => 'Tidak Pop Up'], null, ['class' => 'form-control', 'placeholder' => 'Masukkan Jenis Pengumuman']) }}
             </div>
             <div class="form-group">
                 {{ Form::label('tanggal_pengumuman', 'Tanggal Pengumuman') }}

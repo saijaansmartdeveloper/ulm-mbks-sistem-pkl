@@ -2,12 +2,14 @@
 
 namespace App\Http\Controllers;
 
+use App\Mail\UpdatedJournalNotification;
 use App\Models\Journal;
 use App\Models\Activity;
 use App\Models\Student;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Mail;
 use Ramsey\Uuid\Uuid;
 
 class JournalController extends Controller
@@ -63,7 +65,7 @@ class JournalController extends Controller
             $fileDoc        = $file_doc->storeAs('file/file_dokumen_jurnal', $fileNameDoc, "public");
         }
 
-        Journal::create([
+        $journal = Journal::create([
             'catatan_jurnal'        => $request->catatan_jurnal,
             'tanggal_jurnal'        => Carbon::parse($request->tanggal_jurnal)->format('Y-m-d'),
             'uuid'                  => Uuid::uuid4(),
@@ -71,6 +73,8 @@ class JournalController extends Controller
             'file_image_jurnal'     => $fileImage ?? null,
             'file_dokumen_jurnal'   => $fileDoc ?? null
         ]);
+
+        Mail::to($journal->activity()->first()->lecturer()->email)->send(new UpdatedJournalNotification($user->nama_mahasiswa . ' baru saja menambahkan jurnal kegiatan!', $journal, 'student'));
 
         return redirect()->route('public.journal.index')->with('success', 'Journal berhasil Dibuat');
     }
@@ -129,6 +133,8 @@ class JournalController extends Controller
         }
 
         $jurnal->save();
+
+        Mail::to($jurnal->activity()->first()->lecturer()->email)->send(new UpdatedJournalNotification($user->nama_mahasiswa . ' baru saja mengubah jurnal kegiatan!', $jurnal, 'student'));
 
         return redirect()->route('public.journal.index')->with('success', 'Journal berhasil Diperbarui');
     }

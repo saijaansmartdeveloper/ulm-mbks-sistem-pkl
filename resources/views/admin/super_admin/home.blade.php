@@ -3,7 +3,7 @@
 @section('content')
 <hr>
     <div class="row">
-        <div class="col-4">
+        <div class="col-lg-4 col-md-4 col-sm-12">
             <div class="card bg-success border-0 shadow-sm text-white mb-4" style="background: #1e7e34 !important;">
                 <div class="card-body justify-content-between">
                     <i class="fas fa-users fa-2x"></i>
@@ -15,7 +15,7 @@
                 </div>
             </div>
         </div>
-        <div class="col-4">
+        <div class="col-lg-4 col-md-4 col-sm-12">
             <div class="card bg-danger border-0 shadow-sm text-white mb-4" style="background: #a71d2a !important;">
                 <div class="card-body justify-content-between">
                     <i class="fas fa-university fa-2x"></i>
@@ -27,7 +27,7 @@
                 </div>
             </div>
         </div>
-        <div class="col-4">
+        <div class="col-lg-4 col-md-4 col-sm-12">
             <div class="card card bg-primary border-0 shadow-sm text-white mb-4">
                 <div class="card-body justify-content-between">
                     <i class="fas fa-graduation-cap fa-2x"></i>
@@ -41,6 +41,7 @@
             </div>
         </div>
     </div>
+
 @endsection
 @section('js')
 

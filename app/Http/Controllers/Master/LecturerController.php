@@ -135,14 +135,12 @@ class LecturerController extends Controller
                 'nip_dosen'         => 'required',
                 'nama_dosen'        => 'required',
                 'email'             => 'required',
-                'password'          => 'required',
                 'foto_dosen'        => 'image|mimes:jpeg,png,jpg|max:512'
             ],
             [
                 'nip_dosen.required'     => 'NIP Dosen Tidak Boleh Kosong',
                 'nama_dosen.required'    => 'Nama Dosen Tidak Boleh Kosong',
                 'email.required'         => 'Email Tidak Boleh Kosong',
-                'password.required'      => 'Password Tidak Boleh Kosong',
                 'foto_dosen.max'         => 'File Foto Maksimal 512KB'
             ]
         );

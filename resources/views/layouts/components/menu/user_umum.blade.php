@@ -7,8 +7,19 @@
     </a>
 
     <div class="sb-sidenav-menu-heading">Master Data</div>
+
+    <a class="nav-link collapsed" href="{{ route('pengumuman.index') }}">
+        <div class="sb-nav-link-icon"><i class="fas fa-newspaper fa-fw"></i></div>
+        Pengumuman
+    </a>
+
+    <a class="nav-link collapsed" href="{{ route('jenis_kegiatan.index') }}">
+        <div class="sb-nav-link-icon"><i class="fas fa-folder-open fa-fw"></i></div>
+        Jenis Kegiatan
+    </a>
+
     <a class="nav-link collapsed" href="{{ route('user.index') }} ">
-        <div class="sb-nav-link-icon"><i class="fas fa-user fa-fw"></i></div>
+        <div class="sb-nav-link-icon"><i class="fas fa-users fa-fw"></i></div>
         Pengguna
     </a>
     <a class="nav-link collapsed" href="{{ route('jurusan.index') }}">
@@ -19,18 +30,7 @@
         <div class="sb-nav-link-icon"><i class="fas fa-graduation-cap fa-fw"></i></div>
         Program Studi
     </a>
-    <a class="nav-link collapsed" href="{{ route('mahasiswa.superadmin.index') }}">
-        <div class="sb-nav-link-icon"><i class="fas fa-users fa-fw"></i></div>
-        Mahasiswa
-    </a>
-    <a class="nav-link collapsed" href="{{ route('pengumuman.index') }}">
-        <div class="sb-nav-link-icon"><i class="fas fa-newspaper fa-fw"></i></div>
-        Pengumuman
-    </a>
-    <a class="nav-link collapsed" href="{{ route('jenis_kegiatan.index') }}">
-        <div class="sb-nav-link-icon"><i class="fas fa-folder-open fa-fw"></i></div>
-        Jenis Kegiatan
-    </a>
+
 @endif
 
 @if (Auth::User()->hasRole('admin_prodi'))
