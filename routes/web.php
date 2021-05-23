@@ -2,8 +2,7 @@
 
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\HomeController;
-use App\Http\Controllers\Mahasiswa\MahasiswaController;
-use Illuminate\Routing\RouteGroup;
+use App\Http\Controllers\Master\StudentController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -21,10 +20,10 @@ Route::get('/', function () {
     return redirect()->route('public.user.form_login');
 });
 
-Route::get('register/mahasiswa', [MahasiswaController::class, 'register'])
+Route::get('register/mahasiswa', [StudentController::class, 'register'])
     ->name('mahasiswa.register');
 
-Route::post('register/mahasiswa', [MahasiswaController::class, 'register_store'])
+Route::post('register/mahasiswa', [StudentController::class, 'register_store'])
     ->name('mahasiswa.register.store');
 
 

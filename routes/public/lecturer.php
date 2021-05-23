@@ -1,6 +1,5 @@
 <?php
 
-use App\Http\Controllers\JournalController;
 use App\Http\Controllers\LecturerController;
 use App\Http\Controllers\StudentController;
 use App\Http\Controllers\MonevController;

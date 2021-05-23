@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Master;
 use App\DataTables\ActivityDataTable;
 use App\DataTables\Scopes\ActivityDataTableScope;
 use App\Http\Controllers\Controller;
+use App\Mail\AssignActivityNotification;
 use App\Models\Lecturer;
 use App\Models\TypeOfActivity;
 use App\Models\Activity;
@@ -13,6 +14,7 @@ use App\Models\Partner;
 use Illuminate\Http\Request;
 use DataTables;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Mail;
 use Ramsey\Uuid\Uuid;
 
 class ActivityController extends Controller
@@ -69,7 +71,7 @@ class ActivityController extends Controller
 
         foreach (request('mahasiswa_uuid') as $mahasiswa) {
             $magang = Activity::create([
-                'uuid'                  => Uuid::uuid4()->getHex(),
+                'uuid'                    => Uuid::uuid4()->getHex(),
                 'mulai_kegiatan'          => request('mulai_magang'),
                 'akhir_kegiatan'          => request('akhir_magang'),
                 'lama_kegiatan'           => request('lama_magang'),
@@ -83,7 +85,24 @@ class ActivityController extends Controller
                 'prodi_uuid'            => Auth::User()->prodi_uuid,
                 'jurusan_uuid'          => Auth::User()->jurusan_uuid,
             ]);
+
+            if ($magang) {
+                $student_email  = $magang->student()->first()->email;
+                Mail::to($student_email)->send(new AssignActivityNotification($magang, 'student'));
+            }
         }
+
+        $lecturer = Lecturer::find($request->dosen_uuid);
+        $partner  = Partner::find($request->mitra_uuid);
+        $students = Student::findMany($request->mahasiswa_uuid);
+
+        $data = [
+            'dosen'     => $lecturer,
+            'mitra'     => $partner,
+            'mahasiswa' => $students
+        ];
+
+        Mail::to($lecturer->email)->send(new AssignActivityNotification($data, 'lecturer'));
 
         return redirect()->route('magang.index')->with('success', 'Data Berhasil Ditambah');
     }

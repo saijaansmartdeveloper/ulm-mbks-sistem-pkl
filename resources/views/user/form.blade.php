@@ -33,7 +33,7 @@
 
             <div class="form-group">
                 {{ Form::label('prodi_uuid', 'Program Studi') }}
-                {{ Form::select('prodi_uuid', $prodi, null, ['placeholder' => '-- Pilih StudyProgram --', 'id' => 'prodi', 'class' => 'form-control prodi-select2']) }}
+                {{ Form::select('prodi_uuid', $prodi, null, ['placeholder' => '-- Pilih Studi Program --', 'id' => 'prodi', 'class' => 'form-control prodi-select2']) }}
             </div>
 
             <div class="form-group text-right">

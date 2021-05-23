@@ -1,10 +1,6 @@
 <?php
 
-
-use App\Http\Controllers\JournalController;
-use App\Http\Controllers\LecturerController;
 use App\Http\Controllers\StudentController;
-use App\Http\Controllers\MonevController;
 use Illuminate\Support\Facades\Route;
 
 Route::prefix('student')->group(function () {

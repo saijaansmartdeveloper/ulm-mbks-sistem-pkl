@@ -49,7 +49,8 @@ class Partner extends Authenticatable
         return $this->password;
     }
 
-    public function getGuardNameAttribute(){
+    public function getGuardNameAttribute()
+    {
         return $this->guarded;
     }
 

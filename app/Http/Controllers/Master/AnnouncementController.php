@@ -62,8 +62,9 @@ class AnnouncementController extends Controller
         $pengumuman = new Announcement;
         $pengumuman->judul_pengumuman   = $request->judul_pengumuman;
         $pengumuman->content_pengumuman = $request->content_pengumuman;
+        $pengumuman->jenis_pengumuman   = $request->jenis_pengumuman;
         $pengumuman->tanggal_pengumuman = $request->tanggal_pengumuman;
-        $pengumuman->user_uuid            = Auth::User()->uuid;
+        $pengumuman->user_uuid          = Auth::User()->uuid;
         $pengumuman->prodi_uuid         = Auth::User()->prodi_uuid;
         $pengumuman->jurusan_uuid       = Auth::user()->jurusan_uuid;
         $pengumuman->save();

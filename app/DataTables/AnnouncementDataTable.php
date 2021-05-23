@@ -21,8 +21,9 @@ class AnnouncementDataTable extends DataTable
     {
         return datatables()
             ->eloquent($query)
+            ->rawColumns(['content_pengumuman', 'action'])
             ->addColumn('action', function ($data) {
-                $action = \Form::open(['url' => route('pengumuman.destroy', ['id' => $data->id]),  'id' => 'data-' . $data->id, 'method' => 'delete']);
+                $action  = \Form::open(['url' => route('pengumuman.destroy', ['id' => $data->id]),  'id' => 'data-' . $data->id, 'method' => 'delete']);
                 $action .= \Form::close();
                 $action .= '<a href=' . route('pengumuman.edit', ['id' => $data->id]) . ' class="btn btn-sm btn-primary" ><i class="fa fa-edit"></i></a> ';
                 $action .= '<button onclick="deleteRow(' . $data->id . ')" class = "btn btn-danger btn-sm" ><i class="fa fa-trash"></i></button>';
@@ -69,8 +70,14 @@ class AnnouncementDataTable extends DataTable
                 ->exportable(false)
                 ->printable(false)
                 ->addClass('text-center'),
-            Column::make('judul_pengumuman'),
-            Column::make('tanggal_pengumuman'),
+            Column::make('judul_pengumuman')
+                ->title('Judul'),
+            Column::make('jenis_pengumuman')
+                ->title('Jenis'),
+            Column::make('content_pengumuman')
+                ->title('Isi'),
+            Column::make('tanggal_pengumuman')
+                ->title('Tanggal'),
         ];
     }
 
