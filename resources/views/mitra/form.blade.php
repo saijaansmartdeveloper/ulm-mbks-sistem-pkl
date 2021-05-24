@@ -36,13 +36,13 @@
             </div>
 
             <div class="form-group">
-                {{ Form::label('email', 'Email Mitra') }}
-                {{ Form::email('email', null, ['class' => 'form-control', 'placeholder' => 'Masukkan Email']) }}
+                {{ Form::label('eemail_mitra', 'Email Mitra') }}
+                {{ Form::email('email_mitra', null, ['class' => 'form-control', 'placeholder' => 'Masukkan Email Mitra']) }}
             </div>
 
             <div class="form-group">
-                {{ Form::label('username', 'Username') }}
-                {{ Form::text('username', null, ['class' => 'form-control', 'placeholder' => 'Masukkan Username']) }}
+                {{ Form::label('email', 'Email Login') }}
+                {{ Form::email('email', null, ['class' => 'form-control', 'placeholder' => 'Masukkan Email Login']) }}
             </div>
 
             <div class="form-group">

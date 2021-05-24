@@ -36,8 +36,8 @@ class PartnerController extends Controller
                 'alamat_mitra'              => 'required',
                 'penanggung_jawab_mitra'    => 'required',
                 'pamong_mitra'              => 'required',
-                'email'                     => 'required',
-                'username'                  => 'required',
+                'email_mitra'                     => 'required',
+                'email'                  => 'required',
                 'password'                  => 'required',
                 'phone'                     => 'required',
             ],
@@ -47,8 +47,8 @@ class PartnerController extends Controller
                 'alamat_mitra.required'              => 'Alamat Mitra Tidak Boleh Kosong',
                 'penanggung_jawab_mitra.required'    => 'Penanggung Jawab Mitra Tidak Boleh Kosong',
                 'pamong_mitra.required'              => 'Pamong Mitra Tidak Boleh Kosong',
-                'email.required'                     => 'Email Tidak Boleh Kosong',
-                'username.required'                  => 'Username Tidak Boleh Kosong',
+                'email.required'                     => 'Email Login Tidak Boleh Kosong',
+                'email_mitra.required'                  => 'Email Mitra Tidak Boleh Kosong',
                 'password.required'                  => 'Password Tidak Boleh Kosong',
                 'phone.required'                     => 'No Telpon Tidak Boleh Kosong',
             ]
@@ -64,7 +64,7 @@ class PartnerController extends Controller
         $mitra->penanggung_jawab_mitra  = $request->penanggung_jawab_mitra;
         $mitra->pamong_mitra            = $request->pamong_mitra;
         $mitra->email                   = $request->email;
-        $mitra->username                = $request->username;
+        $mitra->email_mitra                = $request->email_mitra;
         $mitra->password                = bcrypt($request->password);
         $mitra->phone                   = $request->phone;
         $mitra->save();
@@ -103,7 +103,7 @@ class PartnerController extends Controller
                 'penanggung_jawab_mitra'    => 'required',
                 'pamong_mitra'              => 'required',
                 'email'                     => 'required',
-                'username'                  => 'required',
+                'email_mitra'                  => 'required',
                 'phone'                     => 'required',
             ],
             [
@@ -113,7 +113,7 @@ class PartnerController extends Controller
                 'penanggung_jawab_mitra.required'    => 'Penanggung Jawab Mitra Tidak Boleh Kosong',
                 'pamong_mitra.required'              => 'Pamong Mitra Tidak Boleh Kosong',
                 'email.required'                     => 'Email Tidak Boleh Kosong',
-                'username.required'                  => 'Username Tidak Boleh Kosong',
+                'email_mitra.required'                  => 'Email Mitra Tidak Boleh Kosong',
                 'phone.required'                     => 'No Telpon Tidak Boleh Kosong',
             ]
         );
