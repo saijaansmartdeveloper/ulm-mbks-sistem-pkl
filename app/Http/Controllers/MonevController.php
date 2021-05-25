@@ -44,7 +44,7 @@ class MonevController extends Controller
     {
         $data = [
             'guard' => 'lecturer',
-            'title' => 'Monitor Evaluasi',
+            'title' => 'Laporan Kegiatan',
         ];
 
         return view('public.monev.index', $data);
@@ -66,7 +66,7 @@ class MonevController extends Controller
         }
 
         $data = [
-            'title'     => 'Tambah Data Monitor Evaluasi',
+            'title'     => 'Tambah Data Laporan Kegiatan',
             'magang'    => $magangParsing ?? [],
             'data'      => null,
         ];
@@ -87,12 +87,14 @@ class MonevController extends Controller
                 'catatan_monev' => 'required',
                 'tanggal_monev' => 'required',
                 'magang_uuid'   => 'required',
+                'jenis_laporan' => 'required',
                 'file_monev'    => 'max:1024',
             ],
             [
                 'catatan_monev.required'    => 'Catatan Tidak Boleh Kosong',
                 'tanggal_monev.required'    => 'Tanggal Tidak Boleh Kosong',
                 'magang_uuid.required'      => 'Kegiatan Tidak Boleh Kosong',
+                'jenis_laporan.required'    => 'Jenis Laporan Tidak Boleh Kosong',
                 'file_monev.max'            => 'File Monitor Evaluasi Maksimal 1MB',
             ]
         );
@@ -110,6 +112,7 @@ class MonevController extends Controller
         $monev->uuid            = $uuid;
         $monev->catatan_monev   = $request->catatan_monev;
         $monev->tanggal_monev   = $request->tanggal_monev;
+        $monev->jenis_laporan   = $request->jenis_laporan;
         $monev->file_monev      = $fileUrl;
         $monev->komentar_monev  = null;
         $monev->kegiatan_uuid   = $request->magang_uuid;
@@ -130,7 +133,7 @@ class MonevController extends Controller
     public function show($id)
     {
         $data = [
-            'title' => 'Detail Monitor Evaluasi',
+            'title' => 'Detail Laporan Kegiatan',
             'data'  => Monev::findOrFail($id),
         ];
 
@@ -152,7 +155,7 @@ class MonevController extends Controller
             $magangParsing[$value->uuid] = $value->partner()->first()->nama_mitra . " - " . $value->student()->first()->nama_mahasiswa;
         }
         $data = [
-            'title' => 'Ubah Data Monitor Evaluasi',
+            'title' => 'Ubah Data Laporan Kegiatan',
             'magang'    => $magangParsing ?? [],
             'data'  => Monev::findOrFail($id),
         ];
@@ -174,12 +177,14 @@ class MonevController extends Controller
                 'catatan_monev' => 'required',
                 'tanggal_monev' => 'required',
                 'magang_uuid'   => 'required',
+                'jenis_laporan' => 'required',
                 'file_monev'    => 'max:1024',
             ],
             [
                 'catatan_monev.required'    => 'Catatan Tidak Boleh Kosong',
                 'tanggal_monev.required'    => 'Tanggal Tidak Boleh Kosong',
                 'magang_uuid.required'      => 'Kegiatan Tidak Boleh Kosong',
+                'jenis_laporan.required'    => 'jenis_laporan Tidak Boleh Kosong',
                 'file_monev.max'            => 'File Monitor Evaluasi Maksimal 1MB',
             ]
         );
@@ -196,6 +201,7 @@ class MonevController extends Controller
 
         $monev->catatan_monev   = $request->catatan_monev;
         $monev->tanggal_monev   = $request->tanggal_monev;
+        $monev->jenis_laporan   = $request->jenis_laporan;
         $monev->file_monev      = $fileUrl;
         $monev->kegiatan_uuid   = $request->magang_uuid;
         $monev->dosen_uuid      = Auth::guard('lecturer')->User()->uuid;

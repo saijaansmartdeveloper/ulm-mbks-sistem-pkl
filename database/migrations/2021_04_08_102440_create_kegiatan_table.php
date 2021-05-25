@@ -24,6 +24,7 @@ class CreateKegiatanTable extends Migration
             $table->string('file_penilaian_kegiatan')->nullable();
             $table->string('file_sk_kegiatan')->nullable();
             $table->integer('status_kegiatan')->default(0);
+            $table->text('link_survey')->nullable();
             $table->foreignUuid('dosen_uuid')->nullable();
             $table->foreignUuid('mitra_uuid')->nullable();
             $table->foreignUuid('mahasiswa_uuid')->nullable();
