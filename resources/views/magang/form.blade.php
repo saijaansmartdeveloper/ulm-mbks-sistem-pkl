@@ -41,18 +41,18 @@
             </div>
 
             <div class="form-group">
-                {{ Form::label('dosen_uuid', 'Lecturer Pembimbing') }}
-                {{ Form::select('dosen_uuid', $dosen, null, ['placeholder' => '-- Pilih Lecturer --', 'class' => 'form-control dosen-select2']) }}
+                {{ Form::label('dosen_uuid', 'Dosen Pembimbing') }}
+                {{ Form::select('dosen_uuid', $dosen, null, ['placeholder' => '-- Pilih Dosen --', 'class' => 'form-control dosen-select2']) }}
             </div>
 
             <div class="form-group">
-                {{ Form::label('mahasiswa_uuid', 'Student') }}
+                {{ Form::label('mahasiswa_uuid', 'Mahasiswa') }}
                 {{ Form::select('mahasiswa_uuid[]', $mahasiswa, null, ['multiple' => 'multiple', 'class' => 'form-control mahasiswa-select2']) }}
             </div>
 
             <div class="form-group">
-                {{ Form::label('mitra_uuid', 'Partner') }}
-                {{ Form::select('mitra_uuid', $mitra, null, ['placeholder' => '-- Pilih Partner --', 'class' => 'form-control mitra-select2']) }}
+                {{ Form::label('mitra_uuid', 'Mitra') }}
+                {{ Form::select('mitra_uuid', $mitra, null, ['placeholder' => '-- Pilih Mitra --', 'class' => 'form-control mitra-select2']) }}
             </div>
 
             <div class="form-group">

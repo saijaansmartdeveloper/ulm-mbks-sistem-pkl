@@ -31,8 +31,8 @@
             </div>
 
             <div class="form-group">
-                {{ Form::label('pamong_mitra', 'Pamong Mitra') }}
-                {{ Form::text('pamong_mitra', null, ['class' => 'form-control', 'placeholder' => 'Masukkan Pamong Mitra']) }}
+                {{ Form::label('pamong_mitra', 'Pendamping Mitra') }}
+                {{ Form::text('pamong_mitra', null, ['class' => 'form-control', 'placeholder' => 'Masukkan Pendamping Mitra']) }}
             </div>
 
             <div class="form-group">
@@ -41,8 +41,8 @@
             </div>
 
             <div class="form-group">
-                {{ Form::label('email', 'Email Login') }}
-                {{ Form::email('email', null, ['class' => 'form-control', 'placeholder' => 'Masukkan Email Login']) }}
+                {{ Form::label('email', 'Email Pendamping') }}
+                {{ Form::email('email', null, ['class' => 'form-control', 'placeholder' => 'Masukkan Email Pendamping']) }}
             </div>
 
             <div class="form-group">
