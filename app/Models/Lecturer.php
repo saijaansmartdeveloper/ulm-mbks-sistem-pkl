@@ -48,6 +48,11 @@ class Lecturer extends Authenticatable
         return $this->password;
     }
 
+    public function getLecturerLinkProfileAttribute()
+    {
+        return '<a href="'.url('lecturer/' . $this->uuid).'"><strong>'.$this->nama_dosen.'</strong></a>' ;
+    }
+
     public function prodi()
     {
         return $this->belongsTo(StudyProgram::class, 'prodi_uuid');

@@ -1,9 +1,10 @@
 <?php
 
-use App\Http\Controllers\Auth\LoginController;
-use App\Http\Controllers\HomeController;
-use App\Http\Controllers\Master\StudentController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\HomeController;
+use App\Http\Controllers\Auth\LoginController;
+use App\Http\Controllers\Master\StudentController;
+use App\Http\Controllers\AnnouncementController;
 
 /*
 |--------------------------------------------------------------------------
@@ -34,21 +35,35 @@ Route::group(['namespace' => 'auth'], function () {
     route::post('logout',  [LoginController::class, 'logout'])->name('logout');
 });
 
+Route::middleware(['auth'])->group(function () {
+
+    Route::group(['prefix' => 'super_admin'], function () {
+        Route::get('dashboard', [HomeController::class, 'dashboard_superuser'])->name('super_admin.dashboard')->middleware(['role:super_admin']);
+
+        require __DIR__ . '/user/super_admin/user.php';
+    });
+
+    Route::group(['prefix' => 'admin_prodi'], function () {
+        Route::get('dashboard', [HomeController::class, 'dashboard_adminprodi'])->name('admin_prodi.dashboard')->middleware(['role:admin_prodi']);
+    });
+
+    require __DIR__ . '/public/announcement.php';
+
+});
+
 
 Route::group(['prefix' => 'super_admin', 'middleware' => ['role:super_admin', 'auth']], function () {
-    require __DIR__ . '/user/super_admin/announcement.php';
-    require __DIR__ . '/user/super_admin/home.php';
+    // require __DIR__ . '/user/super_admin/home.php';
     require __DIR__ . '/user/super_admin/major.php';
     require __DIR__ . '/user/super_admin/student.php';
     require __DIR__ . '/user/super_admin/studyprogram.php';
     require __DIR__ . '/user/super_admin/typeofactivity.php';
-    require __DIR__ . '/user/super_admin/user.php';
 });
 
 Route::group(['prefix' => 'admin_prodi', 'middleware' => ['role:admin_prodi', 'auth']], function () {
 
     require __DIR__ . '/user/admin_prodi/activity.php';
-    require __DIR__ . '/user/admin_prodi/home.php';
+    // require __DIR__ . '/user/admin_prodi/home.php';
     require __DIR__ . '/user/admin_prodi/lecturer.php';
     require __DIR__ . '/user/admin_prodi/partner.php';
     require __DIR__ . '/user/admin_prodi/student.php';
@@ -56,16 +71,17 @@ Route::group(['prefix' => 'admin_prodi', 'middleware' => ['role:admin_prodi', 'a
 
 Route::get('/home', [HomeController::class, 'index'])->name('home');
 
-Route::group(['prefix' => 'public', 'as' => 'public.'], function () {
+Route::group(['as' => 'public.'], function () {
 
     Route::get('/', function () {
         return redirect()->route('public.user.form_login');
     });
 
     require __DIR__ . '/public/auth.php';
+    require __DIR__ . '/public/activity.php';
     require __DIR__ . '/public/lecturer.php';
     require __DIR__ . '/public/student.php';
     require __DIR__ . '/public/partner.php';
-    require __DIR__ . '/public/activity.php';
     require __DIR__ . '/public/journal.php';
+    require __DIR__ . '/public/monev.php';
 });

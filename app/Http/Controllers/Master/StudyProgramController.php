@@ -2,14 +2,15 @@
 
 namespace App\Http\Controllers\Master;
 
-use App\DataTables\StudyProgramDataTable;
-use App\Http\Controllers\Controller;
-use App\Models\Major;
-use App\Models\StudyProgram;
-use Illuminate\Database\Eloquent\Model;
-use Illuminate\Http\Request;
 use DataTables;
+use App\Models\Major;
 use Ramsey\Uuid\Uuid;
+use App\Models\StudyProgram;
+use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Database\Eloquent\Model;
+use App\DataTables\StudyProgramDataTable;
 
 class StudyProgramController extends Controller
 {
@@ -20,8 +21,11 @@ class StudyProgramController extends Controller
      */
     public function index(StudyProgramDataTable $datatable)
     {
+        $user = Auth::guard('web')->user();
+
         $data = [
-            'title' => 'Master Data Program Studi'
+            'title' => 'Master Data Program Studi',
+            'user'  => $user
         ];
         return $datatable->render('prodi.index', $data);
     }
@@ -33,10 +37,13 @@ class StudyProgramController extends Controller
      */
     public function create()
     {
+        $user = Auth::guard('web')->user();
+
         $data = [
             'title'     => 'Tambah Data Program Studi',
             'jurusan'   => Major::pluck('nama_jurusan', 'uuid'),
             'data'      => null,
+            'user'      => $user
         ];
 
         return view('prodi.form', $data);
@@ -94,10 +101,13 @@ class StudyProgramController extends Controller
      */
     public function edit($id)
     {
+        $user = Auth::guard('web')->user();
+
         $data = [
             'title'     => 'Tambah Data Program Studi',
             'jurusan'   => Major::pluck('nama_jurusan', 'uuid'),
             'data'      => StudyProgram::findOrFail($id),
+            'user'      => $user
         ];
 
         return view('prodi.form', $data);

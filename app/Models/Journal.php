@@ -59,4 +59,9 @@ class Journal extends Model
         return $this->belongsTo(Activity::class, 'kegiatan_uuid')->first();
     }
 
+    public function comments()
+    {
+        return $this->hasMany(Comment::class, 'activity_uuid');
+    }
+
 }

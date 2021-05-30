@@ -2,12 +2,13 @@
 
 namespace App\Http\Controllers\Master;
 
-use App\DataTables\TypeOfActivityDataTable;
-use App\Http\Controllers\Controller;
-use App\Models\TypeOfActivity;
-use Illuminate\Http\Request;
 use DataTables;
 use Ramsey\Uuid\Uuid;
+use Illuminate\Http\Request;
+use App\Models\TypeOfActivity;
+use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
+use App\DataTables\TypeOfActivityDataTable;
 
 class TypeOfActivityController extends Controller
 {
@@ -18,8 +19,11 @@ class TypeOfActivityController extends Controller
      */
     public function index(TypeOfActivityDataTable $datatable)
     {
+        $user = Auth::guard('web')->user();
+
         $data = [
             'title' => 'Master Data Jenis Kegiatan',
+            'user'  => $user
         ];
         return $datatable->render('jenis_kegiatan.index', $data);
     }
@@ -31,9 +35,12 @@ class TypeOfActivityController extends Controller
      */
     public function create()
     {
+        $user = Auth::guard('web')->user();
+
         $data = [
             'title' => 'Tambah Data Jenis Kegiatan',
             'data'  => null,
+            'user'  => $user
         ];
 
         return view('jenis_kegiatan.form', $data);
@@ -91,9 +98,12 @@ class TypeOfActivityController extends Controller
      */
     public function edit($id)
     {
+        $user = Auth::guard('web')->user();
+
         $data = [
             'title' => 'Ubah Data Jenis Kegiatan',
             'data'  => TypeOfActivity::findOrFail($id),
+            'user'  => $user
         ];
 
         return view('jenis_kegiatan.form', $data);

@@ -1,15 +1,18 @@
 <?php
 
-use App\Http\Controllers\Master\AnnouncementController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\AnnouncementController;
 
 Route::group(['namespace' => 'Announcement'], function () {
 
     Route::get('/announcement', [AnnouncementController::class, 'index'])
-        ->name('pengumuman.index');
+        ->name('pengumuman');
 
     Route::get('/announcement/create', [AnnouncementController::class, 'create'])
         ->name('pengumuman.create');
+
+    Route::get('/announcement/{id}', [AnnouncementController::class, 'show'])
+        ->name('pengumuman.show');
 
     Route::post('/announcement', [AnnouncementController::class, 'store'])
         ->name('pengumuman.store');

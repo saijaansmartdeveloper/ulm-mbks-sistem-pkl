@@ -116,7 +116,7 @@ class StudentController extends Controller
         $mahasiswa->save();
         $mahasiswa->assignRole('student');
 
-        Mail::to($mahasiswa->email)->send(new NewUserNotification($mahasiswa));
+        Mail::to($mahasiswa->email)->queue(new NewUserNotification($mahasiswa));
 
         return redirect()->back()->with('success', 'Registrasi Student Berhasil, Tunggu Penetapan Activity Selanjutnya');
     }

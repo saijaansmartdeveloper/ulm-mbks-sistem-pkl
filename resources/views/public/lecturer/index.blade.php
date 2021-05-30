@@ -16,7 +16,7 @@
                     <h2 class="h2 float-right mb-0">{{ $data['jumlah_bimbingan'] ?? '0' }}</h2>
                 </div>
                 <div class="card-footer d-flex align-items-center justify-content-between">
-                    <a href="{{route('public.lecturer.guidance')}}" class="text-white stretched-link">Detail Bimbingan Mahasiswa</a>
+                    <a href="{{route('public.activity.guidance', ['guard' => 'lecturer'])}}" class="text-white stretched-link">Detail Bimbingan Mahasiswa</a>
                     <div class="small text-white"><i class="fas fa-angle-right"></i></div>
                 </div>
             </div>
@@ -28,7 +28,7 @@
                     <h2 class="h2 float-right mb-0">{{ $data['jumlah_jurnal'] ?? '0' }}</h2>
                 </div>
                 <div class="card-footer d-flex align-items-center justify-content-between">
-                    <a href="{{route('public.lecturer.guidance')}}" class="text-white stretched-link">Detail Jurnal Bimbingan </a>
+                    <a href="{{route('public.activity.guidance', ['guard' => 'lecturer'])}}" class="text-white stretched-link">Detail Jurnal Bimbingan </a>
                     <div class="small text-white"><i class="fas fa-angle-right"></i></div>
                 </div>
             </div>
@@ -40,7 +40,7 @@
                     <h2 class="h2 float-right mb-0">{{ $data['jumlah_monev'] ?? '0' }}</h2>
                 </div>
                 <div class="card-footer d-flex align-items-center justify-content-between">
-                    <a href="{{route('public.lecturer.guidance')}}" class="text-white stretched-link">Detail Laporan Monev </a>
+                    <a href="{{route('public.activity.guidance', ['guard' => 'lecturer'])}}" class="text-white stretched-link">Detail Laporan Monev </a>
                     <div class="small text-white"><i class="fas fa-angle-right"></i></div>
                 </div>
             </div>
@@ -55,7 +55,7 @@
                     <h2 class="h2 float-right mb-0">{{ $data['persentase_jurnal'] ?? '0 %' }}</h2>
                 </div>
                 <div class="card-footer d-flex align-items-center justify-content-between">
-                    <a href="{{route('public.lecturer.guidance')}}" class="text-white stretched-link">Persentase Jurnal Diperiksa</a>
+                    <a href="{{route('public.activity.guidance', ['guard' => 'lecturer'])}}" class="text-white stretched-link">Persentase Jurnal Diperiksa</a>
                     <div class="small text-white"><i class="fas fa-angle-right"></i></div>
                 </div>
             </div>
@@ -67,7 +67,7 @@
                     <h2 class="h2 float-right mb-0">{{ $data['persentase_monev'] ?? '0 %' }}</h2>
                 </div>
                 <div class="card-footer d-flex align-items-center justify-content-between">
-                    <a href="{{route('public.lecturer.guidance')}}" class="text-white stretched-link">Persentase Monitoring dan Evaluasi Dilakukan</a>
+                    <a href="{{route('public.activity.guidance', ['guard' => 'lecturer'])}}" class="text-white stretched-link">Persentase Monitoring dan Evaluasi Dilakukan</a>
                     <div class="small text-white"><i class="fas fa-angle-right"></i></div>
                 </div>
             </div>
@@ -85,7 +85,7 @@
                     <th>Tanggal Jurnal</th>
                     <th>Aksi</th>
                 </tr>
-                @forelse($data['journals']->take(10)->get() as $key => $item)
+                @forelse($data['journals'] as $key => $item)
                     <tr>
                         <td class="text-center">{{++$key}}</td>
                         <td>{{$item->activity()->student()->first()->nama_mahasiswa ?? '-'}}</td>
@@ -100,6 +100,7 @@
                         <td colspan="5" class="text-center"><i>Jurnal Belum Tersedia</i></td>
                     </tr>
                 @endforelse
+                {{-- @dump($data['journals']) --}}
             </table>
         </div>
         <div class="col-6">

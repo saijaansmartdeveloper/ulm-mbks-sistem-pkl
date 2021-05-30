@@ -21,10 +21,29 @@ class AnnouncementDataTable extends DataTable
     {
         return datatables()
             ->eloquent($query)
-            ->rawColumns(['content_pengumuman', 'action'])
+            ->editColumn('user_uuid', function ($data) {
+                return $data->users()->nama_pengguna ?? '';
+            })
+            ->editColumn('status_pengumuman', function ($data) {
+                return $data->status_pengumuman == '1' ? 'Aktif' : 'Tidak Aktif';
+            })
+            ->addColumn('jurusan_dan_prodi', function ($data) {
+                $jurusan = $data->jurusan()->kode_jurusan ?? '';
+                $prodi   = $data->prodi()->kode_prodi ?? '';
+
+                if ($jurusan == '' && $prodi == '') {
+                    return 'Untuk Semua Jurusan dan Prodi';
+                } else if ($jurusan != '' && $prodi == '') {
+                    return $jurusan . ' - Untuk Semua Prodi';
+                } else {
+                    return $jurusan == '' ? $prodi : $jurusan . ' - ' . $prodi;
+                }
+
+            })
             ->addColumn('action', function ($data) {
                 $action  = \Form::open(['url' => route('pengumuman.destroy', ['id' => $data->id]),  'id' => 'data-' . $data->id, 'method' => 'delete']);
                 $action .= \Form::close();
+                $action .= '<a href=' . route('pengumuman.show', ['id' => $data->id]) . ' class="btn btn-sm btn-info" ><i class="fa fa-eye"></i></a> ';
                 $action .= '<a href=' . route('pengumuman.edit', ['id' => $data->id]) . ' class="btn btn-sm btn-primary" ><i class="fa fa-edit"></i></a> ';
                 $action .= '<button onclick="deleteRow(' . $data->id . ')" class = "btn btn-danger btn-sm" ><i class="fa fa-trash"></i></button>';
                 return $action;
@@ -70,14 +89,18 @@ class AnnouncementDataTable extends DataTable
                 ->exportable(false)
                 ->printable(false)
                 ->addClass('text-center'),
+            Column::make('user_uuid')
+                ->title('Pembuat'),
             Column::make('judul_pengumuman')
                 ->title('Judul'),
-            Column::make('jenis_pengumuman')
-                ->title('Jenis'),
-            Column::make('content_pengumuman')
-                ->title('Isi'),
+            Column::make('jurusan_dan_prodi')
+                ->title('Jurusan Dan Prodi'),
             Column::make('tanggal_pengumuman')
                 ->title('Tanggal'),
+            Column::make('jenis_pengumuman')
+                ->title('Jenis'),
+            Column::make('status_pengumuman')
+                ->title('status'),
         ];
     }
 

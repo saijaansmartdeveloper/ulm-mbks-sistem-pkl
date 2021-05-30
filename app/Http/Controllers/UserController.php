@@ -2,16 +2,20 @@
 
 namespace App\Http\Controllers;
 
-use App\DataTables\UserDataTable;
-use App\Models\Major;
-use App\Models\StudyProgram;
 use App\Models\User;
-use Illuminate\Http\Request;
+use App\Models\Major;
 use Ramsey\Uuid\Uuid;
-use DataTables;
+use App\Models\StudyProgram;
+use Illuminate\Http\Request;
+use App\DataTables\UserDataTable;
+use Illuminate\Support\Facades\Auth;
 
 class UserController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('role:super_admin')->except('show');
+    }
     /**
      * Display a listing of the resource.
      *
@@ -19,8 +23,10 @@ class UserController extends Controller
      */
     public function index(UserDataTable $datatable)
     {
+        $user = Auth::guard('web')->user();
         $data = [
-            'title' => 'Master Data User',
+            'title' => 'Daftar Data Pengguna',
+            'user' => $user
         ];
 
         return $datatable->render('user.index', $data);
@@ -33,10 +39,14 @@ class UserController extends Controller
      */
     public function create()
     {
+        $user = Auth::guard('web')->user();
+
         $data = [
-            'title'     => 'Tambah Data User',
+            'title'     => 'Tambah Data Pengguna',
+            'jurusan'   => Major::pluck('nama_jurusan', 'uuid'),
             'prodi'     => StudyProgram::pluck('nama_prodi', 'uuid'),
             'data'      => null,
+            'user' => $user
         ];
 
         return view('user.form', $data);
@@ -53,30 +63,26 @@ class UserController extends Controller
         $request->validate(
             [
                 'nama_pengguna' => 'required',
-                'email'         => 'required',
+                'email'         => 'required|email',
                 'password'      => 'required',
-                'role_pengguna' => 'required',
-                'prodi_uuid'    => 'required'
+                'role_pengguna' => 'required'
             ],
             [
                 'nama_pengguna.required' => 'Nama Pengguna Tidak Boleh Kosong',
                 'email.required'         => 'Email Tidak Boleh Kosong',
+                'email.email'            => 'Teks Harus Berupa Email',
                 'password.required'      => 'Password Tidak Boleh Kosong',
                 'role_pengguna.required' => 'Role Pengguna Tidak Boleh Kosong',
-                'prodi_uuid.required'    => 'StudyProgram Tidak Boleh Kosong',
             ]
         );
 
-        $uuid   =   Uuid::uuid4()->getHex();
-        $prodi  =   StudyProgram::findOrFail($request->prodi_uuid);
-
         $user = new User;
-        $user->uuid              = $uuid;
+        $user->uuid              = Uuid::uuid4();
         $user->nama_pengguna     = $request->nama_pengguna;
         $user->email             = $request->email;
         $user->password          = bcrypt($request->password);
-        $user->jurusan_uuid      = $prodi->jurusan_uuid;
-        $user->prodi_uuid        = $request->prodi_uuid;
+        $user->jurusan_uuid      = $request->jurusan_uuid ?? null;
+        $user->prodi_uuid        = $request->prodi_uuid ?? null;
         $user->role_pengguna     = $request->role_pengguna;
         $user->save();
         $user->assignRole($request->role_pengguna);
@@ -92,9 +98,12 @@ class UserController extends Controller
      */
     public function show($id)
     {
+        $user = Auth::guard('web')->user();
+
         $data = [
-            'title' => 'Detail User',
-            'data'  => User::where('uuid', $id)->first(),
+            'title' => 'Detail Pengguna',
+            'data'  => User::where('uuid',$id)->firstOrFail(),
+            'user'  => $user
         ];
 
         return view('user.show', $data);
@@ -108,10 +117,14 @@ class UserController extends Controller
      */
     public function edit($id)
     {
+        $user = Auth::guard('web')->user();
+
         $data = [
-            'title'     => 'Ubah Data User',
+            'title'     => 'Ubah Data Pengguna',
+            'jurusan'   => Major::pluck('nama_jurusan', 'uuid'),
             'prodi'     => StudyProgram::pluck('nama_prodi', 'uuid'),
             'data'      => User::where('uuid', $id)->first(),
+            'user'      => $user
         ];
 
         return view('user.form', $data);
@@ -131,29 +144,27 @@ class UserController extends Controller
                 'nama_pengguna' => 'required',
                 'email'         => 'required',
                 'role_pengguna' => 'required',
-                'prodi_uuid'    => 'required'
             ],
             [
                 'nama_pengguna.required' => 'Nama Pengguna Tidak Boleh Kosong',
                 'email.required'         => 'Email Tidak Boleh Kosong',
                 'password.required'      => 'Password Tidak Boleh Kosong',
-                'role_pengguna.required' => 'Role Pengguna Tidak Boleh Kosong',
-                'prodi_uuid.required'    => 'StudyProgram Tidak Boleh Kosong',
+                'role_pengguna.required' => 'Role Pengguna Tidak Boleh Kosong'
             ]
         );
 
-        $prodi  =   StudyProgram::findOrFail($request->prodi_uuid);
-
         $user = User::where('uuid', $id)->first();
+
         if ($request->password == null) {
             $password = $user->password;
         } else {
             $password = bcrypt($request->password);
         }
+
         $user->nama_pengguna     = $request->nama_pengguna;
         $user->email             = $request->email;
         $user->password          = $password;
-        $user->jurusan_uuid      = $prodi->jurusan_uuid;
+        $user->jurusan_uuid      = $request->jurusan_uuid;
         $user->prodi_uuid        = $request->prodi_uuid;
         $user->role_pengguna     = $request->role_pengguna;
         $user->save();

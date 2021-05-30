@@ -1,10 +1,12 @@
 @extends('layouts.admin')
 @section('content-header', $title ?? '')
 @section('content')
+    
+    @include('alert')
+
     <div class="card py-4">
         <div class="card-body">
-            @include('alert')
-            <a href="{{ route('public.monev.create') }}" class="btn btn-primary">Tambah Data</a>
+            {{-- <a href="{{ route('public.monev.create') }}" class="btn btn-primary">Tambah Data</a> --}}
             <hr>
             <div class="table-responsive">
                 <table class="table table-bordered " id="table-monev">
@@ -25,7 +27,7 @@
     </div>
 @endsection
 @section('js')
-    <link href="{{ asset('datatables/css/jquery.dataTables.min.css') }}" rel="stylesheet">
+    {{-- <link href="{{ asset('datatables/css/jquery.dataTables.min.css') }}" rel="stylesheet">
     <link href="{{ asset('datatables/css/dataTables.bootstrap4.min.css') }}" rel="stylesheet">
     <script src="{{ asset('datatables/js/jquery.validate.js') }}"></script>
     <script src="{{ asset('datatables/js/jquery.dataTables.min.js') }}"></script>
@@ -65,5 +67,5 @@
 
         });
 
-    </script>
+    </script> --}}
 @endsection

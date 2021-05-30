@@ -2,14 +2,14 @@
 
 namespace App\DataTables;
 
-use App\Models\Student;
+use App\Models\GuidanceDataTable;
 use Yajra\DataTables\Html\Button;
 use Yajra\DataTables\Html\Column;
 use Yajra\DataTables\Html\Editor\Editor;
 use Yajra\DataTables\Html\Editor\Fields;
 use Yajra\DataTables\Services\DataTable;
 
-class StudentDataTable extends DataTable
+class GuidanceDataTable extends DataTable
 {
     /**
      * Build DataTable class.
@@ -21,16 +21,16 @@ class StudentDataTable extends DataTable
     {
         return datatables()
             ->eloquent($query)
-            ->addColumn('action', 'student.action');
+            ->addColumn('action', 'guidancedatatable.action');
     }
 
     /**
      * Get query source of dataTable.
      *
-     * @param \App\Models\Student $model
+     * @param \App\Models\GuidanceDataTable $model
      * @return \Illuminate\Database\Eloquent\Builder
      */
-    public function query(Student $model)
+    public function query(GuidanceDataTable $model)
     {
         return $model->newQuery();
     }
@@ -43,7 +43,7 @@ class StudentDataTable extends DataTable
     public function html()
     {
         return $this->builder()
-                    ->setTableId('student-table')
+                    ->setTableId('guidancedatatable-table')
                     ->columns($this->getColumns())
                     ->minifiedAjax()
                     ->dom('Bfrtip')
@@ -71,7 +71,7 @@ class StudentDataTable extends DataTable
                   ->width(60)
                   ->addClass('text-center'),
             Column::make('id'),
-            Column::make('uuid'),
+            Column::make('add your columns'),
             Column::make('created_at'),
             Column::make('updated_at'),
         ];
@@ -84,6 +84,6 @@ class StudentDataTable extends DataTable
      */
     protected function filename()
     {
-        return 'Student_' . date('YmdHis');
+        return 'Guidance_' . date('YmdHis');
     }
 }

@@ -1,6 +1,6 @@
 <?php
 
-use App\Http\Controllers\Admin\SuperAdmin\HomeController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\HomeController;
 
-Route::get('/dashboard', [HomeController::class, 'index'])->name('super_admin.dashboard');
+Route::get('/dashboard', [HomeController::class, 'dashboard_superuser'])->name('super_admin.dashboard');

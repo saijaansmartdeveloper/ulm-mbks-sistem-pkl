@@ -2,7 +2,14 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
+use App\Models\User;
+use App\Models\Major;
+use App\Models\Partner;
+use App\Models\Student;
+use App\Models\Lecturer;
+use App\Models\Activity;
+use App\Models\StudyProgram;
+use Illuminate\Support\Facades\Auth;
 
 class HomeController extends Controller
 {
@@ -24,5 +31,42 @@ class HomeController extends Controller
     public function index()
     {
         return view('home');
+    }
+
+    public function dashboard_superuser()
+    {
+        $user = Auth::guard('web')->user();
+        $data = [
+            'title' => 'Selamat Datang, ' . ucfirst($user->nama_pengguna),
+            'data'  => [
+                'jumlah_admin_prodi'    => User::where('role_pengguna', 'admin_prodi')->count(),
+                'jumlah_super_visor'    => User::where('role_pengguna', 'supervisor')->count(),
+                'jumlah_lecturer'       => Lecturer::count(),
+                'jumlah_student'        => Student::count(),
+                'jumlah_partner'        => Partner::count(),
+                'jumlah_jurusan'        => Major::count(),
+                'jumlah_prodi'          => StudyProgram::count(),
+            ],
+            'user' => $user
+        ];
+
+        return view('admin.super_admin.home', $data);
+
+    }
+
+    public function dashboard_adminprodi()
+    {
+        $prodi = Auth::user()->prodi_uuid;
+        $data = [
+            'title' => 'Dashboard',
+            'data'  => [
+                'jumlah_dosen'              => Lecturer::where('prodi_uuid', $prodi)->count(),
+                'jumlah_mahasiswa'          => Student::where('prodi_uuid', $prodi)->count(),
+                'jumlah_mitra'              => Partner::count(),
+                'jumlah_mahasiswa_kegiatan' => Activity::where('prodi_uuid', $prodi)->count(),
+            ],
+        ];
+
+        return view('admin.admin_prodi.home', $data);
     }
 }

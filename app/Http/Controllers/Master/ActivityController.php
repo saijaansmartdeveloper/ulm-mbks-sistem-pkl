@@ -88,7 +88,7 @@ class ActivityController extends Controller
 
             if ($magang) {
                 $student_email  = $magang->student()->first()->email;
-                Mail::to($student_email)->send(new AssignActivityNotification($magang, 'student'));
+                Mail::to($student_email)->queue(new AssignActivityNotification($magang, 'student'));
             }
         }
 
@@ -102,7 +102,7 @@ class ActivityController extends Controller
             'mahasiswa' => $students
         ];
 
-        Mail::to($lecturer->email)->send(new AssignActivityNotification($data, 'lecturer'));
+        Mail::to($lecturer->email)->queue(new AssignActivityNotification($data, 'lecturer'));
 
         return redirect()->route('magang.index')->with('success', 'Data Berhasil Ditambah');
     }

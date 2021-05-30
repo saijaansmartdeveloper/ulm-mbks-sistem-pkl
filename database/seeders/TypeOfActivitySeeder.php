@@ -17,8 +17,8 @@ class TypeOfActivitySeeder extends Seeder
     {
         TypeOfActivity::create([
             'uuid' => Uuid::uuid4(),
-            'kode_jenis_kegiatan' => 'KM',
-            'nama_jenis_kegiatan' => 'Kampus Mengajar',
+            'kode_jenis_kegiatan' => 'AM',
+            'nama_jenis_kegiatan' => 'Asistensi Mengajar',
             'deskripsi_jenis_kegiatan' => 'Program Kampus Merdeka Untuk Mahasiswa Mengajar'
         ]);
 

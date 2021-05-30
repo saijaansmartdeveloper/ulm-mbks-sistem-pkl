@@ -28,7 +28,12 @@
 
             <div class="form-group">
                 {{ Form::label('role_pengguna', 'Role Pengguna') }}
-                {{ Form::select('role_pengguna', ['admin_prodi' => 'Admin Program Studi', 'supervisor' => 'Supervisor'], null, ['placeholder' => '-- Pilih Role --', 'class' => 'form-control role-select2']) }}
+                {{ Form::select('role_pengguna', ['admin_prodi' => 'Admin Program Studi', 'supervisor' => 'Supervisor', 'super_admin' => 'Super Admin'], null, ['placeholder' => '-- Pilih Role --', 'class' => 'form-control role-select2']) }}
+            </div>
+
+            <div class="form-group">
+                {{ Form::label('jurusan_uuid', 'Jurusan') }}
+                {{ Form::select('jurusan_uuid', $jurusan, null, ['placeholder' => '-- Pilih Jurusan --', 'id' => 'jurusan', 'class' => 'form-control jurusan-select2']) }}
             </div>
 
             <div class="form-group">
@@ -53,6 +58,7 @@
     <script>
         $(document).ready(function() {
             $('.prodi-select2').select2();
+            $('.jurusan-select2').select2();
             $('.role-select2').select2();
             $('.select2').css('width','100%');
         });

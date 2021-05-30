@@ -16,6 +16,7 @@ class CreateMonevTable extends Migration
         Schema::create('monev', function (Blueprint $table) {
             $table->id();
             $table->uuid('uuid')->unique();
+            $table->string('judul_monev')->nullable();
             $table->text('catatan_monev')->nullable();
             $table->date('tanggal_monev')->nullable();
             $table->string('file_monev')->nullable();

@@ -52,7 +52,7 @@ class UserDataTable extends DataTable
      */
     public function query(User $model)
     {
-        return $model->newQuery();
+        return $model->orderBy('nama_pengguna', 'asc')->newQuery();
     }
 
     /**
