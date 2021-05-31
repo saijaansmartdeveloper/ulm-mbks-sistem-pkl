@@ -45,6 +45,14 @@ Route::middleware(['auth'])->group(function () {
 
     Route::group(['prefix' => 'admin_prodi'], function () {
         Route::get('dashboard', [HomeController::class, 'dashboard_adminprodi'])->name('admin_prodi.dashboard')->middleware(['role:admin_prodi']);
+
+        require __DIR__ . '/user/admin_prodi/lecturer.php';
+        require __DIR__ . '/user/admin_prodi/partner.php';
+        require __DIR__ . '/user/admin_prodi/student.php';
+    });
+
+    Route::group(['prefix' => 'supervisor'], function () {
+        Route::get('dashboard', [HomeController::class, 'dashboard_supervisor'])->name('supervisor.dashboard')->middleware(['role:supervisor']);
     });
 
     require __DIR__ . '/public/announcement.php';
@@ -64,9 +72,7 @@ Route::group(['prefix' => 'admin_prodi', 'middleware' => ['role:admin_prodi', 'a
 
     require __DIR__ . '/user/admin_prodi/activity.php';
     // require __DIR__ . '/user/admin_prodi/home.php';
-    require __DIR__ . '/user/admin_prodi/lecturer.php';
-    require __DIR__ . '/user/admin_prodi/partner.php';
-    require __DIR__ . '/user/admin_prodi/student.php';
+
 });
 
 Route::get('/home', [HomeController::class, 'index'])->name('home');

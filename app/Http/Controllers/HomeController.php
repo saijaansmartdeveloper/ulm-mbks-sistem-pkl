@@ -33,6 +33,27 @@ class HomeController extends Controller
         return view('home');
     }
 
+    public function dashboard_supervisor()
+    {
+        $user = Auth::guard('web')->user();
+
+        $data = [
+            'title' => 'Selamat Datang, ' . ucfirst($user->nama_pengguna),
+            'data'  => [
+                'jumlah_admin_prodi'    => User::where('role_pengguna', 'admin_prodi')->count(),
+                'jumlah_super_visor'    => User::where('role_pengguna', 'supervisor')->count(),
+                'jumlah_lecturer'       => Lecturer::count(),
+                'jumlah_student'        => Student::count(),
+                'jumlah_partner'        => Partner::count(),
+                'jumlah_jurusan'        => Major::count(),
+                'jumlah_prodi'          => StudyProgram::count(),
+            ],
+            'user' => $user
+        ];
+
+        return view('admin.supervisor.home', $data);
+    }
+
     public function dashboard_superuser()
     {
         $user = Auth::guard('web')->user();

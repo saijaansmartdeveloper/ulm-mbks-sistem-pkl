@@ -7,9 +7,13 @@
     <div class="card">
         <div class="card-body">
             @if ($data == null)
-                {{ Form::open(['url' => route('public.lecturer.store'), 'files' => true]) }}
+                {{ Form::open(['url' => route('dosen.store'), 'files' => true]) }}
             @else
+                @if ($guard == 'web')
+                {{ Form::model($data, ['url' => route('dosen.update', ['id' => $data->uuid]), 'files' => true, 'method' => 'put']) }}
+                @else
                 {{ Form::model($data, ['url' => route('public.lecturer.update', ['id' => $data->uuid]), 'files' => true, 'method' => 'put']) }}
+                @endif
             @endif
 
             <div class="form-group">

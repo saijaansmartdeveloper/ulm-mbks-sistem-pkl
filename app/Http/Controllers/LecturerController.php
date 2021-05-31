@@ -101,10 +101,8 @@ class LecturerController extends Controller
         }
         $dosen->save();
 
-        if ($request->guard == 'lecturer')
-        {
-            return redirect()->route('public.lecturer.show', ['id' => $id])->with('update', 'Data Berhasi Diubah');
-        }
+        return redirect()->route('public.lecturer.show', ['id' => $id])->with('update', 'Data Berhasi Diubah');
+
     }
 
     // public function guidance ()

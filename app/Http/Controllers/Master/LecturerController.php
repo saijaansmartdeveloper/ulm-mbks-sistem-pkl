@@ -21,10 +21,13 @@ class LecturerController extends Controller
      */
     public function index(LecturerDataTable $datatable)
     {
+        $user = Auth::guard('web')->user();
         $data = [
-            'title' => 'Master Data Dosen',
+            'title' => 'Kelola Data Dosen',
+            'user' => $user
         ];
-        return $datatable->addScope(new LecturerDataTableScope(Auth::user()))->render('dosen.index', $data);
+
+        return $datatable->addScope(new LecturerDataTableScope(Auth::user()))->render('public.lecturer.list', $data);
     }
 
     /**
@@ -34,12 +37,16 @@ class LecturerController extends Controller
      */
     public function create()
     {
+        $user = Auth::guard('web')->user();
+
         $data = [
-            'title' => 'Tambah Data Dosen',
+            'title' => 'Tambah Dosen',
+            'guard' => 'web',
             'data'  => null,
+            'user'  => $user
         ];
 
-        return view('dosen.form', $data);
+        return view('public.lecturer.form', $data);
     }
 
     /**
@@ -97,12 +104,15 @@ class LecturerController extends Controller
      */
     public function show($id)
     {
+        $user = Auth::guard('web')->user();
+
         $data = [
             'title' => 'Detail Dosen',
             'data'  => Lecturer::findOrFail($id),
+            'user'  => $user
         ];
 
-        return view('dosen.show', $data);
+        return view('public.lecturer.show', $data);
     }
 
     /**
@@ -113,12 +123,16 @@ class LecturerController extends Controller
      */
     public function edit($id)
     {
+        $user = Auth::guard('web')->user();
+
         $data = [
             'title' => 'Ubah Data Dosen',
+            'guard' => 'web',
             'data'  => Lecturer::findOrFail($id),
+            'user'  => $user
         ];
 
-        return view('dosen.form', $data);
+        return view('public.lecturer.form', $data);
     }
 
     /**
@@ -168,7 +182,7 @@ class LecturerController extends Controller
         $dosen->foto_dosen      = $fotoUrl;
         $dosen->save();
 
-        return redirect()->route('dosen.index')->with('update', 'Data Berhasil Diubah');
+        return redirect()->route('dosen.show', ['id' => $id])->with('update', 'Data Berhasil Diubah');
     }
 
     /**
