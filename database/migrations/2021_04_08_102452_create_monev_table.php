@@ -13,14 +13,15 @@ class CreateMonevTable extends Migration
      */
     public function up()
     {
-        Schema::create('monev', function (Blueprint $table) {
+        Schema::create('laporan_monev', function (Blueprint $table) {
             $table->id();
             $table->uuid('uuid')->unique();
-            $table->text('catatan_monev')->nullable();
-            $table->date('tanggal_monev')->nullable();
-            $table->string('file_monev')->nullable();
+            $table->string('judul_laporan_monev')->nullable();
+            $table->text('catatan_laporan_monev')->nullable();
+            $table->date('tanggal_laporan_monev')->nullable();
+            $table->string('file_laporan_monev')->nullable();
             $table->string('jenis_laporan')->nullable();
-            $table->longText('komentar_monev')->nullable();
+            $table->longText('komentar_laporan_monev')->nullable();
             $table->foreignUuid('kegiatan_uuid')->nullable();
             $table->foreignUuid('dosen_uuid')->nullable();
             $table->foreignUuid('prodi_uuid')->nullable();

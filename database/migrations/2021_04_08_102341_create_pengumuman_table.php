@@ -18,6 +18,7 @@ class CreatePengumumanTable extends Migration
             $table->string('judul_pengumuman', 60);
             $table->text('content_pengumuman')->nullable();
             $table->string('jenis_pengumuman')->nullable();
+            $table->integer('status_pengumuman')->default(1);
             $table->date('tanggal_pengumuman')->nullable();
             $table->foreignUuid('user_uuid')->nullable();
             $table->foreignUuid('prodi_uuid')->nullable();

@@ -4,9 +4,51 @@ namespace App\Http\Controllers;
 
 use App\Models\Activity;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class ActivityController extends Controller
 {
+    public function show($guard, $id)
+    {
+        if (! (Auth::guard($guard)->user()))
+        {
+            abort(403);
+        }
+
+        $user       = Auth::guard($guard)->user();
+
+        $data = [
+            'title' => 'Daftar Jurnal',
+            'guard' => $user->guardname,
+            'data'  => Activity::findOrFail($id),
+            'user'  => $user
+        ];
+
+        return view('public.activity.show', $data);
+    }
+    public function guidance($guard)
+    {
+        if (! (Auth::guard($guard)->user()))
+        {
+            abort(403);
+        }
+
+        $user       = Auth::guard($guard)->user();
+        $activity   = Activity::select('jenis_kegiatan_uuid')->orderBy('jenis_kegiatan_uuid', 'asc')->distinct()->get();
+
+        foreach ($activity as $key => $value) {
+            $activity[$key]->list_guidance = Activity::where('jenis_kegiatan_uuid', $value->jenis_kegiatan_uuid)->where('dosen_uuid', $user->uuid)->orderBy('mitra_uuid', 'asc')->get();
+        }
+
+        $data = [
+            'title' => 'Daftar Bimbingan',
+            'guard' => $user->guardname,
+            'data'  => $activity,
+            'user'  => $user
+        ];
+
+        return view('public.activity.guidance', $data);
+    }
 
     public function uploadFileActivity(Request $request, $id)
     {

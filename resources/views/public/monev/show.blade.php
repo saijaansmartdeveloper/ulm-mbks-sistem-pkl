@@ -7,7 +7,7 @@
     @include('alert')
     <div class="card py-4">
         <div class="card-body">
-            <table class="table table-hover table-striped">
+            {{-- <table class="table table-hover table-striped">
                 <tr>
                     <th>NIM Mahasiswa</th>
                     <td>{{ $data->magang()->first()->student()->first()->nim_mahasiswa }}</td>
@@ -47,7 +47,7 @@
                     <th>Catatan Monitor Evaluasi</th>
                     <td colspan="3">{!! $data->catatan_monev !!}</td>
                 </tr>
-            </table>
+            </table> --}}
         </div>
     </div>
 @endsection

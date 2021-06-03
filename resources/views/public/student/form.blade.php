@@ -8,9 +8,13 @@
         <div class="card-body">
 
             @if ($data == null)
-                {{ Form::open(['url' => route('public.student.store'), 'files' => true]) }}
+                {{ Form::open(['url' => route('mahasiswa.store'), 'method' => 'post', 'files' => true]) }}
             @else
+                @if ($guard == "web")
+                {{ Form::model($data, ['url' => route('mahasiswa.update', ['id' => $data->uuid]), 'method' => 'put', 'files' => true]) }}
+                @else
                 {{ Form::model($data, ['url' => route('public.student.update', ['id' => $data->uuid]), 'method' => 'put', 'files' => true]) }}
+                @endif
             @endif
 
             <div class="form-group">

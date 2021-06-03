@@ -54,6 +54,11 @@ class Partner extends Authenticatable
         return $this->guarded;
     }
 
+    public function getPartnerLinkProfileAttribute()
+    {
+        return '<a href="'.url('partner/' . $this->uuid).'"><strong>'.$this->nama_mitra.'</strong></a>' ;
+    }
+
     public function activities()
     {
         return $this->hasOne(Activity::class, 'mitra_uuid');

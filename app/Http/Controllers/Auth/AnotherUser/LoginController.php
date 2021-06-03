@@ -28,7 +28,7 @@ class LoginController extends Controller
 
         if (Auth::guard($type)->attempt($credentials)) {
             $request->session()->regenerate();
-            return redirect()->intended('public/' .$type  .'/dashboard');
+            return redirect()->intended($type  .'/dashboard');
         }
 
         return back()->withErrors([

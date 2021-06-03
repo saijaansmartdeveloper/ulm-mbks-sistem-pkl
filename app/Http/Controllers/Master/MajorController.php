@@ -2,12 +2,13 @@
 
 namespace App\Http\Controllers\Master;
 
+use DataTables;
+use App\Models\Major;
+use Ramsey\Uuid\Uuid;
+use Illuminate\Http\Request;
 use App\DataTables\MajorDataTable;
 use App\Http\Controllers\Controller;
-use App\Models\Major;
-use Illuminate\Http\Request;
-use DataTables;
-use Ramsey\Uuid\Uuid;
+use Illuminate\Support\Facades\Auth;
 
 class MajorController extends Controller
 {
@@ -18,8 +19,11 @@ class MajorController extends Controller
      */
     public function index(MajorDataTable $datatable)
     {
+        $user = Auth::guard('web')->user();
+
         $data = [
             'title' => 'Master Data Jurusan',
+            'user'  => $user
 
         ];
         return $datatable->render('jurusan.index', $data);
@@ -33,10 +37,14 @@ class MajorController extends Controller
      */
     public function create()
     {
+        $user = Auth::guard('web')->user();
+
         $data = [
             'title' => 'Tambah Data Jurusan',
             'data'  => null,
+            'user'  => $user
         ];
+
         return view('jurusan.form', $data);
     }
 
@@ -89,9 +97,12 @@ class MajorController extends Controller
      */
     public function edit($id)
     {
+        $user = Auth::guard('web')->user();
+
         $data = [
             'title' => 'Ubah Data Jurusan',
             'data'  =>  Major::findOrFail($id),
+            'user'  => $user
         ];
         return view('jurusan.form', $data);
     }

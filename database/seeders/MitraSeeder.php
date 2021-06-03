@@ -14,7 +14,9 @@ class MitraSeeder extends Seeder
      */
     public function run()
     {
-        Partner::factory()->count(10)->create();
+        Partner::factory()->count(10)->create()->each(function ($user) {
+            $user->assignRole('partner');
+        });;;
 
     }
 }

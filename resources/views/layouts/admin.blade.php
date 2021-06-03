@@ -9,15 +9,21 @@
     <meta name="author" content="" />
     <title>@yield('content-header')</title>
 
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@100;300;400;700;900&display=swap" rel="stylesheet">
+
     <link href="{{ asset('vendor/jquery-ui/jquery-ui.min.css') }}" rel="stylesheet" />
     <link href="{{ asset('vendor/jquery-ui/jquery-ui.structure.min.css') }}" rel="stylesheet" />
     <link href="{{ asset('sbadmin/css/styles.css') }}" rel="stylesheet" />
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/7.33.1/sweetalert2.min.css" rel="stylesheet">
-    </link>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/7.33.1/sweetalert2.min.css" rel="stylesheet" />
 
     <link rel="stylesheet" type="text/css"
         href="https://cdn.jsdelivr.net/npm/evo-calendar@1.1.2/evo-calendar/css/evo-calendar.min.css" />
     <style>
+        html {
+            font-family: 'Lato', sans-serif;
+        }
+
         .select2-selection__rendered {
             line-height: 40px !important;
             margin-left: 10px;

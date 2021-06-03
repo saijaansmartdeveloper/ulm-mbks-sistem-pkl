@@ -43,6 +43,11 @@ class Student extends Authenticatable
         return $this->guarded;
     }
 
+    public function getStudentLinkProfileAttribute()
+    {
+        return '<a href="'.url('student/' . $this->uuid).'"><strong>'.$this->nama_mahasiswa.'</strong></a>' ;
+    }
+
     public function activities()
     {
         return $this->hasMany(Activity::class, 'mahasiswa_uuid');

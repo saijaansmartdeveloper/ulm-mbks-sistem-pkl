@@ -2,14 +2,14 @@
 
 namespace App\DataTables;
 
-use App\Models\Student;
+use App\Models\Monev;
 use Yajra\DataTables\Html\Button;
 use Yajra\DataTables\Html\Column;
 use Yajra\DataTables\Html\Editor\Editor;
 use Yajra\DataTables\Html\Editor\Fields;
 use Yajra\DataTables\Services\DataTable;
 
-class StudentDataTable extends DataTable
+class LaporanMonevDataTable extends DataTable
 {
     /**
      * Build DataTable class.
@@ -21,18 +21,14 @@ class StudentDataTable extends DataTable
     {
         return datatables()
             ->eloquent($query)
-            ->addColumn('jurusan_dan_prodi', function ($data) {
-                $jurusan = $data->jurusan()->first()->kode_jurusan ?? '';
-                $prodi   = $data->prodi()->first()->kode_prodi ?? '';
-
-                return $jurusan . " - " . $prodi;
-
+            ->editColumn('kegiatan_uuid', function ($data) {
+                return ($data->activies()->first() == null ? '-' : ($data->activies()->first()->partner()->first()->nama_mitra . " - " . $data->activies()->first()->student()->first()->nama_mahasiswa));
             })
             ->addColumn('action', function ($data) {
-                $action   = \Form::open(['url' => route('mahasiswa.destroy', ['id' => $data->uuid]), 'id' => 'data-' . $data->id, 'method' => 'delete']);
+                $action   = \Form::open(['url' => route('public.laporan-monev.destroy', ['id' => $data->uuid]), 'id' => 'data-' . $data->id, 'method' => 'delete']);
                 $action  .= \Form::close();
-                $action  .= '<a href=' . route('mahasiswa.edit', ['id' => $data->uuid]) . ' class="btn btn-sm btn-primary" ><i class="fa fa-edit"></i></a> ';
-                $action  .= '<a href=' . route('mahasiswa.show', ['id' => $data->uuid]) . ' class="btn btn-sm btn-info" ><i class="fa fa-search"></i></a> ';
+                // $action  .= '<a href=' . route('laporan-monev.edit', ['id' => $data->uuid]) . ' class="btn btn-sm btn-primary" ><i class="fa fa-edit"></i></a> ';
+                $action  .= '<a href=' . route('laporan-monev.show', ['id' => $data->uuid]) . ' class="btn btn-sm btn-info" ><i class="fa fa-search"></i></a> ';
                 $action  .= '<button onclick="deleteRow(' . $data->id . ')" class = "btn btn-danger btn-sm"><i class="fa fa-trash"></i></button>';
 
                 return $action;
@@ -42,12 +38,12 @@ class StudentDataTable extends DataTable
     /**
      * Get query source of dataTable.
      *
-     * @param \App\Models\Student $model
+     * @param \App\Models\LaporanMonev $model
      * @return \Illuminate\Database\Eloquent\Builder
      */
-    public function query(Student $model)
+    public function query(Monev $model)
     {
-        return $model->newQuery()->orderBy('nim_mahasiswa', 'asc');
+        return $model->newQuery();
     }
 
     /**
@@ -58,15 +54,16 @@ class StudentDataTable extends DataTable
     public function html()
     {
         return $this->builder()
-                    ->setTableId('student-table')
+                    ->setTableId('laporanmonev-table')
                     ->columns($this->getColumns())
                     ->minifiedAjax()
                     ->dom('Bfrtip')
                     ->orderBy(1)
                     ->buttons(
                         Button::make('create'),
-                        Button::make('excel'),
+                        Button::make('export'),
                         Button::make('print'),
+                        Button::make('reset'),
                         Button::make('reload')
                     );
     }
@@ -84,14 +81,10 @@ class StudentDataTable extends DataTable
                   ->printable(false)
                   ->width(60)
                   ->addClass('text-center'),
-            Column::make('nim_mahasiswa')
-                ->title('NIM'),
-            Column::make('nama_mahasiswa')
-                ->title('Nama'),
-            Column::make('email'),
-            Column::make('phone'),
-            Column::make('jurusan_dan_prodi')
-                ->title('Jurusan Dan Prodi')
+            Column::make('jenis_laporan'),
+            Column::make('judul_laporan_monev'),
+            Column::make('kegiatan_uuid'),
+            Column::make('tanggal_laporan_monev')
         ];
     }
 
@@ -102,6 +95,6 @@ class StudentDataTable extends DataTable
      */
     protected function filename()
     {
-        return 'Student_' . date('YmdHis');
+        return 'LaporanMonev_' . date('YmdHis');
     }
 }

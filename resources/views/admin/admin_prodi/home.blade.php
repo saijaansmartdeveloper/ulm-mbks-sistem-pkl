@@ -1,5 +1,7 @@
 @extends('layouts.admin')
+
 @section('content-header', $title ?? '')
+
 @section('content')
     <hr>
     <div class="row">

@@ -20,23 +20,23 @@
                 <table class="table table-striped table-hover">
                     <tr>
                         <td>Tempat Kegiatan</td>
-                        <td>{{ ($data->partner()->first()->nama_mitra) }}</td>
+                        <td>: <strong>{{ ($data->partner()->first()->nama_mitra) }}</strong></td>
                         <td>Mulai Kegiatan</td>
-                        <td>{{ ($data->mulai_kegiatan) }}</td>
+                        <td>: <strong>{{ ($data->mulai_kegiatan) }}</strong></td>
                         <td>Akhir Kegiatan</td>
-                        <td>{{ ($data->akhir_kegiatan) }}</td>
+                        <td>: <strong>{{ ($data->akhir_kegiatan) }}</strong></td>
                     </tr>
                     <tr>
                         <td>Pamong Kegiatan</td>
-                        <td>{{ ($data->partner()->first()->pamong_mitra) }}</td>
+                        <td>: <strong>{{ ($data->partner()->first()->pamong_mitra) }}</strong></td>
                         <td>Lama Kegiatan</td>
-                        <td>{{ ($data->lama_kegiatan) }} Minggu</td>
+                        <td>: <strong>{{ ($data->lama_kegiatan) }} Hari</strong></td>
                         <td>SK Kegiatan</td>
                         <td><a href="{{ url($data->file_sk_kegiatan ?? '/not_found') }}" target="__blank" class="btn btn-outline-info btn-sm">Download SK</a></td>
                     </tr>
                     <tr>
                         <td>Dosen Pembimbing</td>
-                        <td>{{ ($data->lecturer()->first()->nama_dosen) }}</td>
+                        <td>: <strong>{{ ($data->lecturer()->first()->nama_dosen) }}</strong></td>
                         <td>Laporan Kegiatan</td>
                         <td>
                             @if($data->file_laporan_kegiatan == null)

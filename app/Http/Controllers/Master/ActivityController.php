@@ -22,35 +22,41 @@ class ActivityController extends Controller
 
     public function index(ActivityDataTable $datatable)
     {
+        $user = Auth::guard('web')->user();
+
         $data = [
-            'title' => 'Master Data Kegiatan'
+            'title' => 'Master Data Kegiatan',
+            'data' => null,
+            'user' => $user
         ];
 
-        return $datatable->addScope(new ActivityDataTableScope(Auth::User()))->render('magang.index', $data);
+        return $datatable->addScope(new ActivityDataTableScope(Auth::User()))->render('public.activity.list', $data);
     }
 
     public function create()
     {
-        $prodi_uuid = Auth::User()->prodi_uuid;
+        $user = Auth::guard('web')->user();
+
         $data = [
-            'title'             => 'Tambah Data Kegiatan',
-            'dosen'             => Lecturer::where('prodi_uuid', $prodi_uuid)->pluck('nama_dosen', 'uuid'),
+            'title'             => 'Buat Kegiatan',
+            'dosen'             => Lecturer::where('prodi_uuid', $user->prodi_uuid)->pluck('nama_dosen', 'uuid'),
             'mitra'             => Partner::pluck('nama_mitra', 'uuid'),
-            'mahasiswa'         => Student::where('prodi_uuid', $prodi_uuid)->pluck('nama_mahasiswa', 'uuid'),
+            'mahasiswa'         => Student::where('prodi_uuid', $user->prodi_uuid)->pluck('nama_mahasiswa', 'uuid'),
             'jenis_kegiatan'    => TypeOfActivity::pluck('nama_jenis_kegiatan', 'uuid'),
             'data'              => null,
+            'user'              => $user
         ];
 
-        return view('magang.form', $data);
+        return view('public.activity.form', $data);
     }
 
     public function store(Request $request)
     {
         $request->validate(
             [
-                'mulai_magang'          => 'required|date',
-                'lama_magang'           => 'required|numeric',
-                'akhir_magang'          => 'required|date',
+                'mulai_kegiatan'          => 'required|date',
+                'lama_kegiatan'           => 'required|numeric',
+                'akhir_kegiatan'          => 'required|date',
                 'status_magang'         => 'required',
                 'dosen_uuid'            => 'required',
                 'mahasiswa_uuid'        => 'required',
@@ -58,9 +64,9 @@ class ActivityController extends Controller
                 'jenis_kegiatan_uuid'   => 'required',
             ],
             [
-                'mulai_magang.required'          => 'Tanggal Mulai Kegiatan Tidak Boleh Kosong',
-                'lama_magang.required'           => 'Lama Kegiatan Tidak Boleh Kosong',
-                'akhir_magang.required'          => 'Tangal Akhir Kegiatan Tidak Boleh Kosong',
+                'mulai_kegiatan.required'          => 'Tanggal Mulai Kegiatan Tidak Boleh Kosong',
+                'lama_kegiatan.required'           => 'Lama Kegiatan Tidak Boleh Kosong',
+                'akhir_kegiatan.required'          => 'Tangal Akhir Kegiatan Tidak Boleh Kosong',
                 'status_magang.required'         => 'Status Kegiatan Tidak Boleh Kosong',
                 'dosen_uuid.required'            => 'Lecturer Tidak Boleh Kosong',
                 'mahasiswa_uuid.required'        => 'Student Tidak Boleh Kosong',
@@ -71,12 +77,14 @@ class ActivityController extends Controller
 
         foreach (request('mahasiswa_uuid') as $mahasiswa) {
             $magang = Activity::create([
-                'uuid'                    => Uuid::uuid4()->getHex(),
-                'mulai_kegiatan'          => request('mulai_magang'),
-                'akhir_kegiatan'          => request('akhir_magang'),
-                'lama_kegiatan'           => request('lama_magang'),
+                'uuid'                    => Uuid::uuid4(),
+                'mulai_kegiatan'          => request('mulai_kegiatan'),
+                'akhir_kegiatan'          => request('akhir_kegiatan'),
+                'lama_kegiatan'           => request('lama_kegiatan'),
                 'file_sk_kegiatan'        => request('file_sk_magang'),
+                'link_survey'             => request('link_survey'),
                 'status_kegiatan'         => request('status_magang'),
+                'status_mitra'          => request('status_mitra'),
                 'dosen_uuid'            => request('dosen_uuid'),
                 'mahasiswa_uuid'        => $mahasiswa,
                 'mitra_uuid'            => request('mitra_uuid'),
@@ -88,7 +96,7 @@ class ActivityController extends Controller
 
             if ($magang) {
                 $student_email  = $magang->student()->first()->email;
-                Mail::to($student_email)->send(new AssignActivityNotification($magang, 'student'));
+                Mail::to($student_email)->queue(new AssignActivityNotification($magang, 'student'));
             }
         }
 
@@ -102,33 +110,34 @@ class ActivityController extends Controller
             'mahasiswa' => $students
         ];
 
-        Mail::to($lecturer->email)->send(new AssignActivityNotification($data, 'lecturer'));
+        Mail::to($lecturer->email)->queue(new AssignActivityNotification($data, 'lecturer'));
 
         return redirect()->route('magang.index')->with('success', 'Data Berhasil Ditambah');
     }
 
     public function edit($id)
     {
-        $prodi_uuid = Auth::User()->prodi_uuid;
+        $user = Auth::guard('web')->user();
         $data = [
-            'title'             => 'Ubah Data Kegiatan',
-            'dosen'             => Lecturer::where('prodi_uuid', $prodi_uuid)->pluck('nama_dosen', 'uuid'),
+            'title'             => 'Ubah Kegiatan',
+            'dosen'             => Lecturer::where('prodi_uuid', $user->prodi_uuid)->pluck('nama_dosen', 'uuid'),
             'mitra'             => Partner::pluck('nama_mitra', 'uuid'),
-            'mahasiswa'         => Student::where('prodi_uuid', $prodi_uuid)->pluck('nama_mahasiswa', 'uuid'),
+            'mahasiswa'         => Student::where('prodi_uuid', $user->prodi_uuid)->pluck('nama_mahasiswa', 'uuid'),
             'jenis_kegiatan'    => TypeOfActivity::pluck('nama_jenis_kegiatan', 'uuid'),
             'data'              => Activity::findOrFail($id),
+            'user'              => $user
         ];
 
-        return view('magang.edit', $data);
+        return view('public.activity.form', $data);
     }
 
     public function update(Request $request, $id)
     {
         $request->validate(
             [
-                'mulai_magang'          => 'required',
-                'lama_magang'           => 'required',
-                'akhir_magang'          => 'required',
+                'mulai_kegiatan'          => 'required',
+                'lama_kegiatan'           => 'required',
+                'akhir_kegiatan'          => 'required',
                 'file_sk_magang'        => 'required',
                 'status_magang'         => 'required',
                 'dosen_uuid'            => 'required',
@@ -137,9 +146,9 @@ class ActivityController extends Controller
                 'jenis_kegiatan_uuid'   => 'required',
             ],
             [
-                'mulai_magang.required'          => 'Tanggal Mulai Kegiatan Tidak Boleh Kosong',
-                'lama_magang.required'           => 'Lama Kegiatan Tidak Boleh Kosong',
-                'akhir_magang.required'          => 'Tangal Akhir Kegiatan Tidak Boleh Kosong',
+                'mulai_kegiatan.required'          => 'Tanggal Mulai Kegiatan Tidak Boleh Kosong',
+                'lama_kegiatan.required'           => 'Lama Kegiatan Tidak Boleh Kosong',
+                'akhir_kegiatan.required'          => 'Tangal Akhir Kegiatan Tidak Boleh Kosong',
                 'file_sk_magang.required'        => 'File SK Kegiatan Tidak Boleh Kosong',
                 'status_magang.required'         => 'Status Kegiatan Tidak Boleh Kosong',
                 'dosen_uuid.required'            => 'Lecturer Tidak Boleh Kosong',
@@ -150,21 +159,21 @@ class ActivityController extends Controller
         );
 
         $magang = Activity::findOrFail($id);
-        $magang->mulai_kegiatan           = $request->mulai_magang;
-        $magang->lama_kegiatan            = $request->lama_magang;
-        $magang->akhir_kegiatan           = $request->akhir_magang;
+        $magang->mulai_kegiatan           = $request->mulai_kegiatan;
+        $magang->lama_kegiatan            = $request->lama_kegiatan;
+        $magang->akhir_kegiatan           = $request->akhir_kegiatan;
         $magang->file_sk_kegiatan         = $request->file_sk_magang;
+        $magang->link_survey             = $request->link_survey;
         $magang->status_kegiatan          = $request->status_magang;
+        $magang->status_mitra           = $request->status_mitra;
         $magang->dosen_uuid             = $request->dosen_uuid;
         $magang->mitra_uuid             = $request->mitra_uuid;
-        $magang->mahasiswa_uuid         = $request->mahasiswa_uuid;
+        $magang->mahasiswa_uuid         = $request->mahasiswa_uuid[0];
         $magang->user_uuid              = $request->user_uuid;
         $magang->jenis_kegiatan_uuid    = $request->jenis_kegiatan_uuid;
-        $magang->prodi_uuid             = $request->prodi_uuid;
-        $magang->jurusan_uuid           = $request->jurusan_uuid;
         $magang->save();
 
-        return redirect()->route('magang.index')->with('success', 'Data Berhasil Ditambah');
+        return redirect()->route('magang.show', ['id' => $id])->with('success', 'Data Berhasil Diperbarui');
     }
 
     public function destroy($id)
@@ -177,11 +186,14 @@ class ActivityController extends Controller
 
     public function show($id)
     {
+        $user = Auth::guard('web')->user();
+
         $data = [
-            'title' => 'Detail Data Kegiatan',
-            'data'  => Activity::where('uuid', $id)->first(),
+            'title'     => 'Detail Program Kegiatan',
+            'data'      => Activity::findOrFail($id),
+            'user'      => $user
         ];
 
-        return view('magang.show', $data);
+        return view('public.activity.show', $data);
     }
 }

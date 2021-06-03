@@ -15,7 +15,10 @@ class LecturerDataTable extends DataTable
         return datatables()
             ->eloquent($query)
             ->editColumn('jurusan_uuid', function ($data) {
-                return $data->jurusan()->first()->nama_jurusan ?? '';
+                return ($data->jurusan()->first()->kode_jurusan ?? '') ." - ". ($data->prodi()->first()->nama_prodi ?? '');
+            })
+            ->editColumn('bimbingan', function ($data) {
+                return ($data->activities()->count() ?? '0') . " Org";
             })
             ->addColumn('action', function ($data) {
                 $action   = \Form::open(['url' => route('dosen.destroy', ['id' => $data->uuid]), 'id' => 'data-' . $data->id, 'method' => 'delete']);
@@ -61,6 +64,9 @@ class LecturerDataTable extends DataTable
                 ->title('Email'),
             Column::make('jurusan_uuid')
                 ->title('Jurusan'),
+            Column::make('bimbingan')
+                ->title('Bimbingan')
+                ->class('text-center'),
         ];
     }
 

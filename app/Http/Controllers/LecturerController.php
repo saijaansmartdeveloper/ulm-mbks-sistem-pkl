@@ -2,15 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\DataTables\StudentDataTable;
-use App\Mail\UpdatedJournalNotification;
 use App\Models\Lecturer;
-use App\Models\Journal;
-use App\Models\Activity;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use DataTables;
-use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Storage;
 
 class LecturerController extends Controller
@@ -33,8 +27,8 @@ class LecturerController extends Controller
                 'jumlah_monev'      => $user->monev()->count() ?? 0,
                 'persentase_jurnal' => "0 %",
                 'persentase_monev'  => "0 %",
-                'journals' => $user->activities()->first() == null ? [] : ($user->activities()->first()->journals()) ,
-                'monev' => $user->monev()->take(3) ?? [],
+                'journals'          => $user->activities()->first() == null ? [] : ($user->activities()->first()->journals()) ,
+                'monev'             => $user->monev()->take(3) ?? [],
             ],
             'user'  => $user
         ];
@@ -107,98 +101,101 @@ class LecturerController extends Controller
         }
         $dosen->save();
 
-        if ($request->guard == 'lecturer')
-        {
-            return redirect()->route('public.lecturer.show', ['id' => $id])->with('update', 'Data Berhasi Diubah');
-        }
+        return redirect()->route('public.lecturer.show', ['id' => $id])->with('update', 'Data Berhasi Diubah');
+
     }
 
-    public function guidance(StudentDataTable $dataTable)
-    {
-//        $user   = Auth::guard('lecturer')->user();
-//
-//        $data = [
-//            'title' => 'Welcome, ' . $user->nama_dosen,
-//            'guard' => 'lecturer',
-//            'data'  => null
-//        ];
-//
-//        return $dataTable->render('public.student.list', $data);
+    // public function guidance ()
+    // {
 
-        $data = [
-            'title' => 'Daftar Student',
-        ];
+    // }
 
-        return view('public.lecturer.journal.index', $data);
-    }
+//     public function guidance(StudentDataTable $dataTable)
+//     {
+// //        $user   = Auth::guard('lecturer')->user();
+// //
+// //        $data = [
+// //            'title' => 'Welcome, ' . $user->nama_dosen,
+// //            'guard' => 'lecturer',
+// //            'data'  => null
+// //        ];
+// //
+// //        return $dataTable->render('public.student.list', $data);
 
-    public function getListMahasiswaBimbingan()
-    {
-        $user = Auth::guard('lecturer')->user();
-        $data = Activity::where('dosen_uuid', $user->uuid)->with('student', 'partner')->get();
-        return Datatables::of($data)
-            ->addIndexColumn()
-            ->addColumn('action', function ($data) {
-                $action = '<a href="mahasiswa_bimbingan/' . $data->mahasiswa_uuid . '" class="btn btn-sm btn-info" >Show</a>';
-                return $action;
-            })
-            ->rawColumns(['action'])
-            ->make(true);
-    }
+//         $data = [
+//             'title' => 'Daftar Student',
+//         ];
 
-    public function index_journal()
-    {
-        $data = [
-            'title' => 'List Student Bimbingan',
-        ];
+//         return view('public.lecturer.journal.index', $data);
+//     }
 
-        return view('public.lecturer.journal.index', $data);
-    }
+//     public function getListMahasiswaBimbingan()
+//     {
+//         $user = Auth::guard('lecturer')->user();
+//         $data = Activity::where('dosen_uuid', $user->uuid)->with('student', 'partner')->get();
+//         return Datatables::of($data)
+//             ->addIndexColumn()
+//             ->addColumn('action', function ($data) {
+//                 $action = '<a href="mahasiswa_bimbingan/' . $data->mahasiswa_uuid . '" class="btn btn-sm btn-info" >Show</a>';
+//                 return $action;
+//             })
+//             ->rawColumns(['action'])
+//             ->make(true);
+//     }
 
-    public function show_student_detail($id)
-    {
-        $data = [
-            'title' => 'Journal Student',
-            'data'  => Activity::where('mahasiswa_uuid', $id)->first(),
-        ];
+//     public function index_journal()
+//     {
+//         $data = [
+//             'title' => 'List Student Bimbingan',
+//         ];
 
-        return view('public.lecturer.journal.show', $data);
-    }
+//         return view('public.lecturer.journal.index', $data);
+//     }
 
-    public function show_student_journal($id)
-    {
-        $data = [
-            'title' => 'Detail Journal',
-            'data'  => Journal::where('uuid', $id)->first(),
-        ];
+//     public function show_student_detail($id)
+//     {
+//         $data = [
+//             'title' => 'Journal Student',
+//             'data'  => Activity::where('mahasiswa_uuid', $id)->first(),
+//         ];
+
+//         return view('public.lecturer.journal.show', $data);
+//     }
+
+//     public function show_student_journal($id)
+//     {
+//         $data = [
+//             'title' => 'Detail Journal',
+//             'data'  => Journal::where('uuid', $id)->first(),
+//         ];
 
 
-        return view('public.lecturer.journal.form', $data);
-    }
+//         return view('public.lecturer.journal.form', $data);
+//     }
 
-    public function update_journal(Request $request, $id)
-    {
-        $user = Auth::guard('lecturer')->user();
+//     public function update_journal(Request $request, $id)
+//     {
+//         $user = Auth::guard('lecturer')->user();
 
-        $jurnal = Journal::find($id);
+//         $jurnal = Journal::find($id);
 
-        if ($request->komentar_jurnal != null) {
-            $jurnal->komentar_jurnal    = $request->komentar_jurnal;
-        }
-        $jurnal->status_jurnal      = $request->status_jurnal;
-        $jurnal->save();
+//         if ($request->komentar_jurnal != null) {
+//             $jurnal->komentar_jurnal    = $request->komentar_jurnal;
+//         }
+//         $jurnal->status_jurnal      = $request->status_jurnal;
+//         $jurnal->save();
 
-        Mail::to($jurnal->activity()->first()->student()->email)->send(new UpdatedJournalNotification($user->nama_dosen . ' baru saja mengubah status jurnal kegiatan!', $jurnal, 'student'));
+//         Mail::to($jurnal->activity()->first()->student()->email)->send(new UpdatedJournalNotification($user->nama_dosen . ' baru saja mengubah status jurnal kegiatan!', $jurnal, 'student'));
 
-        return redirect()->back()->with('info', 'Journal Berhasil Diterima');
+//         return redirect()->back()->with('info', 'Journal Berhasil Diterima');
 
-//        return redirect()->route('public.lecturer.student_guidance.show', ['id' => $jurnal->magang()->first()->mahasiswa_uuid])->with('update', 'Komentar Berhasil Ditambahkan');
-    }
+// //        return redirect()->route('public.lecturer.student_guidance.show', ['id' => $jurnal->magang()->first()->mahasiswa_uuid])->with('update', 'Komentar Berhasil Ditambahkan');
+//     }
 
-    public function update_status_all(Request $request)
-    {
-        $jurnal = Journal::whereIn('uuid', $request->ids)->update(['status_jurnal' => 'accepted']);
-        return redirect()->back()->with('info', 'Journal Berhasil Diterima');
-    }
+//     public function update_status_all(Request $request)
+//     {
+//         $jurnal = Journal::whereIn('uuid', $request->ids)->update(['status_jurnal' => 'accepted']);
+//         return redirect()->back()->with('info', 'Journal Berhasil Diterima');
+//     }
 
 }
