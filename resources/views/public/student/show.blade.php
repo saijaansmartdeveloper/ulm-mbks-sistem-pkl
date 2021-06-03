@@ -6,17 +6,13 @@
     <div class="card py-4">
         <div class="card-body">
             <div class="row">
-                <div class="col-3">
-                    @if ($data->foto_mahasiswa == null)
-                        <img src="{{ asset('img/person.png') }}" width='250px' height="250px" alt="">
-                    @else
-                        <img src="{{ asset('storage/' . $data->foto_mahasiswa) }}" alt="" style="max-height: 250px">
-                    @endif
+                <div class="col-lg-3 col-md-3 col-sm-12 mb-1">
+                    <img src="{{ $data->foto_mahasiswa == null ? asset('img/person.png') : asset('storage/' . $data->foto_mahasiswa) }}" class="img-thumbnail" alt="">
                 </div>
-                <div class="col-9">
+                <div class="col-lg-9 col-md-9 col-sm-12">
                     <table class="table table-striped table-hover">
                         <tr>
-                            <th width='20%'>NIM Mahasiswa</th>
+                            <th width='24%'>NIM Mahasiswa</th>
                             <td width='2%'>:</td>
                             <td>{{ $data->nim_mahasiswa }}</td>
                         </tr>

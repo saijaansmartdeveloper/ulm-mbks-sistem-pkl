@@ -9,9 +9,10 @@ class Monev extends Model
 {
     use HasFactory;
 
-    protected $table        = 'monev';
-    protected $primaryKey   = 'uuid';
     public $incrementing    = 'false';
+
+    protected $table        = 'laporan_monev';
+    protected $primaryKey   = 'uuid';
     protected $keyType      = 'string';
 
     public function activity()

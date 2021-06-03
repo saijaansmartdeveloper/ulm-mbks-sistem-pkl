@@ -24,6 +24,7 @@ class ActivityDataTable extends DataTable
             ->addColumn('action', function ($data) {
                 $action = \Form::open(['url' => route('magang.destroy', ['id' => $data->uuid]),  'id' => 'data-' . $data->id, 'method' => 'delete']);
                 $action .= \Form::close();
+                $action .= '<a href=' . route('magang.edit', ['id' => $data->uuid]) . ' class="btn btn-primary btn-sm"><i class="fa fa-edit"></i></a> ';
                 $action .= '<a href=' . route('magang.show', ['id' => $data->uuid]) . ' class="btn btn-info btn-sm"><i class="fa fa-search"></i></a> ';
                 $action .= '<button onclick="deleteRow(' . $data->id . ')" class = "btn btn-danger btn-sm"><i class="fa fa-trash"></i></button>';
 
@@ -95,11 +96,12 @@ class ActivityDataTable extends DataTable
                 ->exportable(false)
                 ->printable(false)
                 ->addClass('text-center'),
-            Column::make('jenis_kegiatan_uuid')->title('Jenis Kegiatan'),
+            Column::make('jenis_kegiatan_uuid')->title('Program Kegiatan'),
             Column::make('dosen_uuid')->title('Dosen'),
             Column::make('mahasiswa_uuid')->title('Mahasiswa'),
             Column::make('mitra_uuid')->title('Mitra'),
-            Column::make('lama_kegiatan')->title('Lama Kegiatan (Hari)'),
+            Column::make('status_mitra')->title('Status'),
+            Column::make('lama_kegiatan')->title('Lama (Hari)'),
         ];
     }
 

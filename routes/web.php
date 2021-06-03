@@ -21,12 +21,13 @@ Route::get('/', function () {
     return redirect()->route('public.user.form_login');
 });
 
-Route::get('register/mahasiswa', [StudentController::class, 'register'])
-    ->name('mahasiswa.register');
+Route::prefix('registrasi')->group(function () {
+    Route::get('mahasiswa', [StudentController::class, 'register'])
+        ->name('mahasiswa.register');
 
-Route::post('register/mahasiswa', [StudentController::class, 'register_store'])
-    ->name('mahasiswa.register.store');
-
+    Route::post('mahasiswa', [StudentController::class, 'register_store'])
+        ->name('mahasiswa.register.store');
+});
 
 Route::group(['namespace' => 'auth'], function () {
 
@@ -49,6 +50,9 @@ Route::middleware(['auth'])->group(function () {
         require __DIR__ . '/user/admin_prodi/lecturer.php';
         require __DIR__ . '/user/admin_prodi/partner.php';
         require __DIR__ . '/user/admin_prodi/student.php';
+
+        require __DIR__ . '/user/admin_prodi/activity.php';
+
     });
 
     Route::group(['prefix' => 'supervisor'], function () {
@@ -70,7 +74,6 @@ Route::group(['prefix' => 'super_admin', 'middleware' => ['role:super_admin', 'a
 
 Route::group(['prefix' => 'admin_prodi', 'middleware' => ['role:admin_prodi', 'auth']], function () {
 
-    require __DIR__ . '/user/admin_prodi/activity.php';
     // require __DIR__ . '/user/admin_prodi/home.php';
 
 });

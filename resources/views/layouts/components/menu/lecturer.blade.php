@@ -14,5 +14,5 @@
 
 <a class="nav-link collapsed" href="{{ route('public.laporan-monev.index') }} ">
     <div class="sb-nav-link-icon"><i class="fas fa-handshake fa-fw"></i></div>
-    Laporan Kegiatan
+    Laporan Monitoring
 </a>

@@ -1,71 +1,24 @@
 @extends('layouts.admin')
 @section('content-header', $title ?? '')
 @section('content')
-    
-    @include('alert')
 
+    @include('alert')
     <div class="card py-4">
         <div class="card-body">
-            {{-- <a href="{{ route('public.monev.create') }}" class="btn btn-primary">Tambah Data</a> --}}
-            <hr>
             <div class="table-responsive">
-                <table class="table table-bordered " id="table-monev">
-                    <thead>
-                        <tr>
-                            <th>Jenis Kegiatan</th>
-                            <th>Mitra</th>
-                            <th>Mahasiswa</th>
-                            <th>Tanggal</th>
-                            <th class='text-center' width="122">Action</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                    </tbody>
-                </table>
+                {!! $dataTable->table() !!}
             </div>
         </div>
     </div>
+
 @endsection
 @section('js')
-    {{-- <link href="{{ asset('datatables/css/jquery.dataTables.min.css') }}" rel="stylesheet">
-    <link href="{{ asset('datatables/css/dataTables.bootstrap4.min.css') }}" rel="stylesheet">
-    <script src="{{ asset('datatables/js/jquery.validate.js') }}"></script>
-    <script src="{{ asset('datatables/js/jquery.dataTables.min.js') }}"></script>
-    <script src="{{ asset('datatables/js/dataTables.bootstrap4.min.js') }}"></script>
+    <link rel="stylesheet" href="//cdn.datatables.net/1.10.7/css/jquery.dataTables.min.css">
+    <script src="//cdn.datatables.net/1.10.7/js/jquery.dataTables.min.js"></script>
+    <link rel="stylesheet" href="https://cdn.datatables.net/buttons/1.0.3/css/buttons.dataTables.min.css">
+    <script src="https://cdn.datatables.net/buttons/1.0.3/js/dataTables.buttons.min.js"></script>
+    <script src="/vendor/datatables/buttons.server-side.js"></script>
+    {!! $dataTable->scripts() !!}
+
     <script src="{{ asset('sweetalert/alert.js') }}"></script>
-    <script>
-        $(function() {
-            $('#table-monev').DataTable({
-                processing: true,
-                serverSide: true,
-                ajax: "{{ route('public.monev.list') }}",
-                columns: [{
-                        data: 'activity.typeofactivity.nama_jenis_kegiatan',
-                        name: 'activity.typeofactivity.nama_jenis_kegiatan'
-                    },
-                    {
-                        data: 'activity.partner.nama_mitra',
-                        name: 'activity.partner.nama_mitra'
-                    },
-                    {
-                        data: 'activity.student.nama_mahasiswa',
-                        name: 'activity.student.nama_mahasiswa'
-                    },
-                    {
-                        data: 'tanggal_monev',
-                        name: 'tanggal_monev'
-                    },
-                    {
-                        data: 'action',
-                        className: 'text-center',
-                        name: 'action',
-                        orderable: true,
-                        searchable: true
-                    },
-                ]
-            });
-
-        });
-
-    </script> --}}
 @endsection

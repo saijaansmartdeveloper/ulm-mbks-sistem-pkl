@@ -13,4 +13,7 @@ Route::prefix('lecturer')->group(function () {
 Route::prefix('guidance')->group(function () {
     Route::get('/{guard}', [ActivityController::class, 'guidance'])
         ->name('activity.guidance');
+
+    Route::get('/{guard}/{id}', [ActivityController::class, 'show'])
+        ->name('activity.show');
 });

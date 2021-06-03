@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\DataTables\LaporanMonevDataTable;
 use App\Models\Activity;
 use App\Models\Monev;
 use Illuminate\Http\Request;
@@ -17,7 +18,7 @@ class MonevController extends Controller
         $this->middleware('auth:lecturer');
     }
 
-    public function index ()
+    public function index (LaporanMonevDataTable $datatable)
     {
         $user = Auth::guard('lecturer')->user();
 
@@ -28,7 +29,7 @@ class MonevController extends Controller
             'user' => $user
         ];
 
-        return view('public.monev.index', $data);
+        return $datatable->render('public.monev.index', $data);
     }
 
 
@@ -36,15 +37,81 @@ class MonevController extends Controller
     {
         $user = Auth::guard('lecturer')->user();
 
+        foreach ($user->activities()->get() as $value) {
+            $activity[$value->uuid] = $value->partner()->first()->nama_mitra . " - " . $value->student()->first()->nama_mahasiswa;
+        }
+
         $data = [
-            'title' => 'Buat Laporan Kegiatan Monitoring',
-            'guard' => $user->guard_name,
-            'data' => null,
-            'user' => $user
+            'title'     => 'Buat Laporan Kegiatan Monitoring',
+            'guard'     => $user->guard_name,
+            'data'      => null,
+            'kegiatan'  => $activity ?? [],
+            'user'      => $user
         ];
 
         return view('public.monev.form', $data);
     }
+
+    public function store(Request $request)
+    {
+        $request->validate(
+            [
+                'judul_laporan_monev'   => 'required',
+                'catatan_laporan_monev' => 'required',
+                'tanggal_laporan_monev' => 'required',
+                'kegiatan_uuid'         => 'required',
+                'jenis_laporan'         => 'required',
+                'file_laporan_monev'    => 'max:1024',
+            ],
+            [
+                'catatan_laporan_monev.required'    => 'Catatan Tidak Boleh Kosong',
+                'tanggal_laporan_monev.required'    => 'Tanggal Tidak Boleh Kosong',
+                'magang_uuid.required'              => 'Kegiatan Tidak Boleh Kosong',
+                'jenis_laporan.required'            => 'Jenis Laporan Tidak Boleh Kosong',
+                'file_laporan_monev.max'            => 'File Monitor Evaluasi Maksimal 1MB',
+            ]
+        );
+
+        $user = Auth::guard('lecturer')->user();
+
+        $uuid = Uuid::uuid4();
+
+        if (request()->file('file_laporan_monev')) {
+            $file_laporan_monev = request()->file('file_laporan_monev');
+            $fileUrl            = $file_laporan_monev->storeAs('file/file_laporan_monev', "{$uuid}.{$file_laporan_monev->extension()}", "public");
+        } else {
+            $fileUrl = null;
+        }
+
+        $monev = new Monev;
+        $monev->uuid                    = $uuid;
+        $monev->judul_laporan_monev     = $request->judul_laporan_monev;
+        $monev->catatan_laporan_monev   = $request->catatan_laporan_monev;
+        $monev->tanggal_laporan_monev   = $request->tanggal_laporan_monev;
+        $monev->jenis_laporan           = $request->jenis_laporan;
+        $monev->file_laporan_monev      = $fileUrl;
+        $monev->kegiatan_uuid           = $request->kegiatan_uuid;
+        $monev->dosen_uuid              = $user->uuid;
+        $monev->prodi_uuid              = $user->prodi_uuid;
+        $monev->jurusan_uuid            = $user->jurusan_uuid;
+        $monev->save();
+
+        return redirect(route('public.monev'))->with('success', 'Data Berhasil Dibuat');
+    }
+
+    public function show($id)
+    {
+        $user = Auth::guard('lecturer')->user();
+        $data = [
+            'title' => 'Detail Laporan Kegiatan',
+            'data'  => Monev::findOrFail($id),
+            'user'  => $user
+        ];
+
+        return view('public.monev.show', $data);
+    }
+
+
     // public function getMonev()
     // {
 
@@ -86,12 +153,7 @@ class MonevController extends Controller
     // public function create()
     // {
 
-    //     $dosen_uuid = Auth::guard('lecturer')->user()->uuid;
-    //     $magang = Activity::where('dosen_uuid', $dosen_uuid)->get();
 
-    //     foreach ($magang as $value) {
-    //         $magangParsing[$value->uuid] = $value->partner()->first()->nama_mitra . " - " . $value->student()->first()->nama_mahasiswa;
-    //     }
 
     //     $data = [
     //         'title'     => 'Tambah Data Laporan Kegiatan',
@@ -108,49 +170,7 @@ class MonevController extends Controller
     //  * @param  \Illuminate\Http\Request  $request
     //  * @return \Illuminate\Http\Response
     //  */
-    // public function store(Request $request)
-    // {
-    //     $request->validate(
-    //         [
-    //             'catatan_monev' => 'required',
-    //             'tanggal_monev' => 'required',
-    //             'magang_uuid'   => 'required',
-    //             'jenis_laporan' => 'required',
-    //             'file_monev'    => 'max:1024',
-    //         ],
-    //         [
-    //             'catatan_monev.required'    => 'Catatan Tidak Boleh Kosong',
-    //             'tanggal_monev.required'    => 'Tanggal Tidak Boleh Kosong',
-    //             'magang_uuid.required'      => 'Kegiatan Tidak Boleh Kosong',
-    //             'jenis_laporan.required'    => 'Jenis Laporan Tidak Boleh Kosong',
-    //             'file_monev.max'            => 'File Monitor Evaluasi Maksimal 1MB',
-    //         ]
-    //     );
 
-    //     $uuid = Uuid::uuid4();
-
-    //     if (request()->file('file_monev')) {
-    //         $file_monev = request()->file('file_monev');
-    //         $fileUrl    = $file_monev->storeAs('file/file_monev', "{$uuid}.{$file_monev->extension()}", "public");
-    //     } else {
-    //         $fileUrl = null;
-    //     }
-
-    //     $monev = new Monev;
-    //     $monev->uuid            = $uuid;
-    //     $monev->catatan_monev   = $request->catatan_monev;
-    //     $monev->tanggal_monev   = $request->tanggal_monev;
-    //     $monev->jenis_laporan   = $request->jenis_laporan;
-    //     $monev->file_monev      = $fileUrl;
-    //     $monev->komentar_monev  = null;
-    //     $monev->kegiatan_uuid   = $request->magang_uuid;
-    //     $monev->dosen_uuid      = Auth::guard('lecturer')->User()->uuid;
-    //     $monev->prodi_uuid      = Auth::guard('lecturer')->User()->prodi_uuid;
-    //     $monev->jurusan_uuid    = Auth::guard('lecturer')->User()->jurusan_uuid;
-    //     $monev->save();
-
-    //     return redirect(route('public.monev.index'))->with('success', 'Data Berhasil Dibuat');
-    // }
 
     // /**
     //  * Display the specified resource.
@@ -158,15 +178,6 @@ class MonevController extends Controller
     //  * @param  int  $id
     //  * @return \Illuminate\Http\Response
     //  */
-    // public function show($id)
-    // {
-    //     $data = [
-    //         'title' => 'Detail Laporan Kegiatan',
-    //         'data'  => Monev::findOrFail($id),
-    //     ];
-
-    //     return view('public.monev.show', $data);
-    // }
 
     // /**
     //  * Show the form for editing the specified resource.
@@ -246,12 +257,12 @@ class MonevController extends Controller
     //  * @param  int  $id
     //  * @return \Illuminate\Http\Response
     //  */
-    // public function destroy($id)
-    // {
-    //     $monev = Monev::findOrFail($id);
-    //     Storage::delete($monev->file_monev);
-    //     $monev->delete();
+    public function destroy($id)
+    {
+        $monev = Monev::findOrFail($id);
+        Storage::delete($monev->file_monev);
+        $monev->delete();
 
-    //     return redirect()->back()->with('delete', 'Data Berhasil Dihapus');
-    // }
+        return redirect()->back()->with('delete', 'Data Berhasil Dihapus');
+    }
 }

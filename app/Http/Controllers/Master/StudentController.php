@@ -18,48 +18,6 @@ use Ramsey\Uuid\Uuid;
 
 class StudentController extends Controller
 {
-    public function __construct()
-    {
-
-        // $this->middleware('guest')->except('register_store');
-    }
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index(StudentDataTable $datatable)
-    {
-        $data = [
-            'title' => 'Data Mahasiswa',
-        ];
-
-        return $datatable->addScope(new StudentDataTableScope(Auth::user()))->render('mahasiswa.index', $data);
-    }
-
-    public function index_superadmin(StudentDataTable $datatable)
-    {
-        $data = [
-            'title' => 'Data Mahasiswa',
-        ];
-
-        return $datatable->render('mahasiswa.index', $data);
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        $data = [
-            'title' => 'Tambah Data Mahasiswa',
-            'data'  => null,
-        ];
-
-        return view('mahasiswa.form', $data);
-    }
 
     public function register()
     {
@@ -78,10 +36,10 @@ class StudentController extends Controller
             [
                 'nim_mahasiswa'     => 'required',
                 'nama_mahasiswa'    => 'required',
-                'email'             => 'required|email',
+                'email'             => 'required|email|unique:mahasiswa',
                 'password'          => 'required',
                 'phone'             => 'required',
-                'foto_mahasiswa'    => 'image|mimes:jpeg,png,jpg|max:512'
+                'foto_mahasiswa'    => 'image|mimes:jpeg,png,jpg|max:512',
             ],
             [
                 'nim_mahasiswa.required'     => 'NIM Mahasiswa Tidak Boleh Kosong',
@@ -89,12 +47,15 @@ class StudentController extends Controller
                 'email.required'             => 'Email Tidak Boleh Kosong',
                 'password.required'          => 'Password Tidak Boleh Kosong',
                 'phone.required'             => 'No. Telepon Tidak Boleh Kosong',
-                'foto_mahasiswa.max'         => 'File Foto Maksimal 512KB'
+                'foto_mahasiswa.max'         => 'File Foto Maksimal 512KB',
+                'email.email'                => 'Inputan Harus berupa email',
+                'email.unique'               => 'Email Telah Terdaftar'
             ]
         );
 
         $uuid   = Uuid::uuid4();
-        $prodi  = StudyProgram::findOrFail($request->prodi_uuid);
+
+        $prodi  = StudyProgram::find($request->prodi_uuid);
 
         if (request()->file('foto_mahasiswa')) {
             $foto_mahasiswa = request()->file('foto_mahasiswa');
@@ -118,7 +79,44 @@ class StudentController extends Controller
 
         Mail::to($mahasiswa->email)->queue(new NewUserNotification($mahasiswa));
 
-        return redirect()->back()->with('success', 'Registrasi Student Berhasil, Tunggu Penetapan Activity Selanjutnya');
+        return redirect()->back()->with('success', 'Registrasi Student Berhasil, Tunggu Penetapan Program Kegiatan Selanjutnya');
+    }
+
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function index(StudentDataTable $datatable)
+    {
+        $user = Auth::guard('web')->user();
+
+        $data = [
+            'title' => 'Kelola Data Mahasiswa',
+            'guard' => 'web',
+            'user'  => $user
+        ];
+
+        return $datatable->addScope(new StudentDataTableScope($user))->render('public.student.list', $data);
+    }
+
+    /**
+     * Show the form for creating a new resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function create()
+    {
+        $user = Auth::guard('web')->user();
+
+        $data = [
+            'title' => 'Tambah Mahasiswa',
+            'guard' => 'web',
+            'data'  => null,
+            'user'  => $user
+        ];
+
+        return view('public.student.form', $data);
     }
 
     /**
@@ -133,9 +131,10 @@ class StudentController extends Controller
             [
                 'nim_mahasiswa'     => 'required',
                 'nama_mahasiswa'    => 'required',
-                'email'             => 'required',
+                'email'             => 'required|email|unique:mahasiswa',
                 'password'          => 'required',
                 'phone'             => 'required',
+                'foto_mahasiswa'    => 'max:512'
             ],
             [
                 'nim_mahasiswa.required'     => 'NIM Mahasiswa Tidak Boleh Kosong',
@@ -143,15 +142,15 @@ class StudentController extends Controller
                 'email.required'             => 'Email Tidak Boleh Kosong',
                 'password.required'          => 'Password Tidak Boleh Kosong',
                 'phone.required'             => 'No. Telepon Tidak Boleh Kosong',
-                'foto_mahasiswa.max'         => 'File Foto Maksimal 512KB'
+                'foto_mahasiswa.max'         => 'File Foto Maksimal 512KB',
+                'email.email'                => 'Inputan Harus berupa email',
+                'email.unique'               => 'Email Telah Terdaftar'
             ]
         );
 
         if (request()->file('foto_mahasiswa')) {
             $foto_mahasiswa = request()->file('foto_mahasiswa');
             $fotoUrl        = $foto_mahasiswa->storeAs('file/foto_mahasiswa', "{$request->nim_mahasiswa}.{$foto_mahasiswa->extension()}", "public");
-        } else {
-            $fotoUrl = null;
         }
 
         $mahasiswa = new Student;
@@ -161,7 +160,7 @@ class StudentController extends Controller
         $mahasiswa->email           = $request->email;
         $mahasiswa->password        = bcrypt($request->password);
         $mahasiswa->phone           = $request->phone;
-        $mahasiswa->foto_mahasiswa  = $fotoUrl;
+        $mahasiswa->foto_mahasiswa  = $fotoUrl ?? null;
         $mahasiswa->jurusan_uuid    = Auth::User()->jurusan_uuid;
         $mahasiswa->prodi_uuid      = Auth::User()->prodi_uuid;
         $mahasiswa->save();
@@ -169,7 +168,7 @@ class StudentController extends Controller
 
         Mail::to($mahasiswa->email)->send(new NewUserNotification($mahasiswa));
 
-        return redirect()->route('mahasiswa.index')->with('success', 'Data Berhasi Dibuat');
+        return redirect()->route('mahasiswa.show', ['id' => $mahasiswa->uuid])->with('success', 'Data Berhasi Dibuat');
     }
 
     /**
@@ -180,12 +179,17 @@ class StudentController extends Controller
      */
     public function show($id)
     {
+
+        $user = Auth::guard('web')->user();
+
         $data = [
             'title' => 'Detail Mahasiswa',
             'data'  => Student::findOrFail($id),
+            'guard' => 'web',
+            'user'  => $user
         ];
 
-        return view('mahasiswa.show', $data);
+        return view('public.student.show', $data);
     }
 
     /**
@@ -196,12 +200,16 @@ class StudentController extends Controller
      */
     public function edit($id)
     {
+        $user = Auth::guard('web')->user();
+
         $data = [
             'title' => 'Ubah Data Mahasiswa',
-            'data'  =>  Student::findOrFail($id)
+            'data'  =>  Student::findOrFail($id),
+            'guard' => 'web',
+            'user'  => $user
         ];
 
-        return view('mahasiswa.form', $data);
+        return view('public.student.form', $data);
     }
 
     /**
@@ -217,22 +225,24 @@ class StudentController extends Controller
             [
                 'nim_mahasiswa'     => 'required',
                 'nama_mahasiswa'    => 'required',
-                'email'             => 'required',
+                'email'             => 'required|email',
                 'phone'             => 'required',
+                'foto_mahasiswa'    => 'max:512'
             ],
             [
                 'nim_mahasiswa.required'     => 'NIM Mahasiswa Tidak Boleh Kosong',
                 'nama_mahasiswa.required'    => 'Nama Mahasiswa Tidak Boleh Kosong',
                 'email.required'             => 'Email Tidak Boleh Kosong',
                 'phone.required'             => 'No. Telepon Tidak Boleh Kosong',
-                'foto_mahasiswa.max'         => 'File Foto Maksimal 512KB'
+                'foto_mahasiswa.max'         => 'File Foto Maksimal 512KB',
+                'email.unique'               => 'Email Telah Terdaftar'
             ]
         );
 
         $mahasiswa = Student::findOrFail($id);
 
 
-        if (request()->file('foto_dosen')) {
+        if (request()->file('foto_mahasiswa')) {
             Storage::delete($mahasiswa->foto_mahasiswa);
             $foto_mahasiswa = request()->file('foto_mahasiswa');
             $fotoUrl        = $foto_mahasiswa->storeAs('file/foto_mahasiswa', "{$request->nim_mahasiswa}.{$foto_mahasiswa->extension()}", "public");
@@ -252,7 +262,7 @@ class StudentController extends Controller
         $mahasiswa->prodi_uuid      = Auth::User()->prodi_uuid;
         $mahasiswa->save();
 
-        return redirect()->route('mahasiswa.index')->with('update', 'Data Berhasi Diubah');
+        return redirect()->route('mahasiswa.show', ['id' => $id])->with('update', 'Data Berhasi Diubah');
     }
 
     /**

@@ -8,6 +8,24 @@ use Illuminate\Support\Facades\Auth;
 
 class ActivityController extends Controller
 {
+    public function show($guard, $id)
+    {
+        if (! (Auth::guard($guard)->user()))
+        {
+            abort(403);
+        }
+
+        $user       = Auth::guard($guard)->user();
+
+        $data = [
+            'title' => 'Daftar Jurnal',
+            'guard' => $user->guardname,
+            'data'  => Activity::findOrFail($id),
+            'user'  => $user
+        ];
+
+        return view('public.activity.show', $data);
+    }
     public function guidance($guard)
     {
         if (! (Auth::guard($guard)->user()))

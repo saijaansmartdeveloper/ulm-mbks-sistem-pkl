@@ -17,6 +17,7 @@
                         <th>Nama Mahasiswa</th>
                         <th>Program Studi</th>
                         <th>Jurnal Terakhir</th>
+                        <th>Aksi</th>
                     </tr>
                     @forelse ($item->list_guidance as $key => $value)
                     <tr>
@@ -26,6 +27,7 @@
                         <td>{!! $value->student()->first()->student_link_profile ?? '' !!}</td>
                         <td>{!! $value->student()->first()->prodi()->first()->nama_prodi ?? '' !!}</td>
                         <td>{{ $value->journals()->latest()->catatan_jurnal ?? '' }}</td>
+                        <td><a href="{{ url('guidance/lecturer/' . $value->uuid) }}">Lihat Detail</a></td>
                     </tr>
                     @empty
                     <tr>
