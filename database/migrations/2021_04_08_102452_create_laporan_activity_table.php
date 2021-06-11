@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateMonevTable extends Migration
+class CreateLaporanActivityTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,15 +13,15 @@ class CreateMonevTable extends Migration
      */
     public function up()
     {
-        Schema::create('laporan_monev', function (Blueprint $table) {
+        Schema::create('laporan_activity', function (Blueprint $table) {
             $table->id();
             $table->uuid('uuid')->unique();
-            $table->string('judul_laporan_monev')->nullable();
-            $table->text('catatan_laporan_monev')->nullable();
-            $table->date('tanggal_laporan_monev')->nullable();
-            $table->string('file_laporan_monev')->nullable();
+            $table->string('judul_laporan_activity')->nullable();
+            $table->text('catatan_laporan_activity')->nullable();
+            $table->date('tanggal_laporan_activity')->nullable();
+            $table->string('file_laporan_activity')->nullable();
             $table->string('jenis_laporan')->nullable();
-            $table->longText('komentar_laporan_monev')->nullable();
+            $table->longText('komentar_laporan_activity')->nullable();
             $table->foreignUuid('kegiatan_uuid')->nullable();
             $table->foreignUuid('dosen_uuid')->nullable();
             $table->foreignUuid('prodi_uuid')->nullable();

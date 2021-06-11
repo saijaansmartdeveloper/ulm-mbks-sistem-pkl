@@ -7,7 +7,7 @@
 
 <div class="sb-sidenav-menu-heading">Master Data</div>
 
-<a class="nav-link collapsed" href="{{ route('public.partner.guidance') }} ">
+<a class="nav-link collapsed" href="{{ route('public.activity.guidance', ['guard' => 'partner']) }} ">
     <div class="sb-nav-link-icon"><i class="fas fa-users fa-fw"></i></div>
     Daftar Mahasiswa
 </a>

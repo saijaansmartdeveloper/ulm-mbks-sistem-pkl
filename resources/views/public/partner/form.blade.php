@@ -5,7 +5,7 @@
         <div class="card-body">
             @include('alert')
 
-                {{ Form::model($data, ['url' => 'public/partner/' . $data->uuid, 'method' => 'put']) }}
+            {{ Form::model($data, ['url' => 'public/partner/' . $data->uuid, 'method' => 'put']) }}
 
 
             <div class="form-group">

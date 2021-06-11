@@ -8,19 +8,25 @@
     <div class="card py-4">
         <div class="card-body">
 
-            @if ($data == null)
-                {{ Form::open(['url' => route('public.journal.store'), 'files' => true]) }}
-            @else
-                {{ Form::model($data, ['route' => ['public.journal.update', ['uuid' => $data->uuid]], 'method' => 'put', 'files' => true]) }}
-            @endif
 
-            <div class="col-12">
+
+            <div class="col-lg-12 col-md-12">
                 <h4 class="h4">Form Jurnal</h4>
                 <hr>
-                <div class="form-group">
-                    <label class="col-form-label text-md-right" for="tanggal_jurnal">Tanggal Jurnal</label>
-                    {{ Form::text('tanggal_jurnal', \Carbon\Carbon::today(), ['class' => 'form-control', 'id' => 'date_journal']) }}
-                </div>
+                @if ($data == null)
+                    {{ Form::open(['url' => route('public.student.journal.store'), 'files' => true]) }}
+                    <div class="form-group">
+                        <label class="col-form-label text-md-right" for="tanggal_jurnal">Tanggal Jurnal</label>
+                        {{ Form::text('tanggal_jurnal', \Carbon\Carbon::today(), ['class' => 'form-control', 'id' => 'date_journal']) }}
+                    </div>
+                @else
+                    {{ Form::model($data, ['route' => ['public.journal.update', ['uuid' => $data->uuid]], 'method' => 'put', 'files' => true]) }}
+                    <div class="form-group">
+                        <label class="col-form-label text-md-right" for="tanggal_jurnal">Tanggal Jurnal</label>
+                        {{ Form::text('tanggal_jurnal', null, ['class' => 'form-control', 'id' => 'date_journal']) }}
+                    </div>
+                @endif
+
 
                 <div class="form-group">
                     <label class="col-form-label text-md-right" for="catatan_monev">Catatan Jurnal</label>
@@ -36,14 +42,12 @@
                     <label class="col-form-label text-md-right" for="file_dokumen_jurnal">File Laporan</label><br>
                     {{ Form::file('file_dokumen_jurnal', ['class' => 'form-control-file', 'accept' => '.doc,.docx,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document']) }}
                 </div>
-                <div class="form-group">
+                <div class="form-group text-right">
+                    <a href="{{ route('public.student.journal') }}" class="btn btn-danger">Kembali</a>
                     {{ Form::submit('Simpan', ['class' => 'btn btn-primary']) }}
-                    <a href="{{ route('public.journal.index') }}" class="btn btn-danger">Kembali</a>
                 </div>
+                {{ Form::close() }}
             </div>
-
-            {{ Form::close() }}
-
         </div>
     </div>
 @endsection

@@ -67,7 +67,7 @@
 
             <div class="form-group">
                 {{ Form::label('link_survey', 'Link Survey') }}
-                {{ Form::text('link_survey', null, ['class' => 'form-control', 'placeholder' => 'Link File SK Google Drive']) }}
+                {{ Form::text('link_survey', null, ['class' => 'form-control', 'placeholder' => 'Link File Link Survey']) }}
             </div>
 
             <div class="form-group text-right">

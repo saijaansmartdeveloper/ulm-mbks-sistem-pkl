@@ -15,7 +15,7 @@ class Major extends Model
 
     public function prodi()
     {
-        return $this->hasMany(StudyProgram::class, 'uuid');
+        return $this->hasMany(StudyProgram::class, 'jurusan_uuid');
     }
 
     public function user()

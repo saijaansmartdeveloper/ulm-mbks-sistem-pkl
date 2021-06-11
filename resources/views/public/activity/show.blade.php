@@ -68,20 +68,6 @@
                 </tr>
             </table>
 
-            <h5 class="h5">Daftar Jurnal</h5>
-            <table class="table table-striped table-hover">
-                <tr>
-                    <th>No</th>
-                    <th>Isi Jurnal</th>
-                </tr>
-            {{-- @foreach ($data->journals()->get as $key => $value)
-            <tr>
-                <td>{{ ++$key }}</td>
-                <td>{{ $value->catatan_jurnal }}</td>
-            </tr>
-            @endforeach --}}
-            </table>
-
         </div>
     </div>
 

@@ -2,10 +2,11 @@
 
 namespace App\Providers;
 
-use Illuminate\Support\ServiceProvider;
 use Ramsey\Uuid\Uuid;
-use Spatie\Permission\Models\Permission;
 use Spatie\Permission\Models\Role;
+use Illuminate\Pagination\Paginator;
+use Illuminate\Support\ServiceProvider;
+use Spatie\Permission\Models\Permission;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -45,5 +46,7 @@ class AppServiceProvider extends ServiceProvider
             $role->id = Uuid::uuid4()->toString();
         });
         /* End : UUID Adjustment */
+
+        Paginator::useBootstrap();
     }
 }

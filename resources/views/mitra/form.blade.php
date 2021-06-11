@@ -56,7 +56,7 @@
             </div>
 
             <div class="form-group text-right">
-                <a href="{{ route('mitra.index') }}" class="btn btn-danger">Kembali</a>
+                <a href="{{ route('public.partner.index') }}" class="btn btn-danger">Kembali</a>
                 {{ Form::submit('Simpan', ['class' => 'btn btn-primary']) }}
             </div>
             {{ Form::close() }}

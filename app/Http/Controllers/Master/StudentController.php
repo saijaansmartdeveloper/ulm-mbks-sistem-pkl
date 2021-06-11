@@ -34,7 +34,7 @@ class StudentController extends Controller
     {
         $request->validate(
             [
-                'nim_mahasiswa'     => 'required',
+                'nim_mahasiswa'     => 'required|unique:mahasiswa',
                 'nama_mahasiswa'    => 'required',
                 'email'             => 'required|email|unique:mahasiswa',
                 'password'          => 'required',
@@ -129,7 +129,7 @@ class StudentController extends Controller
     {
         $request->validate(
             [
-                'nim_mahasiswa'     => 'required',
+                'nim_mahasiswa'     => 'required|unique:mahasiswa',
                 'nama_mahasiswa'    => 'required',
                 'email'             => 'required|email|unique:mahasiswa',
                 'password'          => 'required',
@@ -223,7 +223,7 @@ class StudentController extends Controller
     {
         $request->validate(
             [
-                'nim_mahasiswa'     => 'required',
+                'nim_mahasiswa'     => 'required|unique:mahasiswa',
                 'nama_mahasiswa'    => 'required',
                 'email'             => 'required|email',
                 'phone'             => 'required',

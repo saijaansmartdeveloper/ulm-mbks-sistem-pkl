@@ -7,6 +7,12 @@
     @include('alert')
     <div class="card py-4">
         <div class="card-body">
+            <table class="table table-hover table-striped">
+                <tr>
+                    <td>Jenis Laporan</td>
+                    <td>: <strong>{{ $data->jenis_laporan }}</strong></td>
+                </tr>
+            </table>
             {{-- <table class="table table-hover table-striped">
                 <tr>
                     <th>NIM Mahasiswa</th>

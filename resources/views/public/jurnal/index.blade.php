@@ -7,19 +7,22 @@
     @include('alert')
 
     @if($data == null)
+        <hr>
         <div class="card">
             <div class="card-body">
                 <p><i>Anda Belum Didaftarkan untuk Kegiatan Magang <br> Harap Hubungi Admin Prodi Anda</i></p>
             </div>
         </div>
     @else
+        <hr>
+
         <div id="calendar" style="box-shadow: none"></div>
 
         <!-- Modal -->
         <div class="modal fade" id="modal-confirm-add-journal" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
             <div class="modal-dialog modal-xl">
                 <div class="modal-content">
-                    {{ Form::open(['url' => route('public.journal.store'), 'files' => true]) }}
+                    {{ Form::open(['url' => route('public.student.journal.store'), 'files' => true]) }}
                     <div class="modal-header">
                         <h5 class="modal-title" id="staticBackdropLabel">Form Jurnal</h5>
                         <a href="#" class="close" data-dismiss="modal" data-bs-dismiss="modal" aria-label="close">&times;</a>
@@ -43,7 +46,7 @@
 
                             <div class="form-group">
                                 <label class="col-form-label text-md-right" for="file_dokumen_jurnal">File Laporan</label><br>
-                                {{ Form::file('file_dokumen_jurnal', ['class' => 'form-control-file', 'accept' => ".doc,.docx,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document"]) }}
+                                {{ Form::file('file_dokumen_jurnal', ['class' => 'form-control-file', 'accept' => "application/pdf,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document"]) }}
                             </div>
                             <div class="form-group">
                             </div>
@@ -64,6 +67,7 @@
 @endsection
 
 @section('js')
+    @if ($data != null)
     <script type="text/javascript">
 
         $(document).ready(function () {
@@ -78,7 +82,7 @@
                 description: '{{ substr($item->catatan_jurnal, 0, 20) }}',
                 date: '{{$item->tanggal_jurnal}}', // Event date (required)
                 type: "event", // Event type (required)
-                detail : '{{ route('public.journal.show', ['uuid' => $item->uuid])}}'
+                detail : '{{ route('public.journal.show', ["prefix" => "student","uuid" => $item->uuid])}}'
             },
             @endforeach
         ]
@@ -123,4 +127,5 @@
         });
 
     </script>
+    @endif
 @endsection

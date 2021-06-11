@@ -73,7 +73,10 @@ class PartnerDataTable extends DataTable
                 ->addClass('text-center'),
             Column::make('nama_mitra'),
             Column::make('divisi_mitra'),
-            Column::make('pamong_mitra'),
+            Column::make('penanggung_jawab_mitra')
+                ->title('Penanggung Jawab'),
+            Column::make('pamong_mitra')
+                ->title('Pendamping'),
         ];
     }
 
