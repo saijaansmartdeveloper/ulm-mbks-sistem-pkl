@@ -21,26 +21,26 @@ class StudentController extends Controller
         $data = [
             'title'     => "Hello, " . $user->nama_mahasiswa,
             'guard'     => $user->guardname,
-            'data'      => $user->activities()->first(),
+            'data'      => $user->activities()->first(), // harus selesai dulu
             'user'      => $user
         ];
 
         return view("public.student.index", $data);
     }
 
-    public function show($id)
+    public function show($prefix, $id)
     {
-        if (! (Auth::guard('student')->check() || Auth::guard('lecturer')->check() || Auth::guard('partner]')->check()))
+        if (! (Auth::guard($prefix)->check()))
         {
             abort(403);
         }
 
-        $user   = Auth::guard('student')->user() ?? Student::findOrFail($id);
+        $user   = Auth::guard($prefix)->user();
 
         $data = [
-            'title'     => 'Profile ' . $user->nama_mahasiswa,
-            'guard'     => $user->guardname,
-            'data'      => $user,
+            'title'     => 'Profile ' . ($user->nama_mahasiswa ?? ' Mahasiswa'),
+            'guard'     => $user->guard_name,
+            'data'      => Student::findOrFail($id),
             'user'      => $user
         ];
 

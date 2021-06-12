@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Activity;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Storage;
 
 class ActivityController extends Controller
 {
@@ -18,7 +19,7 @@ class ActivityController extends Controller
         $user       = Auth::guard($guard)->user();
 
         $data = [
-            'title' => 'Daftar Jurnal',
+            'title' => 'Daftar Kegiatan',
             'guard' => $user->guardname,
             'data'  => Activity::findOrFail($id),
             'user'  => $user
@@ -37,7 +38,11 @@ class ActivityController extends Controller
         $activity   = Activity::select('jenis_kegiatan_uuid')->orderBy('jenis_kegiatan_uuid', 'asc')->distinct()->get();
 
         foreach ($activity as $key => $value) {
-            $activity[$key]->list_guidance = Activity::where('jenis_kegiatan_uuid', $value->jenis_kegiatan_uuid)->where('dosen_uuid', $user->uuid)->orderBy('mitra_uuid', 'asc')->get();
+            if ($guard == 'lecturer') {
+                $activity[$key]->list_guidance = Activity::where('jenis_kegiatan_uuid', $value->jenis_kegiatan_uuid)->where('dosen_uuid', $user->uuid)->orderBy('mitra_uuid', 'asc')->paginate(5);
+            } else {
+                $activity[$key]->list_guidance = Activity::where('jenis_kegiatan_uuid', $value->jenis_kegiatan_uuid)->where('mitra_uuid', $user->uuid)->orderBy('mitra_uuid', 'asc')->paginate(5);
+            }
         }
 
         $data = [
@@ -52,9 +57,20 @@ class ActivityController extends Controller
 
     public function uploadFileActivity(Request $request, $id)
     {
+        $request->validate([
+            'file_jurnal_kegiatan' => 'max:5000',
+            'file_laporan_kegiatan' => 'max:5000',
+            'file_penilaian_kegiatan' => 'max:5000'
+        ], [
+            'file_jurnal_kegiatan.max' => 'File Tidak Boleh Lebih Besar Dari 5Mb',
+            'file_laporan_kegiatan.max' => 'File Tidak Boleh Lebih Besar Dari 5Mb',
+            'file_penilaian_kegiatan.max' => 'File Tidak Boleh Lebih Besar Dari 5Mb',
+        ]);
+
         $laporan = Activity::findOrFail($id);
 
         if ($request->hasFile('file_jurnal_kegiatan')) {
+            Storage::delete($laporan->file_jurnal_kegiatan);
             $file_image     = request()->file('file_jurnal_kegiatan');
             $fileNameImg    = $id . '-' . time() . '.' . $file_image->extension();
             $laporan->file_jurnal_kegiatan = $file_image->storeAs('file/file_jurnal_kegiatan', $fileNameImg, "public");
@@ -64,12 +80,23 @@ class ActivityController extends Controller
         }
 
         if ($request->hasFile('file_laporan_kegiatan')) {
+            Storage::delete($laporan->file_laporan_kegiatan);
             $file_image     = request()->file('file_laporan_kegiatan');
             $fileNameImg    = $id . '-' . time() . '.' . $file_image->extension();
             $laporan->file_laporan_kegiatan = $file_image->storeAs('file/file_kegiatan', $fileNameImg, "public");
             $laporan->save();
 
             return redirect()->back()->with('info', 'Laporan Activity Telah Berhasil Diupload');
+        }
+
+        if ($request->hasFile('file_penilaian_kegiatan')) {
+            Storage::disk('public')->delete($laporan->file_penilaian_kegiatan);
+            $file_nilai     = request()->file('file_penilaian_kegiatan');
+            $fileName       = $id . '-' . time() . '.' . $file_nilai->extension();
+            $laporan->file_penilaian_kegiatan = $file_nilai->storeAs('file/file_penilaian_kegiatan', $fileName, "public");
+            $laporan->save();
+
+            return redirect()->back()->with('info', 'Penilaian Telah Berhasil Diupload');
         }
 
         return redirect()->back()->with('warning', 'Gagal upload');

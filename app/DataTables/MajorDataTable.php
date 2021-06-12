@@ -21,6 +21,9 @@ class MajorDataTable extends DataTable
     {
         return datatables()
             ->eloquent($query)
+            ->editColumn('program_studi', function ($data) {
+                return $data->prodi()->count() ?? 0;
+            })
             ->addColumn('action', function ($data) {
                 $action   = \Form::open(['url' => route('jurusan.destroy', ['id' => $data->uuid]), 'id' => 'data-' . $data->id, 'method' => 'delete']);
                 $action  .= \Form::close();
@@ -72,6 +75,8 @@ class MajorDataTable extends DataTable
                 ->addClass('text-center'),
             Column::make('kode_jurusan'),
             Column::make('nama_jurusan'),
+            Column::make('program_studi')
+                ->addClass('text-center')
         ];
     }
 

@@ -40,7 +40,7 @@
                     <h2 class="h2 float-right mb-0">{{ $data['jumlah_monev'] ?? '0' }}</h2>
                 </div>
                 <div class="card-footer d-flex align-items-center justify-content-between">
-                    <a href="{{route('public.activity.guidance', ['guard' => 'lecturer'])}}" class="text-white stretched-link">Detail Laporan Monev </a>
+                    <a href="{{route('public.activity.guidance', ['guard' => 'lecturer'])}}" class="text-white stretched-link">Detail Laporan Kegiatan </a>
                     <div class="small text-white"><i class="fas fa-angle-right"></i></div>
                 </div>
             </div>

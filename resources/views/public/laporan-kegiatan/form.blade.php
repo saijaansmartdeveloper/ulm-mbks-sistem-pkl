@@ -7,7 +7,7 @@
     <div class="card">
         <div class="card-body">
             @if ($data == null)
-                {{ Form::open(['url' => route('public.laporan-monev.store'), 'files' => true]) }}
+                {{ Form::open(['url' => route('public.laporan-kegiatan.store'), 'files' => true]) }}
             @else
                 {{ Form::model($data, ['url' => 'monev/' . $data->uuid, 'method' => 'put', 'files' => true]) }}
             @endif
@@ -23,27 +23,27 @@
             </div>
 
             <div class="form-group ">
-                {{ Form::label('judul_laporan_monev', 'Judul Laporan') }}
-                {{ Form::text('judul_laporan_monev', null, ['class' => 'form-control', 'placeholder' => '-- Judul Laporan --']) }}
+                {{ Form::label('judul_laporan_activity', 'Judul Laporan') }}
+                {{ Form::text('judul_laporan_activity', null, ['class' => 'form-control', 'placeholder' => '-- Judul Laporan --']) }}
             </div>
 
             <div class="form-group ">
-                {{ Form::label('catatan_laporan_monev', 'Catatan') }}
-                {{ Form::textarea('catatan_laporan_monev', null, ['class' => 'form-control', 'id' => 'textarea', 'placeholder' => 'Catatan Laporan Kegiatan']) }}
+                {{ Form::label('catatan_laporan_activity', 'Catatan') }}
+                {{ Form::textarea('catatan_laporan_activity', null, ['class' => 'form-control', 'id' => 'textarea', 'placeholder' => 'Catatan Laporan Kegiatan']) }}
             </div>
 
             <div class="form-group ">
-                {{ Form::label('tanggal_laporan_monev', 'Tanggal') }}
-                {{ Form::date('tanggal_laporan_monev', null, ['class' => 'form-control', 'placeholder' => 'Tanggal Laporan Kegiatan']) }}
+                {{ Form::label('tanggal_laporan_activity', 'Tanggal') }}
+                {{ Form::date('tanggal_laporan_activity', null, ['class' => 'form-control', 'placeholder' => 'Tanggal Laporan Kegiatan']) }}
             </div>
 
             <div class="form-group">
-                {{ Form::label('file_laporan_monev', 'File Dokumen') }}
-                {{ Form::file('file_laporan_monev', ['class' => 'form-control-file', 'accept' => '.pdf,.doc,.docx,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document']) }}
+                {{ Form::label('file_laporan_activity', 'File Dokumen') }}
+                {{ Form::file('file_laporan_activity', ['class' => 'form-control-file', 'accept' => '.pdf,.doc,.docx,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document']) }}
             </div>
 
             <div class="form-group text-right">
-                <a href="{{ route('public.laporan-monev.index') }}" class="btn btn-danger">Kembali</a>
+                <a href="{{ route('public.laporan-kegiatan.index') }}" class="btn btn-danger">Kembali</a>
                 {{ Form::submit('Simpan', ['class' => 'btn btn-primary']) }}
             </div>
             {{ Form::close() }}

@@ -11,6 +11,19 @@ class Comment extends Model
 
     public $incrementing    = false;
     protected $guarded      = ['uuid'];
-    protected $table        = 'komentar_journal';
+    protected $table        = 'komentar_jurnal';
     protected $primaryKey   = 'uuid';
+
+    protected $fillable = [
+        'uuid',
+        'komentar_jurnal',
+        'status_updated',
+        'jurnal_uuid',
+        'dosen_uuid'
+    ];
+
+    public function lecturer()
+    {
+        return $this->belongsTo(Lecturer::class, 'dosen_uuid');
+    }
 }

@@ -14,7 +14,7 @@ class PartnerController extends Controller
         $this->middleware('auth:partner');
     }
 
-    public function index(StudentDataTable $dataTable)
+    public function index()
     {
         $user   = Auth::guard('partner')->user();
 
@@ -33,7 +33,7 @@ class PartnerController extends Controller
             'user'  => $user
         ];
 
-        return $dataTable->render("public.partner.index", $data);
+        return view('public.partner.index', $data);
     }
 
     public function show($id)

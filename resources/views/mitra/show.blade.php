@@ -7,32 +7,32 @@
             <hr>
             <table class="table table-striped table-hover">
                 <tr>
-                    <th width='15%'>Divisi Mitra</th>
+                    <th width='25%'>Divisi Mitra</th>
                     <td width='2%'>:</td>
                     <td>{{ $data->divisi_mitra }}</td>
                 </tr>
                 <tr>
-                    <th width='15%'>Alamat Mitra</th>
+                    <th>Alamat Mitra</th>
                     <td width='2%'>:</td>
                     <td>{{ $data->alamat_mitra }}</td>
                 </tr>
                 <tr>
-                    <th width='15%'>Penanggung Jawab Mitra</th>
+                    <th>Penanggung Jawab Mitra</th>
                     <td width='2%'>:</td>
                     <td>{{ $data->penanggung_jawab_mitra }}</td>
                 </tr>
                 <tr>
-                    <th width='15%'>Pamong Mitra</th>
+                    <th>Pendamping Mitra</th>
                     <td width='2%'>:</td>
                     <td>{{ $data->pamong_mitra }}</td>
                 </tr>
                 <tr>
-                    <th width='15%'>Email</th>
+                    <th>Email</th>
                     <td width='2%'>:</td>
                     <td>{{ $data->email }}</td>
                 </tr>
                 <tr>
-                    <th width='15%'>No. Telpon</th>
+                    <th>No. Telpon</th>
                     <td width='2%'>:</td>
                     <td>{{ $data->phone }}</td>
                 </tr>

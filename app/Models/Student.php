@@ -45,12 +45,12 @@ class Student extends Authenticatable
 
     public function getStudentLinkProfileAttribute()
     {
-        return '<a href="'.url('student/' . $this->uuid).'"><strong>'.$this->nama_mahasiswa.'</strong></a>' ;
+        return '<a href="'.url('student/profile/' . $this->uuid).'"><strong>'.$this->nama_mahasiswa.'</strong></a>' ;
     }
 
     public function activities()
     {
-        return $this->hasMany(Activity::class, 'mahasiswa_uuid');
+        return $this->hasMany(Activity::class, 'mahasiswa_uuid')->where('status_kegiatan', 1);
     }
 
     public function jurusan()

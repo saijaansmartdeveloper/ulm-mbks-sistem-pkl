@@ -13,18 +13,18 @@ class CreateKomentarJournalTable extends Migration
      */
     public function up()
     {
-        Schema::create('komentar_journal', function (Blueprint $table) {
+        Schema::create('komentar_jurnal', function (Blueprint $table) {
             $table->id();
             $table->uuid('uuid')->unique();
             $table->text('komentar_jurnal');
             $table->string('status_updated')->nullable();
-            $table->foreignUuid('activity_uuid')->nullable();
+            $table->foreignUuid('jurnal_uuid')->nullable();
             $table->foreignUuid('dosen_uuid')->nullable();
             $table->timestamps();
 
 
             $table->foreign('dosen_uuid')->references('uuid')->on('dosen')->cascadeOnUpdate()->nullOnDelete();
-            $table->foreign('activity_uuid')->references('uuid')->on('kegiatan')->cascadeOnUpdate()->nullOnDelete();
+            $table->foreign('jurnal_uuid')->references('uuid')->on('jurnal')->cascadeOnUpdate()->nullOnDelete();
 
         });
     }

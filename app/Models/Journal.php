@@ -40,10 +40,10 @@ class Journal extends Model
                 return '<i class="text-success">' . $this->status_jurnal . '</i>';
                 break;
             case 'revision' :
-                return '<i class="text-warning">' . $this->status_jurnal . '</i> <a href="' .route('public.journal.edit', ['uuid' => $this->uuid]). '" class="btn btn-outline-success btn-sm ml-4">Ubah</a>';
+                return '<i class="text-warning">' . $this->status_jurnal . '</i>';
                 break;
             case 'rejected' :
-                return '<i class="text-danger">' . $this->status_jurnal . '</i> <a href="' .route('public.journal.edit', ['uuid' => $this->uuid]). '" class="btn btn-outline-success btn-sm ml-4">Ubah</a>';
+                return '<i class="text-danger">' . $this->status_jurnal . '</i>';
                 break;
             case 'accepted' :
                 return '<i class="text-primary">' . $this->status_jurnal . '</i>';
@@ -61,7 +61,7 @@ class Journal extends Model
 
     public function comments()
     {
-        return $this->hasMany(Comment::class, 'activity_uuid');
+        return $this->hasMany(Comment::class, 'jurnal_uuid');
     }
 
 }

@@ -11,20 +11,18 @@ class UpdatedJournalNotification extends Mailable
 {
     use Queueable, SerializesModels;
 
-    public $journal;
-    public $guard;
-    public $message;
+    public $user;
+    public $uuid;
 
     /**
      * Create a new message instance.
      *
      * @return void
      */
-    public function __construct($messasge, $journal, $guard)
+    public function __construct($user, $journal_uuid)
     {
-        $this->journal  = $journal;
-        $this->guard    = $guard;
-        $this->message   = $messasge;
+        $this->user  = $user;
+        $this->uuid  = $journal_uuid;
     }
 
     /**
@@ -36,6 +34,6 @@ class UpdatedJournalNotification extends Mailable
     {
         return $this->from("mbkm.fkip@ulm.ac.id", "MBKM FKIP ULM")
             ->subject('Log Book MBKM FKIP ULM')
-            ->view('mail.journal_updated.blade.php');
+            ->view('mail.journal_updated');
     }
 }

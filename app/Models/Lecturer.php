@@ -68,9 +68,9 @@ class Lecturer extends Authenticatable
         return $this->hasMany(Activity::class, 'dosen_uuid');
     }
 
-    public function monev()
+    public function report_activity()
     {
-        return $this->hasMany(Monev::class, 'dosen_uuid');
+        return $this->hasMany(ReportActivity::class, 'dosen_uuid');
     }
 
     public function getGuardNameAttribute()

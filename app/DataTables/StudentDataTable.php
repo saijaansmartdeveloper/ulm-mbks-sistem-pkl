@@ -21,12 +21,16 @@ class StudentDataTable extends DataTable
     {
         return datatables()
             ->eloquent($query)
+            ->rawColumns(['action', 'jurusan_dan_prodi', 'foto_mahasiswa'])
             ->addColumn('jurusan_dan_prodi', function ($data) {
                 $jurusan = $data->jurusan()->first()->kode_jurusan ?? '';
                 $prodi   = $data->prodi()->first()->kode_prodi ?? '';
 
                 return $jurusan . " - " . $prodi;
 
+            })
+            ->addColumn('foto_mahasiswa', function ($data) {
+                return '<img src="'.asset('storage/' . $data->foto_mahasiswa).'" height="80px">';
             })
             ->addColumn('action', function ($data) {
                 $action   = \Form::open(['url' => route('mahasiswa.destroy', ['id' => $data->uuid]), 'id' => 'data-' . $data->id, 'method' => 'delete']);
@@ -91,7 +95,11 @@ class StudentDataTable extends DataTable
             Column::make('email'),
             Column::make('phone'),
             Column::make('jurusan_dan_prodi')
-                ->title('Jurusan Dan Prodi')
+                ->title('Jurusan Dan Prodi'),
+            Column::make('foto_mahasiswa')
+                ->title('Foto')
+                ->addClass('text-center'),
+
         ];
     }
 
