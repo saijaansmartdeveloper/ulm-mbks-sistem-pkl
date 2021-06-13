@@ -50,6 +50,8 @@
     </div>
 
     @if ($guard != 'student')
+        @if ($data->activities()->first() != null)
+
         {{ Form::open(['url' => route('public.journal.update_status_any', ['prefix' => $guard]), 'method' => 'put']) }}
         <div class="card mb-3">
             <div class="card-body">
@@ -72,35 +74,35 @@
                         <th class="text-center" width='15%'>Verifikasi Mitra</th>
                         <th class="text-center" width='15%'>Aksi</th>
                     </tr>
-                    @forelse ($data->activities()->first()->journals()->orderBy('tanggal_jurnal', 'desc')->paginate(5) as $key => $item)
-                    <tr>
-                        <td class="text-center">
-                            {!! Form::checkbox('ids[]', $item->uuid) !!}
-                        </td>
-                        <td class="text-center">
-                            {{ $data->activities()->first()->journals()->orderBy('created_at', 'desc')->paginate(4)->firstItem() + $key }}
-                        </td>
-                        <td class="text-center">
-                            {{Carbon\Carbon::createFromDate($item->tanggal_jurnal)->format('d M Y')}}
-                        </td>
-                        <td>
-                            {{$item->catatan_jurnal}}
-                        </td>
-                        <td class="text-center">
-                            {!! $item->status_jurnal_with_label !!}
-                        </td>
-                        <td class="text-center">
-                            {!! $item->tanggal_verifikasi_jurnal !!}
-                        </td>
-                        <td class="text-center">
-                            <a href="{{ route('public.journal.show', ['prefix' => $guard, 'uuid' => $item->uuid]) }}" class="btn btn-outline-primary btn-sm">Detail</a>
-                        </td>
-                    </tr>
-                    @empty
-                    <tr>
-                        <td class="text-center">jurnal belum ada dibuat</td>
-                    </tr>
-                    @endforelse
+                        @forelse ($data->activities()->first()->journals()->orderBy('tanggal_jurnal', 'desc')->paginate(5) as $key => $item)
+                        <tr>
+                            <td class="text-center">
+                                {!! Form::checkbox('ids[]', $item->uuid) !!}
+                            </td>
+                            <td class="text-center">
+                                {{ $data->activities()->first()->journals()->orderBy('created_at', 'desc')->paginate(4)->firstItem() + $key }}
+                            </td>
+                            <td class="text-center">
+                                {{Carbon\Carbon::createFromDate($item->tanggal_jurnal)->format('d M Y')}}
+                            </td>
+                            <td>
+                                {{$item->catatan_jurnal}}
+                            </td>
+                            <td class="text-center">
+                                {!! $item->status_jurnal_with_label !!}
+                            </td>
+                            <td class="text-center">
+                                {!! $item->tanggal_verifikasi_jurnal !!}
+                            </td>
+                            <td class="text-center">
+                                <a href="{{ route('public.journal.show', ['prefix' => $guard, 'uuid' => $item->uuid]) }}" class="btn btn-outline-primary btn-sm">Detail</a>
+                            </td>
+                        </tr>
+                        @empty
+                        <tr>
+                            <td class="text-center">jurnal belum ada dibuat</td>
+                        </tr>
+                        @endforelse
                 </table>
                 <div>
                     {!! $data->activities()->first()->journals()->orderBy('tanggal_jurnal', 'desc')->paginate(4)->links() !!}
@@ -109,6 +111,7 @@
         </div>
         {!! Form::close() !!}
 
+        @endif
 
     @endif
 

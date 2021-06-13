@@ -12,17 +12,17 @@
             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="userDropdown">
                 @switch(($guard ?? 'web'))
                     @case("student")
-                    <a class="dropdown-item" href="{{ route('public.student.show', ['id' => ($user->uuid ?? '404')]) }}">Profile</a>
+                    <a class="dropdown-item" href="{{ route('public.student.show', ['prefix' => $guard,'id' => ($user->uuid ?? '404')]) }}">Profile</a>
                     <a class="dropdown-item" href="{{ route('public.student.edit', ['id' => ($user->uuid ?? '404')]) }}">Ganti Profile</a>
                     @break
 
                     @case("lecturer")
-                    <a class="dropdown-item" href="{{ route('public.lecturer.show', ['id' => ($user->uuid ?? '404')]) }}">Profile</a>
+                    <a class="dropdown-item" href="{{ route('public.lecturer.show', ['prefix' => $guard,'id' => ($user->uuid ?? '404')]) }}">Profile</a>
                     <a class="dropdown-item" href="{{ route('public.lecturer.edit', ['id' => ($user->uuid ?? '404')]) }}">Ganti Profile</a>
                     @break
 
                     @case("partner")
-                    <a class="dropdown-item" href="{{ route('public.partner.show', ['id' => ($user->uuid ?? '404')]) }}">Profile</a>
+                    <a class="dropdown-item" href="{{ route('public.partner.show', ['prefix' => $guard,'id' => ($user->uuid ?? '404')]) }}">Profile</a>
                     <a class="dropdown-item" href="{{ route('public.partner.edit', ['id' => ($user->uuid ?? '404')]) }}">Ganti Profile</a>
                     @break
 
