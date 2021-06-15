@@ -58,4 +58,9 @@ class Activity extends Model
     {
         return $this->belongsTo(Partner::class, 'mitra_uuid');
     }
+
+    public function admin_prodi()
+    {
+        return $this->belongsTo(User::class, 'user_uuid');
+    }
 }

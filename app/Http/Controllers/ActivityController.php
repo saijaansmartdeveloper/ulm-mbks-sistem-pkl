@@ -4,7 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Models\Activity;
 use Illuminate\Http\Request;
+use App\Mail\NotifyUploadNilai;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Storage;
 
 class ActivityController extends Controller
@@ -95,6 +97,12 @@ class ActivityController extends Controller
             $fileName       = $id . '-' . time() . '.' . $file_nilai->extension();
             $laporan->file_penilaian_kegiatan = $file_nilai->storeAs('file/file_penilaian_kegiatan', $fileName, "public");
             $laporan->save();
+
+            try {
+                Mail::to([$laporan->admin_prodi()->first()->email,$laporan->lecturer()->first()->email])->queue(new NotifyUploadNilai($laporan->student()->first()));
+            } catch (\Exception $ex) {
+
+            }
 
             return redirect()->back()->with('info', 'Penilaian Telah Berhasil Diupload');
         }
