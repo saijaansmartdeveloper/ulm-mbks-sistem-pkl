@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Lecturer;
+use App\Models\Announcement;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
@@ -17,6 +18,7 @@ class LecturerController extends Controller
     public function index()
     {
         $user   = Auth::guard('lecturer')->user();
+        $announcement = new Announcement();
 
         $data = [
             'title' => 'Selamat Datang, ' . $user->nama_dosen,
@@ -26,7 +28,9 @@ class LecturerController extends Controller
                 'jumlah_jurnal'     => $user->activities()->first() == null ? 0 : ($user->activities()->first()->journals()->count() ?? 0),
                 'jumlah_monev'      => $user->report_activity()->count() ?? 0
             ],
-            'user'  => $user
+            'user'  => $user,
+            'announcement' => $announcement->show_announcement($user->jurusan_uuid, $user->prodi_uuid)
+
         ];
 
         return view("public.lecturer.index", $data);

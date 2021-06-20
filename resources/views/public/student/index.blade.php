@@ -6,15 +6,38 @@
 
     @include('alert')
 
+    <hr>
+    <!-- Announcement -->
+    @if ($announcement != null)
+    <div class="row" id="announcement">
+        <div class="col-12">
+            <div class="card mb-4">
+                <div class="card-header">
+                    <div class="row justify-content-between">
+                        <div class="col-6">Pengumuman</div>
+                        <div class="col-6 text-right"><a href="#" onclick="close_ann()"><span class="fas fa-times"></span></a></div>
+                    </div>
+                </div>
+                @foreach ($announcement as $key => $item)
+                <div class="card-body">{!! $item->content_pengumuman !!}</div>
+                @endforeach
+                <div class="card-footer py-1 pt-2">
+                    <div class="row justify-content-end">
+                        {{ $announcement->links() }}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    @endif
+
     @if($data == null)
-        <hr>
         <div class="card">
            <div class="card-body">
                <p><i>Anda Belum Didaftarkan untuk Kegiatan <br> Harap Hubungi Admin Prodi Anda</i></p>
            </div>
         </div>
     @else
-        <hr>
         <div class="card mb-4">
             <div class="card-body">
                 <h4 class="h4">{{ ($data->typeofactivity()->first()->nama_jenis_kegiatan) }}</h4>
@@ -156,3 +179,16 @@
     @endif
 
 @endsection
+
+
+@section('js')
+@if ($announcement != null)
+<script>
+    function close_ann()
+    {
+        $("#announcement").remove();
+    }
+</script>
+@endif
+@endsection
+
