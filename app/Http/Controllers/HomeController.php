@@ -8,6 +8,7 @@ use App\Models\Partner;
 use App\Models\Student;
 use App\Models\Lecturer;
 use App\Models\Activity;
+use App\Models\Announcement;
 use App\Models\StudyProgram;
 use Illuminate\Support\Facades\Auth;
 
@@ -35,6 +36,7 @@ class HomeController extends Controller
 
     public function dashboard_supervisor()
     {
+        $announcement = new Announcement();
         $user = Auth::guard('web')->user();
 
         $data = [
@@ -48,7 +50,9 @@ class HomeController extends Controller
                 'jumlah_jurusan'        => Major::count(),
                 'jumlah_prodi'          => StudyProgram::count(),
             ],
-            'user' => $user
+            'user' => $user,
+            'announcement' => $announcement->show_announcement($user->jurusan_uuid, $user->prodi_uuid)
+
         ];
 
         return view('admin.supervisor.home', $data);
@@ -56,6 +60,7 @@ class HomeController extends Controller
 
     public function dashboard_superuser()
     {
+        $announcement = new Announcement();
         $user = Auth::guard('web')->user();
         $data = [
             'title' => 'Selamat Datang, ' . ucfirst($user->nama_pengguna),
@@ -68,7 +73,8 @@ class HomeController extends Controller
                 'jumlah_jurusan'        => Major::count(),
                 'jumlah_prodi'          => StudyProgram::count(),
             ],
-            'user' => $user
+            'user' => $user,
+            'announcement' => $announcement->show_announcement($user->jurusan_uuid, $user->prodi_uuid)
         ];
 
         return view('admin.super_admin.home', $data);
@@ -77,7 +83,9 @@ class HomeController extends Controller
 
     public function dashboard_adminprodi()
     {
-        $prodi = Auth::user()->prodi_uuid;
+        $announcement = new Announcement();
+        $user = Auth::guard('web')->user();
+        $prodi = $user->prodi_uuid;
         $data = [
             'title' => 'Dashboard',
             'data'  => [
@@ -86,6 +94,8 @@ class HomeController extends Controller
                 'jumlah_mitra'              => Partner::count(),
                 'jumlah_mahasiswa_kegiatan' => Activity::where('prodi_uuid', $prodi)->count(),
             ],
+            'user' => $user,
+            'announcement' => $announcement->show_announcement($user->jurusan_uuid, $prodi)
         ];
 
         return view('admin.admin_prodi.home', $data);

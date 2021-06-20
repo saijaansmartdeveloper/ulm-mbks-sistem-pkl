@@ -49,16 +49,20 @@
         </div>
     </div>
 
+
+
     @if ($guard != 'student')
+
         @if ($data->activities()->first() != null)
 
-        {{ Form::open(['url' => route('public.journal.update_status_any', ['prefix' => $guard]), 'method' => 'put']) }}
         <div class="card mb-3">
             <div class="card-body">
                 <h3 class="h3">Daftar Jurnal Kegiatan</h3>
                 <hr>
                 <div class="mb-3 text-right">
                     @if ($guard == 'lecturer')
+                        {{ Form::open(['url' => route('public.journal.update_status_any', ['prefix' => $guard]), 'method' => 'put']) }}
+
                         <button type="submit" class="btn btn-success btn-sm">Ubah Status Terima (Accept)</button>
                     @elseif ($guard == 'partner')
                         <button type="submit" class="btn btn-primary btn-sm">Verifikasi Banyak Jurnal</button>
@@ -95,12 +99,12 @@
                                 {!! $item->tanggal_verifikasi_jurnal !!}
                             </td>
                             <td class="text-center">
-                                <a href="{{ route('public.journal.show', ['prefix' => $guard, 'uuid' => $item->uuid]) }}" class="btn btn-outline-primary btn-sm">Detail</a>
+                                <a href="{{ route('public.journal.show', ['prefix' => $guard ?? 'web', 'uuid' => $item->uuid]) }}" class="btn btn-outline-primary btn-sm">Detail</a>
                             </td>
                         </tr>
                         @empty
                         <tr>
-                            <td class="text-center">jurnal belum ada dibuat</td>
+                            <td class="text-center" colspan="7"><i>jurnal belum ada dibuat</i></td>
                         </tr>
                         @endforelse
                 </table>
@@ -109,7 +113,7 @@
                 </div>
             </div>
         </div>
-        {!! Form::close() !!}
+        {{-- {!! Form::close() !!} --}}
 
         @endif
 

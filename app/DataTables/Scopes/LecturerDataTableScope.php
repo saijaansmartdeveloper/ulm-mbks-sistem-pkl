@@ -20,6 +20,10 @@ class LecturerDataTableScope implements DataTableScope
      */
     public function apply($query)
     {
+        if ($this->user->jurusan_uuid == null) {
+            return $query;
+        }
         return $query->where('prodi_uuid', $this->user->prodi_uuid);
+
     }
 }

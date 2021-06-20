@@ -24,11 +24,7 @@ class LecturerController extends Controller
             'data'  => [
                 'jumlah_bimbingan'  => $user->activities()->first() == null ? 0 : ($user->activities()->first()->student()->count() ?? 0),
                 'jumlah_jurnal'     => $user->activities()->first() == null ? 0 : ($user->activities()->first()->journals()->count() ?? 0),
-                'jumlah_monev'      => $user->report_activity()->count() ?? 0,
-                'persentase_jurnal' => "0 %",
-                'persentase_monev'  => "0 %",
-                'journals'          => $user->activities()->first() == null ? [] : ($user->activities()->first()->journals()) ,
-                'monev'             => $user->report_activity()->take(3) ?? [],
+                'jumlah_monev'      => $user->report_activity()->count() ?? 0
             ],
             'user'  => $user
         ];
@@ -49,7 +45,7 @@ class LecturerController extends Controller
             'title'     => 'Profile ' . $user->nama_dosen,
             'guard'     => $user->guardname,
             'data'      => Lecturer::findOrFail($id),
-            'user'      => $user
+            'user'      => $user,
         ];
 
         return view('public.lecturer.show', $data);

@@ -5,6 +5,7 @@ namespace App\DataTables;
 use App\Models\Announcement;
 use Yajra\DataTables\Html\Button;
 use Yajra\DataTables\Html\Column;
+use Illuminate\Support\Facades\Auth;
 use Yajra\DataTables\Html\Editor\Editor;
 use Yajra\DataTables\Html\Editor\Fields;
 use Yajra\DataTables\Services\DataTable;
@@ -44,8 +45,10 @@ class AnnouncementDataTable extends DataTable
                 $action  = \Form::open(['url' => route('pengumuman.destroy', ['id' => $data->id]),  'id' => 'data-' . $data->id, 'method' => 'delete']);
                 $action .= \Form::close();
                 $action .= '<a href=' . route('pengumuman.show', ['id' => $data->id]) . ' class="btn btn-sm btn-info" ><i class="fa fa-eye"></i></a> ';
-                $action .= '<a href=' . route('pengumuman.edit', ['id' => $data->id]) . ' class="btn btn-sm btn-primary" ><i class="fa fa-edit"></i></a> ';
-                $action .= '<button onclick="deleteRow(' . $data->id . ')" class = "btn btn-danger btn-sm" ><i class="fa fa-trash"></i></button>';
+                if ($data->user_uuid == Auth::guard('web')->user()->uuid) {
+                    $action .= '<a href=' . route('pengumuman.edit', ['id' => $data->id]) . ' class="btn btn-sm btn-primary" ><i class="fa fa-edit"></i></a> ';
+                    $action .= '<button onclick="deleteRow(' . $data->id . ')" class = "btn btn-danger btn-sm" ><i class="fa fa-trash"></i></button>';
+                }
                 return $action;
             });
     }

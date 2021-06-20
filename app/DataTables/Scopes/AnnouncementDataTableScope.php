@@ -24,7 +24,11 @@ class AnnouncementDataTableScope implements DataTableScope
         $jurusan = $this->jurusan_uuid ?? null;
         $prodi   = $this->prodi_uuid ?? null;
 
-        return $query->orderBy('created_at', 'asc')->whereNotNull('jurusan_uuid', $jurusan);
+        if ($jurusan == null) {
+            return $query->orderBy('created_at', 'asc');
+        } else {
+            return $query->orderBy('created_at', 'asc')->whereNotNull('jurusan_uuid', $jurusan);
+        }
 
         // if ($prodi == null && $jurusan != null) {
         // } elseif ($prodi != null && $jurusan != null) {
