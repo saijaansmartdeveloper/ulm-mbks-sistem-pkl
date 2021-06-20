@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Student;
+use App\Models\Announcement;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
@@ -17,12 +18,14 @@ class StudentController extends Controller
     public function index()
     {
         $user   = Auth::guard('student')->user();
+        $announcement = new Announcement();
 
         $data = [
             'title'     => "Hello, " . $user->nama_mahasiswa,
             'guard'     => $user->guardname,
             'data'      => $user->activities()->first(), // harus selesai dulu
-            'user'      => $user
+            'user'      => $user,
+            'announcement' => $announcement->show_announcement($user->jurusan_uuid, $user->prodi_uuid)
         ];
 
         return view("public.student.index", $data);

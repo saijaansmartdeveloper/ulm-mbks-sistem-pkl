@@ -2,15 +2,16 @@
 
 namespace App\Http\Controllers\Master;
 
-use App\DataTables\LecturerDataTable;
-use App\DataTables\Scopes\LecturerDataTableScope;
-use App\Http\Controllers\Controller;
+use DataTables;
+use Ramsey\Uuid\Uuid;
+use App\Models\Activity;
 use App\Models\Lecturer;
 use Illuminate\Http\Request;
-use DataTables;
+use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
+use App\DataTables\LecturerDataTable;
 use Illuminate\Support\Facades\Storage;
-use Ramsey\Uuid\Uuid;
+use App\DataTables\Scopes\LecturerDataTableScope;
 
 class LecturerController extends Controller
 {
@@ -106,10 +107,18 @@ class LecturerController extends Controller
     {
         $user = Auth::guard('web')->user();
 
+        $activity   = Activity::select('jenis_kegiatan_uuid')->orderBy('jenis_kegiatan_uuid', 'asc')->distinct()->get();
+
+        foreach ($activity as $key => $value) {
+            $activity[$key]->list_guidance = Activity::where('jenis_kegiatan_uuid', $value->jenis_kegiatan_uuid)->where('dosen_uuid', $id)->orderBy('mitra_uuid', 'asc')->paginate(5);
+        }
+
         $data = [
             'title' => 'Detail Dosen',
             'data'  => Lecturer::findOrFail($id),
-            'user'  => $user
+            'guard' => 'web',
+            'user'  => $user,
+            'guidance' => $activity ?? null
         ];
 
         return view('public.lecturer.show', $data);

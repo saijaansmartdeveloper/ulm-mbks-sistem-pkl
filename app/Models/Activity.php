@@ -44,6 +44,11 @@ class Activity extends Model
         return $this->hasMany(Journal::class, 'kegiatan_uuid')->orderBy('updated_at', 'desc');
     }
 
+    public function report_activities()
+    {
+        return $this->hasMany(ReportActivity::class, 'kegiatan_uuid')->orderBy('tanggal_laporan_activity', 'asc');
+    }
+
     public function student()
     {
         return $this->belongsTo(Student::class, 'mahasiswa_uuid');

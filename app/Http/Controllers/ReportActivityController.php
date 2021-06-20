@@ -12,7 +12,7 @@ class ReportActivityController extends Controller
 {
     public function __construct()
     {
-        $this->middleware('auth:lecturer');
+        $this->middleware('auth:lecturer,web');
     }
 
     public function index (ActivityReportDataTable $datatable)
@@ -101,11 +101,19 @@ class ReportActivityController extends Controller
         $user = Auth::guard('lecturer')->user();
         $data = [
             'title' => 'Detail Laporan Kegiatan',
-            'guard' => $user->guard_name,
+            'guard' => $user->guard_name ?? 'web',
             'data'  => ReportActivity::findOrFail($id),
             'user'  => $user
         ];
 
         return view('public.laporan-kegiatan.show', $data);
+    }
+
+    public function destroy($id)
+    {
+        $journal = ReportActivity::findOrFail($id);
+        $journal->delete();
+
+        return redirect()->route('public.laporan-kegiatan.index')->with('success', 'Laporan Kegiatan Telah Dihapus');
     }
 }

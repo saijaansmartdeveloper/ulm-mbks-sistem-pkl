@@ -77,15 +77,14 @@
                 </blockquote>
                 <div class="text-right">
                     @if ($guard == 'lecturer')
-                    <a href="#" class="btn btn-primary btn-sm mr-2" data-bs-toggle="modal" data-bs-target="#add-comment">
-                        <i class="fas fa-plus"></i>
-                    </a>
-                    <a href="#" class="btn btn-outline-success btn-sm mr-2">
-                        <i class="fas fa-edit"></i>
-                    </a>
-                    <a href="#" class="btn btn-outline-danger btn-sm mr-2">
-                        <i class="fas fa-trash"></i>
-                    </a>
+                        <a href="#" class="btn btn-primary btn-sm mr-2" data-bs-toggle="modal" data-bs-target="#add-comment">
+                            <i class="fas fa-plus"></i>
+                        </a>
+                        {!! Form::open(['url' => route('public.journal.comment.destroy', ['prefix' => 'lecturer', 'id' => $item->uuid]), 'method' => 'delete', 'class' => 'd-inline-block']) !!}
+                        <button type="submit" class="btn btn-outline-danger btn-sm mr-2">
+                            <i class="fas fa-trash"></i>
+                        </button>
+                        {!! Form::close() !!}
                     @endif
                 </div>
                 <hr>

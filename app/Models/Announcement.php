@@ -2,8 +2,9 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Announcement extends Model
 {
@@ -35,6 +36,31 @@ class Announcement extends Model
     public function jurusan()
     {
         return $this->belongsTo(Major::class, 'jurusan_uuid')->first();
+    }
+
+    public function show_announcement($jurusan = null, $prodi = null)
+    {
+        if ($jurusan == null && $prodi == null) {
+            return $this->paginate(1);
+        } else {
+            if ($jurusan == null) {
+                if ($prodi != null) {
+                    return DB::table('pengumuman')
+                        ->whereRaw('jurusan_uuid is null OR jurusan_uuid = ? and prodi_uuid = ?', [$jurusan, $prodi])
+                        ->paginate(1);
+                }
+            } else {
+                if ($prodi == null) {
+                    return DB::table('pengumuman')
+                        ->whereRaw('jurusan_uuid is null OR jurusan_uuid = ?', [$jurusan])
+                        ->paginate(1);
+                } else {
+                    return DB::table('pengumuman')
+                        ->whereRaw('jurusan_uuid is null OR jurusan_uuid = ? and prodi_uuid = ?', [$jurusan, $prodi])
+                        ->paginate(1);
+                }
+            }
+        }
     }
 
 

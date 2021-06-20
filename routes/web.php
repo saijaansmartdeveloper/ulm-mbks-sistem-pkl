@@ -95,6 +95,9 @@ Route::group(['as' => 'public.'], function () {
         Route::post('comment', [JournalController::class, 'store_comment'])
             ->name('journal.comment.store');
 
+        Route::delete('comment/{id}', [JournalController::class, 'destroy_comment'])
+            ->name('journal.comment.destroy');
+
         Route::put('journal/status', [JournalController::class, 'update_status_any'])
             ->name('journal.update_status_any');
 
@@ -117,7 +120,7 @@ Route::group(['as' => 'public.'], function () {
         Route::post('laporan-kegitan', [ReportActivityController::class, 'store'])
             ->name('laporan-kegiatan.store');
 
-        Route::delete('laporan-kegitan', [ReportActivityController::class, 'destroy'])
+        Route::delete('laporan-kegitan/{id}', [ReportActivityController::class, 'destroy'])
             ->name('laporan-kegiatan.destroy');
     });
 

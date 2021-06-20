@@ -6,6 +6,7 @@ use Carbon\Carbon;
 use Ramsey\Uuid\Uuid;
 use App\Models\Comment;
 use App\Models\Journal;
+use App\Models\Student;
 use Illuminate\Http\Request;
 use Barryvdh\DomPDF\Facade as PDF;
 use Illuminate\Support\Facades\Auth;
@@ -16,7 +17,7 @@ class JournalController extends Controller
 {
     public function __construct()
     {
-        $this->middleware('auth:student,lecturer,partner');
+        $this->middleware('auth:student,lecturer,partner,web');
     }
 
     public function index()
@@ -90,7 +91,6 @@ class JournalController extends Controller
 
     public function show($prefix, $id)
     {
-
         if (! (Auth::guard($prefix)->check()))
         {
             return redirect()->route('public.user.form_login');
@@ -244,6 +244,14 @@ class JournalController extends Controller
         $journal->delete();
 
         return redirect()->route('public.student.journal')->with('success', 'Jurnal Telah Dihapus');
+    }
+
+    public function destroy_comment($prefix, $id)
+    {
+        $journal = Comment::findOrFail($id);
+        $journal->delete();
+
+        return redirect()->back()->with('success', 'Jurnal Telah Dihapus');
     }
 
 }
