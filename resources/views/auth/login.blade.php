@@ -1,13 +1,15 @@
 <!doctype html>
 <html lang="id">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport"
-          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+        content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>{{config('app.name')}}</title>
 
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-eOJMYsd53ii+scO/bJGFsiCZc+5NDVN2yr8+0RDqr0Ql0h+rP48ckxlpbzKgwra6" crossorigin="anonymous">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-eOJMYsd53ii+scO/bJGFsiCZc+5NDVN2yr8+0RDqr0Ql0h+rP48ckxlpbzKgwra6" crossorigin="anonymous">
 
     <style>
         :root {
@@ -106,6 +108,7 @@
             .form-label-group>label {
                 display: none;
             }
+
             .form-label-group input::-ms-input-placeholder {
                 color: #777;
             }
@@ -119,13 +122,14 @@
             .form-label-group>label {
                 display: none;
             }
+
             .form-label-group input:-ms-input-placeholder {
                 color: #777;
             }
         }
-
     </style>
 </head>
+
 <body>
     <div class="container-fluid">
         <div class="row no-gutter">
@@ -135,26 +139,32 @@
                     <div class="container">
                         <div class="row">
                             <div class="col-md-9 col-lg-8 mx-auto">
-                                <h3 class="login-heading mb-4">Selamat Datang!</h3>
+                                <h3 class="login-heading mb-4">Selamat Malam!</h3>
 
                                 <form action="{{ route('login') }}" method="post">
                                     @csrf
                                     <div class="form-label-group">
-                                        <input name="email" type="email" id="inputEmail" class="form-control" placeholder="Masukan Email address" required autofocus>
+                                        <input name="email" type="email" id="inputEmail" class="form-control"
+                                            placeholder="Masukan Email address" required autofocus>
                                         <label for="inputEmail">Email address</label>
                                     </div>
 
                                     <div class="form-label-group">
-                                        <input name="password" type="password" id="inputPassword" class="form-control" placeholder="Masukan Password" required>
+                                        <input name="password" type="password" id="inputPassword" class="form-control"
+                                            placeholder="Masukan Password" required>
                                         <label for="inputPassword">Password</label>
                                     </div>
                                     <div class="d-grid gap-2">
-                                        <button class="btn btn-lg btn-primary btn-block btn-login text-uppercase font-weight-bold mb-2" type="submit">Sign in</button>
+                                        <button
+                                            class="btn btn-lg btn-primary btn-block btn-login text-uppercase font-weight-bold mb-2"
+                                            type="submit">Sign in</button>
                                     </div>
 
                                     <div class="text-center">
-                                        {{-- <a class="small" href="{{ route('password.request') }}">Forgot password?</a> --}}
-                                        <a class="small text-secondary" href="#">APP Version {{ config('app.version') }}</a>
+                                        {{-- <a class="small" href="{{ route('password.request') }}">Forgot
+                                        password?</a> --}}
+                                        <a class="small text-secondary" href="#">APP Version
+                                            {{ config('app.version') }}</a>
                                     </div>
                                 </form>
                                 {!! Form::close() !!}
@@ -166,5 +176,5 @@
         </div>
     </div>
 </body>
-</html>
 
+</html>
