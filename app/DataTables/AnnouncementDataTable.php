@@ -44,11 +44,13 @@ class AnnouncementDataTable extends DataTable
             ->addColumn('action', function ($data) {
                 $action  = \Form::open(['url' => route('pengumuman.destroy', ['id' => $data->id]),  'id' => 'data-' . $data->id, 'method' => 'delete']);
                 $action .= \Form::close();
-                $action .= '<a href=' . route('pengumuman.show', ['id' => $data->id]) . ' class="btn btn-sm btn-info" ><i class="fa fa-eye"></i></a> ';
+                $action  .= '<div class="btn-group btn-group-sm" role="group">';
+                $action .= '<a role="button" href=' . route('pengumuman.show', ['id' => $data->id]) . ' class="btn btn-sm btn-info" ><i class="fa fa-eye"></i></a> ';
                 if ($data->user_uuid == Auth::guard('web')->user()->uuid) {
-                    $action .= '<a href=' . route('pengumuman.edit', ['id' => $data->id]) . ' class="btn btn-sm btn-primary" ><i class="fa fa-edit"></i></a> ';
+                    $action .= '<a role="button" href=' . route('pengumuman.edit', ['id' => $data->id]) . ' class="btn btn-sm btn-primary" ><i class="fa fa-edit"></i></a> ';
                     $action .= '<button onclick="deleteRow(' . $data->id . ')" class = "btn btn-danger btn-sm" ><i class="fa fa-trash"></i></button>';
                 }
+                $action  .= '</div>';
                 return $action;
             });
     }

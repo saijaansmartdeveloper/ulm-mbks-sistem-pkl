@@ -9,6 +9,7 @@ use Illuminate\Http\Request;
 use App\DataTables\MajorDataTable;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
+use DB;
 
 class MajorController extends Controller
 {
@@ -19,12 +20,21 @@ class MajorController extends Controller
      */
     public function index(MajorDataTable $datatable)
     {
+        // $test = DB::table('jurusan as jur')
+        // ->selectRaw("
+        //     jur.nama_jurusan,
+        //     jur.kode_jurusan,
+        //     COUNT(prodi.nama_prodi) as program_studi
+        // ")
+        // ->leftJoin('prodi','jur.uuid','=','prodi.jurusan_uuid')
+        // ->groupByRaw("jur.id")->get();
+
+        // dd($test);
         $user = Auth::guard('web')->user();
 
         $data = [
             'title' => 'Master Data Jurusan',
             'user'  => $user
-
         ];
         return $datatable->render('jurusan.index', $data);
         // return view('jurusan.index', $data);

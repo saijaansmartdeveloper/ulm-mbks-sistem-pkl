@@ -25,7 +25,7 @@ class JournalController extends Controller
         $user = Auth::guard('student')->user();
 
         $data = [
-            'title'     => 'Hello, ' . $user->nama_mahasiswa,
+            'title'     => 'Hari ini, ' . $user->nama_mahasiswa,
             'guard'     => $user->guard_name,
             'data'      => $user->activities()->first()
         ];
@@ -143,7 +143,7 @@ class JournalController extends Controller
         }
 
         $data = [
-            'title'     => 'Hello, ' . $user->nama_mahasiswa,
+            'title'     => 'Hari ini, ' . $user->nama_mahasiswa,
             'guard'     => $user->guard_name,
             'data'      => $data ?? null,
             'user'      => $user

@@ -51,14 +51,14 @@
     <div class="sb-nav-link-icon"><i class="fas fa-user-graduate fa-fw"></i></div>
     Kelola Data Dosen
 </a>
-{{-- <a class="nav-link collapsed" href="{{ route('mahasiswa.index') }}">
+<a class="nav-link collapsed" href="{{ route('mahasiswa.index') }}">
     <div class="sb-nav-link-icon"><i class="fas fa-users fa-fw"></i></div>
     Kelola Data Mahasiswa
 </a>
 <a class="nav-link collapsed" href="{{ route('mitra.index') }}">
     <div class="sb-nav-link-icon"><i class="fas fa-landmark fa-fw"></i></div>
     Kelola Data Mitra
-</a> --}}
+</a>
 
 
 @elseif (Auth::User()->hasRole('admin_prodi'))

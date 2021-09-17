@@ -24,10 +24,12 @@ class UserDataTable extends DataTable
             ->addColumn('action', function ($data) {
                 $action   = \Form::open(['url' => route('user.destroy', ['id' => $data->uuid]), 'id' => 'data-' . $data->id, 'method' => 'delete']);
                 $action  .= \Form::close();
-                $action  .= '<a href=' . route('user.edit', ['id' => $data->uuid]) . ' class="btn btn-sm btn-primary"><i class="fa fa-edit"></i></a> ';
-                $action  .= '<a href=' . route('user.show', ['id' => $data->uuid]) . ' class="btn btn-sm btn-info"><i class="fa fa-search"></i></a> ';
+                $action  .= '<div class="btn-group btn-group-sm" role="group">';
+                $action  .= '<a role="button" href=' . route('user.edit', ['id' => $data->uuid]) . ' class="btn btn-sm btn-primary"><i class="fa fa-edit"></i></a> ';
+                $action  .= '<a role="button" href=' . route('user.show', ['id' => $data->uuid]) . ' class="btn btn-sm btn-info"><i class="fa fa-search"></i></a> ';
                 $action  .= '<button onclick="deleteRow(' . $data->id . ')" class = "btn btn-danger btn-sm"><i class="fa fa-trash"></i></button>';
-
+                $action  .= '</div>';
+                
                 return $action;
             })
             ->editColumn('jurusan_uuid', function ($data) {
@@ -85,6 +87,7 @@ class UserDataTable extends DataTable
                 ->printable(false)
                 ->addClass('text-center'),
             Column::make('nama_pengguna'),
+            Column::make('role_pengguna'),
             Column::make('email'),
             Column::make('jurusan_uuid')
                 ->title('Jurusan'),

@@ -115,10 +115,11 @@ class AnnouncementController extends Controller
      */
     public function edit($id)
     {
+
         $user = Auth::guard('web')->user();
         $announcement = Announcement::findOrFail($id);
 
-        if ($user->uuid != $announcement->uuid) {
+        if ($user->uuid != $announcement->user_uuid) {
             return redirect()->back()->with('delete', 'Anda Dilarang Untuk Mengubah Pengumuman Ini');
         }
 

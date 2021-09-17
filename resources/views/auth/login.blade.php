@@ -139,7 +139,7 @@
                     <div class="container">
                         <div class="row">
                             <div class="col-md-9 col-lg-8 mx-auto">
-                                <h3 class="login-heading mb-4">Selamat Malam!</h3>
+                                <h3 class="login-heading mb-4">Selamat Datang!</h3>
 
                                 <form action="{{ route('login') }}" method="post">
                                     @csrf

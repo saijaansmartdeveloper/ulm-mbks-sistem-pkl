@@ -8,6 +8,7 @@ use Yajra\DataTables\Html\Column;
 use Yajra\DataTables\Html\Editor\Editor;
 use Yajra\DataTables\Html\Editor\Fields;
 use Yajra\DataTables\Services\DataTable;
+use DB;
 
 class MajorDataTable extends DataTable
 {
@@ -20,10 +21,7 @@ class MajorDataTable extends DataTable
     public function dataTable($query)
     {
         return datatables()
-            ->eloquent($query)
-            ->editColumn('program_studi', function ($data) {
-                return $data->prodi()->count() ?? 0;
-            })
+            ->of($query)
             ->addColumn('action', function ($data) {
                 $action   = \Form::open(['url' => route('jurusan.destroy', ['id' => $data->uuid]), 'id' => 'data-' . $data->id, 'method' => 'delete']);
                 $action  .= \Form::close();
@@ -40,9 +38,18 @@ class MajorDataTable extends DataTable
      * @param \App\Models\Major $model
      * @return \Illuminate\Database\Eloquent\Builder
      */
-    public function query(Major $model)
+    public function query()
     {
-        return $model->newQuery();
+        return DB::table('jurusan as jur')
+        ->selectRaw("
+            jur.id,
+            jur.uuid,
+            jur.nama_jurusan as nama_jurusan,
+            jur.kode_jurusan as kode_jurusan,
+            COUNT(prodi.nama_prodi) as program_studi
+        ")
+        ->leftJoin('prodi','jur.uuid','=','prodi.jurusan_uuid')
+        ->groupByRaw("jur.id")->get();
     }
 
     /**
