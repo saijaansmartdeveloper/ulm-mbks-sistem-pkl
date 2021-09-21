@@ -36,9 +36,13 @@ class StudentDataTable extends DataTable
                 $action   = \Form::open(['url' => route('mahasiswa.destroy', ['id' => $data->uuid]), 'id' => 'data-' . $data->id, 'method' => 'delete']);
                 $action  .= \Form::close();
                 $action  .= '<div class="btn-group btn-group-sm" role="group">';
-                $action  .= '<a role="button" href=' . route('mahasiswa.edit', ['id' => $data->uuid]) . ' class="btn btn-sm btn-primary" ><i class="fa fa-edit"></i></a> ';
                 $action  .= '<a role="button" href=' . route('mahasiswa.show', ['id' => $data->uuid]) . ' class="btn btn-sm btn-info" ><i class="fa fa-search"></i></a> ';
-                $action  .= '<button onclick="deleteRow(' . $data->id . ')" class = "btn btn-danger btn-sm"><i class="fa fa-trash"></i></button>';
+                if(\Auth::guard('web')->user()->role_pengguna == 'super_admin' || \Auth::guard('web')->user()->role_pengguna == 'admin_prodi'){
+                    $action  .= '<a role="button" href=' . route('mahasiswa.edit', ['id' => $data->uuid]) . ' class="btn btn-sm btn-primary" ><i class="fa fa-edit"></i></a> ';
+                    $action  .= '<button onclick="deleteRow(' . $data->id . ')" class = "btn btn-danger btn-sm"><i class="fa fa-trash"></i></button>';
+                }
+              
+    
                 $action  .= '</div>';
                 
                 return $action;

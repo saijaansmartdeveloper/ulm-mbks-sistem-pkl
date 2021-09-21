@@ -24,10 +24,12 @@ class ActivityDataTable extends DataTable
             ->addColumn('action', function ($data) {
                 $action = \Form::open(['url' => route('magang.destroy', ['id' => $data->uuid]),  'id' => 'data-' . $data->id, 'method' => 'delete']);
                 $action .= \Form::close();
+                $action  .= '<div class="btn-group btn-group-sm" role="group">';
                 $action .= '<a href=' . route('magang.edit', ['id' => $data->uuid]) . ' class="btn btn-primary btn-sm"><i class="fa fa-edit"></i></a> ';
                 $action .= '<a href=' . route('magang.show', ['id' => $data->uuid]) . ' class="btn btn-info btn-sm"><i class="fa fa-search"></i></a> ';
                 $action .= '<button onclick="deleteRow(' . $data->id . ')" class = "btn btn-danger btn-sm"><i class="fa fa-trash"></i></button>';
-
+                $action  .= '</div>';
+                
                 return $action;
             })
             ->editColumn('jenis_kegiatan_uuid', function ($data) {
