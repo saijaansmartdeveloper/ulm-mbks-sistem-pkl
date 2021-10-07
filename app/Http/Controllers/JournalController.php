@@ -161,7 +161,7 @@ class JournalController extends Controller
 
         $comment = Comment::create([
             'uuid'              => Uuid::uuid4(),
-            'komentar_jurnal'   => $request->komentar_jurnal,
+            'komentar_jurnal'   => $request->has('komentar_jurnal') ?  $request->komentar_jurnal : "",
             'status_updated'    => $request->status_jurnal,
             'jurnal_uuid'       => $request->jurnal_uuid,
             'dosen_uuid'        => $request->dosen_uuid
