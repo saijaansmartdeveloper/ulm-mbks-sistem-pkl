@@ -159,7 +159,7 @@ class JournalController extends Controller
             abort(403);
         }
 
-        dd($request->all());
+        dd($request->all(), $request->komentar_jurnal == null ? "ya" : 'no');
 
         $comment = Comment::create([
             'uuid'              => Uuid::uuid4(),
