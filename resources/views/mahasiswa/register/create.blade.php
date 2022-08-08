@@ -31,7 +31,6 @@
         .select2-selection__arrow {
             height: 48px !important;
         }
-
     </style>
 
 </head>
@@ -46,39 +45,46 @@
                 <div class="signup-content">
                     {{ Form::open(['url' => route('mahasiswa.register.store'), 'enctype' => 'multipart/form-data']) }}
                     {{-- <form method="POST" id="signup-form" class="signup-form"> --}}
-                    <h2 class="form-title">{{ $title }}</h2>
-                    @include('alert')
-                    <div class="form-group">
-                        {{ Form::text('nim_mahasiswa', null, ['class' => 'form-input', 'placeholder' => 'NIM Student']) }}
+                        <h2 class="form-title">{{ $title }}</h2>
+                        @include('alert')
+                        <div class="form-group">
+                            {{ Form::text('nim_mahasiswa', null, ['class' => 'form-input', 'placeholder' => 'NIM
+                            ']) }}
 
-                    </div>
-                    <div class="form-group">
-                        {{ Form::text('nama_mahasiswa', null, ['class' => 'form-input', 'placeholder' => 'Nama Student']) }}
-                    </div>
-                    <div class="form-group">
-                        {{ Form::text('phone', null, ['class' => 'form-input', 'placeholder' => 'No. Telpon Student']) }}
-                    </div>
-                    <div class="form-group">
-                        {{ Form::email('email', null, ['class' => 'form-input', 'placeholder' => 'Email']) }}
+                        </div>
+                        <div class="form-group">
+                            {{ Form::text('nama_mahasiswa', null, ['class' => 'form-input', 'placeholder' => 'Nama
+                            ']) }}
+                        </div>
+                        <div class="form-group">
+                            {{ Form::text('phone', null, ['class' => 'form-input', 'placeholder' => 'No. Telpon
+                            ']) }}
+                        </div>
+                        <div class="form-group">
+                            {{ Form::email('email', null, ['class' => 'form-input', 'placeholder' => 'Email']) }}
 
-                    </div>
-                    <div class="form-group">
-                        {{ Form::password('password', ['class' => 'form-input', 'placeholder' => 'Password']) }}
+                        </div>
+                        <div class="form-group">
+                            {{ Form::password('password', ['class' => 'form-input', 'placeholder' => 'Password']) }}
 
-                    </div>
-                    <div class="form-group">
-                        {{ Form::select('prodi_uuid', $prodi, null, ['placeholder' => '-- Pilih StudyProgram --', 'id' => 'prodi', 'class' => 'form-input prodi-select2', 'style' => 'height:100px!important']) }}
-                    </div>
-                    <div class="form-group">
-                        <label for="foto_mahasiswa">Foto Mahasiswa : </label>
-                        {{ Form::file('foto_mahasiswa', null, ['class' => 'form-input', 'accept' => 'image/png,image/gif,image/jpeg']) }}
-                    </div>
-                    {{-- <div class="form-group">
-                            <input type="password" class="form-input" name="re_password" id="re_password" placeholder="Ulangi Password" />
+                        </div>
+                        <div class="form-group">
+                            {{ Form::select('prodi_uuid', $prodi, null, ['placeholder' => '-- Pilih Program Studi --',
+                            'id' => 'prodi', 'class' => 'form-input prodi-select2', 'style' =>
+                            'height:100px!important']) }}
+                        </div>
+                        <div class="form-group">
+                            <label for="foto_mahasiswa">Foto Mahasiswa : </label>
+                            {{ Form::file('foto_mahasiswa', null, ['class' => 'form-input', 'accept' =>
+                            'image/png,image/gif,image/jpeg']) }}
+                        </div>
+                        {{-- <div class="form-group">
+                            <input type="password" class="form-input" name="re_password" id="re_password"
+                                placeholder="Ulangi Password" />
                         </div> --}}
-                    <div class="form-group">
-                        <input type="submit" name="submit" id="submit" class="form-submit" value="Sign up" />
-                    </div>
+                        <div class="form-group">
+                            <input type="submit" name="submit" id="submit" class="form-submit" value="Sign up" />
+                        </div>
                     </form>
                     <p class="loginhere">
                         Have already an account ? <a href="{{ route('public.user.form_login') }}"

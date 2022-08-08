@@ -19,7 +19,7 @@ class PartnerController extends Controller
         $user   = Auth::guard('partner')->user();
 
         $data = [
-            'title' => 'Selamat Datang, ' . $user->pamong_mitra,
+            'title' => 'SIBISA, ' . $user->pamong_mitra,
             'guard' => $user->guardName,
             'data'  => [
                 'jumlah_bimbingan'  => $user->activities()->first() == null ? 0 : ($user->activities()->first()->student()->count() ?? 0),

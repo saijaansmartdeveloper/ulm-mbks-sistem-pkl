@@ -99,7 +99,8 @@ class ActivityController extends Controller
             $laporan->save();
 
             try {
-                Mail::to([$laporan->admin_prodi()->first()->email,$laporan->lecturer()->first()->email])->queue(new NotifyUploadNilai($laporan->student()->first()));
+                // Disabled
+                // Mail::to([$laporan->admin_prodi()->first()->email,$laporan->lecturer()->first()->email])->queue(new NotifyUploadNilai($laporan->student()->first()));
             } catch (\Exception $ex) {
 
             }

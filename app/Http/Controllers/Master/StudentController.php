@@ -77,7 +77,8 @@ class StudentController extends Controller
         $mahasiswa->save();
         $mahasiswa->assignRole('student');
 
-        Mail::to($mahasiswa->email)->queue(new NewUserNotification($mahasiswa));
+        // Disabled karena tidak bisa email lagi
+        // Mail::to($mahasiswa->email)->queue(new NewUserNotification($mahasiswa));
 
         return redirect()->back()->with('success', 'Registrasi Student Berhasil, Tunggu Penetapan Program Kegiatan Selanjutnya');
     }
@@ -166,7 +167,8 @@ class StudentController extends Controller
         $mahasiswa->save();
         $mahasiswa->assignRole('student');
 
-        Mail::to($mahasiswa->email)->send(new NewUserNotification($mahasiswa));
+        // Disabled karena tidak bisa email lagi
+        // Mail::to($mahasiswa->email)->send(new NewUserNotification($mahasiswa));
 
         return redirect()->route('mahasiswa.show', ['id' => $mahasiswa->uuid])->with('success', 'Data Berhasi Dibuat');
     }

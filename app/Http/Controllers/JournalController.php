@@ -84,7 +84,8 @@ class JournalController extends Controller
             'file_dokumen_jurnal'   => $fileDoc ?? null
         ]);
 
-        Mail::to($user->activities()->first()->lecturer()->first()->email)->queue(new UpdatedJournalNotification($user->activities()->first()->lecturer()->first(),$journal->uuid));
+        // Disabled
+        // Mail::to($user->activities()->first()->lecturer()->first()->email)->queue(new UpdatedJournalNotification($user->activities()->first()->lecturer()->first(),$journal->uuid));
 
         return redirect()->route('public.student.journal')->with('success', 'Journal berhasil Dibuat');
     }
@@ -220,6 +221,7 @@ class JournalController extends Controller
 
         $jurnal->save();
 
+        // disabled
         // Mail::to($jurnal->activity()->first()->lecturer()->email)->send(new UpdatedJournalNotification($user->nama_mahasiswa . ' baru saja mengubah jurnal kegiatan!', $jurnal, 'student'));
 
         return redirect()->route('public.student.journal')->with('success', 'Jurnal berhasil Diperbarui');

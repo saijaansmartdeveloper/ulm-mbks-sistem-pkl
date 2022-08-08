@@ -139,7 +139,7 @@
                     <div class="container">
                         <div class="row">
                             <div class="col-md-9 col-lg-8 mx-auto">
-                                <h3 class="login-heading mb-4">Selamat Datang!</h3>
+                                <h3 class="login-heading mb-4">SIBISA</h3>
 
                                 <form action="{{ route('login') }}" method="post">
                                     @csrf
@@ -162,7 +162,7 @@
 
                                     <div class="text-center">
                                         {{-- <a class="small" href="{{ route('password.request') }}">Forgot
-                                        password?</a> --}}
+                                            password?</a> --}}
                                         <a class="small text-secondary" href="#">APP Version
                                             {{ config('app.version') }}</a>
                                     </div>
