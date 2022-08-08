@@ -101,7 +101,7 @@ class LecturerController extends Controller
         }
         $dosen->save();
 
-        return redirect()->route('public.lecturer.show', ['id' => $id])->with('update', 'Data Berhasi Diubah');
+        return redirect()->route('public.lecturer.show', ['id' => $id])->with('update', 'Data Berhasil Diubah');
 
     }
 

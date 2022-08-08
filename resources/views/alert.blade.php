@@ -11,20 +11,20 @@
 @if (session('success'))
 <br>
 <div class="alert alert-success" role="alert">
-	<b>Message : </b>{{ session('success') }}
+  <b>Message : </b>{{ session('success') }}
 </div>
 @endif
 
 @if (session('update'))
 <br>
 <div class="alert alert-success" role="alert">
-	<b>Message : </b>{{ session('update') }}
+  <b>Message : </b>{{ session('update') }}
 </div>
 @endif
 
 @if (session('delete'))
 <br>
 <div class="alert alert-success" role="alert">
-	<b>Message : </b>{{ session('delete') }}
+  <b>Message : </b>{{ session('delete') }}
 </div>
 @endif

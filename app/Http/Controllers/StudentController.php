@@ -106,7 +106,7 @@ class StudentController extends Controller
 
         if ($request->guard == 'student')
         {
-            return redirect()->route('public.student.show', ['id' => $id])->with('update', 'Data Berhasi Diubah');
+            return redirect()->route('public.student.show', ['id' => $id])->with('update', 'Data Berhasil Diubah');
         }
     }
 

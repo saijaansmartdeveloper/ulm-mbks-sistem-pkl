@@ -54,7 +54,7 @@ class MajorSeeder extends Seeder
         StudyProgram::create([
             'uuid' => Uuid::uuid4(),
             'kode_prodi' => 'PILKOM',
-            'nama_prodi' => 'Pendidikan Ilmu Komputer',
+            'nama_prodi' => 'Pendidikan Komputer',
             'jurusan_uuid' => $jmipa->uuid
         ]);
 

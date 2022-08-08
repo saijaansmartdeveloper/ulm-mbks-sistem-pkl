@@ -182,7 +182,7 @@ class ActivityController extends Controller
         $magang = Activity::findOrFail($id);
         $magang->delete();
 
-        return redirect()->back()->with('delete', 'Data Berhasi Dihapus');
+        return redirect()->back()->with('delete', 'Data Berhasil Dihapus');
     }
 
     public function show($id)

@@ -83,12 +83,12 @@
                                 placeholder="Ulangi Password" />
                         </div> --}}
                         <div class="form-group">
-                            <input type="submit" name="submit" id="submit" class="form-submit" value="Sign up" />
+                            <input type="submit" name="submit" id="submit" class="form-submit" value="Daftar" />
                         </div>
                     </form>
                     <p class="loginhere">
-                        Have already an account ? <a href="{{ route('public.user.form_login') }}"
-                            class="loginhere-link">Login here</a>
+                        Sudah punya akun? <a href="{{ route('public.user.form_login') }}"
+                            class="loginhere-link">Masuk</a>
                     </p>
                 </div>
             </div>
