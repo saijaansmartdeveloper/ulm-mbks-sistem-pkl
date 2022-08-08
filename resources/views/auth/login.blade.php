@@ -23,6 +23,27 @@
             min-height: 100vh;
         }
 
+        .animate-title {
+            font-size: 3em;
+            letter-spacing: 1px;
+            font-weight: bold;
+            /* opacity: 0.6; */
+            /* color: rgb(59, 32, 140); */
+            /* background: url('img/pattern-blue.png');
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: text 7.5s linear infinite; */
+        }
+
+        /* @keyframes text {
+            from {
+                background-position: 10% 10%;
+            }
+
+            to {
+                background-position: 100% 100%;
+            }
+        } */
         .bg-image {
             background-image: url("{{asset('img/ulm-fkp.jpg')}}");
             background-size: cover;
@@ -139,7 +160,9 @@
                     <div class="container">
                         <div class="row">
                             <div class="col-md-9 col-lg-8 mx-auto">
-                                <h3 class="login-heading mb-4">SIBISA</h3>
+                                <h1 class="mt-2 text-center animate-title text-primary"><strong>SIBISA</strong>
+                                </h1>
+                                <h5 class="text-center mb-4">Admin Login</h5>
 
                                 <form action="{{ route('login') }}" method="post">
                                     @csrf
