@@ -41,6 +41,10 @@
     <div class="sb-nav-link-icon"><i class="fas fa-graduation-cap fa-fw"></i></div>
     Kelola Data Prodi
 </a>
+<a class="nav-link collapsed" href="{{ route('mitra.index') }}">
+    <div class="sb-nav-link-icon"><i class="fas fa-landmark fa-fw"></i></div>
+    Kelola Data Mitra
+</a>
 
 @elseif (Auth::User()->hasRole('supervisor'))
 
