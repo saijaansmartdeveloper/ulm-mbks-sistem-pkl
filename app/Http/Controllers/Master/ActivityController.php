@@ -41,7 +41,8 @@ class ActivityController extends Controller
             'title'             => 'Buat Kegiatan',
             'dosen'             => Lecturer::where('prodi_uuid', $user->prodi_uuid)->pluck('nama_dosen', 'uuid'),
             'mitra'             => Partner::pluck('nama_mitra', 'uuid'),
-            'mahasiswa'         => Student::where('prodi_uuid', $user->prodi_uuid)->pluck('nama_mahasiswa', 'uuid'),
+            // 'mahasiswa'         => Student::where('prodi_uuid', $user->prodi_uuid)->pluck('nama_mahasiswa', 'uuid'),
+            'mahasiswa'         => Student::pluck('nama_mahasiswa', 'uuid'),
             'jenis_kegiatan'    => TypeOfActivity::pluck('nama_jenis_kegiatan', 'uuid'),
             'data'              => null,
             'user'              => $user
