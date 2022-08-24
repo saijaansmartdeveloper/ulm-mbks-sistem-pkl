@@ -39,7 +39,8 @@ class ActivityController extends Controller
 
         $data = [
             'title'             => 'Buat Kegiatan',
-            'dosen'             => Lecturer::where('prodi_uuid', $user->prodi_uuid)->pluck('nama_dosen', 'uuid'),
+            // 'dosen'             => Lecturer::where('prodi_uuid', $user->prodi_uuid)->pluck('nama_dosen', 'uuid'),
+            'dosen'             => Lecturer::pluck('nama_dosen', 'uuid'),
             'mitra'             => Partner::pluck('nama_mitra', 'uuid'),
             // 'mahasiswa'         => Student::where('prodi_uuid', $user->prodi_uuid)->pluck('nama_mahasiswa', 'uuid'),
             'mahasiswa'         => Student::pluck('nama_mahasiswa', 'uuid'),
@@ -122,7 +123,8 @@ class ActivityController extends Controller
         $user = Auth::guard('web')->user();
         $data = [
             'title'             => 'Ubah Kegiatan',
-            'dosen'             => Lecturer::where('prodi_uuid', $user->prodi_uuid)->pluck('nama_dosen', 'uuid'),
+            // 'dosen'             => Lecturer::where('prodi_uuid', $user->prodi_uuid)->pluck('nama_dosen', 'uuid'),
+            'dosen'             => Lecturer::pluck('nama_dosen', 'uuid'),
             'mitra'             => Partner::pluck('nama_mitra', 'uuid'),
             // 'mahasiswa'         => Student::where('prodi_uuid', $user->prodi_uuid)->pluck('nama_mahasiswa', 'uuid'),
             'mahasiswa'         => Student::pluck('nama_mahasiswa', 'uuid'),

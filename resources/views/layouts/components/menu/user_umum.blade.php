@@ -1,5 +1,5 @@
 <div class="sb-sidenav-menu-heading"></div>
-
+{{--================== SUPER ADMIN ==================--}}
 @if (Auth::User()->hasRole('super_admin'))
 
 <a class="nav-link" href="{{ route('super_admin.dashboard') }}">
@@ -22,6 +22,10 @@
 </a>
 
 <a class="nav-link collapsed" href="{{ route('jenis_kegiatan.index') }}">
+    <div class="sb-nav-link-icon"><i class="fas fa-folder-open fa-fw"></i></div>
+    Kelola Program
+</a>
+<a class="nav-link collapsed" href="{{ route('magang.index') }}">
     <div class="sb-nav-link-icon"><i class="fas fa-folder-open fa-fw"></i></div>
     Kelola Program Kegiatan
 </a>
@@ -60,6 +64,7 @@
     Kelola Data Mitra
 </a>
 
+{{--================== ADMIN PRODI ==================--}}
 
 @elseif (Auth::User()->hasRole('admin_prodi'))
 
@@ -79,6 +84,7 @@
     <div class="sb-nav-link-icon"><i class="fas fa-folder-open fa-fw"></i></div>
     Kelola Program Kegiatan
 </a>
+
 
 <div class="sb-sidenav-menu-heading">Master Data Pengguna</div>
 
