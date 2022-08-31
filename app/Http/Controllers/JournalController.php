@@ -30,6 +30,8 @@ class JournalController extends Controller
             'data'      => $user->activities()->first()
         ];
 
+        // dd($data["data"]);
+
         return view("public.jurnal.index", $data);
     }
 

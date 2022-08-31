@@ -1,6 +1,6 @@
 @extends('layouts.admin')
 
-@section('content-header', $title ?? '')
+@section('content-header', $data->journals ?? '')
 
 @section('content')
 
@@ -73,7 +73,7 @@
 @endsection
 
 @section('js')
-{{-- @if ($data != null) --}}
+@if ($data != null)
 <script type="text/javascript">
     $(document).ready(function () {
             $("#date_journal").datepicker({ maxDate: "0D" });
@@ -132,5 +132,5 @@
      })  
 
 </script>
-{{-- @endif --}}
+@endif
 @endsection
