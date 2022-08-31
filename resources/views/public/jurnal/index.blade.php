@@ -37,18 +37,22 @@
 
                     <div class="form-group">
                         <label class="col-form-label text-md-right" for="catatan_monev">Catatan Jurnal</label>
-                        {{ Form::textarea('catatan_jurnal', null, ['class' => 'form-control', 'rows' => '8', 'placeholder' => 'Catatan Journal']) }}
+                        {{ Form::textarea('catatan_jurnal', null, ['class' => 'form-control', 'rows' => '8',
+                        'placeholder' => 'Catatan Journal']) }}
                     </div>
 
                     <div class="form-group ">
                         <label class="col-form-label text-md-right" for="file_image_jurnal">File Image
                             Dokumentasi</label><br>
-                        {{ Form::file('file_image_jurnal', ['class' => 'form-control-file', 'accept' => 'image/png, image/jpeg']) }}
+                        {{ Form::file('file_image_jurnal', ['class' => 'form-control-file', 'accept' => 'image/png,
+                        image/jpeg']) }}
                     </div>
 
                     <div class="form-group">
                         <label class="col-form-label text-md-right" for="file_dokumen_jurnal">File Laporan</label><br>
-                        {{ Form::file('file_dokumen_jurnal', ['class' => 'form-control-file', 'accept' => "application/pdf,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document"]) }}
+                        {{ Form::file('file_dokumen_jurnal', ['class' => 'form-control-file', 'accept' =>
+                        "application/pdf,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document"])
+                        }}
                     </div>
                     <div class="form-group">
                     </div>
@@ -69,7 +73,7 @@
 @endsection
 
 @section('js')
-@if ($data != null)
+{{-- @if ($data != null) --}}
 <script type="text/javascript">
     $(document).ready(function () {
             $("#date_journal").datepicker({ maxDate: "0D" });
@@ -128,5 +132,5 @@
         });
 
 </script>
-@endif
+{{-- @endif --}}
 @endsection

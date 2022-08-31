@@ -29,6 +29,7 @@ class LecturerController extends Controller
         ];
 
         return $datatable->addScope(new LecturerDataTableScope(Auth::user()))->render('public.lecturer.list', $data);
+        // return $datatable->render('public.lecturer.list', $data);
     }
 
     /**
