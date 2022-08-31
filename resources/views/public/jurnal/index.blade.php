@@ -77,9 +77,8 @@
 <script type="text/javascript">
     $(document).ready(function () {
             $("#date_journal").datepicker({ maxDate: "0D" });
-        })
 
-        let journal = [
+            let journal = [
             @foreach($data->journals as $key => $item)
             {
                 id: '{{$item->uuid}}', // Event's ID (required)
@@ -130,6 +129,7 @@
         $('#calendar').on('selectEvent', function(event, activeEvent)  {
             window.location.href = activeEvent.detail;
         });
+     })  
 
 </script>
 {{-- @endif --}}
