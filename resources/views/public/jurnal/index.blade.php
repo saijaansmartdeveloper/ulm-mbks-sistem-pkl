@@ -1,6 +1,6 @@
 @extends('layouts.admin')
 
-@section('content-header', $data->journals ?? '')
+@section('content-header', $title ?? '')
 
 @section('content')
 
