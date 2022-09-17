@@ -51,6 +51,14 @@ class JournalController extends Controller
 
     public function store(Request $request)
     {
+        $text_resource =  explode("\r\n",$request->catatan_jurnal);
+        $text_edited = "";
+        foreach($text_resource as $subtext){
+            $text_edited = $text_edited." ".$subtext;
+        }
+
+        // dd($request->catatan_jurnal,$text_edited);
+
         $user   = Auth::guard('student')->user();
 
         $request->validate([
@@ -78,7 +86,8 @@ class JournalController extends Controller
         }
 
         $journal = Journal::create([
-            'catatan_jurnal'        => $request->catatan_jurnal,
+            'catatan_jurnal'        => $text_edited,
+            // 'catatan_jurnal'        => $request->catatan_jurnal,
             'tanggal_jurnal'        => Carbon::parse($request->tanggal_jurnal)->format('Y-m-d'),
             'uuid'                  => Uuid::uuid4(),
             'kegiatan_uuid'         => $user->activities()->first()->uuid,
