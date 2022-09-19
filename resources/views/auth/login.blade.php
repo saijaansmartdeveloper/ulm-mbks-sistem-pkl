@@ -160,7 +160,7 @@
                     <div class="container">
                         <div class="row">
                             <div class="col-md-9 col-lg-8 mx-auto">
-                                <h1 class="mt-2 text-center animate-title text-primary"><strong>SIBISA</strong>
+                                <h1 class="mt-2 text-center animate-title text-primary"><strong>"SIBISA"</strong>
                                 </h1>
                                 <h5 class="text-center mb-4">Admin Login</h5>
 
