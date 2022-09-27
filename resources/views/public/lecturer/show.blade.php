@@ -73,9 +73,9 @@
                     </td>
                 </tr>
                 @empty
-                {{-- <tr>
+                <tr>
                     <td colspan="6"><i>Tidak Ada Daftar Bimbingan</i></td>
-                </tr> --}}
+                </tr>
                 @endforelse
             </table>
 
