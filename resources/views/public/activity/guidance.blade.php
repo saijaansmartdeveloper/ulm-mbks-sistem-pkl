@@ -79,9 +79,9 @@
                     </td>
                 </tr>
                 @empty
-                {{-- <tr>
+                <tr>
                     <td colspan="6"><i>Tidak Ada Daftar Bimbingan</i></td>
-                </tr> --}}
+                </tr>
                 @endforelse
             </table>
 
@@ -92,11 +92,11 @@
     </div>
 </div>
 @empty
-{{-- <div class="card mb-4">
+<div class="card mb-4">
     <div class="card-body">
         <i>Tidak Ada Mahasiswa Bimbingan</i>
     </div>
-</div> --}}
+</div>
 @endforelse
 
 @endsection
