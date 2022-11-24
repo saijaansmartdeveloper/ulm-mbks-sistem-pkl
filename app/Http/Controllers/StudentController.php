@@ -33,10 +33,11 @@ class StudentController extends Controller
 
     public function show($prefix, $id)
     {
-        if (! (Auth::guard($prefix)->check()))
-        {
-            abort(403);
-        }
+        // NON AKTIF
+        // if (! (Auth::guard($prefix)->check()))
+        // {
+        //     abort(403);
+        // }
 
         $user   = Auth::guard($prefix)->user();
 
