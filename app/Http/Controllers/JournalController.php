@@ -103,16 +103,16 @@ class JournalController extends Controller
 
     public function show($prefix, $id)
     {
-        if (! (Auth::guard($prefix)->check()))
-        {
-            return redirect()->route('public.user.form_login');
-        }
+        // if (! (Auth::guard($prefix)->check()))
+        // {
+        //     return redirect()->route('public.user.form_login');
+        // }
 
         $user = Auth::guard($prefix)->user();
 
         $data = [
             'title'     => 'Detail Jurnal',
-            'guard'     => $user->guard_name,
+            'guard'     => $user == null ? 'student' : $user->guard_name,
             'data'      => Journal::findOrFail($id),
             'user'      => $user
         ];
