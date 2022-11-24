@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Lecturer;
+use App\Models\Activity;
 use App\Models\Announcement;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -38,18 +39,25 @@ class LecturerController extends Controller
 
     public function show($id)
     {
-        if (! (Auth::guard('student')->check() || Auth::guard('lecturer')->check() || Auth::guard('partner')->check()))
-        {
-            abort(403);
-        }
+        // if (! (Auth::guard('student')->check() || Auth::guard('lecturer')->check() || Auth::guard('partner')->check()))
+        // {
+        //     abort(403);
+        // }
 
         $user   = Auth::guard('lecturer')->user() ?? Lecturer::findOrFail($id);
 
+        $activity   = Activity::select('jenis_kegiatan_uuid')->orderBy('jenis_kegiatan_uuid', 'asc')->distinct()->get();
+
+        foreach ($activity as $key => $value) {
+            $activity[$key]->list_guidance = Activity::where('jenis_kegiatan_uuid', $value->jenis_kegiatan_uuid)->where('dosen_uuid', $user->id)->orderBy('mitra_uuid', 'asc')->paginate(5);
+        }
+
         $data = [
             'title'     => 'Profile ' . $user->nama_dosen,
-            'guard'     => $user->guardname,
+            'guard'     => $user == null ? 'student' : $user->guard_name,
             'data'      => Lecturer::findOrFail($id),
             'user'      => $user,
+            'guidance' => $activity ?? null
         ];
 
         return view('public.lecturer.show', $data);
