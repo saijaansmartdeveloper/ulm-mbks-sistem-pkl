@@ -33,17 +33,17 @@ class StudentController extends Controller
 
     public function show($prefix, $id)
     {
-        // NON AKTIF
-        // if (! (Auth::guard($prefix)->check()))
-        // {
-        //     abort(403);
-        // }
-
+        if (! (Auth::guard($prefix)->check()))
+        {
+            // abort(403);
+        }
+        
         $user   = Auth::guard($prefix)->user();
+    
 
         $data = [
             'title'     => 'Profile ' . ($user->nama_mahasiswa ?? ' Mahasiswa'),
-            'guard'     => $user->guard_name,
+            'guard'     => $user == null ? 'student' : $user->guard_name,
             'data'      => Student::findOrFail($id),
             'user'      => $user
         ];

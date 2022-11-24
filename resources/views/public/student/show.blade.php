@@ -52,7 +52,7 @@
 
 
 
-@if ($guard != 'student')
+{{-- @if ($guard != 'student') --}}
 
 @if ($data->activities()->first() != null)
 
@@ -61,11 +61,13 @@
         <h3 class="h3">Daftar Jurnal Kegiatan</h3>
         <hr>
         <div class="mb-3 text-right">
+            {{-- KALO DOSEN MAKA AKAN ADA UPDATE STATUS --}}
             @if ($guard == 'lecturer')
             {{ Form::open(['url' => route('public.journal.update_status_any', ['prefix' => $guard]), 'method' => 'put'])
             }}
 
             <button type="submit" class="btn btn-success btn-sm">Ubah Status Terima (Accept)</button>
+            {{-- KALO MITRA MAKA BISA VERIFIKASI --}}
             @elseif ($guard == 'partner')
             <button type="submit" class="btn btn-primary btn-sm">Verifikasi Banyak Jurnal</button>
             @endif
@@ -120,7 +122,7 @@
 </div>
 {{-- {!! Form::close() !!} --}}
 
-@endif
+{{-- @endif --}}
 
 @endif
 
