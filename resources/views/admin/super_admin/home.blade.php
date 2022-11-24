@@ -12,7 +12,8 @@
             <div class="card-header">
                 <div class="row justify-content-between">
                     <div class="col-6">Pengumuman</div>
-                    <div class="col-6 text-right"><a href="#" onclick="close_ann()"><span class="fas fa-times"></span></a></div>
+                    <div class="col-6 text-right"><a href="#" onclick="close_ann()"><span
+                                class="fas fa-times"></span></a></div>
                 </div>
             </div>
             @foreach ($announcement as $key => $item)
@@ -33,7 +34,7 @@
         <div class="card bg-success border-0 shadow-sm text-white mb-4">
             <div class="card-body justify-content-between">
                 <i class="fas fa-users fa-2x"></i>
-                <h2 class="h2 float-right mb-0">{{ $data['jumlah_supervisor'] ?? '0' }}</h2>
+                <h2 class="h2 float-right mb-0">{{ $data['jumlah_super_visor'] ?? '0' }}</h2>
             </div>
             <div class="card-footer d-flex align-items-center justify-content-between">
                 <span class="text-white stretched-link">Pengguna Supervisor</span>
@@ -98,7 +99,7 @@
                 <h2 class="h2 float-right mb-0">{{ $data['jumlah_jurusan'] ?? '0' }}</h2>
             </div>
             <div class="card-footer d-flex align-items-center justify-content-between">
-                <a href="{{ route('jurusan.index') }}" class="text-white stretched-link">Jumlah Program Studi
+                <a href="{{ route('jurusan.index') }}" class="text-white stretched-link">Jumlah Jurusan
                 </a>
                 <div class="small text-white"><i class="fas fa-angle-right"></i></div>
             </div>
