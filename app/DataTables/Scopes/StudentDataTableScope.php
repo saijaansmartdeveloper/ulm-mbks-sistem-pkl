@@ -20,6 +20,7 @@ class StudentDataTableScope implements DataTableScope
      */
     public function apply($query)
     {
+        dd($user);
         return $query->where('prodi_uuid', $this->user->prodi_uuid);
     }
 }

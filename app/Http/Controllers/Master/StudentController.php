@@ -98,7 +98,12 @@ class StudentController extends Controller
             'user'  => $user
         ];
 
-        return $datatable->addScope(new StudentDataTableScope($user))->render('public.student.list', $data);
+        if($user->role_pengguna == "supervisor"){
+            return $datatable->render('public.student.list', $data);
+        }else{
+            return $datatable->addScope(new StudentDataTableScope($user))->render('public.student.list', $data);
+        }
+       
     }
 
     /**
