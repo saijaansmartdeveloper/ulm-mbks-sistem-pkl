@@ -163,7 +163,7 @@
                             <div class="col-md-9 col-lg-8 mx-auto">
                                 <img src="{{ asset('img/ULM-KampusMerdeka.png') }}" alt="" height="80px" class="mb-5">
 
-                                <h1 class="mt-2 mb-4 text-center animate-title text-primary"><strong>SIBISA</strong>
+                                <h1 class="mt-2 mb-4 text-center animate-title text-primary"><strong>s</strong>
                                     </h2>
 
                                     @include('alert')
