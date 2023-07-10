@@ -22,6 +22,8 @@ use App\Http\Controllers\StudentController as UserStudent;
 |
 */
 
+Route::view('/old-login', 'auth/another_user/old-login')->name('old-login');;
+
 Route::get('/', function () {
     return redirect()->route('public.user.form_login');
 });

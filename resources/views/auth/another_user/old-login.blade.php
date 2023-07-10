@@ -163,59 +163,59 @@
                             <div class="col-md-9 col-lg-8 mx-auto">
                                 <img src="{{ asset('img/ULM-KampusMerdeka.png') }}" alt="" height="80px" class="mb-5">
 
-                                <h1 class="mt-2 mb-4 text-center animate-title text-primary"><strong>s</strong>
-                                    </h2>
+                                <h1 class="mt-2 mb-4 text-center text-primary"><strong>Sibisa
+                                        (Lama)</strong>
+                                </h1>
+                                @include('alert')
 
-                                    @include('alert')
+                                <form action="{{route('public.user.login')}}" method="post">
+                                    @csrf
+                                    <div class="form-label-group">
+                                        <input name="email" type="email" id="inputEmail" class="form-control"
+                                            placeholder="Masukan Email address" required autofocus>
+                                        <label for="inputEmail">Email address</label>
+                                    </div>
 
-                                    <form action="{{route('public.user.login')}}" method="post">
-                                        @csrf
-                                        <div class="form-label-group">
-                                            <input name="email" type="email" id="inputEmail" class="form-control"
-                                                placeholder="Masukan Email address" required autofocus>
-                                            <label for="inputEmail">Email address</label>
-                                        </div>
+                                    <div class="form-label-group">
+                                        <input name="password" type="password" id="inputPassword" class="form-control"
+                                            placeholder="Masukan Password" required>
+                                        <label for="inputPassword">Password</label>
+                                    </div>
 
-                                        <div class="form-label-group">
-                                            <input name="password" type="password" id="inputPassword"
-                                                class="form-control" placeholder="Masukan Password" required>
-                                            <label for="inputPassword">Password</label>
-                                        </div>
+                                    <div class="form-label-group">
+                                        {!! Form::select('type', ['lecturer' => 'Dosen', 'student' => 'Mahasiswa',
+                                        'partner' => 'Mitra'], null, ['class' => 'form-control' ,'placeholder' =>
+                                        'Masuk
+                                        Sebagai', 'style' => 'border-radius: 2rem; padding-top: 14px;
+                                        padding-bottom:
+                                        12px; padding-left: 18px;']) !!}
+                                    </div>
 
-                                        <div class="form-label-group">
-                                            {!! Form::select('type', ['lecturer' => 'Dosen', 'student' => 'Mahasiswa',
-                                            'partner' => 'Mitra'], null, ['class' => 'form-control' ,'placeholder' =>
-                                            'Masuk
-                                            Sebagai', 'style' => 'border-radius: 2rem; padding-top: 14px;
-                                            padding-bottom:
-                                            12px; padding-left: 18px;']) !!}
-                                        </div>
+                                    <div class="d-grid gap-2">
+                                        <button
+                                            class="btn btn-lg btn-primary btn-block btn-login text-uppercase font-weight-bold mb-2"
+                                            type="submit">Masuk</button>
+                                    </div>
 
-                                        <div class="d-grid gap-2">
-                                            <button
-                                                class="btn btn-lg btn-primary btn-block btn-login text-uppercase font-weight-bold mb-2"
-                                                type="submit">Masuk</button>
-                                        </div>
+                                    <div class="d-grid gap-2">
+                                        <a href="{{ route('mahasiswa.register') }}"
+                                            class="btn btn-lg btn-danger btn-block btn-login text-uppercase font-weight-bold mb-2">Registrasi
+                                            Mahasiswa</a>
+                                    </div>
 
-                                        <div class="d-grid gap-2">
-                                            <a href="{{ route('mahasiswa.register') }}"
-                                                class="btn btn-lg btn-danger btn-block btn-login text-uppercase font-weight-bold mb-2">Registrasi
-                                                Mahasiswa</a>
-                                        </div>
+                                    <div class="text-center mb-2 mt-5">
+                                        <a class="small text-secondary" href="{{ route('login') }}">Login Sebagai
+                                            Admin
+                                            Prodi</a>
+                                    </div>
 
-                                        <div class="text-center mb-2 mt-5">
-                                            <a class="small text-secondary" href="{{ route('login') }}">Login Sebagai
-                                                Admin
-                                                Prodi</a>
-                                        </div>
-
-                                        <div class="text-center">
-                                            <a class="small text-secondary" href="#">App Version {{
-                                                config('app.version')
-                                                }}</a>
-                                        </div>
-                                    </form>
-                                    {!! Form::close() !!}
+                                    <div class="text-center">
+                                        <a class="small text-secondary" href="#">App Version {{
+                                            config('app.version')
+                                            }}</a>
+                                    </div>
+                                </form>
+                                {!! Form::close() !!}
                             </div>
                         </div>
                     </div>

@@ -3,21 +3,40 @@
 <head>
     <title>REDIRECT SIBISA</title>
     <style>
-        .flex {
+        .flex-container {
             display: flex;
+            flex-direction: column;
             justify-content: center;
             align-items: center;
             background-color: oldlace;
             height: 100%;
             width: 100%;
         }
+
+        .box-1 {
+            background-color: rgb(37, 197, 152);
+            text-align: center;
+            padding: 10px;
+            border-radius: 5px;
+        }
+
+        .box-2 {
+            background-color: rgb(233, 52, 79);
+            text-align: center;
+            padding: 10px;
+            border-radius: 5px;
+            color: white;
+        }
     </style>
 </head>
 
 <body>
-    <section class="flex">
-        <h1 style="text-align: center;">SILAHKAN MASUK KE SIBISA VERSI 2.0: <br><a target="_blank"
-                href="http://mbkm.fkip.ulm.ac.id">mbkm.fkip.ulm.ac.id</a></h1>
+    <section class="flex-container">
+        <h1 style="text-align: center;">SILAHKAN MASUK KE SIBISA VERSI 2.0 (TERBARU):<a target="_blank"
+                href="http://mbkm.fkip.ulm.ac.id" class="box-1">mbkm.fkip.ulm.ac.id</a></h1>
+        <h1 style="text-align: center;">SIBISA versi Lama:
+            <a target="_blank" href="/old-login" class="box-2">mb-kmfkip.ulm.ac.id</a>
+        </h1>
     </section>
 </body>
 
